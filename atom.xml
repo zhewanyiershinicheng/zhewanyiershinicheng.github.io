@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Potato</title>
+  
+  
+  <link href="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/"/>
+  <updated>2024-10-12T06:25:12.614Z</updated>
+  <id>https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/</id>
+  
+  <author>
+    <name>这玩意儿是昵称</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/12/%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E8%AF%95%E9%AA%8C%E6%80%A7%E7%9A%84%E6%96%87%E7%AB%A0/"/>
+    <id>https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/12/%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E8%AF%95%E9%AA%8C%E6%80%A7%E7%9A%84%E6%96%87%E7%AB%A0/</id>
+    <published>2024-10-12T05:23:38.000Z</published>
+    <updated>2024-10-12T06:25:12.614Z</updated>
+    
+    
+    <summary type="html">测试功能用的文档，没有什么内容</summary>
+    
+    
+    
+    <category term="生活" scheme="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/11/hello-world/"/>
+    <id>https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/11/hello-world/</id>
+    <published>2024-10-11T11:07:37.400Z</published>
+    <updated>2024-10-11T11:07:37.400Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>土豆豆豆豆豆</title>
+    <link href="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/11/%E5%9C%9F%E8%B1%86%E8%B1%86%E8%B1%86%E8%B1%86%E8%B1%86/"/>
+    <id>https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/11/%E5%9C%9F%E8%B1%86%E8%B1%86%E8%B1%86%E8%B1%86%E8%B1%86/</id>
+    <published>2024-10-11T09:48:50.000Z</published>
+    <updated>2024-10-11T10:21:23.793Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;第一章&quot;&gt;&lt;a href=&quot;#第一章&quot; class=&quot;headerlink&quot; title=&quot;第一章&quot;&gt;&lt;/a&gt;第一章&lt;/h3&gt;&lt;h4 id=&quot;绪论&quot;&gt;&lt;a href=&quot;#绪论&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo-Theme-Sakura</title>
+    <link href="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2018/12/12/Hexo-Theme-Sakura/"/>
+    <id>https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2018/12/12/Hexo-Theme-Sakura/</id>
+    <published>2018-12-12T14:16:01.000Z</published>
+    <updated>2021-11-09T14:13:18.000Z</updated>
+    
+    
+    <summary type="html">hexo-sakura主题使用教程</summary>
+    
+    
+    
+    <category term="技术" scheme="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="web" scheme="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/tags/web/"/>
+    
+    <category term="悦读" scheme="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/tags/%E6%82%A6%E8%AF%BB/"/>
+    
+  </entry>
+  
+</feed>
