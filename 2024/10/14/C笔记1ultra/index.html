@@ -328,14 +328,14 @@
 </blockquote>
 <h4 id="五-变量类型"><a href="#五-变量类型" class="headerlink" title="五.变量类型"></a>五.变量类型</h4><h4 id="总起"><a href="#总起" class="headerlink" title="总起"></a>总起</h4><p>表示范围:char&lt;short&lt;int&lt;float&lt;double</p>
 <p>输入输出时的格式化:%d，%ld，%lf</p>
-<p>在内存中的大小：<a href="char">1字节</a>（8bit,即8位），<a href="short">2字节</a>，<a href="int%EF%BC%8Clong(32%E4%BD%8D%E7%8E%AF%E5%A2%83)">4字节</a>，<a href="double%EF%BC%8Clong(64%E4%BD%8D%E7%8E%AF%E5%A2%83">8字节</a>，long long)</p>
-<p>&#x2F;&#x2F;int的大小其实也是不确定的，它等于电脑CPU的寄存器宽度（<a href="cpu%E4%B8%80%E6%AC%A1%E5%8F%AF%E4%BB%A5%E5%A4%84%E7%90%86%E7%9A%84%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6">字长</a>以及<a href="%E5%8D%95%E6%AC%A1%E5%8F%AF%E4%BB%A5%E4%BC%A0%E8%BE%93%E7%9A%84%E9%95%BF%E5%BA%A6%EF%BC%8Ccpu%E4%B8%8E%E5%86%85%E5%AD%98%E4%B9%8B%E9%97%B4">总线</a>）</p>
-<p>在内存中的表达形式：<a href="int">二进制数(补码)</a>，<a href="%E6%B5%AE%E7%82%B9%E6%95%B0%E9%83%BD%E6%98%AF">编码</a></p>
+<p>在内存中的大小：1字节(char)（8bit,即8位），2字节(short)，4字节(int，long(32位环境))，8字节(double，long(64位环境)，long long)</p>
+<p>&#x2F;&#x2F;int的大小其实也是不确定的，它等于电脑CPU的寄存器宽度（字长(cpu一次可以处理的数据长度)以及<a href="%E5%8D%95%E6%AC%A1%E5%8F%AF%E4%BB%A5%E4%BC%A0%E8%BE%93%E7%9A%84%E9%95%BF%E5%BA%A6%EF%BC%8Ccpu%E4%B8%8E%E5%86%85%E5%AD%98%E4%B9%8B%E9%97%B4">总线</a>）</p>
+<p>在内存中的表达形式：二进制数(补码)(int)，编码(浮点数都是)</p>
 <p>&#x2F;&#x2F;sizeof()    用于输出该变量的所占字节数，不能在其中运算(会被无视)，这是静态的：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sizeof(a++)=sizeof(a)    //即使在后面printf(&quot;%d&quot;,a)输出也还是a而不是a+1</span><br><span class="line">sizeof(a+1.0)//输出是8，因为整数和浮点数运算前会转换成浮点数，所以是浮点数的8</span><br><span class="line">               这不意味着有进行运算，只是判断了最后还是double类型而已</span><br></pre></td></tr></table></figure>
 
-<h5 id="1-整数（int-bool）"><a href="#1-整数（int-bool）" class="headerlink" title="1.整数（int&#x2F;bool）"></a>1.整数（<a href="%E7%9C%8B%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%8C%E5%8D%B3%E4%B8%80%E4%B8%AA%E5%AD%97">int</a>&#x2F;bool）</h5><p><strong>一般用int</strong></p>
-<p>是有范围的，还有<a href="-32768-32767">short</a>，long，long long int (C99)</p>
+<h5 id="1-整数（int-看编译器，即一个字-bool）"><a href="#1-整数（int-看编译器，即一个字-bool）" class="headerlink" title="1.整数（int(看编译器，即一个字)&#x2F;bool）"></a>1.整数（int(看编译器，即一个字)&#x2F;bool）</h5><p><strong>一般用int</strong></p>
+<p>是有范围的，还有short(-32768-32767)，long，long long int (C99)</p>
 <p>&#x2F;&#x2F;如果读取到负数，处理时又不能带符号，最后还要输出。那么可以单独printf一个负号，然后x&#x3D;-&#x3D;x</p>
 <p>&#x2F;&#x2F;bool是人为定义的，它只存在于C99，即布尔量</p>
 <blockquote>
@@ -363,13 +363,16 @@
 <p>需要#include&lt;stdbool.h&gt;,但实际上不会输出所谓的true或者false,本质上还是1&#x2F;0</p>
 <hr>
 <h5 id="2-浮点数（float-double）"><a href="#2-浮点数（float-double）" class="headerlink" title="2.浮点数（float,double）"></a>2.浮点数（float,double）</h5><p>一般用double</p>
-<p><strong>精确计算不能使用浮点数！！！</strong>只能用整型或者[bcd码](这种码只用4bit（2^4&#x3D;16）,也只表示0~9,它通过拼凑来得到数字，由于是表示10进制数，二进制运算时的结果可能要修正， 修正的规则是：当两个BCD码相加，如果和等于或小于 1001（10进制的9），无需修正。如果相加之和在 1010 到1111(即十六进制数 0AH～0FH)之间，则需加 6 进行修正；如果相加时，本位产生了进位，也需加 6 进行修正。这样做的原因是，机器按二进制相加，所以 4 位[二进制数相加时，是按”逢十六进一”的原则进行运算的，而实质上是 2 个十进制数相加，应该按”逢十进一”的原则相加，16 与10相差 6，所以当和超过 9或有进位时，都要加 6 进行修正。)</p>
+<p><strong>精确计算不能使用浮点数！！！</strong>只能用整型或者bcd码</p>
+<blockquote>
+<p>这种码只用4bit（2^4&#x3D;16）,也只表示0~9,它通过拼凑来得到数字，由于是表示10进制数，二进制运算时的结果可能要修正， 修正的规则是：当两个BCD码相加，如果和等于或小于 1001（10进制的9），无需修正。如果相加之和在 1010 到1111(即十六进制数 0AH～0FH)之间，则需加 6 进行修正；如果相加时，本位产生了进位，也需加 6 进行修正。这样做的原因是，机器按二进制相加，所以 4 位[二进制数相加时，是按”逢十六进一”的原则进行运算的，而实质上是 2 个十进制数相加，应该按”逢十进一”的原则相加，16 与10相差 6，所以当和超过 9或有进位时，都要加 6 进行修正。</p>
+</blockquote>
 <p>可以表示+&#x2F;-inf（无穷大&#x2F;小，实际上是越界无法表达），nan（无效数字，比如0&#x2F;0，如果用整数，会报错，而浮点不会，只会输出nan）</p>
 <p>带小数部分，有longdouble（C99）</p>
-<p><a href="4%E5%AD%97%E8%8A%82%EF%BC%8C%E5%AD%97%E9%95%BF32">float</a>：<strong>有效数字</strong>7位，在0周围10<sup>-38</sup>里无法表示</p>
-<p><a href="8%E5%AD%97%E8%8A%82%EF%BC%8C%E5%AD%97%E9%95%BF64">double</a>：<strong>有效数字</strong>15位，在0周围10<sup>-308</sup>里无法表示</p>
+<p>float(4字节，字长32)：<strong>有效数字</strong>7位，在0周围10<sup>-38</sup>里无法表示</p>
+<p>double(8字节，字长64)：<strong>有效数字</strong>15位，在0周围10<sup>-308</sup>里无法表示</p>
 <p>&#x2F;&#x2F;浮点数中的0是单独拿出来表示的</p>
-<p>浮点数的<a href="##%E8%A7%81%E4%B8%8A">运算精度</a>:</p>
+<p>浮点数的运算精度(##见上):</p>
 <p>在运算超出float范围时，编译器会强制将其转换为double，如果不想要这样，在数字后加f</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">flaot a=1.345f</span><br></pre></td></tr></table></figure>
 
@@ -507,15 +510,17 @@
 <p>取右边值，比如a&#x3D;(1,2),此时a&#x3D;2。</p>
 <p>一般不运算，平常在for中来加入多个每轮动作（也不是运算.jpg）</p>
 <h1 id="Ⅱ-函数与数组"><a href="#Ⅱ-函数与数组" class="headerlink" title="Ⅱ.函数与数组"></a>Ⅱ.函数与数组</h1><h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p><strong>&#x2F;&#x2F;为了避免重复代码（同时方便维护），或者精简主函数</strong></p>
-<h4 id="1-定义函数"><a href="#1-定义函数" class="headerlink" title="1.定义函数"></a>1.定义函数</h4><p>一般来说，main函数写在最下面，因为编译器是自上而下看的，否则有可能会编译不通过（这看编译器），如果一定要main在前面，可以先来个<a href="%E5%85%B6%E5%AE%9E%E5%B0%B1%E6%98%AF%E5%B0%86%E5%87%BD%E6%95%B0%E5%A4%A7%E6%8B%AC%E5%8F%B7%E4%BB%A5%E5%A4%96%E7%9A%84%E9%83%A8%E5%88%86%E5%A4%8D%E5%88%B6%E4%B8%80%E4%BB%BD%EF%BC%8C%E5%8A%A0%E4%B8%AA%E5%B0%81%E5%8F%B7%E7%84%B6%E5%90%8E%E5%8D%95%E7%8B%AC%E6%94%BE%E5%9C%A8main%E5%87%BD%E6%95%B0%E5%89%8D%E9%9D%A2%EF%BC%88%E4%BA%8B%E5%AE%9E%E4%B8%8A%E5%8F%AF%E4%BB%A5%E5%86%99%E5%9C%A8%E9%87%8C%E9%9D%A2%EF%BC%8C%E5%8E%9F%E5%9E%8B%E5%A3%B0%E6%98%8E%E9%87%8C%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%B8%8D%E7%94%A8%E5%86%99%E6%88%96%E4%B9%B1%E5%86%99%E5%8F%82%E6%95%B0%E5%90%8D%E7%A7%B0%EF%BC%8C%E5%8F%AA%E8%A6%81%E7%B1%BB%E5%9E%8B%E5%AE%9A%E4%B9%89%E6%98%AF%E4%B8%80%E6%A0%B7%E7%9A%84%E5%B0%B1%E8%A1%8C%EF%BC%88%E4%B8%8D%E5%BB%BA%E8%AE%AE%EF%BC%89%EF%BC%89%E3%80%82%E5%AE%9A%E4%B9%89%E7%9A%84%E9%83%A8%E5%88%86%E4%B8%80%E5%AE%9A%E8%A6%81%E5%92%8C%E5%A3%B0%E6%98%8E%E4%B8%80%E8%87%B4%EF%BC%8C%E5%90%A6%E5%88%99error%EF%BC%8C%E5%A6%82%E6%9E%9C%E4%B8%8D%E5%A3%B0%E6%98%8E%EF%BC%8C%E4%B8%94%E5%AE%9A%E4%B9%89%E9%83%A8%E5%88%86%E5%9C%A8main%E5%87%BD%E6%95%B0%E4%B8%8B%E9%9D%A2%EF%BC%8C%E9%82%A3%E4%B9%88%E6%9C%89%E4%BA%9B%E7%BC%96%E8%AF%91%E5%99%A8%E4%BC%9A%E7%8C%9C%E6%B5%8B%E8%AF%A5%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%94%E5%9B%9E%E7%B1%BB%E5%9E%8B%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%92%8C%E4%B8%8B%E9%9D%A2%E5%AE%9E%E9%99%85%E5%AE%9A%E4%B9%89%E4%B8%8D%E7%9B%B8%E5%90%8C%EF%BC%8C%E6%9C%89%E5%8F%AF%E8%83%BD%E4%B9%9F%E4%BC%9A%E6%8A%9B%E5%87%BAerror(%E5%8F%91%E7%94%9F%E7%B1%BB%E5%9E%8B%E5%86%B2%E7%AA%81)">函数原型声明</a></p>
+<h4 id="1-定义函数"><a href="#1-定义函数" class="headerlink" title="1.定义函数"></a>1.定义函数</h4><p>一般来说，main函数写在最下面，因为编译器是自上而下看的，否则有可能会编译不通过（这看编译器），如果一定要main在前面，可以先来个函数原型声明</p>
+<p>&#x2F;&#x2F;(其实就是将函数大括号以外的部分复制一份，加个封号然后单独放在main函数前面（事实上可以写在里面，原型声明里也可以不用写或乱写参数名称，只要类型定义是一样的就行（不建议））。定义的部分一定要和声明一致，否则error，如果不声明，且定义部分在main函数下面，那么有些编译器会猜测该函数的返回类型，如果和下面实际定义不相同，有可能也会抛出error(发生类型冲突))&#x2F;&#x2F;</p>
 <blockquote>
 <p>函数原型声明不能冲突，但是可以放空，表示不确定，这时假设与实际冲突，会按照实际。</p>
 <p>（这样做会没有对输入类型的检查，可以在double中传int,不会报错但是值不对，如果确实没有，加void）</p>
 <p>函数中不能定义函数，但可以原型声明。</p>
 </blockquote>
-<p><a href="%E8%BF%94%E5%9B%9E%E7%B1%BB%E5%9E%8B%EF%BC%8C%E8%BF%99%E4%B8%AA%E6%9C%89%E8%BF%94%E5%9B%9E%E5%80%BC%EF%BC%8Creturn%E5%BF%85%E9%9C%80%E5%B8%A6%E5%80%BC">int</a> <a href="%E5%87%BD%E6%95%B0%E5%90%8D">hanshuming</a> <a href="%E5%8F%82%E6%95%B0%E8%A1%A8%EF%BC%8C%E9%80%97%E5%8F%B7%E5%88%86%E5%89%B2%EF%BC%8C%E7%9C%8B%E5%88%B0%E8%BF%99%E4%B8%AA%E5%B0%B1%E5%8F%AF%E4%BB%A5%E6%96%AD%E5%AE%9A%E8%BF%99%E6%AE%B5%E4%BB%A3%E7%A0%81%E6%98%AF%E5%87%BD%E6%95%B0%EF%BC%8C%E6%89%80%E4%BB%A5%E5%8D%B3%E4%BD%BF%E6%98%AF%E7%A9%BA%E7%9A%84%E4%B9%9F%E8%A6%81%E6%9C%89%EF%BC%8C%E8%BE%93%E5%85%A5%E6%97%B6%E6%98%AF%E6%8C%89%E9%A1%BA%E5%BA%8F%E5%A4%8D%E5%88%B6%E7%9A%84">()</a>{    </p>
+<p>int(返回类型) hanshuming(函数名) ()(参数表){    </p>
 <blockquote>
-<p>&#x2F;&#x2F;定义函数还可以用<a href="%E4%B8%AD%E6%96%87%E6%84%8F%E6%98%AF%E6%B2%A1%E6%9C%89">void</a>，表示没有返回值</p>
+<p>&#x2F;&#x2F;定义函数还可以用void(中文意是没有)，表示没有返回值，int有返回值，return必需带值</p>
+<p>&#x2F;&#x2F;参数表里逗号分割，看到这个就可以断定这段代码是函数，所以即使是空的也要有，输入时是按顺序复制的</p>
 </blockquote>
 <p>函数体</p>
 <p>return 变量 </p>
@@ -539,25 +544,25 @@
 <blockquote>
 <p>有强制类型转换，如果声明的参数是int，传入的是double,这个double会变成int(warning)，反之也是</p>
 </blockquote>
-<p>C语言只能传值，而不能是<a href="%E5%8D%B3%E4%BD%BF%E6%98%AF%E6%8C%87%E9%92%88%EF%BC%8C%E5%AE%9E%E9%99%85%E4%B8%8A%E4%B9%9F%E5%8F%AA%E6%98%AF%E4%BC%A0%E4%BA%86%E4%B8%AA%E5%9C%B0%E5%9D%80%E6%95%B0%E6%8D%AE%EF%BC%8C%E4%B9%9F%E4%B8%8D%E6%98%AF%E6%8A%8A%E6%8C%87%E9%92%88%E6%9C%AC%E8%BA%AB%E4%BC%A0%E9%80%92%E8%BF%87%E5%8E%BB">变量</a></p>
+<p>C语言只能传值，而不能是变量(即使是指针，实际上也只是传了个地址数据，也不是把指针本身传递过去)</p>
 <p>形式参数与实际参数</p>
-<p>函数声明的就是形式参数，实际参数是你调用时传过去的<a href="%E4%B8%8D%E6%98%AF%E5%8F%98%E9%87%8F">数据</a></p>
-<p><a href="%E5%9C%A8%E5%87%BD%E6%95%B0%E5%86%85%E9%83%A8%E5%AE%9A%E4%B9%89%E7%9A%84%E5%8F%98%E9%87%8F%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B8%AA%E5%87%BD%E6%95%B0%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%8F%98%E9%87%8F%EF%BC%8C%E5%8C%85%E6%8B%AC%E5%8F%82%E6%95%B0">本地变量</a>（局部变量&#x2F;自动变量）</p>
+<p>函数声明的就是形式参数，实际参数是你调用时传过去的数据(不是变量)</p>
+<p>本地变量(在函数内部定义的变量就是这个函数的本地变量，包括参数)（局部变量&#x2F;自动变量）</p>
 <p>每次函数运行会产生独立变量空间（栈帧？）</p>
 <p>变量的生存期和作用域：</p>
-<p><img src="/C%E7%AC%94%E8%AE%B01ultra.assets/1728559512145.png" alt="1728559512145"></p>
+<p><img src="/1728559512145.png" alt="1728559512145"></p>
 <p>注意：C语言没有jacvascript的闭包特性，所以完全不能跨。</p>
 <p><img src="/C%E7%AC%94%E8%AE%B01ultra.assets/1728559884799.png" alt="1728559884799"></p>
 <p>在{}中定义的参数，生存期和作用域也仅限于{}中这里即使在else中，也不能访问。</p>
 <p>如果是[static]( 静态存储期 ，全局变量默认有。定义这个，只能改变生存期，不能改作用域，该不可见还是不可见。它的作用在于当这个函数被多次调用时，它的值不会被初始化（不在栈中）),生存期会变成整个程序，但是作用域没变化</p>
 <p>局部变量优先原则：当在函数中的<a href="if%E8%AF%AD%E5%8F%A5%E4%B9%8B%E7%B1%BB%E7%9A%84">其他类型</a>的{}中定义一个在之外定义过的变量，在{}中出现，调用的是其中定义的那个，不是原有，比如：</p>
-<p><img src="/C%E7%AC%94%E8%AE%B01ultra.assets/1728565695161.png" alt="1728565695161"></p>
+<p><img src="/1999/03/03/Hexo-Theme-Sakura/95161.png" alt="1728565695161"></p>
 <p>直接写一个<a href="%E5%9D%97">{}</a>一般用于调试</p>
 <p>这里输出的两个a不一样</p>
-<p><img src="/C%E7%AC%94%E8%AE%B01ultra.assets/1728565791256.png" alt="1728565791256"></p>
+<p><img src="/1999/03/03/Hexo-Theme-Sakura/91256.png" alt="1728565791256"></p>
 <h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><h4 id="1-定义数组"><a href="#1-定义数组" class="headerlink" title="1.定义数组"></a>1.定义数组</h4><p>类型 数组名[元素个数]   eg.int num[<a href="%E5%8F%AF%E4%BB%A5%E4%B8%8D%E7%BB%99%E5%A4%A7%E5%B0%8F">100</a>]     &#x2F;&#x2F;索引从0开始是第一个，所以只有0~99</p>
 <p>赋值：</p>
-<p><img src="/1728786107668.png" alt="1728786107668"></p>
+<p><img src="/1999/03/03/Hexo-Theme-Sakura/07668.png" alt="1728786107668"></p>
 <p>前面一种写法仅限C99</p>
 <p><strong>定义后必需遍历数组初始化</strong></p>
 <blockquote>
@@ -579,18 +584,18 @@
 </blockquote>
 <h4 id="4-数组的赋值"><a href="#4-数组的赋值" class="headerlink" title="4.数组的赋值"></a>4.数组的赋值</h4><p>数组变量本身不能被赋值，也不能将<a href="%E6%98%AF%E4%B8%AAconst">数组赋值给数组</a></p>
 <p>只能<a href="%E4%B8%80%E8%88%AC%E9%83%BD%E7%94%A8for,%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%88%B0%3C%E9%95%BF%E5%BA%A6">遍历</a>：</p>
-<p><img src="/1728788625234.png" alt="1728788625234"></p>
+<p><img src="/1999/03/03/Hexo-Theme-Sakura/25234.png" alt="1728788625234"></p>
 <p>素数还有一种求法（但是看起来比之前的更长，所以没写在那个cpp里面）</p>
-<p><img src="/1728790633321.png" alt="1728790633321"></p>
+<p><img src="/1999/03/03/Hexo-Theme-Sakura/33321.png" alt="1728790633321"></p>
 <blockquote>
 <p>当发现一个素数时，将他加到prime里面去，用cnt++就是可以先写入这个位置，再移到下一个，这样可以从第一个开始写，这是因为非素数都可以由比他小的素数乘以某个数得到。</p>
 </blockquote>
 <p>&#x2F;&#x2F;那个(i+1)%5是为了控制一行输出5个</p>
 <p>其他算法：</p>
-<p><img src="/1728791561052.png" alt="1728791561052"></p>
+<p><img src="/1999/03/03/Hexo-Theme-Sakura/61052.png" alt="1728791561052"></p>
 <p>就是每使用一个数，就在数组中排除它的倍数</p>
 <p>就是：</p>
-<p><img src="/1728791648318.png" alt="1728791648318"></p>
+<p><img src="/1999/03/03/Hexo-Theme-Sakura/48318.png" alt="1728791648318"></p>
 <p>&#x2F;&#x2F;赋值为0表示不是素数，每个数都判断过去是否是它的倍数</p>
 <p>&#x2F;&#x2F;第一个i用于初始化，后面拿来遍历输出</p>
 <h4 id="5-二维数组"><a href="#5-二维数组" class="headerlink" title="5.二维数组"></a>5.二维数组</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">3</span>][<span class="number">5</span>]  <span class="comment">//一般认为是三行五列（这是内存中的放法）,不能a[i,j]，这样里面是逗号表达式，实际上是a[j]</span></span><br><span class="line">集成化初始定义：</span><br><span class="line">    a[][<span class="number">5</span>]=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;,&#123;<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;   <span class="comment">//内存中都是直接填的，所以写成一维数组也可以</span></span><br></pre></td></tr></table></figure>
@@ -615,21 +620,21 @@
 </blockquote>
 <h3 id="2-指针类型的变量"><a href="#2-指针类型的变量" class="headerlink" title="2.指针类型的变量"></a>2.指针类型的<strong>变量</strong></h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> *p = &amp;i    <span class="comment">//p在内存中得到的是i的地址，称为p指向i</span></span><br><span class="line"><span class="type">int</span>* p,q和<span class="type">int</span> *p,q 是一样的，此时q都是普通的<span class="type">int</span>  <span class="comment">//不存在int*类型！！</span></span><br><span class="line">    定义只再次使用*p就是解引用，值为指向的地址的内容这里类型就是<span class="type">int</span>（每次都要）。</span><br></pre></td></tr></table></figure>
 
-<p><img src="/1728812248575.png" alt="1728812248575"></p>
+<p><img src="/1999/03/03/Hexo-Theme-Sakura/48575.png" alt="1728812248575"></p>
 <p>*p就是i,这样就可以访问外面的变量</p>
 <p>scanf就是把你传入的数据写到那个变量的地址上，如果不加&amp;，会把变量名当作地址，写到别的地方去（没有类型检查）</p>
 <h3 id="3-指针使用"><a href="#3-指针使用" class="headerlink" title="3.指针使用"></a>3.指针使用</h3><h4 id="1-在函数中交换变量"><a href="#1-在函数中交换变量" class="headerlink" title="1.在函数中交换变量"></a>1.在函数中交换变量</h4><p>使用*变量就可以间接对main函数的变量改变</p>
-<p><img src="/1728812654340.png" alt="1728812654340"></p>
-<p><strong>指针常用于返回值，<a href="return%E5%8F%AA%E8%83%BD%E8%BF%94%E5%9B%9E%E4%B8%80%E4%B8%AA">尤其是多个</a></strong></p>
-<p>[**为了区分返回，函数返回状态值，指针返回数据值**](所以最后常来return 0)</p>
+<p><img src="/1999/03/03/Hexo-Theme-Sakura/54340.png" alt="1728812654340"></p>
+<p><strong>指针常用于返回值，尤其是多个(return只能返回一个)</strong></p>
+<p><strong>为了区分返回，函数返回状态值，指针返回数据值</strong>(所以最后常来return 0)</p>
 <p>注意：</p>
 <p><em><strong>*p必须先指向一个变量，再*p赋值,否则那个值会被当成是地址</strong></em></p>
-<h4 id="2-传入数组"><a href="#2-传入数组" class="headerlink" title="2.传入数组"></a>2.传入数组</h4><p><a href="C%E8%AF%AD%E8%A8%80%E4%B8%AD%E5%8F%AA%E8%83%BD%E4%BC%A0%E6%95%B0%E5%80%BC%E6%98%AF%E8%BF%99%E6%A0%B7%E7%9A%84">传入的实际上不是数组，而是指向这个数组的指针</a></p>
+<h4 id="2-传入数组"><a href="#2-传入数组" class="headerlink" title="2.传入数组"></a>2.传入数组</h4><p>传入的实际上不是数组，而是指向这个数组的指针(C语言中只能传数值是这样的)</p>
 <p>函数参数表中的数组，实际上是个指针，在[]中写东西，是完全没有用的</p>
 <p>这就是说，你可以直接将数组传入一个指针</p>
-<p><img src="/1728813490503.png" alt="1728813490503"></p>
+<p><img src="/1999/03/03/Hexo-Theme-Sakura/90503.png" alt="1728813490503"></p>
 <p>数组变量是一个特殊的<strong>指针</strong>，单个单元都是<strong>变量</strong>，而且在内存中是连续的（与指针数组不一样）</p>
-<p><a href="%E6%89%80%E4%BB%A5%E6%95%B0%E7%BB%84%E4%B8%8D%E8%83%BD%E4%BA%92%E7%9B%B8%E8%B5%8B%E5%80%BC">数组&#x3D;const 指针</a></p>
+<p>数组&#x3D;const 指针(所以数组不能互相赋值)</p>
 <p>int b[]—–int const *b，此时不能用b++,</p>
 <blockquote>
 <p>在C99中：</p>
@@ -638,31 +643,31 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">int i;</span><br><span class="line">const int* p1 = &amp;i;    //实际上是const *p,也就是*p/i（解引后的值）不能改，但是p（地址）可以改</span><br><span class="line">int const* p2 = &amp;i;    //同上</span><br><span class="line">int *const p3 = &amp;i;    //p（地址）不能改，但是*p/i可以</span><br></pre></td></tr></table></figure>
 
 <p>const int b[]:表示里面的所有都是常量，这可以在变量原型中写，就不会改变传入数组的值</p>
-<h4 id="3-指针运算"><a href="#3-指针运算" class="headerlink" title="3.指针运算"></a>3.指针运算</h4><h5 id="，"><a href="#，" class="headerlink" title="+，-"></a>+，-</h5><p>p++,实际上是加了一个<a href="+1%E5%B0%B1%E6%98%AF%E5%8A%A0%E4%B8%80%E4%B8%AA%E7%B1%BB%E5%9E%8B%E5%A4%A7%E5%B0%8F%EF%BC%8Csizeof">类型的大小</a></p>
-<p><a href="%E5%B8%B8%E7%94%A8%E4%BA%8E%E6%95%B0%E7%BB%84%E7%B1%BB%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%93%8D%E4%BD%9C">*p++</a>：<code>++</code> 的优先级比解引用操作符 <code>*</code> 的优先级高。在表达式 <code>*p++</code> 中，<code>++</code> 操作符会先于 <code>*</code> 操作符被执行。这意味着 <code>p</code> 指针首先会增加，然后 <code>*</code> 操作符会解引用增加后的指针。</p>
+<h4 id="3-指针运算"><a href="#3-指针运算" class="headerlink" title="3.指针运算"></a>3.指针运算</h4><h5 id="，"><a href="#，" class="headerlink" title="+，-"></a>+，-</h5><p>p++,实际上是加了一个类型的大小(+1就是加一个类型大小，sizeof)</p>
+<p>*p++(常用于数组类的连续操作)：<code>++</code> 的优先级比解引用操作符 <code>*</code> 的优先级高。在表达式 <code>*p++</code> 中，<code>++</code> 操作符会先于 <code>*</code> 操作符被执行。这意味着 <code>p</code> 指针首先会增加，然后 <code>*</code> 操作符会解引用增加后的指针。</p>
 <p>但是，由于 <code>p++</code> 是一个后缀递增操作符，它返回的是递增前的指针值。所以，即使 <code>p</code> 指针在 <code>*</code> 操作之前已经递增了，<code>*p++</code> 表达式仍然会返回递增前的指针指向的值。</p>
 <p>人话：表达式的值还是*p,但是这句之后指针指向*(p+1)</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">*q=a[<span class="number">0</span>]--------*(q+<span class="number">1</span>)=a[<span class="number">1</span>]   <span class="comment">//*是单目运算符，所以加()</span></span><br><span class="line">指针也可以相减，是两者之间的距离（地址差/<span class="keyword">sizeof</span>）</span><br></pre></td></tr></table></figure>
 
-<h5 id="其他运算"><a href="#其他运算" class="headerlink" title="其他运算"></a>其他运算</h5><p><a href="%E5%9C%B0%E5%9D%80%E5%A4%A7%E5%B0%8F%E6%AF%94%E8%BE%83%EF%BC%8C%E6%95%B0%E7%BB%84%E6%98%AF%E9%80%92%E5%A2%9E%E6%8E%92%E5%88%97%E7%9A%84">&lt;，&lt;&#x3D;，&#x3D;&#x3D;，&gt;，&gt;&#x3D;，!&#x3D;</a></p>
-<h5 id="0地址"><a href="#0地址" class="headerlink" title="0地址"></a>0地址</h5><p><img src="/1728820093755.png" alt="1728820093755"></p>
+<h5 id="其他运算"><a href="#其他运算" class="headerlink" title="其他运算"></a>其他运算</h5><p>&lt;，&lt;&#x3D;，&#x3D;&#x3D;，&gt;，&gt;&#x3D;，!&#x3D;(地址大小比较，数组是递增排列的)</p>
+<h5 id="0地址"><a href="#0地址" class="headerlink" title="0地址"></a>0地址</h5><p><img src="/1999/03/03/Hexo-Theme-Sakura/93755.png" alt="1728820093755"></p>
 <p>所有进程都有0地址（都是虚拟地址），也是不能写的，有的系统，不能读。</p>
 <p>特殊事情包括：1.初始化（没赋值就崩溃）</p>
 <p>​                           2.返回值（这事成不了！）</p>
 <p>NULL:必须全大写，有的编译器只能用NULL，0和NULL反而不一样</p>
 <h5 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h5><p>必需同类型，因为不同类型的sizeof不一样。</p>
-<h4 id="4-指针类型转化"><a href="#4-指针类型转化" class="headerlink" title="4.指针类型转化"></a>4.指针类型转化</h4><p><img src="/1728821034165.png" alt="1728821034165"></p>
+<h4 id="4-指针类型转化"><a href="#4-指针类型转化" class="headerlink" title="4.指针类型转化"></a>4.指针类型转化</h4><p><img src="/1999/03/03/Hexo-Theme-Sakura/34165.png" alt="1728821034165"></p>
 <p>注：强制类型转化的作用都只限于该句</p>
-<h4 id="5-指针用处"><a href="#5-指针用处" class="headerlink" title="5.指针用处"></a>5.指针用处</h4><p><img src="/1728821145218.png" alt="1728821145218"></p>
+<h4 id="5-指针用处"><a href="#5-指针用处" class="headerlink" title="5.指针用处"></a>5.指针用处</h4><p><img src="/1999/03/03/Hexo-Theme-Sakura/45218.png" alt="1728821145218"></p>
 <h3 id="4-动态内存分配"><a href="#4-动态内存分配" class="headerlink" title="4.动态内存分配"></a>4.动态内存分配</h3><p>1.malloc()</p>
 <p>C99之前不能用变量定义数组大小，所以：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> *a=(<span class="type">int</span>*)<span class="built_in">malloc</span>(n*<span class="keyword">sizeof</span>(<span class="type">int</span>));  <span class="comment">//malloc,用于分配内存，需要&lt;stdlib.h&gt;</span></span><br><span class="line"><span class="comment">//用法：</span></span><br><span class="line"><span class="built_in">malloc</span>(<span class="type">size_t</span> size)    <span class="comment">//不能传递类型，所以sizeof(以字节为单位)，返回的是void*,(int*)</span></span><br><span class="line">                       <span class="comment">//就是在转化</span></span><br><span class="line">然后就可以当数组了</span><br></pre></td></tr></table></figure>
 
 <p>如果申请空间失败，会返回0或者NULL，还能用于推出循环，比如</p>
-<p><img src="/1728821974878.png" alt="1728821974878"></p>
+<p><img src="/1999/03/03/Hexo-Theme-Sakura/74878.png" alt="1728821974878"></p>
 <p><strong>会报错，但是不会终止程序，还会向下进行。</strong></p>
 <p>2.free()</p>
-<p>只能还<a href="%E4%B8%8D%E6%98%AF%E7%94%B3%E8%AF%B7%E7%9A%84%E4%B8%8D%E8%A1%8C">申请空间</a>的首地址，否则会报错并终止（有运算也地搞回来）</p>
+<p>只能还申请空间(不是申请的不行)的首地址，否则会报错并终止（有运算也地搞回来）</p>
 <p>free(NULL)：什么事情都不会发生，因为指针一般习惯上会初始化为0，要是没用到，也不会报错</p>
 <p><strong>切记：malloc()最后一定要接free()</strong>,但是不要再次free</p>
 <h3 id="EXTRA"><a href="#EXTRA" class="headerlink" title="EXTRA"></a>EXTRA</h3><p>来自菜鸟教程(?)</p>
