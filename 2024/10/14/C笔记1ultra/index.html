@@ -563,13 +563,13 @@
 <p>在{}中定义的参数，生存期和作用域也仅限于{}中这里即使在else中，也不能访问。</p>
 <p>如果是[static]( 静态存储期 ，全局变量默认有。定义这个，只能改变生存期，不能改作用域，该不可见还是不可见。它的作用在于当这个函数被多次调用时，它的值不会被初始化（不在栈中）),生存期会变成整个程序，但是作用域没变化</p>
 <p>局部变量优先原则：当在函数中的<a href="if%E8%AF%AD%E5%8F%A5%E4%B9%8B%E7%B1%BB%E7%9A%84">其他类型</a>的{}中定义一个在之外定义过的变量，在{}中出现，调用的是其中定义的那个，不是原有，比如：</p>
-<p><img src="/1999/03/03/Hexo-Theme-Sakura/95161.png" alt="1728565695161"></p>
+<p><img src="/2024/10/14/C%E7%AC%94%E8%AE%B01ultra/1728565695161.png" alt="1728565695161"></p>
 <p>直接写一个<a href="%E5%9D%97">{}</a>一般用于调试</p>
 <p>这里输出的两个a不一样</p>
-<p><img src="/1999/03/03/Hexo-Theme-Sakura/91256.png" alt="1728565791256"></p>
+<p><img src="/2024/10/14/C%E7%AC%94%E8%AE%B01ultra/1728565791256.png" alt="1728565791256"></p>
 <h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><h4 id="1-定义数组"><a href="#1-定义数组" class="headerlink" title="1.定义数组"></a>1.定义数组</h4><p>类型 数组名[元素个数]   eg.int num[<a href="%E5%8F%AF%E4%BB%A5%E4%B8%8D%E7%BB%99%E5%A4%A7%E5%B0%8F">100</a>]     &#x2F;&#x2F;索引从0开始是第一个，所以只有0~99</p>
 <p>赋值：</p>
-<p><img src="/1999/03/03/Hexo-Theme-Sakura/07668.png" alt="1728786107668"></p>
+<p><img src="/2024/10/14/C%E7%AC%94%E8%AE%B01ultra/1728786107668.png" alt="1728786107668"></p>
 <p>前面一种写法仅限C99</p>
 <p><strong>定义后必需遍历数组初始化</strong></p>
 <blockquote>
@@ -591,18 +591,18 @@
 </blockquote>
 <h4 id="4-数组的赋值"><a href="#4-数组的赋值" class="headerlink" title="4.数组的赋值"></a>4.数组的赋值</h4><p>数组变量本身不能被赋值，也不能将<a href="%E6%98%AF%E4%B8%AAconst">数组赋值给数组</a></p>
 <p>只能<a href="%E4%B8%80%E8%88%AC%E9%83%BD%E7%94%A8for,%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%88%B0%3C%E9%95%BF%E5%BA%A6">遍历</a>：</p>
-<p><img src="/1999/03/03/Hexo-Theme-Sakura/25234.png" alt="1728788625234"></p>
+<p><img src="/2024/10/14/C%E7%AC%94%E8%AE%B01ultra/1728788625234.png" alt="1728788625234"></p>
 <p>素数还有一种求法（但是看起来比之前的更长，所以没写在那个cpp里面）</p>
-<p><img src="/1999/03/03/Hexo-Theme-Sakura/33321.png" alt="1728790633321"></p>
+<p><img src="/2024/10/14/C%E7%AC%94%E8%AE%B01ultra/1728790633321.png" alt="1728790633321"></p>
 <blockquote>
 <p>当发现一个素数时，将他加到prime里面去，用cnt++就是可以先写入这个位置，再移到下一个，这样可以从第一个开始写，这是因为非素数都可以由比他小的素数乘以某个数得到。</p>
 </blockquote>
 <p>&#x2F;&#x2F;那个(i+1)%5是为了控制一行输出5个</p>
 <p>其他算法：</p>
-<p><img src="/1999/03/03/Hexo-Theme-Sakura/61052.png" alt="1728791561052"></p>
+<p><img src="/2024/10/14/C%E7%AC%94%E8%AE%B01ultra/1728791561052.png" alt="1728791561052"></p>
 <p>就是每使用一个数，就在数组中排除它的倍数</p>
 <p>就是：</p>
-<p><img src="/1999/03/03/Hexo-Theme-Sakura/48318.png" alt="1728791648318"></p>
+<p><img src="/2024/10/14/C%E7%AC%94%E8%AE%B01ultra/1728791648318.png" alt="1728791648318"></p>
 <p>&#x2F;&#x2F;赋值为0表示不是素数，每个数都判断过去是否是它的倍数</p>
 <p>&#x2F;&#x2F;第一个i用于初始化，后面拿来遍历输出</p>
 <h4 id="5-二维数组"><a href="#5-二维数组" class="headerlink" title="5.二维数组"></a>5.二维数组</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">3</span>][<span class="number">5</span>]  <span class="comment">//一般认为是三行五列（这是内存中的放法）,不能a[i,j]，这样里面是逗号表达式，实际上是a[j]</span></span><br><span class="line">集成化初始定义：</span><br><span class="line">    a[][<span class="number">5</span>]=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;,&#123;<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;   <span class="comment">//内存中都是直接填的，所以写成一维数组也可以</span></span><br></pre></td></tr></table></figure>
@@ -627,11 +627,11 @@
 </blockquote>
 <h3 id="2-指针类型的变量"><a href="#2-指针类型的变量" class="headerlink" title="2.指针类型的变量"></a>2.指针类型的<strong>变量</strong></h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> *p = &amp;i    <span class="comment">//p在内存中得到的是i的地址，称为p指向i</span></span><br><span class="line"><span class="type">int</span>* p,q和<span class="type">int</span> *p,q 是一样的，此时q都是普通的<span class="type">int</span>  <span class="comment">//不存在int*类型！！</span></span><br><span class="line">    定义只再次使用*p就是解引用，值为指向的地址的内容这里类型就是<span class="type">int</span>（每次都要）。</span><br></pre></td></tr></table></figure>
 
-<p><img src="/1999/03/03/Hexo-Theme-Sakura/48575.png" alt="1728812248575"></p>
+<p><img src="/2024/10/14/C%E7%AC%94%E8%AE%B01ultra/1728812248575.png" alt="1728812248575"></p>
 <p>*p就是i,这样就可以访问外面的变量</p>
 <p>scanf就是把你传入的数据写到那个变量的地址上，如果不加&amp;，会把变量名当作地址，写到别的地方去（没有类型检查）</p>
 <h3 id="3-指针使用"><a href="#3-指针使用" class="headerlink" title="3.指针使用"></a>3.指针使用</h3><h4 id="1-在函数中交换变量"><a href="#1-在函数中交换变量" class="headerlink" title="1.在函数中交换变量"></a>1.在函数中交换变量</h4><p>使用*变量就可以间接对main函数的变量改变</p>
-<p><img src="/1999/03/03/Hexo-Theme-Sakura/54340.png" alt="1728812654340"></p>
+<p><img src="/2024/10/14/C%E7%AC%94%E8%AE%B01ultra/1728812654340.png" alt="1728812654340"></p>
 <p><strong>指针常用于返回值，尤其是多个(return只能返回一个)</strong></p>
 <p><strong>为了区分返回，函数返回状态值，指针返回数据值</strong>(所以最后常来return 0)</p>
 <p>注意：</p>
@@ -639,7 +639,7 @@
 <h4 id="2-传入数组"><a href="#2-传入数组" class="headerlink" title="2.传入数组"></a>2.传入数组</h4><p>传入的实际上不是数组，而是指向这个数组的指针(C语言中只能传数值是这样的)</p>
 <p>函数参数表中的数组，实际上是个指针，在[]中写东西，是完全没有用的</p>
 <p>这就是说，你可以直接将数组传入一个指针</p>
-<p><img src="/1999/03/03/Hexo-Theme-Sakura/90503.png" alt="1728813490503"></p>
+<p><img src="/2024/10/14/C%E7%AC%94%E8%AE%B01ultra/1728813490503.png" alt="1728813490503"></p>
 <p>数组变量是一个特殊的<strong>指针</strong>，单个单元都是<strong>变量</strong>，而且在内存中是连续的（与指针数组不一样）</p>
 <p>数组&#x3D;const 指针(所以数组不能互相赋值)</p>
 <p>int b[]—–int const *b，此时不能用b++,</p>
@@ -657,21 +657,21 @@
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">*q=a[<span class="number">0</span>]--------*(q+<span class="number">1</span>)=a[<span class="number">1</span>]   <span class="comment">//*是单目运算符，所以加()</span></span><br><span class="line">指针也可以相减，是两者之间的距离（地址差/<span class="keyword">sizeof</span>）</span><br></pre></td></tr></table></figure>
 
 <h5 id="其他运算"><a href="#其他运算" class="headerlink" title="其他运算"></a>其他运算</h5><p>&lt;，&lt;&#x3D;，&#x3D;&#x3D;，&gt;，&gt;&#x3D;，!&#x3D;(地址大小比较，数组是递增排列的)</p>
-<h5 id="0地址"><a href="#0地址" class="headerlink" title="0地址"></a>0地址</h5><p><img src="/1999/03/03/Hexo-Theme-Sakura/93755.png" alt="1728820093755"></p>
+<h5 id="0地址"><a href="#0地址" class="headerlink" title="0地址"></a>0地址</h5><p><img src="/2024/10/14/C%E7%AC%94%E8%AE%B01ultra/1728820093755.png" alt="1728820093755"></p>
 <p>所有进程都有0地址（都是虚拟地址），也是不能写的，有的系统，不能读。</p>
 <p>特殊事情包括：1.初始化（没赋值就崩溃）</p>
 <p>​                           2.返回值（这事成不了！）</p>
 <p>NULL:必须全大写，有的编译器只能用NULL，0和NULL反而不一样</p>
 <h5 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h5><p>必需同类型，因为不同类型的sizeof不一样。</p>
-<h4 id="4-指针类型转化"><a href="#4-指针类型转化" class="headerlink" title="4.指针类型转化"></a>4.指针类型转化</h4><p><img src="/1999/03/03/Hexo-Theme-Sakura/34165.png" alt="1728821034165"></p>
+<h4 id="4-指针类型转化"><a href="#4-指针类型转化" class="headerlink" title="4.指针类型转化"></a>4.指针类型转化</h4><p><img src="/2024/10/14/C%E7%AC%94%E8%AE%B01ultra/1728821034165.png" alt="1728821034165"></p>
 <p>注：强制类型转化的作用都只限于该句</p>
-<h4 id="5-指针用处"><a href="#5-指针用处" class="headerlink" title="5.指针用处"></a>5.指针用处</h4><p><img src="/1999/03/03/Hexo-Theme-Sakura/45218.png" alt="1728821145218"></p>
+<h4 id="5-指针用处"><a href="#5-指针用处" class="headerlink" title="5.指针用处"></a>5.指针用处</h4><p><img src="/2024/10/14/C%E7%AC%94%E8%AE%B01ultra/1728821145218.png" alt="1728821145218"></p>
 <h3 id="4-动态内存分配"><a href="#4-动态内存分配" class="headerlink" title="4.动态内存分配"></a>4.动态内存分配</h3><p>1.malloc()</p>
 <p>C99之前不能用变量定义数组大小，所以：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> *a=(<span class="type">int</span>*)<span class="built_in">malloc</span>(n*<span class="keyword">sizeof</span>(<span class="type">int</span>));  <span class="comment">//malloc,用于分配内存，需要&lt;stdlib.h&gt;</span></span><br><span class="line"><span class="comment">//用法：</span></span><br><span class="line"><span class="built_in">malloc</span>(<span class="type">size_t</span> size)    <span class="comment">//不能传递类型，所以sizeof(以字节为单位)，返回的是void*,(int*)</span></span><br><span class="line">                       <span class="comment">//就是在转化</span></span><br><span class="line">然后就可以当数组了</span><br></pre></td></tr></table></figure>
 
 <p>如果申请空间失败，会返回0或者NULL，还能用于推出循环，比如</p>
-<p><img src="/1999/03/03/Hexo-Theme-Sakura/74878.png" alt="1728821974878"></p>
+<p><img src="/2024/10/14/C%E7%AC%94%E8%AE%B01ultra/1728821974878.png" alt="1728821974878"></p>
 <p><strong>会报错，但是不会终止程序，还会向下进行。</strong></p>
 <p>2.free()</p>
 <p>只能还申请空间(不是申请的不行)的首地址，否则会报错并终止（有运算也地搞回来）</p>
