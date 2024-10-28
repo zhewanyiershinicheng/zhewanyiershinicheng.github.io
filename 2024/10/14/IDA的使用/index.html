@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">Category: 技术 | Potato</title>
+  <title itemprop="name">IDA | Potato</title>
   
     <link rel="shortcut icon" href="https://zhewanyiershinicheng.github.io/images/favicon.ico">
   
@@ -273,435 +273,184 @@
   </div>
 </header>
 
-      
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
 <div class="pattern-center-blank"></div>
-<div class="pattern-center ">
-  <div class="pattern-attachment-img">
-    <img data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/banner/coding.jpg" class="lazyload" onerror="imgError(this,3)" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
-  </div>
-  <header class="pattern-header ">
-    <h1 class="cat-title">野生技术协会</h1>
-    <span class="cat-des">
-      <p>Geek – Only for Love</p>
-    </span>
-  </header>
-</div>
+
 <div id="content" class="site-content">
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+          <header class="entry-header">
+            <h1 class="entry-title">IDA</h1>
+            <p class="entry-census">这玩意儿是昵称&nbsp;·&nbsp;2024-10-14&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
+
+            <hr>
+          </header>
+        
+        <div class="entry-content">
+          <h1 id="IDA"><a href="#IDA" class="headerlink" title="IDA"></a>IDA</h1><p>ida插件环境：</p>
+<p>1.至少Python3.8</p>
+<p>2.多个使用IDA目录下的idaplyswitch.exe</p>
+<p>插件：</p>
+<p>直接把xxx.py放到目录的plugins目录</p>
+<p>KeyPatch(修改汇编)</p>
+<blockquote>
+<p>依赖安装：pip install keystone-engine</p>
+</blockquote>
+<p>LazyIDA(提取，批量修改)</p>
+<p><em>至于用64还是32，可以用查壳软件直接看</em></p>
+<p><em>在linux下也可以使用file命令</em></p>
+<p><em>但是实际上可以试错，不是直接打不开然后提醒，就是反汇编时会提醒</em></p>
+<h2 id="function-窗口"><a href="#function-窗口" class="headerlink" title="function 窗口"></a>function 窗口</h2><p><strong>按G可以地址导航，按TAB显示伪代码</strong></p>
+<p><strong>在该窗口中使用Ctrl+F就可以用关键字查找</strong></p>
+<p>这里包含了分析出的所有函数</p>
+<p>IDAview</p>
+<p>图形窗口</p>
+<p>会显示控制流，按空格切换为文本模式，这是按照线性地址</p>
+<p>分析一般从main开始，但是万一main函数名字没有识别到</p>
+<p>可以根据输出的内容来定位地址（去字符串窗口找），然后定位函数</p>
+<h2 id="字符串窗口"><a href="#字符串窗口" class="headerlink" title="字符串窗口"></a>字符串窗口</h2><p><strong>shift+12</strong></p>
+<p><strong>在该窗口中使用Ctrl+F也可以用关键字查找（其实所有表格窗口都可以）</strong></p>
+<p>它包括了所有已识别的字符串</p>
+<p><strong>选中按U取消已定义的标识符，按A重建，按X显示所有引用选中的字符串的地方</strong></p>
+<h2 id="hex-view"><a href="#hex-view" class="headerlink" title="hex view"></a>hex view</h2><p>动态调试时显示内存数据，正常是显示静态数据</p>
+<h2 id="imports-exports"><a href="#imports-exports" class="headerlink" title="imports&#x2F;exports"></a>imports&#x2F;exports</h2><p>导入导出表</p>
+<p>显示引用的api，使用里面的函数</p>
+<p>分析动态链接库时，同时要看导出的函数</p>
+<p>程序入口会被ida当成一个叫做start的导出函数</p>
+<p>在运行时start先被初始化，然后调用main函数</p>
+<h2 id="其他玩意儿"><a href="#其他玩意儿" class="headerlink" title="其他玩意儿"></a>其他玩意儿</h2><h4 id="重命名函数："><a href="#重命名函数：" class="headerlink" title="重命名函数："></a>重命名函数：</h4><p>ida反编译的有时名字不太对，为了方便看，所以建议重命名<br>（自己要猜一猜可能是什么库函数）</p>
+<p>选中，然后按N</p>
+<h1 id="IDA动态调试"><a href="#IDA动态调试" class="headerlink" title="IDA动态调试"></a>IDA动态调试</h1><p>作用：</p>
+<p>验证静态分析结果</p>
+<p>观察程序运行时数据</p>
+<h2 id="支持的特性："><a href="#支持的特性：" class="headerlink" title="支持的特性："></a>支持的特性：</h2><h3 id="1-软件-硬件-条件-脚本断点"><a href="#1-软件-硬件-条件-脚本断点" class="headerlink" title="1.软件&#x2F;硬件&#x2F;条件&#x2F;脚本断点"></a>1.软件&#x2F;硬件&#x2F;条件&#x2F;脚本断点</h3><p>设置断点，点前面，或者选中按F2</p>
+<p>在伪代码设断点，可能会导致有些没执行（断点会在函数传参时）</p>
+<p>软件：IDA在地址上设置断点（0xCC）,到达后在恢复</p>
+<p>硬件断点：通过CPU抛出错误来断点</p>
+<p>条件断点：到达后执行特定脚本，并返回真表示被命中</p>
+<p>脚本断点：基本和上面一样，但是返回值永远是假</p>
+<h3 id="2-步入-步过-步出-执行到光标位置"><a href="#2-步入-步过-步出-执行到光标位置" class="headerlink" title="2.步入&#x2F;步过&#x2F;步出&#x2F;执行到光标位置&#x2F;"></a>2.步入&#x2F;步过&#x2F;步出&#x2F;执行到光标位置&#x2F;</h3><p>步入：进入call函数（F7）</p>
+<p>步过：直接到call函数的返回地址（F8）</p>
+<p>步出：中断函数回到其调用者（执行到返回）（Ctrl+F7）</p>
+<p>执行到光标位置：直接执行到选中位值（实际上是设置临时断点）(F4)</p>
+<p>设置代码执行位置：用于跳过不想执行的代码（Ctrl+N）</p>
+<p>注意scanf会强行暂停等待输入</p>
+<h3 id="3-汇编级-伪代码-源码-调试代码级支持"><a href="#3-汇编级-伪代码-源码-调试代码级支持" class="headerlink" title="3.汇编级&#x2F;伪代码&#x2F;源码&#x2F;调试代码级支持"></a>3.汇编级&#x2F;伪代码&#x2F;源码&#x2F;调试代码级支持</h3><p>IDA会在存在源代码时自动导入，但是不如直接用VS之类的集成开发软件</p>
+<h3 id="4-寄存器-内存读写"><a href="#4-寄存器-内存读写" class="headerlink" title="4.寄存器&#x2F;内存读写"></a>4.寄存器&#x2F;内存读写</h3><p>不是很方便，建议装上面插件</p>
+<h3 id="5-启动进程-附加调试"><a href="#5-启动进程-附加调试" class="headerlink" title="5.启动进程&#x2F;附加调试"></a>5.启动进程&#x2F;附加调试</h3><p>启动调试可以每一步调试，也可以调试初始化代码（如果没有反调试）</p>
+<p>附加调试不能调试初始化代码，但是有些程序是子程序，不附加环境不一样</p>
+<p>也用来调试动态库以及绕过一些反调试</p>
+<p>注：附加可以用Ctrl+F快速查找要附加到的程序</p>
+<h3 id="6-内存窗口"><a href="#6-内存窗口" class="headerlink" title="6.内存窗口"></a>6.内存窗口</h3><p>在窗口中按G跳转到特定地址（自己提前复制）</p>
+<p>按F2修改内存（无插件时），可以输入十六进制数字，再按F2保存修改</p>
+<p>用LazyIDA时，进入编辑模式时右键可以选pastedata，这样可以用ascll模式</p>
+<p>但是这玩意儿不会自己不00，所以还要自己加</p>
+<h3 id="7-模块窗口"><a href="#7-模块窗口" class="headerlink" title="7.模块窗口"></a>7.模块窗口</h3><p>显示模块列表</p>
+<p>Debuger–&gt;Debuger Windows–&gt;Modules</p>
+<p>在Windows上是dll,Linux上是so</p>
+<h2 id="远程调试"><a href="#远程调试" class="headerlink" title="远程调试"></a>远程调试</h2><p>安装环境：</p>
+<p>在安装目录下的debugsrv目录，选择对应系统的sever，复制到目标环境运行（子系统必须是wsl2）</p>
+<p>为了方便可以加到path里</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo $PATH</span><br><span class="line">//调试目录就是执行目录</span><br></pre></td></tr></table></figure>
+
+<p>配置：</p>
+<p>Debuger–&gt;process options</p>
+<p>Host 填Linux地址（wsl会自动填回环地址）</p>
+<p>Port就填Linux上显示的监听端口</p>
+<p>其他不要填</p>
+<p>如果修改的代码，记得删掉重新上传</p>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/custom/donate/WeChanQR.jpg"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/custom/donate/WeChanQR.jpg"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2024/10/15/%E4%B8%8D%E6%98%AF%EF%BC%8C%E5%BE%AE%E8%BD%AF%EF%BC%8C%E4%BD%A0%E6%9D%A5%E7%9C%9F%E7%9A%84%EF%BC%9F/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                不是，微软，你来真的？</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2024/10/14/JavaScript/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                JavaScript</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
       
-  <!-- 首页默认取最最新文章集 -->
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2024/10/14/IDA%E7%9A%84%E4%BD%BF%E7%94%A8/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2024/10/14/IDA%E7%9A%84%E4%BD%BF%E7%94%A8/">
-    IDA</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2024-10-14</div>
-    <p>
-    </p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2024/10/14/IDA%E7%9A%84%E4%BD%BF%E7%94%A8/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2024/10/14/JavaScript/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2024/10/14/JavaScript/">
-    JavaScript</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2024-10-14</div>
-    <p>
-    是这样的</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2024/10/14/JavaScript/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2024/10/14/C%E7%AC%94%E8%AE%B01ultrasuper/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="C笔记ultra" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2024/10/14/C%E7%AC%94%E8%AE%B01ultrasuper/">
-    C笔记ultra</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2024-10-14</div>
-    <p>
-    挤牙膏式升级！！！！！</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2024/10/14/C%E7%AC%94%E8%AE%B01ultrasuper/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2024/10/14/HTML/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2024/10/14/HTML/">
-    HTML</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2024-10-14</div>
-    <p>
-    挤牙膏式升级！！！！！</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2024/10/14/HTML/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2024/10/12/%E6%B5%8B%E8%AF%95%E8%A7%86%E9%A2%91%E5%8D%9A%E5%AE%A2/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2024/10/12/%E6%B5%8B%E8%AF%95%E8%A7%86%E9%A2%91%E5%8D%9A%E5%AE%A2/">
-    测试视频博客</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2024-10-12</div>
-    <p>
-    </p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2024/10/12/%E6%B5%8B%E8%AF%95%E8%A7%86%E9%A2%91%E5%8D%9A%E5%AE%A2/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2024/10/12/%E6%8A%80%E6%9C%AF/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2024/10/12/%E6%8A%80%E6%9C%AF/">
-    技术</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2024-10-12</div>
-    <p>
-    </p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2024/10/12/%E6%8A%80%E6%9C%AF/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
 
 
-      <div class="clearer">
-      </div>
-    </main>
-    <!--  -->
-    
-  </div>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="zhewanyiershinicheng.github.io" class="profile gravatar"><img src="https://wx1.sinaimg.cn/large/006bYVyvgy1ftand2qurdj303c03cdfv.jpg" itemprop="image" alt="这玩意儿是昵称" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="zhewanyiershinicheng.github.io" itemprop="url" rel="author">这玩意儿是昵称</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i>这玩意儿是昵称</p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
 </div>
 
-<!-- 
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2024/10/14/IDA%E7%9A%84%E4%BD%BF%E7%94%A8/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2024/10/14/IDA%E7%9A%84%E4%BD%BF%E7%94%A8/">
-    IDA</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2024-10-14</div>
-    <p>
-    </p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2024/10/14/IDA%E7%9A%84%E4%BD%BF%E7%94%A8/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2024/10/14/JavaScript/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2024/10/14/JavaScript/">
-    JavaScript</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2024-10-14</div>
-    <p>
-    是这样的</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2024/10/14/JavaScript/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2024/10/14/C%E7%AC%94%E8%AE%B01ultrasuper/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="C笔记ultra" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2024/10/14/C%E7%AC%94%E8%AE%B01ultrasuper/">
-    C笔记ultra</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2024-10-14</div>
-    <p>
-    挤牙膏式升级！！！！！</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2024/10/14/C%E7%AC%94%E8%AE%B01ultrasuper/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2024/10/14/HTML/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2024/10/14/HTML/">
-    HTML</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2024-10-14</div>
-    <p>
-    挤牙膏式升级！！！！！</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2024/10/14/HTML/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2024/10/12/%E6%B5%8B%E8%AF%95%E8%A7%86%E9%A2%91%E5%8D%9A%E5%AE%A2/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2024/10/12/%E6%B5%8B%E8%AF%95%E8%A7%86%E9%A2%91%E5%8D%9A%E5%AE%A2/">
-    测试视频博客</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2024-10-12</div>
-    <p>
-    </p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2024/10/12/%E6%B5%8B%E8%AF%95%E8%A7%86%E9%A2%91%E5%8D%9A%E5%AE%A2/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2024/10/12/%E6%8A%80%E6%9C%AF/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2024/10/12/%E6%8A%80%E6%9C%AF/">
-    技术</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2024-10-12</div>
-    <p>
-    </p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2024/10/12/%E6%8A%80%E6%9C%AF/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
 
- -->
+
     </div>    
     <div class="ins-search">
     <div class="ins-search-mask"></div>
