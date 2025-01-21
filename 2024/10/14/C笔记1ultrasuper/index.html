@@ -431,7 +431,7 @@
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">color</span> &#123;</span>red,yellow,green&#125;;</span><br><span class="line"><span class="type">void</span> <span class="title function_">f</span><span class="params">(<span class="keyword">enum</span> color c)</span>;<span class="comment">//使用这个类型时，前面要加enum（C++不用）</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span> <span class="params">(viod)</span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">enum</span> <span class="title">color</span> <span class="title">t</span>=</span>red;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>，&amp;t); </span><br><span class="line">    f(t);    </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">f</span><span class="params">(<span class="keyword">enum</span> color c)</span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,c)	<span class="comment">//输出还是1</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 
 <p>自动计数的枚举：</p>
-<p><img src="/../C%E7%AC%94%E8%AE%B01ultra/1729513141155.png" alt="1729513141155"></p>
+<p><img src="/2024/10/14/C%E7%AC%94%E8%AE%B01ultrasuper/1729513141155.png" alt="1729513141155"></p>
 <p>0这里也能看出，实际上枚举很少作为类型使用，它作用在于：</p>
 <ol>
 <li><p>枚举可以为一组整数常量赋予有意义的名称，使得代码更易于理解。例如，用<code>enum Weekday &#123;MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY&#125;;</code>定义了一周的天数。在代码中使用<code>MONDAY</code>比直接使用数字 0（假设周一被映射为数字 0）更直观地表示星期一，提高了代码的可读性和可维护性。</p>
@@ -691,7 +691,7 @@
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">char</span> *dst = (<span class="type">char</span>*)<span class="built_in">malloc</span>(<span class="built_in">strlen</span>(src)+<span class="number">1</span>)<span class="comment">//为\0提供空间</span></span><br><span class="line"><span class="built_in">strcpy</span>(dst,src)</span><br><span class="line">......</span><br><span class="line"><span class="built_in">free</span>(dst)</span><br></pre></td></tr></table></figure>
 
 <p>它的原型是：</p>
-<p><img src="/../C%E7%AC%94%E8%AE%B01ultra/1729434003609.png"></p>
+<p><img src="/2024/10/14/C%E7%AC%94%E8%AE%B01ultrasuper/1729434003609.png"></p>
 <p>然后可以传入俩数组（代码里的const防止自赋值（指向同地址））</p>
 <p>rest应该是ret,这是因为此时的dst指向最后的元素，不能直接返回它</p>
 <p>要先用ret记录好初始位置</p>
