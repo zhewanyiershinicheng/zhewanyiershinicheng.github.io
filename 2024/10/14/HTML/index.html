@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">HTML | Potato</title>
+  
+    <link rel="shortcut icon" href="https://zhewanyiershinicheng.github.io/images/favicon.ico">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "这就是-------Potato";
+  mashiro_option.author_name = "Potato";
+  mashiro_option.site_url = "https://github.com/zhewanyiershinicheng/";
+  mashiro_option.v_appId = "";
+  mashiro_option.v_appKey = "";
+  mashiro_option.mathjax = "0";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "https://zhewanyiershinicheng.github.io/images/cover/(1).jpg.webp,https://zhewanyiershinicheng.github.io/images/cover/(2).jpg.webp,https://zhewanyiershinicheng.github.io/images/cover/(3).jpg.webp,https://zhewanyiershinicheng.github.io/images/cover/(4).jpg.webp,https://zhewanyiershinicheng.github.io/images/cover/(5).jpg.webp,https://zhewanyiershinicheng.github.io/images/cover/(6).jpg.webp,https://zhewanyiershinicheng.github.io/images/cover/(7).jpg.webp,https://zhewanyiershinicheng.github.io/images/cover/(8).jpg.webp".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Potato" type="application/atom+xml">
+</head>
+
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <div class="headertop filter-dot">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="https://github.com/zhewanyiershinicheng/">
+          <img src="https://zhewanyiershinicheng.github.io/images/mianhua.jpg">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>这是一个关于土豆的传说......</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li>
+                  <a href="http://github.com/zhewanyiershinicheng" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/social/github.png">
+                  </a>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">这就是-------</span>
+            <span class="shironeko">Potato</span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/%E6%8A%80%E6%9C%AF/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          技术
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E7%94%9F%E6%B4%BB/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          生活
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E8%B5%84%E6%BA%90/">
+                          <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                          资源
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E9%9A%8F%E6%83%B3/">
+                          <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                          随想
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E8%BD%AC%E8%BD%BD/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          转载
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E7%A6%BB%E8%B0%B1/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          离谱
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="javascript:;">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+                    清单
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/tags/%E6%82%A6%E8%AF%BB/">
+                          <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                          书单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/bangumi/">
+                          <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                          番组
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/music/">
+                          <i class="fa fa-headphones" aria-hidden="true"></i>
+                          歌单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/%E5%9B%BE%E9%9B%86/">
+                          <i class="fa fa-photo" aria-hidden="true"></i>
+                          图集
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/donate/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+                    赞赏
+                  </span>
+                </a>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+          <header class="entry-header">
+            <h1 class="entry-title">HTML</h1>
+            <p class="entry-census">这玩意儿是昵称&nbsp;·&nbsp;2024-10-14&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
+
+            <hr>
+          </header>
+        
+        <div class="entry-content">
+          <h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a><strong>HTML</strong></h3><h4 id="0-e…"><a href="#0-e…" class="headerlink" title="0.e…"></a>0.e…</h4><p>&#x2F;&#x2F;后缀是.htm或.html</p>
+<p>&#x2F;&#x2F;要运行的话浏览器里<a href="%E4%BB%A5/%E5%BC%80%E5%A4%B4%E7%9A%84%E7%96%91%E4%BC%BC%E4%BB%8E%E8%AF%A5html%E6%89%80%E5%9C%A8%E8%B7%AF%E5%BE%84%E5%BC%80%E5%A7%8B">输入路径就行</a></p>
+<p>&#x2F;&#x2F;&lt;&gt;中的就是关键词，通常成对出现。（即<xx>和</xx>）</p>
+<p>&#x2F;&#x2F;开始和结束标签（<xx>与</xx>）,也叫开放标签和闭合标签</p>
+<p>1.html本身是一种标记语言（ 超文本标记语言， <strong>H</strong>yper <strong>T</strong>ext <strong>M</strong>arkup <strong>L</strong>anguage  ），而不是编程语言，是一套编辑标签。（使用其来描述网页）</p>
+<p>2.html可以使用记事本来写</p>
+<p>也有专业的：</p>
+<ul>
+<li>Adobe Dreamweaver</li>
+<li>Microsoft Expression Web</li>
+<li>CoffeeCup HTML Editor</li>
+</ul>
+<h4 id="1-标签"><a href="#1-标签" class="headerlink" title="1.标签"></a>1.标签</h4><h5 id="一般"><a href="#一般" class="headerlink" title="一般"></a>一般</h5><p>#还有部分在文本格式化</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;html&gt;：文本描述网页，写在最前和最后</span><br><span class="line">&lt;body&gt;：可见页面文本,是文档的主体</span><br><span class="line">&lt;h1/2/3/4/5/6&gt;：标题，会自动空行</span><br><span class="line">&lt;p&gt;：段落，也会自动空行</span><br><span class="line">#块级元素都会自动空行#</span><br><span class="line">&lt;br /&gt;：没有关闭标签的空元素（定义换行），似乎&lt;br /&gt;也可以用来创建列表</span><br><span class="line">*#连续的空格或者空行（换行），都会变成一个空格，这包括空白字符和回车#</span><br><span class="line">&lt;hr /&gt;：用于分割内容，创建水平线，单个出现</span><br></pre></td></tr></table></figure>
+
+<p>*：这是为了在拖动浏览器窗口时，还能正常显示。如果想要保留，可以使用<pre>（预格式文本）标签，这适合显示代码（也有其他专门为显示代码的，见文本格式化）</p>
+<h5 id="特殊"><a href="#特殊" class="headerlink" title="特殊"></a>特殊</h5><hr>
+<h6 id="1-锚-a"><a href="#1-锚-a" class="headerlink" title="1.锚(a)"></a>1.锚(a)</h6><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;p&gt;&lt;a href=&quot;网页链接或者另一个html（需要路径）&quot; style=&quot;text-decoration:none&quot; target=&quot;_blank&quot;&gt;link&lt;/a&gt;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+<p>//这时link是个超链接</p>
+<p>​      style用于去除默认带的下划线 </p>
+<p>​      <a href="%E5%85%B6%E5%80%BC%E8%BF%98%E6%9C%89_(%E5%89%8D%E9%9D%A2%E6%98%AF%E4%B8%8B%E5%88%92%E7%BA%BF)top%EF%BC%9A%E7%94%A8%E4%BA%8E%E8%B7%B3%E5%87%BA%E6%A1%86%E6%9E%B6%EF%BC%88%E9%87%8D%E5%BC%80%EF%BC%9F%EF%BC%89%EF%BC%8C%E4%BD%86%E6%B2%A1%E6%9C%89%E6%96%B0%E7%AA%97%E5%8F%A3">target</a>表示在新窗口打开</p>
+<p>href属性还可以链接邮件</p>
+<p>写成  (%20用于代替空格)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;a href=&quot;mailto:someone@microsoft.com?subject=Hello%20again&quot;&gt;发送邮件&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
+<p>&lt;a>还有name属性，用于定义锚。<a href="%E8%A2%AB%E8%B0%83%E7%94%A8%E6%97%B6%EF%BC%8C%E8%A6%81%E5%9C%A8%E5%90%8D%E7%A7%B0%E5%89%8D%E5%8A%A0#%EF%BC%8C%E4%BB%8E%E9%9D%9E%E8%AF%A5html%E8%B0%83%E7%94%A8%EF%BC%8C%E7%9B%B4%E6%8E%A5%E5%9C%A8url(%E5%88%B0%E8%AF%A5html)%E6%9C%80%E5%90%8E%E5%8A%A0%E4%B8%8A#%E5%92%8C%E5%90%8D%E7%A7%B0">不会直观体现，但可以被链接</a>，注意被调用时是写name的属性，而不是&lt;a>的元素</p>
+<h6 id="2-图像-img"><a href="#2-图像-img" class="headerlink" title="2.图像(img)"></a>2.图像(img)</h6><p>动图一样</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;img src=&quot;图片地址&quot; width=&quot;104&quot; height=&quot;142&quot; border=&quot;0&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>//&lt;img>不是闭合标签，并且套在&lt;p>时会和该文本对齐（<a href="%E4%BD%BF%E7%94%A8align%E5%B1%9E%E6%80%A7%E4%BF%AE%E6%94%B9%EF%BC%8C%E5%BA%95%E9%83%A8%EF%BC%9Abottom,%E9%A1%B6%E9%83%A8%EF%BC%9Atop,%E4%B8%AD%E9%83%A8%EF%BC%9Amiddle,left:%E6%B5%AE%E5%8A%A8%E5%88%B0%E5%B7%A6%E4%BE%A7%EF%BC%8C%E5%8F%B3%E5%90%8C%E7%90%86">默认底部</a>）</p>
+<p>//border是边框</p>
+<p>//width和height实际上是调整大小，而不是定义</p>
+<p><del>src其实是是scource的意思</del></p>
+<p><strong>最后的/不能省略</strong></p>
+<p>其他属性：</p>
+<p>alt:替换文本，当不能正常加载图片时显示，很多时候鼠标移上去也会</p>
+<p>其它图像插入：</p>
+<body background="/i/eg_background.jpg">
+
+<p>//背景图像，写在body里，只能.jpg或.gif，小了会重复</p>
+<h6 id="3-map与area"><a href="#3-map与area" class="headerlink" title="3.map与area"></a>3.map与area</h6><p>这个不太好说，自己体会</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>请点击图像上的星球，把它们放大。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span></span></span><br><span class="line"><span class="tag"><span class="attr">src</span>=<span class="string">&quot;/i/eg_planets.jpg&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">border</span>=<span class="string">&quot;0&quot;</span> <span class="attr">usemap</span>=<span class="string">&quot;#planetmap&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">alt</span>=<span class="string">&quot;Planets&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">map</span> <span class="attr">name</span>=<span class="string">&quot;planetmap&quot;</span> <span class="attr">id</span>=<span class="string">&quot;planetmap&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">area</span></span></span><br><span class="line"><span class="tag"><span class="attr">shape</span>=<span class="string">&quot;circle&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">coords</span>=<span class="string">&quot;180,139,14&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">href</span> =<span class="string">&quot;/example/html/venus.html&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">target</span> =<span class="string">&quot;_blank&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">alt</span>=<span class="string">&quot;Venus&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">area</span></span></span><br><span class="line"><span class="tag"><span class="attr">shape</span>=<span class="string">&quot;circle&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">coords</span>=<span class="string">&quot;129,161,10&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">href</span> =<span class="string">&quot;/example/html/mercur.html&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">target</span> =<span class="string">&quot;_blank&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">alt</span>=<span class="string">&quot;Mercury&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">area</span></span></span><br><span class="line"><span class="tag"><span class="attr">shape</span>=<span class="string">&quot;rect&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">coords</span>=<span class="string">&quot;0,0,110,260&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">href</span> =<span class="string">&quot;/example/html/sun.html&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">target</span> =<span class="string">&quot;_blank&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">alt</span>=<span class="string">&quot;Sun&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">b</span>&gt;</span>注释：<span class="tag">&lt;/<span class="name">b</span>&gt;</span>img 元素中的 &quot;usemap&quot; 属性引用 map 元素中的 &quot;id&quot; 或 &quot;name&quot; 属性（根据浏览器），所以我们同时向 map 元素添加了 &quot;id&quot; 和 &quot;name&quot; 属性。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="4-表格-table"><a href="#4-表格-table" class="headerlink" title="4.表格(table)"></a>4.表格(table)</h6><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">border</span>=<span class="string">&quot;1&quot;</span>&gt;</span> </span><br><span class="line">//有background属性，同插入背景图像的写法，不在style里</span><br><span class="line"><span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">th</span>&gt;</span>Heading<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">th</span>&gt;</span>Another Heading<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">td</span>&gt;</span>row 1, cell 1<span class="tag">&lt;/<span class="name">td</span>&gt;</span> //有background属性，同上。也有align,同样不在</span><br><span class="line"><span class="tag">&lt;<span class="name">td</span>&gt;</span>row 1, cell 2<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">td</span>&gt;</span>row 2, cell 1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">td</span>&gt;</span>row 2, cell 2<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">//tr定义行（之间为一行）</span><br><span class="line">//td分割行形成单元格（之间的为数据可以是文本、图片、列表、段落、表单、水平   线、表格等等(普通，左对齐)</span><br><span class="line">//th是表头(居中粗体，就是不会动的那个，自带td)</span><br><span class="line">//border为1时有边框，默认为0</span><br><span class="line">//有时空单不会显示，缺少单元格边框，可以填个空格（&amp;nbsp）来防止</span><br><span class="line">//表格的单元格里可以嵌套表格，列表</span><br><span class="line">#table的其他参数有：</span><br><span class="line">frame(分割线的位置)：box,above,below,hsides(上下)，vsides(左右)</span><br><span class="line">cellpadding/cellspacing：单元格边距/间距，参数只有数字</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>th的参数：colspan="x",横跨x列</p>
+<p>​                   rowspan="x",横跨x行</p>
+<p>其他表格标签：</p>
+<p><a href="%E6%A0%87%E9%A2%98%EF%BC%8C%E5%8F%AA%E8%83%BD%E6%9C%89%E4%B8%80%E4%B8%AA%EF%BC%8C%E8%87%AA%E5%8A%A8%E5%B1%85%E4%B8%AD%EF%BC%8C%E4%BD%86%E5%8F%AF%E4%BB%A5%E7%94%A8css%E5%B1%9E%E6%80%A7"><caption></a>，<a href="%E9%A1%B5%E7%9C%89,%E9%A1%B5%E8%84%9A,%E6%AD%A3%E6%96%87%E3%80%82%E4%B9%9F%E5%B0%B1%E6%98%AF%EF%BC%9A%E5%89%8D%E5%87%A0%E8%A1%8C%EF%BC%8C%E5%90%8E%E5%87%A0%E8%A1%8C%EF%BC%8C%E4%B8%AD%E9%97%B4%E3%80%82%E6%BB%9A%E5%8A%A8%E6%97%B6,%E9%A1%B5%E7%9C%89%E5%92%8C%E9%A1%B5%E8%84%9A%EF%BC%88%E4%B8%A4%E8%80%85%E9%83%BD%E8%87%B3%E5%B0%91%E5%BE%97%E5%90%AB%E4%B8%80%E5%AF%B9tr%EF%BC%89%E9%83%BD%E4%B8%8D%E4%BC%9A%E5%8A%A8"><thead>与<tfoot>还有<tbody></a>，<a href="%E7%94%A8%E4%BA%8E%E5%AE%9A%E4%B9%89%E5%88%97%E7%9A%84%E5%B1%9E%E6%80%A7%EF%BC%8C%E4%BD%86%E6%98%AF%E6%88%91%E7%9C%8B%E4%B8%8D%E6%87%82"><col>和<colgroup></a></p>
+<h6 id="5-列表-ul-ol"><a href="#5-列表-ul-ol" class="headerlink" title="5.列表(ul/ol)"></a>5.列表(ul/ol)</h6><p>A.无序列表</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>咖啡<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>茶<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>牛奶<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span>              //每行前面一个点的那种</span><br></pre></td></tr></table></figure>
+
+<p>B.无序列表</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span> <span class="attr">start</span>=<span class="string">&quot;50&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>咖啡<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>牛奶<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>茶<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span>            //start属性就是第一个排序数字，默认从1开始</span><br></pre></td></tr></table></figure>
+
+<h6 id="6-类"><a href="#6-类" class="headerlink" title="6.类"></a>6.类</h6><p>将html元素分成各个类，并按类分别定义不同样式（可以使用CSS样式）</p>
+<p>比如：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="selector-class">.cities</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>:black;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">color</span>:white;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin</span>:<span class="number">20px</span>;     //（设定）外边距，可以使用百分比</span></span><br><span class="line"><span class="language-css">    <span class="attribute">padding</span>:<span class="number">20px</span>;    //填充（边距），可以使用百分比</span></span><br><span class="line"><span class="language-css">&#125; </span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;cities&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>London<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>London is the capital city of England. </span><br><span class="line">It is the most populous city in the United Kingdom, </span><br><span class="line">with a metropolitan area of over 13 million inhabitants.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;cities&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Paris<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Paris is the capital and most populous city of France.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;cities&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Tokyo<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Tokyo is the capital of Japan, the center of the Greater Tokyo Area,</span><br><span class="line">and the most populous metropolitan area in the world.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>自己看咯~跟下面块的一样，方便搞类似的样式内容</p>
+<h6 id="7-id"><a href="#7-id" class="headerlink" title="7.id"></a>7.id</h6><p>与class不同，它必需是唯一的，这涉及到js</p>
+<p>位于文件头的<style>与</style>>中，格式：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">#myHeader &#123;</span><br><span class="line">  background-color: lightblue;</span><br><span class="line">  color: black;</span><br><span class="line">  padding: 40px;</span><br><span class="line">  text-align: center;</span><br><span class="line">&#125;               //id名和值在在该html中必须唯一，区分大小写</span><br></pre></td></tr></table></figure>
+
+<p>后面属性就可以直接调用该id，比如：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">&quot;myHeader&quot;</span>&gt;</span>My Header<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>id还可以创建书签：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">&quot;C4&quot;</span>&gt;</span>第四章<span class="tag">&lt;/<span class="name">h2</span>&gt;</span>   //创建</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#C4&quot;</span>&gt;</span>跳转到第四章<span class="tag">&lt;/<span class="name">a</span>&gt;</span>   //html内部使用跳转</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;html_demo.html#C4&quot;</span>&gt;</span>Jump to Chapter 4<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">//从另一页面跳转</span><br></pre></td></tr></table></figure>
+
+<h6 id="8-块-div-span"><a href="#8-块-div-span" class="headerlink" title="8.块(div/span)"></a>8.块(div/span)</h6><p>//这两者本身没有什么意义，可以用CSS来样式设置</p>
+<p>HTML元素分为块级元素和内联元素两种：</p>
+<p>块级元素在浏览器显示时，通常会以新行来开始或结束 // <h1>, <p>, <ul>, <table> </p>
+<p> 内联元素在显示时通常不会以新行开始 // <b>, <td>, <a>, <img> </p>
+<p>A.<div>(块级元素)</p>
+<p>&lt;div> 标签定义 HTML 文档中的分割或部分（分区或小节，division/section）。</p>
+<p>&lt;div> 标签可以把文档分割为独立的、不同的部分。它可以用作严格的组织工具，并且不使用任何格式与其关联</p>
+<p>任何类型的内容都可以放在标签内！标签可用作 HTML 元素的容器，然后使用 CSS 设置样式或使用 JavaScript 进行操作。 </p>
+<p>如果用 id 或 class 来标记 <div>，那么该标签的作用会变得更加有效。通过使用 class 或 id 属性，可以轻松地对 <div> 标签设置样式。</p>
+<p>注意：默认情况下，浏览器总是在 <div> 元素前后放置一个换行符。</p>
+  <div> 是块级元素。这意味着它的内容自动地开始一个新行。实际上，换行是 <div> 固有的唯一格式表现。可以通过 <div> 的 class 或 id 应用额外的样式。  
+
+<p>属性：</p>
+<p>class用于元素组（某一类元素），而id标识唯一元素</p>
+<p>比如：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;myDiv&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>这是 div 元素中的标题<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>这是 div 元素中的一些文本。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span>        //定义方法同id，但是前面的#换成.</span><br></pre></td></tr></table></figure>
+
+<p>B.<span>(内联元素)</p>
+<p>&lt;p>这位姑娘有一双&lt;span style="color:blue;font-weight:bold">蓝色</span>的眼睛。&lt;/p>    ::其实就是给行内部分加style，div则是为多行加上style</p>
+<h6 id="x-注释"><a href="#x-注释" class="headerlink" title="x.注释"></a>x.注释</h6><!-- This is a comment -->
+
+<p>也有条件注释：<!--[if IE 8]>   xxx   <![endif]--></p>
+<p>//这表示只在IE显示</p>
+<hr>
+<h4 id="2-语法"><a href="#2-语法" class="headerlink" title="2.语法"></a>2.语法</h4><ul>
+<li><strong>HTML 元素以<em>开始标签</em>起始</strong></li>
+<li><strong>HTML 元素以<em>结束标签</em>终止</strong></li>
+<li><em>元素的内容</em>是开始标签与结束标签之间的内容</li>
+<li>某些 HTML 元素具有空内容(没有内容的 HTML 元素被称为空元素)</li>
+<li>[空元素]( 没有内容的 HTML 元素被称为空元素。空元素是在开始标签中关闭的。 在 XHTML、XML 以及未来版本的 HTML 中，所有元素都必须被关闭。 在开始标签中添加斜杠，比如 <br />，是关闭空元素的正确方法，HTML、XHTML 和 XML 都接受这种方式 。 即使 <br> 在所有浏览器中都是有效的，但使用 <br /> 其实是更长远的保障。   )在开始标签中关闭 ，以开始标签的结束而结束</li>
+<li>大多数 HTML 元素可拥有<em>属性</em></li>
+</ul>
+<p>//大多html可以嵌套</p>
+<p>比如：&lt;p>This is&lt;br />a para&lt;br />graph with line breaks&lt;/p></p>
+<h5 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h5><p>#必须加引号</p>
+<p>[#参考手册](完整的：<a href="https://www.w3school.com.cn/tags/index.asp">https://www.w3school.com.cn/tags/index.asp</a>           标准属性的：<a href="https://www.w3school.com.cn/tags/html_ref_standardattributes.asp">https://www.w3school.com.cn/tags/html_ref_standardattributes.asp</a>)</p>
+<p>总是以名称/值对的形式出现，比如：*name="value"*。（像是上面的<a>）</p>
+<p>总是在 HTML 元素的<em>开始标签</em>中规定。</p>
+<p>比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;h1&gt; 定义标题的开始。</span><br><span class="line"></span><br><span class="line">&lt;h1 align=&quot;center&quot;&gt; 拥有关于对齐方式的附加信息。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;h1&gt; 定义标题的开始。</span><br><span class="line"></span><br><span class="line">&lt;h1 align=&quot;center&quot;&gt; 拥有关于对齐方式的附加信息。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;body&gt; 定义 HTML 文档的主体。</span><br><span class="line"></span><br><span class="line">&lt;body bgcolor=&quot;yellow&quot;&gt; 拥有关于背景颜色的。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;table&gt; 定义HTML表格</span><br><span class="line">&lt;table border=&quot;1&quot;&gt; 拥有关于表格边框的附加信息</span><br></pre></td></tr></table></figure>
+
+<h6 id="1-style"><a href="#1-style" class="headerlink" title="1.style"></a>1.style</h6><table>
+<thead>
+<tr>
+<th>align</th>
+<th>定义文本的对齐方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>bgcolor</strong></td>
+<td><strong>定义背景颜色</strong></td>
+</tr>
+<tr>
+<td><strong>color</strong></td>
+<td><strong>定义文本颜色</strong></td>
+</tr>
+</tbody></table>
+<p>写成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">style</span>=<span class="string">&quot;background-color:yellow&quot;</span>&gt;</span>  //设置背景色</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h2</span> <span class="attr">style</span>=<span class="string">&quot;background-color:red&quot;</span>&gt;</span>This is a heading<span class="tag">&lt;/<span class="name">h2</span>&gt;</span> //同上</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&quot;font-family:arial;color:red;font-size:20px;text-align:center;&quot;</span>&gt;</span>A paragraph.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">//设置字体，字体颜色，字体大小,水平对齐方式</span><br></pre></td></tr></table></figure>
+
+<h6 id="2-文本格式化"><a href="#2-文本格式化" class="headerlink" title="2.文本格式化"></a>2.文本格式化</h6><p><strong>一般操作：</strong></p>
+<p><b>/<strong>：加粗</p>
+<p><big>：加大</p>
+<p><small>：缩小</p>
+<p><em>/<i>：强调（斜体）</p>
+<p><sub>/<sup>：下标/上标</p>
+<hr>
+<p><strong>用于计算机输入输出：</strong></p>
+<p><code>：代码</p>
+<p><kbd>：键盘输入</p>
+<p><samp>：例子</p>
+<p><var>：变量</p>
+<hr>
+<p><strong>？：</strong></p>
+<p><strong>&lt;address>：</strong> 该元素定义文档或文章的联系信息（作者/拥有者）。 </p>
+<p><strong>&lt;cite>：</strong>定义著作标题，默认斜体，需要<p></p>
+<p><strong>&lt;acronmy title="wo wo wo">www&lt;acronym>：</strong>首字母缩写</p>
+<p>#鼠标移上去显示完整</p>
+<blockquote>
+<p><strong>不同于<addr>,这个不能定义其它缩写，但是不用<p></strong>(<addr>的用法也可用于<a href="%E5%AE%9A%E4%B9%89%E9%A1%B9%E7%9B%AE%E6%88%96%E8%80%85%E7%BC%A9%E7%95%A5%E8%AF%8D%E7%94%A8">&lt;dfn></a>，不给参数的<dfn>当作没有，但不会错)</p>
+</blockquote>
+<p>**&lt;bdo dir="rtl">**： 即bi-directional override </p>
+<p>#需要浏览器支持，rtl实际上是right to left,这会是下面内容的实际输出顺序</p>
+<p><strong>&lt;blockquote>/&lt;q>：</strong>长引用/短引用，<strong>前者自带换行，边距，缩进</strong>。后者没有。</p>
+<p>#blockquote可以跟参数，但是没什么用，一般是被引用内容的网址</p>
+<p><strong>&lt;del>：</strong>删除文本（其实就是中间划线）</p>
+<p><strong>&lt;ins>：</strong>下划线3.</p>
+<p>#老旧浏览器可能不支持del和ins,只会普通显示</p>
+<h6 id="3-颜色"><a href="#3-颜色" class="headerlink" title="3.颜色"></a>3.颜色</h6><p>命名的有：</p>
+<p>aqua, black, blue, fuchsia, gray, green, lime, maroon, navy, olive, purple, red, silver, teal, white, yellow </p>
+<p>//就这16个</p>
+<p>其他写成：</p>
+<p>#00FF00   //十六进制，相当于rgb(0,255,0),按顺序看，这其实就是绿色</p>
+<h6 id="4-css-的调用"><a href="#4-css-的调用" class="headerlink" title="4.css(的调用)"></a>4.css(的调用)</h6><head>
+<style type="text/css">
+h1 {color: red}
+p {color: blue}
+</style>
+</head>
+
+<head>
+<link rel="stylesheet" type="text/css" href="/html/csstest1.css" >
+</head>
+
+<p>//<strong>外部样式表</strong>和<strong>内部样式表</strong>都在head里放前面，只有内联样式在body里</p>
+<p>外部样式表会改变所有页面，内部可以指定特定，内联则只有个别元素</p>
+<p><strong>外部用link</strong></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">href</span>=<span class="string">&quot;mystyle.css&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>内部和内联用style</strong></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="selector-tag">body</span> &#123;<span class="attribute">background-color</span>: red&#125;</span></span><br><span class="line"><span class="language-css"><span class="selector-tag">p</span> &#123;<span class="attribute">margin-left</span>: <span class="number">20px</span>&#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&quot;color: red; margin-left: 20px&quot;</span>&gt;</span></span><br><span class="line">This is a paragraph</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="3-表单"><a href="#3-表单" class="headerlink" title="3.表单"></a>3.表单</h4><p>表单元素指的是不同类型的 input 元素、复选框、单选按钮、提交按钮等等。 </p>
+<p>这是本章中使用的类型：</p>
+<table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">text</td>
+<td align="left">定义常规文本输入。</td>
+</tr>
+<tr>
+<td align="left">radio</td>
+<td align="left">定义单选按钮输入（选择多个选择之一）</td>
+</tr>
+<tr>
+<td align="left">submit</td>
+<td align="left">定义提交按钮（提交表单）//需要action属性，省略会变成当前页                                      面</td>
+</tr>
+</tbody></table>
+<p>例如：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line"> First name:<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;firstname&quot;</span>&gt;</span> //name属性的值就是被你所输入的</span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span>                                  文本赋值的变量</span><br><span class="line"> Last name:<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;lastname&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span> </span><br><span class="line">//文本默认宽度只有20</span><br></pre></td></tr></table></figure>
+
+<p>以及</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;sex&quot;</span> <span class="attr">value</span>=<span class="string">&quot;male&quot;</span> <span class="attr">checked</span>&gt;</span>Male</span><br><span class="line">//checked表示被选中</span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;sex&quot;</span> <span class="attr">value</span>=<span class="string">&quot;female&quot;</span>&gt;</span>Female</span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<p>还有</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;action_page.php&quot;</span>&gt;</span> </span><br><span class="line">First name:<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;firstname&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Mickey&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">Last name:<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;lastname&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Mouse&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Submit&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<p>可以使用min和max属性限制输入值的范围</p>
+<h2 id="题外话："><a href="#题外话：" class="headerlink" title="题外话："></a>题外话：</h2><p>这个head疑似是用来添加请求头参数的，存在：</p>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="Content-Language" content="zh-cn" />
+语句
+
+<hr>
+<p id="js_and_id">HTML JavaScript</p>
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/custom/donate/WeChanQR.jpg"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/custom/donate/WeChanQR.jpg"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2024/10/14/C%E7%AC%94%E8%AE%B01ultrasuper/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="C笔记ultra" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="C笔记ultra">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                C笔记ultra</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2024/10/14/IDA%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                IDA</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+
+
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="zhewanyiershinicheng.github.io" class="profile gravatar"><img src="https://wx1.sinaimg.cn/large/006bYVyvgy1ftand2qurdj303c03cdfv.jpg" itemprop="image" alt="这玩意儿是昵称" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="zhewanyiershinicheng.github.io" itemprop="url" rel="author">这玩意儿是昵称</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i>这玩意儿是昵称</p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+
+    </div>    
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            // PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+    <!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 这玩意儿是昵称<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2018</p>
+    </div>
+    <div class="footer-device">
+    <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a href="https://www.hojun.cn/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a>, Powered by Hexo, Hosted by Coding Pages</a>
+        </span>
+      </p>
+    </div>
+  </div><!-- .site-info -->
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+</script>
+
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://zhewanyiershinicheng.github.io/images/mianhua.jpg">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">这就是-------Potato</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="http://github.com/zhewanyiershinicheng" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+        <a href="/" class="fa fa-weibo" target="_blank" style="color: #dd4b39; margin-left:20px"></a>
+      
+        <a href="/" class="fa fa-qq" target="_blank" style="color: #25c6fe; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/%E6%8A%80%E6%9C%AF/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E7%94%9F%E6%B4%BB/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E8%B5%84%E6%BA%90/">
+                  <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                  资源
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E9%9A%8F%E6%83%B3/">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                  随想
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E8%BD%AC%E8%BD%BD/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  转载
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E7%A6%BB%E8%B0%B1/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  离谱
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="javascript:;">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+            清单
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/tags/%E6%82%A6%E8%AF%BB/">
+                  <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                  书单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/bangumi/">
+                  <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                  番组
+                </a>
+              </li>
+            
+              <li>
+                <a href="/music/">
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                  歌单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/%E5%9B%BE%E9%9B%86/">
+                  <i class="fa fa-photo" aria-hidden="true"></i>
+                  图集
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/donate/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+            赞赏
+          </span>
+        </a>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    id="2660651585"
+
+    server="netease"
+
+    type="playlist"
+
+    fixed="true"
+
+    autoplay="false"
+
+    loop="all"
+
+    order="random"
+
+    preload="auto"
+
+    volume="0.7"
+
+    mutex="true"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+</body>
+</html>
