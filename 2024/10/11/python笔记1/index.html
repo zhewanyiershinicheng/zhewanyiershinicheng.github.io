@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">Potato</title>
+  <title itemprop="name">python，然而完全没有关系 | Potato</title>
   
     <link rel="shortcut icon" href="https://zhewanyiershinicheng.github.io/images/favicon.ico">
   
@@ -67,7 +67,7 @@
   </div>
   <a href="#" class="cd-top faa-float animated"></a>
   <section id="main-container">
-    <div class="headertop filter-dot">
+    <div class="headertop ">
   <div id="banner_wave_1"></div>
   <div id="banner_wave_2"></div>
   <figure id="centerbg" class="centerbg">
@@ -210,6 +210,13 @@
                         </a>
                       </li>
                     
+                      <li>
+                        <a href="/categories/%E5%8F%91%E7%94%B5/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          发电
+                        </a>
+                      </li>
+                    
                   </ul>
                 
               </li>
@@ -275,14 +282,74 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
           <header class="entry-header">
-            <h1 class="entry-title"></h1>
-            <p class="entry-census">&nbsp;·&nbsp;2024-10-28&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
+            <h1 class="entry-title">python，然而完全没有关系</h1>
+            <p class="entry-census">&nbsp;·&nbsp;2024-10-11&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
 
             <hr>
           </header>
         
         <div class="entry-content">
-          <h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1>
+          <h4 id="一-按位运算"><a href="#一-按位运算" class="headerlink" title="一.按位运算"></a>一.按位运算</h4><p>&amp;         #按位与           3 &amp; 2  &#x3D; 2         （全为1时为1）</p>
+<p>|          #按位或           3 | 2  &#x3D; 3          （其中一个是1时取1）</p>
+<p>^          #按位异或       3 ^ 2  &#x3D; 1          （1和0时为1）</p>
+<p>~          #按位取反       ~3  &#x3D; −4            （就是反过来而已）</p>
+<p>&lt;&lt;        #向左移位       3 &lt;&lt; 1  &#x3D; 6 </p>
+<p>&gt;&gt;        #向右移位        3 &gt;&gt; 1  &#x3D;  1   </p>
+<blockquote>
+<p>::在二进制中移位，空位全部补0</p>
+</blockquote>
+<h4 id="二-输入输出"><a href="#二-输入输出" class="headerlink" title="二.输入输出"></a><strong>二.输入输出</strong></h4><blockquote>
+<p>::input输入的数据默认都是str</p>
+</blockquote>
+<h4 id="三-三目运算符"><a href="#三-三目运算符" class="headerlink" title="三.三目运算符"></a><strong>三.三目运算符</strong></h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">age=<span class="number">20</span></span><br><span class="line">message=<span class="string">&quot;成年人&quot;</span> <span class="keyword">if</span> age&gt;=<span class="number">18</span> <span class="keyword">else</span> <span class="string">&quot;未成年人&quot;</span></span><br><span class="line"><span class="comment">#这样可以不用写那么多判断语句，可以直接夹在赋值语句里</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="四-循环"><a href="#四-循环" class="headerlink" title="四.循环"></a><strong>四.循环</strong></h4><h5 id="1-关于for"><a href="#1-关于for" class="headerlink" title="1.关于for"></a>1.关于for</h5><p>rang(),用于生成数值序列，不过计数是从0开始。所以：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> rang(<span class="number">5</span>):</span><br><span class="line">	<span class="built_in">print</span>(i)</span><br><span class="line"><span class="comment">#输出是0到4</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="2-关于while"><a href="#2-关于while" class="headerlink" title="2.关于while"></a>2.关于while</h5><p>continue：跳过当前迭代，直接进入下一次（如有），在这之后的不会执行，所以会和i一起用</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">	<span class="keyword">if</span> i == <span class="number">3</span>:</span><br><span class="line">	<span class="keyword">continue</span></span><br><span class="line">	<span class="built_in">print</span>(i)</span><br><span class="line"><span class="comment">#输出没有3</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>EX    break：直接跳出while循环</p>
+<blockquote>
+<p>&#x2F;&#x2F;for和while都可以跟else连用，正常终止时执行，被打断时一起被跳过</p>
+</blockquote>
+<p>五.函数</p>
+<p>def 函数名(参数):</p>
+<p>​       函数体</p>
+<p>#如果要返回值，则使用return</p>
+<blockquote>
+<p>&#x2F;&#x2F;空函数写pass</p>
+</blockquote>
+<p>默认参数与可选参数：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">sum_numbers</span>(<span class="params">*args</span>):<span class="comment">#这里的*表示任意数量的非关键字参数，若为**则表示任意数量的关键字参数</span></span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">sum</span>(args)</span><br><span class="line">result = sum_numbers(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"><span class="built_in">print</span>(result) <span class="comment"># 输出: 10</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>非关键字参数的值不会赋值给该关键字</p>
+<h4 id="五-类（class）"><a href="#五-类（class）" class="headerlink" title="五.类（class）"></a><strong>五.类（class）</strong></h4><p>&#x2F;&#x2F;用于封装数据（属性）和操作方法（函数），调用时可提供特定功能。</p>
+<p>&#x2F;&#x2F;python中有内置的类</p>
+<p>#Python中一切都是对象，对象是类的实例，连int和float都是类</p>
+<h5 id="1-创建类"><a href="#1-创建类" class="headerlink" title="1.创建类"></a>1.创建类</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class Dog:</span><br><span class="line">	def __init__(self): # 初始化函数</span><br><span class="line">	self.Race = &#x27;dog&#x27;</span><br><span class="line">	def call(self): # 方法</span><br><span class="line">	print(&#x27;wang&#x27;)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
         <!-- .entry-content -->
         <div class="single-reward">
@@ -313,7 +380,7 @@
           
             <div class="post-nepre half previous">
           
-            <a href="/2024/10/28/python%E7%AC%94%E8%AE%B01/" rel="prev">
+            <a href="/2024/10/11/%E5%9C%9F%E8%B1%86%E8%B1%86%E8%B1%86%E8%B1%86%E8%B1%86/" rel="prev">
               <div class="background">
                 <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
               </div>
@@ -321,7 +388,7 @@
               Previous Post</span>
               <div class="info">
                 <h3>
-                </h3>
+                土豆豆豆豆豆</h3>
                 <hr>
               </div>
             </a>
@@ -331,7 +398,7 @@
           
             <div class="post-nepre half next">
           
-            <a href="/2024/10/15/%E4%B8%8D%E6%98%AF%EF%BC%8C%E5%BE%AE%E8%BD%AF%EF%BC%8C%E4%BD%A0%E6%9D%A5%E7%9C%9F%E7%9A%84%EF%BC%9F/" rel="next">
+            <a href="/2024/10/11/%E6%B1%87%E7%BC%96/" rel="next">
               <div class="background">
                 <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
               </div>
@@ -339,7 +406,7 @@
               Next Post</span>
               <div class="info">
                 <h3>
-                不是，微软，你来真的？</h3>
+                汇编</h3>
                 <hr>
               </div>
             </a>
@@ -576,6 +643,13 @@ $(document).ready(function() {
                 <a href="/categories/%E7%A6%BB%E8%B0%B1/">
                   <i class="fa fa-book" aria-hidden="true"></i>
                   离谱
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E5%8F%91%E7%94%B5/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  发电
                 </a>
               </li>
             
