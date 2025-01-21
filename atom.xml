@@ -6,7 +6,7 @@
   <link href="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/atom.xml" rel="self"/>
   
   <link href="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/"/>
-  <updated>2024-12-21T17:51:03.740Z</updated>
+  <updated>2024-10-16T12:54:52.355Z</updated>
   <id>https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/</id>
   
   <author>
@@ -15,53 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title></title>
-    <link href="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/12/21/C%E7%AC%94%E8%AE%B02SE/"/>
-    <id>https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/12/21/C%E7%AC%94%E8%AE%B02SE/</id>
-    <published>2024-12-21T12:35:37.125Z</published>
-    <updated>2024-12-21T17:51:03.740Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;一些函数：&quot;&gt;&lt;a href=&quot;#一些函数：&quot; class=&quot;headerlink&quot; title=&quot;一些函数：&quot;&gt;&lt;/a&gt;一些函数：&lt;/h2&gt;&lt;h3 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&amp;lt;stdarg.h</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/28/%E5%9C%9F%E8%B1%86%E7%9B%B4%E6%92%AD%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81/"/>
-    <id>https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/28/%E5%9C%9F%E8%B1%86%E7%9B%B4%E6%92%AD%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81/</id>
-    <published>2024-10-28T13:56:33.040Z</published>
-    <updated>2024-09-17T12:48:34.749Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;土豆直播！！！！！！&lt;/p&gt;
-&lt;p&gt;http请求分为：&lt;/p&gt;
-&lt;p&gt;请求头：包括请求方法，版本等&lt;/p&gt;
-&lt;p&gt;请求体：&lt;/p&gt;
-&lt;p&gt;发给repeater（重发器）后可以右键改变请求方式,发送请求包。&lt;/p&gt;
-&lt;p&gt;User-agent:检测使用设备类型，windows</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
   
   <entry>
     <title></title>
@@ -174,23 +127,6 @@
   </entry>
   
   <entry>
-    <title>C笔记ultra</title>
-    <link href="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/14/C%E7%AC%94%E8%AE%B01ultrasuper/"/>
-    <id>https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/14/C%E7%AC%94%E8%AE%B01ultrasuper/</id>
-    <published>2024-10-14T05:21:05.000Z</published>
-    <updated>2024-10-28T14:03:26.369Z</updated>
-    
-    
-    <summary type="html">挤牙膏式升级！！！！！</summary>
-    
-    
-    
-    <category term="技术" scheme="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>HTML</title>
     <link href="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/14/HTML/"/>
     <id>https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/14/HTML/</id>
@@ -222,6 +158,42 @@
     <summary type="html">&lt;h1 id=&quot;IDA&quot;&gt;&lt;a href=&quot;#IDA&quot; class=&quot;headerlink&quot;</summary>
         
       
+    
+    
+    
+    <category term="技术" scheme="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>C笔记2SE</title>
+    <link href="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/14/C%E7%AC%94%E8%AE%B02SE/"/>
+    <id>https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/14/C%E7%AC%94%E8%AE%B02SE/</id>
+    <published>2024-10-14T05:21:05.000Z</published>
+    <updated>2025-01-21T12:12:32.835Z</updated>
+    
+    
+    <summary type="html">打补丁</summary>
+    
+    
+    
+    <category term="技术" scheme="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="技术" scheme="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C笔记ultra</title>
+    <link href="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/14/C%E7%AC%94%E8%AE%B01ultrasuper/"/>
+    <id>https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/14/C%E7%AC%94%E8%AE%B01ultrasuper/</id>
+    <published>2024-10-14T05:21:05.000Z</published>
+    <updated>2024-10-28T14:03:26.369Z</updated>
+    
+    
+    <summary type="html">挤牙膏式升级！！！！！</summary>
     
     
     
@@ -275,7 +247,7 @@
     <link href="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/12/%E6%8A%80%E6%9C%AF/"/>
     <id>https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/12/%E6%8A%80%E6%9C%AF/</id>
     <published>2024-10-12T11:13:19.000Z</published>
-    <updated>2024-10-12T11:13:19.462Z</updated>
+    <updated>2025-01-21T12:11:11.141Z</updated>
     
     
     
@@ -320,6 +292,34 @@
     
     
     
+    
+  </entry>
+  
+  <entry>
+    <title>土豆直播</title>
+    <link href="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/11/%E5%9C%9F%E8%B1%86%E7%9B%B4%E6%92%AD%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81/"/>
+    <id>https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/11/%E5%9C%9F%E8%B1%86%E7%9B%B4%E6%92%AD%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81/</id>
+    <published>2024-10-11T09:48:50.000Z</published>
+    <updated>2025-01-21T12:10:59.210Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;土豆直播！！！！！！&lt;/p&gt;
+&lt;p&gt;http请求分为：&lt;/p&gt;
+&lt;p&gt;请求头：包括请求方法，版本等&lt;/p&gt;
+&lt;p&gt;请求体：&lt;/p&gt;
+&lt;p&gt;发给repeater（重发器）后可以右键改变请求方式,发送请求包。&lt;/p&gt;
+&lt;p&gt;User-agent:检测使用设备类型，windows</summary>
+        
+      
+    
+    
+    
+    
+    <category term="技术" scheme="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/tags/%E6%8A%80%E6%9C%AF/"/>
     
   </entry>
   
