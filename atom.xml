@@ -6,7 +6,7 @@
   <link href="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/atom.xml" rel="self"/>
   
   <link href="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/"/>
-  <updated>2024-09-17T12:48:34.749Z</updated>
+  <updated>2024-12-21T17:51:03.740Z</updated>
   <id>https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/12/21/C%E7%AC%94%E8%AE%B02SE/"/>
+    <id>https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/12/21/C%E7%AC%94%E8%AE%B02SE/</id>
+    <published>2024-12-21T12:35:37.125Z</published>
+    <updated>2024-12-21T17:51:03.740Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一些函数：&quot;&gt;&lt;a href=&quot;#一些函数：&quot; class=&quot;headerlink&quot; title=&quot;一些函数：&quot;&gt;&lt;/a&gt;一些函数：&lt;/h2&gt;&lt;h3 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&amp;lt;stdarg.h</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title></title>
@@ -176,23 +197,6 @@
   </entry>
   
   <entry>
-    <title>JavaScript</title>
-    <link href="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/14/JavaScript/"/>
-    <id>https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/14/JavaScript/</id>
-    <published>2024-10-14T05:21:05.000Z</published>
-    <updated>2024-10-28T14:07:11.995Z</updated>
-    
-    
-    <summary type="html">是这样的</summary>
-    
-    
-    
-    <category term="技术" scheme="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>C笔记ultra</title>
     <link href="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/14/C%E7%AC%94%E8%AE%B01ultrasuper/"/>
     <id>https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/14/C%E7%AC%94%E8%AE%B01ultrasuper/</id>
@@ -218,6 +222,23 @@
     
     
     <summary type="html">挤牙膏式升级！！！！！</summary>
+    
+    
+    
+    <category term="技术" scheme="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JavaScript</title>
+    <link href="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/14/JavaScript/"/>
+    <id>https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/14/JavaScript/</id>
+    <published>2024-10-14T05:21:05.000Z</published>
+    <updated>2024-10-28T14:07:11.995Z</updated>
+    
+    
+    <summary type="html">是这样的</summary>
     
     
     
