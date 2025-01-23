@@ -289,9 +289,13 @@
           </header>
         
         <div class="entry-content">
-          <h5 id="一般命令："><a href="#一般命令：" class="headerlink" title="一般命令："></a>一般命令：</h5><h6 id="1-cd"><a href="#1-cd" class="headerlink" title="1.cd"></a>1.cd</h6><p><code>cd ~</code>	命令返回&#x2F;home</p>
+          <h2 id="零-一般命令："><a href="#零-一般命令：" class="headerlink" title="零.一般命令："></a>零.一般命令：</h2><h3 id="0-echo"><a href="#0-echo" class="headerlink" title="0.echo"></a>0.echo</h3><p>输出到终端</p>
+<p>可选参数：</p>
+<p>-n	不换行输出</p>
+<p>-e	启用转义，像是\n（换行）</p>
+<h3 id="1-cd"><a href="#1-cd" class="headerlink" title="1.cd"></a>1.cd</h3><p><code>cd ~</code>	命令返回&#x2F;home</p>
 <p><code>cd -</code>	命令可以在当前目录和上一个目录之前来回切换</p>
-<h6 id="2-ls"><a href="#2-ls" class="headerlink" title="2.ls"></a>2.ls</h6><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">zl@LAPTOP-ZL ~/rust_learn&gt; ls -l</span><br><span class="line">total 2412</span><br><span class="line">drwxrwxrwx 1 zl   zl      4096 Sep  9 22:43 branches/</span><br><span class="line">drwxrwxrwx 1 zl   zl      4096 Sep 18 14:44 defining_enum/</span><br><span class="line">drwxrwxrwx 1 zl   zl      4096 Sep  9 22:01 functions/</span><br><span class="line">drwxrwxrwx 1 zl   zl      4096 Sep  6 12:50 guessing_game/</span><br><span class="line">drwxrwxrwx 1 zl   zl      4096 Sep  6 12:13 hello_cargo/</span><br><span class="line">drwxrwxrwx 1 zl   zl      4096 Sep  9 23:06 loops/</span><br><span class="line">-rwxrwxrwx 1 zl   zl   2469128 Sep  6 11:54 main*</span><br><span class="line">-rw-r--r-- 1 root root      45 Sep  6 11:54 main.rs</span><br><span class="line">drwxrwxrwx 1 zl   zl      4096 Sep 18 15:51 match_control_flow/</span><br><span class="line">drwxrwxrwx 1 zl   zl      4096 Sep 11 20:07 ownership/</span><br><span class="line">drwxrwxrwx 1 zl   zl      4096 Sep 17 23:55 rectangles/</span><br><span class="line">drwxrwxrwx 1 zl   zl      4096 Sep 12 13:31 references_and_borrowing/</span><br><span class="line">drwxrwxrwx 1 zl   zl      4096 Sep 17 23:20 structure/</span><br><span class="line">drwxrwxrwx 1 zl   zl      4096 Sep 12 14:42 the_slice_type/</span><br><span class="line">drwxrwxrwx 1 zl   zl      4096 Sep  9 09:05 variables/</span><br></pre></td></tr></table></figure>
+<h3 id="2-ls"><a href="#2-ls" class="headerlink" title="2.ls"></a>2.ls</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">zl@LAPTOP-ZL ~/rust_learn&gt; ls -l</span><br><span class="line">total 2412</span><br><span class="line">drwxrwxrwx 1 zl   zl      4096 Sep  9 22:43 branches/</span><br><span class="line">drwxrwxrwx 1 zl   zl      4096 Sep 18 14:44 defining_enum/</span><br><span class="line">drwxrwxrwx 1 zl   zl      4096 Sep  9 22:01 functions/</span><br><span class="line">drwxrwxrwx 1 zl   zl      4096 Sep  6 12:50 guessing_game/</span><br><span class="line">drwxrwxrwx 1 zl   zl      4096 Sep  6 12:13 hello_cargo/</span><br><span class="line">drwxrwxrwx 1 zl   zl      4096 Sep  9 23:06 loops/</span><br><span class="line">-rwxrwxrwx 1 zl   zl   2469128 Sep  6 11:54 main*</span><br><span class="line">-rw-r--r-- 1 root root      45 Sep  6 11:54 main.rs</span><br><span class="line">drwxrwxrwx 1 zl   zl      4096 Sep 18 15:51 match_control_flow/</span><br><span class="line">drwxrwxrwx 1 zl   zl      4096 Sep 11 20:07 ownership/</span><br><span class="line">drwxrwxrwx 1 zl   zl      4096 Sep 17 23:55 rectangles/</span><br><span class="line">drwxrwxrwx 1 zl   zl      4096 Sep 12 13:31 references_and_borrowing/</span><br><span class="line">drwxrwxrwx 1 zl   zl      4096 Sep 17 23:20 structure/</span><br><span class="line">drwxrwxrwx 1 zl   zl      4096 Sep 12 14:42 the_slice_type/</span><br><span class="line">drwxrwxrwx 1 zl   zl      4096 Sep  9 09:05 variables/</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <ol>
@@ -319,9 +323,8 @@
 <li>文件所属组具有读、执行权限，但没有写权限。</li>
 <li>其他用户仅具有读权限。</li>
 </ul>
-<h6 id="3-rmdir"><a href="#3-rmdir" class="headerlink" title="3.rmdir"></a>3.rmdir</h6><p>删除文件夹，只用为空时才可以</p>
-<p>4.cat</p>
-<p>打开文件</p>
+<h3 id="3-rmdir"><a href="#3-rmdir" class="headerlink" title="3.rmdir"></a>3.rmdir</h3><p>删除文件夹，只用为空时才可以</p>
+<h3 id="4-cat-tac"><a href="#4-cat-tac" class="headerlink" title="4.cat&#x2F;tac"></a>4.cat&#x2F;tac</h3><p>打开文件&#x2F;逆序打开文件</p>
 <p>格式有：</p>
 <p> <code>cat filename</code>, <code>cat &lt; filename</code> </p>
 <p>此时可能会出现</p>
@@ -329,15 +332,36 @@
 
 <p>其中<code>&gt;</code>是重定向了该命令</p>
 <p>它会将前面命令的输出写入到指向的文件（会清空原有内容，是覆盖操作）</p>
+<p><em><strong>如果文件不存在，这会创建一个新的文件</strong></em></p>
 <p>如果不想覆盖，使用<code>&gt;&gt;</code>来追加重定向，此时内容只会追加到指向文件的末尾</p>
-<h5 id="一-工具，或是脚本用命令："><a href="#一-工具，或是脚本用命令：" class="headerlink" title="一.工具，或是脚本用命令："></a>一.工具，或是脚本用命令：</h5><h6 id="1-赋值与输出"><a href="#1-赋值与输出" class="headerlink" title="1.赋值与输出"></a>1.赋值与输出</h6><p>赋值：<code>foo=bar</code> 可以使用指令输出赋值，比如： <code>foo=$(pwd) </code></p>
-<p>输出：<code>echo $foo</code> 或者 <code>echo &quot;$foo&quot;</code> </p>
+<h4 id="tac可选参数"><a href="#tac可选参数" class="headerlink" title="tac可选参数"></a>tac可选参数</h4><p>-b	指定分隔符，默认换行符</p>
+<p>-r	将分隔符解释为正则表达式</p>
+<p>-s	指定分割符的字符串，覆盖默认的换行符</p>
+<p>&#x2F;&#x2F;不指定文件时，tac会从键盘获取，输入后按<code>ctrl + D</code>,即可逆序显示</p>
+<h3 id="5-rm"><a href="#5-rm" class="headerlink" title="5.rm"></a>5.rm</h3><p>删除</p>
+<h3 id="6-mv"><a href="#6-mv" class="headerlink" title="6.mv"></a>6.mv</h3><p>移动&amp;重命名，注意实际上这是个覆盖操作</p>
+<h3 id="7-touch"><a href="#7-touch" class="headerlink" title="7.touch"></a>7.touch</h3><p>主要功能是修改文件的时间戳，若指定的文件不存在，它会创建空文件</p>
+<p>同时创建多个，空格分隔</p>
+<p>可选参数：</p>
+<p>-a	仅修改访问时间</p>
+<p>-m	仅修改修改时间</p>
+<p><strong>-c	不存在时也不创建</strong></p>
+<p>-d	修改当前时间戳，格式xxxx-xx-xx xx:xx:xx</p>
+<p>-t	修改文件时间，格式xxxxxxxxxxxxxx</p>
+<p>例如： <code>202412312359</code> 代表 2024 年 12 月 31 日 23 时 59 分</p>
+<h2 id="一-工具，或是脚本用命令："><a href="#一-工具，或是脚本用命令：" class="headerlink" title="一.工具，或是脚本用命令："></a>一.工具，或是脚本用命令：</h2><h3 id="1-赋值与输出"><a href="#1-赋值与输出" class="headerlink" title="1.赋值与输出"></a>1.赋值与输出</h3><p>赋值：<code>foo=bar</code> 可以使用指令输出赋值，比如： <code>foo=$(pwd) </code></p>
+<p>&#x2F;&#x2F;<code>pwd</code>显示当前工作目录</p>
+<p>输出：<code>echo $foo</code> 或者 <code>echo &quot;$foo&quot;</code> ,以及<code>tee</code></p>
+<p>&#x2F;&#x2F;<code>tee</code>要用|,因为它后面跟的的要输出到的文件</p>
+<p>例如:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo &quot;Hello world&quot; | tee test.rs</span><br><span class="line">比起单纯用&gt;,它可以提权后使用，用于写入一些需要更高权限的文件</span><br></pre></td></tr></table></figure>
+
 <p>&#x2F;&#x2F;但是不能<code>echo &#39;$foo&#39;</code>,因为单引号内的全部都会被视为字面值。</p>
-<h6 id="2-source"><a href="#2-source" class="headerlink" title="2.source"></a>2.source</h6><p>执行文件内的指令，同时也将里面的函数添加到shell中</p>
+<h3 id="2-source"><a href="#2-source" class="headerlink" title="2.source"></a>2.source</h3><p>执行文件内的指令，同时也将里面的函数添加到shell中</p>
 <p>例如： </p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># mcd.sh</span><br><span class="line">mcd () &#123;</span><br><span class="line">    mkdir -p &quot;$1&quot;</span><br><span class="line">    cd &quot;$1&quot;</span><br><span class="line">&#125;</span><br><span class="line">source mcd.sh</span><br><span class="line">mcd test</span><br></pre></td></tr></table></figure>
 
-<h6 id="3-bash中的特定变量"><a href="#3-bash中的特定变量" class="headerlink" title="3.bash中的特定变量"></a>3.bash中的特定变量</h6><p><code>!!</code>	显示完整的上一条指令</p>
+<h3 id="3-bash中的特定变量"><a href="#3-bash中的特定变量" class="headerlink" title="3.bash中的特定变量"></a>3.bash中的特定变量</h3><p><code>!!</code>	显示完整的上一条指令</p>
 <p><code>$1 ~ $9</code>	第一个和之后的变量</p>
 <p><code>$_</code>	上一条命令的最后一个变量，使用快捷键<code>Esc+.</code>自动输入这玩意</p>
 <p>（注意：每条命令自身前面有$，说明其也是一个变量）</p>
@@ -350,27 +374,88 @@
 <p>它会传递该脚本或函数的所有参数列表，用于遍历和操作。它和<code>$*</code>的意义类似，但是当使用<code>“ ”</code>时，<code>$*</code>会当作整体字符串，但是<code>$@</code>是单独的。</p>
 <p>（<code>$*</code>的整体字符串的分割符是$IFS （内部字段分隔符，默认为空格） ）</p>
 </blockquote>
-<h6 id="4-字符匹配"><a href="#4-字符匹配" class="headerlink" title="4.字符匹配"></a>4.字符匹配</h6><p><code>?</code>	只匹配任意一个字符</p>
+<h3 id="4-字符匹配"><a href="#4-字符匹配" class="headerlink" title="4.字符匹配"></a>4.字符匹配</h3><p><code>?</code>	只匹配任意一个字符</p>
 <p><code>*</code>	通配符</p>
-<h6 id="5-diff"><a href="#5-diff" class="headerlink" title="5.diff"></a>5.diff</h6><p>展示两个文件的不同</p>
+<h3 id="5-diff"><a href="#5-diff" class="headerlink" title="5.diff"></a>5.diff</h3><p>展示两个文件的不同</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">diff file1 file2</span><br><span class="line">例如：diff &lt;(ls foo/) &lt;(ls bar/)</span><br></pre></td></tr></table></figure>
 
-<h6 id="6-使用环境变量来解析脚本"><a href="#6-使用环境变量来解析脚本" class="headerlink" title="6.使用环境变量来解析脚本"></a>6.使用环境变量来解析脚本</h6><p>写在脚本首行</p>
+<h3 id="6-使用环境变量来解析脚本"><a href="#6-使用环境变量来解析脚本" class="headerlink" title="6.使用环境变量来解析脚本"></a>6.使用环境变量来解析脚本</h3><p>写在脚本首行</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line">//这是在环境变量中找python解释器</span><br></pre></td></tr></table></figure>
 
-<h6 id="7-find-fd"><a href="#7-find-fd" class="headerlink" title="7.find&#x2F;fd"></a>7.find&#x2F;fd</h6><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">find . -name src -type d</span><br><span class="line">//.表示在当前文件夹搜索，src是文件名称，d是类型，即文件夹</span><br><span class="line">如果不是文件夹，可以直接接操作（-exec），例如：</span><br><span class="line">find . -name &#x27;*.tmp&#x27; -exec rm &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+<h3 id="7-find-fd"><a href="#7-find-fd" class="headerlink" title="7.find&#x2F;fd"></a>7.find&#x2F;fd</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">find . -name src -type d</span><br><span class="line">//.表示在当前文件夹搜索，src是文件名称，d是类型，即文件夹</span><br><span class="line">如果不是文件夹，可以直接接操作（-exec），例如：</span><br><span class="line">find . -name &#x27;*.tmp&#x27; -exec rm &#123;&#125; \;</span><br></pre></td></tr></table></figure>
 
-<h6 id="8-grep-ripgrep-rg"><a href="#8-grep-ripgrep-rg" class="headerlink" title="8.grep&#x2F;ripgrep&#x2F;rg"></a>8.grep&#x2F;ripgrep&#x2F;rg</h6><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">grep foobar mcd.sh //在mcd.sh中搜索</span><br><span class="line">grep -R foobar . //.同find里的，-R表示递归搜索，使用rg则是默认递归</span><br><span class="line">rg -w recursion . //.同上，-w表示搜索特定单词</span><br><span class="line">//-i表示忽略大小写</span><br></pre></td></tr></table></figure>
+<h3 id="8-grep-ripgrep-rg"><a href="#8-grep-ripgrep-rg" class="headerlink" title="8.grep&#x2F;ripgrep&#x2F;rg"></a>8.grep&#x2F;ripgrep&#x2F;rg</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">grep foobar mcd.sh //在mcd.sh中搜索</span><br><span class="line">grep -R foobar . //.同find里的，-R表示递归搜索，使用rg则是默认递归</span><br><span class="line">rg -w recursion . //.同上，-w表示搜索特定单词</span><br><span class="line">//-i表示忽略大小写</span><br></pre></td></tr></table></figure>
 
-<p>9.fzf</p>
-<p><a href="https://github.com/junegunn/fzf#using-linux-package-managers">需要自己安装</a></p>
+<h4 id="grep的可选参数："><a href="#grep的可选参数：" class="headerlink" title="grep的可选参数："></a><code>grep</code>的可选参数：</h4><p>-v	反检索，只显示不匹配的行</p>
+<p>-c	只显示匹配的行数，但是不输出内容</p>
+<p>-l&#x2F;L	 打印匹配&#x2F;不匹配模板的文件清单</p>
+<p>-s	不显示错误信息</p>
+<p>-A&#x2F;B&#x2F;C	 查找某些字符的内容，并下&#x2F;上&#x2F;下和上延伸指定行数。 </p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">grep &#x27;test&#x27; file.txt：在 file.txt 中查找包含 test 的行。</span><br><span class="line">grep -i &#x27;test&#x27; file.txt：在 file.txt 中不区分大小写查找包含 test 的行。</span><br><span class="line">grep -r &#x27;test&#x27;.：在当前目录及其子目录中查找包含 test 的行。</span><br></pre></td></tr></table></figure>
+
+<h3 id="9-fzf"><a href="#9-fzf" class="headerlink" title="9.fzf"></a>9.fzf</h3><p><a href="https://github.com/junegunn/fzf#using-linux-package-managers">需要自己安装</a></p>
 <p>模糊搜索</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cat example.sh | fzf</span><br></pre></td></tr></table></figure>
 
 <p>绑定<code>ctrl + R</code>后才能在历史搜索中找到它</p>
-<h6 id="9-vim"><a href="#9-vim" class="headerlink" title="9.vim"></a>9.vim</h6><p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-<h5 id="二-命令符："><a href="#二-命令符：" class="headerlink" title="二.命令符："></a>二.命令符：</h5><h6 id="1-和"><a href="#1-和" class="headerlink" title="1.&gt;和&gt;&gt;"></a>1.&gt;和&gt;&gt;</h6><p>见cat命令</p>
-<h6 id="2-（pipe）"><a href="#2-（pipe）" class="headerlink" title="2.|（pipe）"></a>2.|（pipe）</h6><p>管道符</p>
+<h3 id="10-more-less"><a href="#10-more-less" class="headerlink" title="10.more&#x2F;less"></a>10.more&#x2F;less</h3><p><code>more</code>分页显示大文本文件的内容，逐页阅读。 </p>
+<p><code>less</code> 分页显示文本文件内容，可前后移动、搜索和编辑，处理大文件性能好。 </p>
+<h4 id="more的可选参数："><a href="#more的可选参数：" class="headerlink" title="more的可选参数："></a><code>more</code>的可选参数：</h4><p>-num	一次显示的行数</p>
+<p>-d	显示提示信息（如果操作错误）</p>
+<p>-l	遇见特殊字符^L时不会再暂停</p>
+<p>-f	计算行数时用实际上的行数</p>
+<p>-p	显示前先清屏</p>
+<p>-c	显示后清除其他旧资料</p>
+<p>-s	多空行只显示一行</p>
+<p>-u	不显示行号</p>
+<p>+&#x2F;pattern	显示前搜寻该字串，从它之后开始显示</p>
+<p>+number	从第num行开始显示</p>
+<h4 id="less的可选参数："><a href="#less的可选参数：" class="headerlink" title="less的可选参数："></a><code>less</code>的可选参数：</h4><p>-N	显示行号</p>
+<p>-S	禁止水平滚动（会截断长行）</p>
+<p>-F	内容少于一屏就直接退出</p>
+<p>-X	不适用终端配置，用于脚本</p>
+<p>-i	忽略大小写搜索</p>
+<p>-m	显示剩余行数</p>
+<p>-r	显示特殊字符</p>
+<p>-z -4	设置每屏最小行数</p>
+<p>-b num	设置缓冲区大小</p>
+<p>-e	显示后自动退出</p>
+<p>-g	只标记最后搜索的关键词</p>
+<p>-o filename	将内容输出到文件</p>
+<p>-Q	不使用警告音</p>
+<p>-s	含义同<code>more</code>中</p>
+<p>-x num	规定Tab键为num个空格</p>
+<p>（大多数应该是通用的）</p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">more -s testfile：逐页显示 testfile 的内容，连续空白行合并。</span><br><span class="line">more +20 testfile：从第 20 行开始显示 testfile 的内容。</span><br><span class="line">less example.txt：查看文件内容。</span><br><span class="line">less +20 example.txt：从第 20 行开始显示文件内容。</span><br><span class="line">less -N example.txt：显示文件内容并显示行号。</span><br></pre></td></tr></table></figure>
+
+<h3 id="11-head-tail"><a href="#11-head-tail" class="headerlink" title="11.head&#x2F;tail"></a>11.head&#x2F;tail</h3><p><code>head</code>显示文件开头部分</p>
+<p><code>tail</code>显示文件末尾部分，一般用于看日志</p>
+<h4 id="head可选参数："><a href="#head可选参数：" class="headerlink" title="head可选参数："></a>head可选参数：</h4><p>-n	指定行数</p>
+<p>-c	指定字节数</p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">head file.txt：默认显示文件的前 10 行。</span><br><span class="line">head -n 5 file.txt：显示文件的前 5 行。</span><br></pre></td></tr></table></figure>
+
+<h4 id="tail另外的可选参数："><a href="#tail另外的可选参数：" class="headerlink" title="tail另外的可选参数："></a>tail另外的可选参数：</h4><p>-f	循环读取，追踪更新</p>
+<p>-q&#x2F;v	不显示&#x2F;显示详细处理信息</p>
+<p>–pid&#x3D;pid	与-f合用，和该进程一起挂掉</p>
+<p>-s	与-f合用，每次循环读取间隔s秒</p>
+<h3 id="12-sleep"><a href="#12-sleep" class="headerlink" title="12.sleep"></a>12.sleep</h3><p> 让脚本或程序暂停执行一段时间，起到延时的作用 </p>
+<p>可选单位：</p>
+<ul>
+<li><p><code>s</code>：秒</p>
+</li>
+<li><p><code>m</code>：分钟</p>
+</li>
+<li><p><code>h</code>：小时</p>
+</li>
+<li><p><code>d</code>：天</p>
+<p>默认是秒</p>
+</li>
+</ul>
+<h2 id="二-命令符："><a href="#二-命令符：" class="headerlink" title="二.命令符："></a>二.命令符：</h2><h3 id="1-和"><a href="#1-和" class="headerlink" title="1.&gt;和&gt;&gt;"></a>1.&gt;和&gt;&gt;</h3><p>见cat命令</p>
+<h3 id="2-（pipe）"><a href="#2-（pipe）" class="headerlink" title="2.|（pipe）"></a>2.|（pipe）</h3><p>管道符</p>
 <p>将左侧的程序的输出当作右侧的程序的输入</p>
 <p>例如：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ls -l | tail -n2   //tail -n +&lt;N&gt; 表示输出从第N行开始的内容</span><br></pre></td></tr></table></figure>
@@ -387,11 +472,119 @@
 <p>比如</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo echo 3 &gt; brightness //这样不行</span><br><span class="line">echo 3 | sudo tee brightness //要这样</span><br><span class="line">//tee命令会将输入写入文件并打印到标准输出。</span><br><span class="line">另外还有一种写法：</span><br><span class="line">sudo sh -c &quot;echo 3 &gt; brightness&quot;</span><br><span class="line">//这可以使得双引号内的所有命令都获得权限</span><br><span class="line">//sh 是命令行的解释器，-c 是将后面的字符串当作命令来执行(Linux下的脚本文件，就是.sh)</span><br></pre></td></tr></table></figure>
 
-<h5 id="三-快捷键："><a href="#三-快捷键：" class="headerlink" title="三.快捷键："></a>三.快捷键：</h5><h6 id="1-ctrl-l（clean）"><a href="#1-ctrl-l（clean）" class="headerlink" title="1.ctrl + l（clean）"></a>1.ctrl + l（clean）</h6><p>等同于命令<code>clean</code>,相当于windows下的<code>cls</code>,清屏</p>
-<h6 id="2-ctrl-R（history）"><a href="#2-ctrl-R（history）" class="headerlink" title="2.ctrl + R（history）"></a>2.ctrl + R（history）</h6><p>等同于命令<code>history</code>,显示历史指令</p>
+<h2 id="三-快捷键："><a href="#三-快捷键：" class="headerlink" title="三.快捷键："></a>三.快捷键：</h2><h3 id="1-ctrl-l（clean）"><a href="#1-ctrl-l（clean）" class="headerlink" title="1.ctrl + l（clean）"></a>1.ctrl + l（clean）</h3><p>等同于命令<code>clean</code>,相当于windows下的<code>cls</code>,清屏</p>
+<h3 id="2-ctrl-R（history）"><a href="#2-ctrl-R（history）" class="headerlink" title="2.ctrl + R（history）"></a>2.ctrl + R（history）</h3><p>等同于命令<code>history</code>,显示历史指令</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">history n  //展示最后n条结果,通常会和grep配合</span><br></pre></td></tr></table></figure>
 
+<h2 id="四-Vim（先留空）"><a href="#四-Vim（先留空）" class="headerlink" title="四.Vim（先留空）"></a>四.Vim（先留空）</h2><h2 id="五-Nano"><a href="#五-Nano" class="headerlink" title="五.Nano"></a>五.Nano</h2><p>比较重要的：</p>
+<ol>
+<li>移动光标，如果要使用方向键，要按着<code>ctrl</code></li>
+<li>大多数快捷键，下面都有显示，自己看</li>
+<li>nano -Y    启用语法高亮和自带缩进</li>
+</ol>
+<h2 id="六-学长的奇怪要求"><a href="#六-学长的奇怪要求" class="headerlink" title="六.学长的奇怪要求(?)"></a>六.学长的奇怪要求(?)</h2><h3 id="学长的奇妙问题："><a href="#学长的奇妙问题：" class="headerlink" title="学长的奇妙问题："></a>学长的奇妙问题：</h3><p>问题一：目录符号都有哪些？用途是啥？</p>
+<blockquote>
+<p>.	当前目录</p>
+<p>..	父目录</p>
+<p>~	主目录</p>
+<p>&#x2F;	路径分隔符</p>
+<p>*和？也算（AI是这么说的）</p>
+</blockquote>
+<p>问题二：什么是绝对目录？什么是相对目录？</p>
+<blockquote>
+<p>从根目录开始就是绝对目录</p>
+<p>从当前文件夹开始就是相对</p>
+</blockquote>
+<p>问题三：管道符？重定向命令？他们是啥？有何作用？</p>
+<blockquote>
+<p>上面有</p>
+</blockquote>
+<p>问题四：如何查看当前所在目录？如何切换目录？如何查看目录下都有什么内容？</p>
+<blockquote>
+<p>pwd,cd,ls</p>
+</blockquote>
+<p>问题五：如何创建文件？如何移动文件？如何重命名文件？如何删除文件？如何查看文件内容？如何运行可执行文件？</p>
+<blockquote>
+<p>使用管道符（？）&#x2F;touch,mv,mv,rm,cat&#x2F;less&#x2F;more&#x2F;head&#x2F;tail&#x2F;tac,<code>./</code>前缀（实际上就是给个路径？脚本可以用source）</p>
+</blockquote>
+<p>问题六：如何创建文件夹？如何删除空文件夹？如何删除非空文件夹？</p>
+<blockquote>
+<p>mkdir,rmdir,rm -r&#x2F;R -f（windows下才是rd &#x2F;s）</p>
+</blockquote>
+<p>问题七：<code>tac</code>命令？<code>echo</code>命令？<code>sleep</code>命令？</p>
+<blockquote>
+<p>见上</p>
+</blockquote>
+<h3 id="学长的奇妙作业："><a href="#学长的奇妙作业：" class="headerlink" title="学长的奇妙作业："></a>学长的奇妙作业：</h3><ul>
+<li>在根目录创建一个<code>flag</code>文件</li>
+<li>向刚刚创建的<code>flag</code>文件写入<code>flag&#123;test_flag&#125;</code></li>
+<li>向<code>flag</code>文件追加写入<code>flag&#123;test_flag2&#125;</code></li>
+<li>最后再向<code>flag</code>文件覆盖写入<code>flag&#123;really_flag&#125;</code></li>
+<li>查看当前工作目录</li>
+<li>移动当前工作目录至根目录</li>
+<li>查看根目录下都有什么文件夹和文件</li>
+<li>移动<code>flag</code>文件至根目录下的<code>home</code>文件夹并重命名为<code>fllllll4g</code></li>
+<li>查看<code>fllllll4g</code>文件内容</li>
+<li>查看<code>fllllll4g</code>文件以base64编码后的结果</li>
+<li>删除<code>fllllll4g</code>文件</li>
+</ul>
+<h4 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h4><p>base64编码，可以直接用base64命令（确实有这玩意儿）</p>
+<p>&#x2F;&#x2F;使用-d参数改为解码</p>
+<p>所以可以。。。。。。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;这里替换为Base64编码字符串&quot;</span> | <span class="built_in">base64</span> -d &gt; decoded_fllllll4g</span><br></pre></td></tr></table></figure>
 
+<p>七.其他东西</p>
+<p>1.od</p>
+<p>用于以八进制、十进制、十六进制等不同格式显示文件的内容，常用于查看二进制文件，也能查看文本文件。通过不同选项可以指定输出格式和显示范围。 </p>
+<p>可选参数：</p>
+<p>-t	指定格式，c是字符格式，x是十六进制，d是十进制</p>
+<p>注意要写为类似于<code>-tc</code>的格式</p>
+<p>2.hexdump</p>
+<p>专门用于以十六进制格式显示文件内容，同时会显示对应的 ASCII 字符，对于分析二进制文件、查看文件的十六进制编码很有帮助。 </p>
+<p>可选参数：</p>
+<p>-C	以标准16进制和ASCll码对照格式输出</p>
+<p>实际效果类似于od -tc</p>
+<p>3.grep</p>
+<p>是的，这东西真的可以，瞎搜就行</p>
+<p>例如：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep -n <span class="string">&#x27;server&#x27;</span> config.txt</span><br></pre></td></tr></table></figure>
+
+<p>4.awk</p>
+<p>一种强大的文本处理工具，可以按行读取文件，对每行内容进行处理和分析。它支持对字段进行分割、提取、计算等操作，常用于数据处理和报表生成。 </p>
+<p>格式：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">awk <span class="string">&#x27;模式 &#123;动作&#125;&#x27;</span> 文件名</span><br></pre></td></tr></table></figure>
+
+<p>示例：假设 <code>data.txt</code> 文件内容是用空格分隔的表格数据，要输出每行的第一个字段，可以使用以下命令： </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">awk <span class="string">&#x27;&#123;print $1&#125;&#x27;</span> data.txt </span><br><span class="line">//全部输出就直接&#123;<span class="built_in">print</span>&#125;，另外，<span class="variable">$0</span>表示整行</span><br></pre></td></tr></table></figure>
+
+<p>可以用条件过滤行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">awk <span class="string">&#x27;$3 &gt; 80 &#123;print&#125;&#x27;</span> score.txt</span><br><span class="line">//只输出第三列大于80的</span><br></pre></td></tr></table></figure>
+
+<p>可以求列和：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">awk <span class="string">&#x27;&#123;sum += $2&#125; END &#123;print sum&#125;&#x27;</span> sales.txt</span><br></pre></td></tr></table></figure>
+
+<p>&#x2F;&#x2F;<code>END</code> 是一个特殊的模式，表示在处理完所有行后执行相应的动作，这里用于输出总和。 </p>
+<p>5.sed</p>
+<p> 一个文本处理工具 </p>
+<p>格式</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sed <span class="string">&#x27;命令&#x27;</span> 文件名</span><br></pre></td></tr></table></figure>
+
+<p>替换文本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sed <span class="string">&#x27;s/apple/banana/g&#x27;</span> text.txt</span><br><span class="line">//s表示替换操作，g表示全局替换</span><br></pre></td></tr></table></figure>
+
+<p>删除指定行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sed <span class="string">&#x27;5,10d&#x27;</span> log.txt</span><br><span class="line">//d表示删除操作，`5,10`表示行号范围</span><br></pre></td></tr></table></figure>
+
+<p>插入文本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sed <span class="string">&#x27;3a New line&#x27;</span> info.txt</span><br><span class="line">//a表示在指定行后面追加</span><br></pre></td></tr></table></figure>
+
+<p>然而如果只是像输出其内容，命令留空</p>
+<p>或者</p>
+<blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sed <span class="string">&#x27;p&#x27;</span> example.txt</span><br><span class="line">为了避免输出重复，用-n</span><br><span class="line">sed -n <span class="string">&#x27;p&#x27;</span> example.txt</span><br><span class="line">这样可以进一步，显示指定行</span><br><span class="line">sed -n <span class="string">&#x27;5p&#x27;</span> example.txt</span><br><span class="line">多行</span><br><span class="line">sed -n <span class="string">&#x27;3,5p&#x27;</span> example.txt</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>还可以<strong>匹配内容</strong>，类型于grep</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sed -n <span class="string">&#x27;/error/p&#x27;</span> log.txt </span><br><span class="line">//显示所有包含error的行</span><br><span class="line">//这里 /error/ 就是一个模式，sed 会查找文件中所有匹配该模式的行，并使用 p 命令将其打印出来</span><br></pre></td></tr></table></figure>
 
 
         </div>
@@ -421,9 +614,26 @@
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2025/01/23/%E6%97%A5%E5%B8%B8/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                日常</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
         
           
-            <div class="post-nepre full next">
+            <div class="post-nepre half next">
           
             <a href="/2024/10/15/%E4%B8%8D%E6%98%AF%EF%BC%8C%E5%BE%AE%E8%BD%AF%EF%BC%8C%E4%BD%A0%E6%9D%A5%E7%9C%9F%E7%9A%84%EF%BC%9F/" rel="next">
               <div class="background">
