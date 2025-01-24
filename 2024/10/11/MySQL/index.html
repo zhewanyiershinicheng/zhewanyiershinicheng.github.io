@@ -274,6 +274,30 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
 <div class="pattern-center-blank"></div>
 
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(/);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="/">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      MySQL 但是目前空的</h1>
+      <p class="entry-census">
+        <span>
+          <a href="">
+            <img src="">
+          </a>
+        </span>
+        <span>
+          <a href=""></a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2024-10-11<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
 <div id="content" class="site-content">
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
@@ -281,15 +305,101 @@
         <div class="toc"></div>
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
-          <header class="entry-header">
-            <h1 class="entry-title">MySQL 但是目前空的</h1>
-            <p class="entry-census">&nbsp;·&nbsp;2024-10-11&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
-
-            <hr>
-          </header>
-        
         <div class="entry-content">
-          <h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1>
+          <h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h2 id="基本术语"><a href="#基本术语" class="headerlink" title="基本术语"></a>基本术语</h2><p>列：具有相同数据类型的数据的集合</p>
+<p>行：每一行用来描述某条记录的具体信息</p>
+<p>冗余：存储两倍数据。冗余降低了性能，但提高了数据的安全性</p>
+<p>主键：主键是唯一的，一个数据表只能由一个主键。可以用主键查询信息</p>
+<p>复合键：复合键（组合键）将多个列组成一个索引键，一般用于复合索引</p>
+<p>索引：使用索引可快速访问数据表中的特定信息，索引是数据库中由一列或多列的值进行排序的结构。相当于书籍的目录。</p>
+<p>参照完整性：参照的完整性要求关系中不允许引入不存在的实体。</p>
+<p>值：行的具体信息，每个值必须与该列的数据类型相同</p>
+<p>键：键的值在当前列中具有唯一性</p>
+<p><img src="/MySQL/1737622524881.png" alt="1737622524881"></p>
+<h2 id="管理"><a href="#管理" class="headerlink" title="管理"></a>管理</h2><p>Windows:</p>
+<p>启动&#x2F;关闭</p>
+<p>去找 <strong>services.msc</strong> </p>
+<p>或者使用命令net start&#x2F;stop mysql</p>
+<p>Linux:</p>
+<h3 id="启动-关闭"><a href="#启动-关闭" class="headerlink" title="启动&#x2F;关闭"></a>启动&#x2F;关闭</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl start/stop mysql</span><br></pre></td></tr></table></figure>
+
+<p>在一些老旧的版本：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo service mysql start/stop</span><br></pre></td></tr></table></figure>
+
+<h3 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl restart mysql</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo service mysql restart</span><br></pre></td></tr></table></figure>
+
+<h3 id="检查状态"><a href="#检查状态" class="headerlink" title="检查状态"></a>检查状态</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl status mysql</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo service mysql status</span><br></pre></td></tr></table></figure>
+
+<h3 id="用户设置"><a href="#用户设置" class="headerlink" title="用户设置"></a>用户设置</h3><h4 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE USER &#x27;username&#x27;@&#x27;host&#x27; IDENTIFIED BY &#x27;password&#x27;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>username</code>：用户名。</li>
+<li><code>host</code>：指定用户可以从哪些主机连接。例如，<code>localhost</code> 仅允许本地连接，<code>%</code> 允许从任何主机连接。</li>
+<li><code>password</code>：用户的密码。</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE USER &#x27;john&#x27;@&#x27;localhost&#x27; IDENTIFIED BY &#x27;password123&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DROP USER &#x27;username&#x27;@&#x27;host&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALTER USER &#x27;username&#x27;@&#x27;host&#x27; IDENTIFIED BY &#x27;new_password&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="修改用户主机"><a href="#修改用户主机" class="headerlink" title="修改用户主机"></a>修改用户主机</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-- 删除旧用户</span><br><span class="line">DROP USER &#x27;john&#x27;@&#x27;localhost&#x27;;</span><br><span class="line"></span><br><span class="line">-- 重新创建用户并指定新的主机</span><br><span class="line">CREATE USER &#x27;john&#x27;@&#x27;%&#x27; IDENTIFIED BY &#x27;password123&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="授权"><a href="#授权" class="headerlink" title="授权"></a>授权</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT privileges ON database_name.* TO &#x27;username&#x27;@&#x27;host&#x27;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>privileges</code>：所需的权限，如 <code>ALL PRIVILEGES</code>、<code>SELECT</code>、<code>INSERT</code>、<code>UPDATE</code>、<code>DELETE</code> 等。</li>
+<li><code>database_name.*：</code>表示对某个数据库或表授予权限。<code>database_name.*</code> 表示对整个数据库的所有表授予权限，<code>database_name.table_name</code> 表示对指定的表授予权限。</li>
+<li><code>TO &#39;username&#39;@&#39;host&#39;</code>：指定授予权限的用户和主机。</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT ALL PRIVILEGES ON test_db.* TO &#x27;john&#x27;@&#x27;localhost&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="授权或者撤权都要刷新才能生效："><a href="#授权或者撤权都要刷新才能生效：" class="headerlink" title="授权或者撤权都要刷新才能生效："></a>授权或者撤权都要刷新才能生效：</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+
+<h4 id="查权"><a href="#查权" class="headerlink" title="查权"></a>查权</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW GRANTS FOR &#x27;username&#x27;@&#x27;host&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="撤权"><a href="#撤权" class="headerlink" title="撤权"></a>撤权</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">REVOKE ALL PRIVILEGES ON test_db.* FROM &#x27;john&#x27;@&#x27;localhost&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="创建并指定权限"><a href="#创建并指定权限" class="headerlink" title="创建并指定权限"></a>创建并指定权限</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE USER &#x27;john&#x27;@&#x27;localhost&#x27; IDENTIFIED BY &#x27;password123&#x27; WITH GRANT OPTION;  //加上这句</span><br><span class="line">GRANT ALL PRIVILEGES ON test_db.* TO &#x27;john&#x27;@&#x27;localhost&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="etc-my-cnf-文件配置"><a href="#etc-my-cnf-文件配置" class="headerlink" title="&#x2F;etc&#x2F;my.cnf 文件配置"></a>&#x2F;etc&#x2F;my.cnf 文件配置</h4><p><img src="/MySQL/1737720361989.png" alt="1737720361989"></p>
+<p><img src="/MySQL/1737720387003.png" alt="1737720387003"></p>
+<h3 id="管理命令"><a href="#管理命令" class="headerlink" title="管理命令"></a>管理命令</h3><p>1.use 数据库名</p>
+<p>​		使用该命令后所有Mysql命令都只针对该数据库 </p>
+<p>2.SHOW DATABASES </p>
+<p>​		显示所有数据库列表</p>
+<p>3.SHOW TABLES</p>
+<p>​		显示某数据库的所有表（所以要先use）</p>
+<p>4.SHOW COLUMNS FROM 数据表</p>
+<p>​		 显示数据表的属性，属性类型，主键信息 ，是否为 NULL，默认值等其		他信息 </p>
+<p>5.SHOW INDEX FROM 数据表 </p>
+<p>​		显示索引，包括主键</p>
+<p>6.SHOW TABLE STATUS [FROM db_name] [LIKE ‘pattern’] \G</p>
+<p>​		该命令将输出Mysql数据库管理系统的性能及统计信息。 </p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW TABLE STATUS FROM 数据库名;</span><br><span class="line">SHOW TABLE STATUS from RUNOOB LIKE &#x27;runoob%&#x27;; </span><br><span class="line">#显示以runoob%开头的表的信息</span><br><span class="line">SHOW TABLE STATUS from RUNOOB LIKE &#x27;runoob%&#x27;\G;</span><br><span class="line">#\G，查询结果按列打印</span><br></pre></td></tr></table></figure>
+
+<h2 id="PHP语法"><a href="#PHP语法" class="headerlink" title="PHP语法"></a>PHP语法</h2><h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$servername</span> = <span class="string">&quot;localhost&quot;</span>;</span><br><span class="line"><span class="variable">$username</span> = <span class="string">&quot;your_username&quot;</span>;</span><br><span class="line"><span class="variable">$password</span> = <span class="string">&quot;your_password&quot;</span>;</span><br><span class="line"><span class="variable">$database</span> = <span class="string">&quot;your_database&quot;</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 创建连接</span></span><br><span class="line"><span class="variable">$conn</span> = <span class="title function_ invoke__">mysqli_connect</span>(<span class="variable">$servername</span>, <span class="variable">$username</span>, <span class="variable">$password</span>, <span class="variable">$database</span>);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 检测连接</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="variable">$conn</span>) &#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;连接失败: &quot;</span> . <span class="title function_ invoke__">mysqli_connect_error</span>());</span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;连接成功&quot;</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>其中的函数格式和部分功能：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">mysqli_function</span>(value,value,...);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">mysqli_connect</span>(<span class="variable">$connect</span>);</span><br><span class="line"><span class="title function_ invoke__">mysqli_query</span>(<span class="variable">$connect</span>,<span class="string">&quot;SQL 语句&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">mysqli_fetch_array</span>()</span><br><span class="line"><span class="title function_ invoke__">mysqli_close</span>()</span><br><span class="line">    <span class="comment">//都是内置的函数</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="二进制连接"><a href="#二进制连接" class="headerlink" title="二进制连接"></a>二进制连接</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql -u your_username -p</span><br><span class="line">//-u 指定用户名，-p 要输入密码</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用脚本连接"><a href="#使用脚本连接" class="headerlink" title="使用脚本连接"></a>使用脚本连接</h4><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">mysqli_connect</span>(host, username, password, dbname,port, socket);  </span><br><span class="line"><span class="comment">//都是可选参数，没有就不写。其中只有port是int，其他都是字符串</span></span><br><span class="line"><span class="comment">/*套接字（socket）是一种进程间通信机制。当脚本就在服务器上时，使用这个</span></span><br><span class="line"><span class="comment">不用经过网络套接字（通过 TCP/IP 协议），而是使用UNIX套接字（所以在windows系统上，这个参数会被忽略）。*/</span></span><br><span class="line">其实就是不用网络，在本机进程间通信连接</span><br><span class="line">注意：这是个指向.socket文件的路径</span><br><span class="line">所以，如果用这玩意儿，就不用指定port了，可以直接设置为<span class="literal">null</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="退出"><a href="#退出" class="headerlink" title="退出"></a>退出</h3><p><code>EXIT;</code>或者<code>QUIT;</code>或者快捷键<code>ctrl +D</code></p>
+
         </div>
         <!-- .entry-content -->
         <div class="single-reward">
