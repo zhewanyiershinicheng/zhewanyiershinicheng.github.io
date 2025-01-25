@@ -390,7 +390,9 @@
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$link</span> = <span class="title function_ invoke__">mysqli_connect</span>(<span class="string">&quot;localhost&quot;</span>, <span class="string">&quot;username&quot;</span>, <span class="string">&quot;password&quot;</span>, <span class="string">&quot;database&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (!<span class="variable">$link</span>) &#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;连接失败: &quot;</span>. <span class="title function_ invoke__">mysqli_connect_error</span>());</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 执行一些数据库操作</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 显式关闭连接</span></span><br><span class="line"><span class="title function_ invoke__">mysqli_close</span>(<span class="variable">$link</span>);</span><br><span class="line"><span class="comment">//不给参数，就关闭最近打开的一个</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="2-退出"><a href="#2-退出" class="headerlink" title="2.退出"></a>2.退出</h3><p><code>EXIT;</code>或者<code>QUIT;</code>或者快捷键<code>ctrl +D</code></p>
-<h2 id="操作数据库"><a href="#操作数据库" class="headerlink" title="操作数据库"></a>操作数据库</h2><h3 id="1-创建"><a href="#1-创建" class="headerlink" title="1.创建"></a>1.创建</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE DATABASE [IF NOT EXISTS] 数据库名;</span><br><span class="line">如果要指定选项，可以加上其他参数：</span><br><span class="line">CREATE DATABASE mydatabase</span><br><span class="line">  CHARACTER SET utf8mb4</span><br><span class="line">  COLLATE utf8mb4_general_ci;</span><br><span class="line">指定字符集和排列顺序。</span><br><span class="line">如果不加IF NOT EXISTS并且存在该数据库，会报错</span><br></pre></td></tr></table></figure>
+<h2 id="操作数据库"><a href="#操作数据库" class="headerlink" title="操作数据库"></a>操作数据库</h2><h3 id="0-查看已有数据库"><a href="#0-查看已有数据库" class="headerlink" title="0.查看已有数据库"></a>0.查看已有数据库</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW DATABASES;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-创建"><a href="#1-创建" class="headerlink" title="1.创建"></a>1.创建</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE DATABASE [IF NOT EXISTS] 数据库名;</span><br><span class="line">如果要指定选项，可以加上其他参数：</span><br><span class="line">CREATE DATABASE mydatabase</span><br><span class="line">  CHARACTER SET utf8mb4</span><br><span class="line">  COLLATE utf8mb4_general_ci;</span><br><span class="line">指定字符集和排列顺序。</span><br><span class="line">如果不加IF NOT EXISTS并且存在该数据库，会报错</span><br></pre></td></tr></table></figure>
 
 <h4 id="使用-mysqladmin"><a href="#使用-mysqladmin" class="headerlink" title="使用 mysqladmin"></a>使用 mysqladmin</h4><p>注：mysqladmin是个命令</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysqladmin -u your_username -p create your_database</span><br><span class="line">如果要指定选项，可以加上特定参数：</span><br><span class="line">mysqladmin -u your_username -p create your_database \</span><br><span class="line">  --default-character-set=utf8mb4 \</span><br><span class="line">  --default-collation=utf8mb4_general_ci</span><br><span class="line">作用同上</span><br></pre></td></tr></table></figure>
@@ -402,7 +404,7 @@
 <h4 id="使用PHP脚本"><a href="#使用PHP脚本" class="headerlink" title="使用PHP脚本"></a>使用PHP脚本</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysqli_query(connection,query,resultmode);</span><br><span class="line">也有返回值,也是用于判断是否成功</span><br></pre></td></tr></table></figure>
 
 <p>除了最后一个，都是必须项。</p>
-<p>connection：就是$connt，也就是mysqli_connet(…)</p>
+<p><strong>connection：就是$connt，也就是mysqli_connet(…)</strong></p>
 <p>query：查询字符串，也就是SQL语句。</p>
 <p>resultmode：这是常量，只能填以下两个之一：</p>
 <p>​						 MYSQLI_USE_RESULT （检索大量数据时用）</p>
@@ -500,7 +502,9 @@
 <li><strong>SET</strong>: 集合类型，用于存储多个值，可以选择多个预定义的集合。</li>
 </ul>
 <h4 id="空间数据类型"><a href="#空间数据类型" class="headerlink" title="空间数据类型"></a>空间数据类型</h4><p>GEOMETRY, POINT, LINESTRING, POLYGON, MULTIPOINT, MULTILINESTRING, MULTIPOLYGON, GEOMETRYCOLLECTION: 用于存储空间数据（地理信息、几何图形等）。 </p>
-<h2 id="使用数据库"><a href="#使用数据库" class="headerlink" title="使用数据库"></a>使用数据库</h2><h3 id="1-创建数据表"><a href="#1-创建数据表" class="headerlink" title="1.创建数据表"></a>1.创建数据表</h3><p>必须提供：</p>
+<h2 id="使用数据库"><a href="#使用数据库" class="headerlink" title="使用数据库"></a>使用数据库</h2><h3 id="0-查看已有数据表"><a href="#0-查看已有数据表" class="headerlink" title="0.查看已有数据表"></a>0.查看已有数据表</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW TABLES;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-创建数据表"><a href="#1-创建数据表" class="headerlink" title="1.创建数据表"></a>1.创建数据表</h3><p>必须提供：</p>
 <ul>
 <li>表名</li>
 <li>表字段名</li>
@@ -512,7 +516,7 @@
 <p>可以加子句：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE TABLE mytable (</span><br><span class="line">    id INT PRIMARY KEY,</span><br><span class="line">    name VARCHAR(50)</span><br><span class="line">) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;</span><br></pre></td></tr></table></figure>
 
-<h4 id="SQL实例"><a href="#SQL实例" class="headerlink" title="SQL实例"></a>SQL实例</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE TABLE users (</span><br><span class="line">    id INT AUTO_INCREMENT PRIMARY KEY,</span><br><span class="line">    username VARCHAR(50) NOT NULL,</span><br><span class="line">    email VARCHAR(100) NOT NULL,</span><br><span class="line">    birthdate DATE,</span><br><span class="line">    is_active BOOLEAN DEFAULT TRUE</span><br><span class="line">);</span><br><span class="line">//AUTO_INCREMENT PRIMARY KEY,设定该列自增长(1,2,3...)，且是主键</span><br><span class="line">（这两者一般同时出现）</span><br><span class="line">//NOT NULL</span><br><span class="line">//DEFAULT TRUE，设定默认值为TRUE</span><br><span class="line">以上三行都是附加的属性</span><br></pre></td></tr></table></figure>
+<h4 id="SQL实例"><a href="#SQL实例" class="headerlink" title="SQL实例"></a>SQL实例</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE TABLE users (</span><br><span class="line">    id INT AUTO_INCREMENT PRIMARY KEY,</span><br><span class="line">    username VARCHAR(50) NOT NULL,</span><br><span class="line">    email VARCHAR(100) NOT NULL,</span><br><span class="line">    birthdate DATE,</span><br><span class="line">    is_active BOOLEAN DEFAULT TRUE</span><br><span class="line">);</span><br><span class="line">//AUTO_INCREMENT PRIMARY KEY,设定该列自增长(1,2,3...)，且是主键</span><br><span class="line">（这两者一般同时出现）</span><br><span class="line">注意：每个表只能有一个 AUTO_INCREMENT 列，必须为整数类型</span><br><span class="line">	即使删除了表中最大自增值的记录，下一次插入新记录时，自增值仍然会继续</span><br><span class="line">	递增，不会复用已删除的自增值。</span><br><span class="line">	起始值默认为1，但可以用`ALTER TABLE users AUTO_INCREMENT = 100;`改</span><br><span class="line">//NOT NULL，这项必填</span><br><span class="line">//DEFAULT TRUE，设定默认值为TRUE</span><br><span class="line">以上三行都是附加的属性</span><br></pre></td></tr></table></figure>
 
 <h4 id="通过命令行"><a href="#通过命令行" class="headerlink" title="通过命令行"></a>通过命令行</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql -u root -p -D &lt;database name&gt;</span><br><span class="line">//接下来进了SQL命令行，当然就是写SQL语句。</span><br></pre></td></tr></table></figure>
 
@@ -521,19 +525,87 @@
 <p>因此，写不下时可以随意换行</p>
 </blockquote>
 <h4 id="通过PHP脚本"><a href="#通过PHP脚本" class="headerlink" title="通过PHP脚本"></a>通过PHP脚本</h4><p>还是 <code>mysqli_query(connection,query,resultmode);</code></p>
-<h3 id="2-删除数据表-数据"><a href="#2-删除数据表-数据" class="headerlink" title="2.删除数据表[数据]"></a>2.删除数据表[数据]</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DROP TABLE [IF EXISTS] table_name; //这是直接删表</span><br><span class="line">TRUNCATE TABLE table_name;         //这是删表数据（保留结构）</span><br></pre></td></tr></table></figure>
+<h3 id="2-删除数据表-数据"><a href="#2-删除数据表-数据" class="headerlink" title="2.删除数据表[数据]"></a>2.删除数据表[数据]</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DROP TABLE [IF EXISTS] table_name; //这是直接删表</span><br><span class="line">TRUNCATE TABLE table_name;         //这是删表数据（保留结构，数据全删）</span><br><span class="line">DELETE FROM table_name WHERE condition; //这也是删表数据（保留结构，加条件可不全删）</span><br><span class="line">注意：TURUNCATE是直接释放数据页的空间，没有详细的删除的日志，因此不能触发任何触发器，也不能事务回滚</span><br><span class="line">但是更加高效，delete是逐行删除，会触发，能回滚，但更低效</span><br></pre></td></tr></table></figure>
 
 <p>使用命令行和PHP脚本，同上</p>
 <h3 id="3-插入表数据"><a href="#3-插入表数据" class="headerlink" title="3.插入表数据"></a>3.插入表数据</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">INSERT INTO table_name (column1, column2, column3, ...)</span><br><span class="line">VALUES (value1, value2, value3, ...);</span><br></pre></td></tr></table></figure>
 
 <p>&#x2F;&#x2F;value若是字符型，要写成<code>&#39;value&#39;</code></p>
 <p>&#x2F;&#x2F;如果插入所有列，可以省略列名。此时第一个要写NULL,因为它是那个自增长列的占位符。当然也可以第一行写0（接下来同理），要不然会变来变去。</p>
-<p>如果插入多行：</p>
-<p>实例：</p>
+<h4 id="插入多行"><a href="#插入多行" class="headerlink" title="插入多行"></a>插入多行</h4><p>实例：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">INSERT INTO users (username, email, birthdate, is_active)</span><br><span class="line">VALUES</span><br><span class="line">    (&#x27;test1&#x27;, &#x27;test1@runoob.com&#x27;, &#x27;1985-07-10&#x27;, true),</span><br><span class="line">    (&#x27;test2&#x27;, &#x27;test2@runoob.com&#x27;, &#x27;1988-11-25&#x27;, false),</span><br><span class="line">    (&#x27;test3&#x27;, &#x27;test3@runoob.com&#x27;, &#x27;1993-05-03&#x27;, true);</span><br></pre></td></tr></table></figure>
 
-<p>使用命令行和PHP脚本，同上</p>
-<h3 id="4-读取表数据"><a href="#4-读取表数据" class="headerlink" title="4.读取表数据"></a>4.读取表数据</h3>
+<p>使用命令行和PHP脚本，同上，这之后的也都是同上</p>
+<p>但是，如果插入的数据中有中文，必须先执行</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">mysqli_query</span>(<span class="variable">$conn</span> , <span class="string">&quot;set names utf8&quot;</span>);</span><br><span class="line">或者使用PHP函数</span><br><span class="line"><span class="title function_ invoke__">mysqli_set_charset</span>(<span class="variable">$conn</span>, <span class="string">&quot;utf8&quot;</span>); </span><br><span class="line"><span class="comment">//它会同时设置：</span></span><br><span class="line">character_set_client：客户端发送数据时使用的字符编码。</span><br><span class="line">character_set_results：服务器返回结果集时使用的字符编码。</span><br><span class="line">character_set_connection：连接层使用的字符编码。</span><br></pre></td></tr></table></figure>
+
+<h4 id="获取自增的值"><a href="#获取自增的值" class="headerlink" title="获取自增的值"></a>获取自增的值</h4><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$last_id</span>=<span class="title function_ invoke__">mysqli_insert_id</span>(<span class="variable">$conn</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-修改表数据"><a href="#4-修改表数据" class="headerlink" title="4.修改表数据"></a>4.修改表数据</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">UPDATE table_name</span><br><span class="line">SET column1 = value1, column2 = value2, ...</span><br><span class="line">WHERE condition;   //where子句可选，没有就会更新所有行</span><br></pre></td></tr></table></figure>
+
+<h4 id="替换某个字段中的某个字符"><a href="#替换某个字段中的某个字符" class="headerlink" title="替换某个字段中的某个字符"></a>替换某个字段中的某个字符</h4><blockquote>
+<p>当我们需要将字段中的特定字符串批量修改为其他字符串时，可使用以下操作：</p>
+</blockquote>
+<blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">UPDATE table_name SET field=REPLACE(field, &#x27;old-string&#x27;, &#x27;new-string&#x27;) </span><br><span class="line">[WHERE Clause];</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="5-读取"><a href="#5-读取" class="headerlink" title="5.读取"></a>5.读取</h3><h3 id="查询表数据"><a href="#查询表数据" class="headerlink" title="&#x2F;查询表数据"></a>&#x2F;查询表数据</h3><h4 id="读取"><a href="#读取" class="headerlink" title="读取"></a>读取</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select * from 数据表名;   //可以多表`,`分开</span><br></pre></td></tr></table></figure>
+
+<h4 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT column1, column2, ...</span><br><span class="line">FROM table_name                   //可以多表`,`分开</span><br><span class="line">[WHERE condition]</span><br><span class="line">[ORDER BY column_name [ASC | DESC]]</span><br><span class="line">[LIMIT N][offset M];</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用 <code>*</code> 表示选择所有列。</li>
+<li><code>WHERE condition</code> 是一个可选的子句，用于指定过滤条件，只返回符合条件的行。</li>
+<li><code>ORDER BY column_name [ASC | DESC]</code> 可选子句，指定结果集的排序顺序，默认升序（ASC）。</li>
+<li><code>LIMIT N</code> 可选子句，返回N条记录</li>
+<li><code>offset N </code>可选子句，跳过M条记录</li>
+</ul>
+<blockquote>
+<p>limit M offset N;</p>
+<p>相当于</p>
+<p>limit N,M;</p>
+</blockquote>
+<h5 id="获取数据"><a href="#获取数据" class="headerlink" title="获取数据"></a>获取数据</h5><h6 id="1-使用-mysqli-fetch-array-MYSQLI-ASSOC"><a href="#1-使用-mysqli-fetch-array-MYSQLI-ASSOC" class="headerlink" title="1.使用 mysqli_fetch_array MYSQLI_ASSOC"></a>1.使用 mysqli_fetch_array MYSQLI_ASSOC</h6><p><strong>按行获取</strong>,一次只从返回的数据中获取一行</p>
+<p>MYSQLI_ASSOC是返回<strong>关联数组</strong></p>
+<p>也可以用 MYSQLI_NUM ，返回<strong>数字数组</strong>。区别不大，只不过是把下面的$row[‘id’]改成$row[0]</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="variable">$sql</span> = <span class="string">&quot;SELECT id, name, age FROM users&quot;</span>;</span><br><span class="line"><span class="variable">$result</span> = <span class="title function_ invoke__">mysqli_query</span>(<span class="variable">$conn</span>, <span class="variable">$sql</span>);</span><br><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">mysqli_num_rows</span>(<span class="variable">$result</span>) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="comment">// 使用 mysqli_fetch_array 结合 MYSQLI_ASSOC 获取数据</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="variable">$row</span> = <span class="title function_ invoke__">mysqli_fetch_array</span>(<span class="variable">$result</span>, MYSQLI_ASSOC)) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;ID: &quot;</span>. <span class="variable">$row</span>[<span class="string">&#x27;id&#x27;</span>]. <span class="string">&quot;, 姓名: &quot;</span>. <span class="variable">$row</span>[<span class="string">&#x27;name&#x27;</span>]. <span class="string">&quot;, 年龄: &quot;</span>. <span class="variable">$row</span>[<span class="string">&#x27;age&#x27;</span>]. <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">    &#125;<span class="comment">//没行了会返回false</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;没有找到记录&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<h6 id="2-使用-mysqli-fetch-assoc"><a href="#2-使用-mysqli-fetch-assoc" class="headerlink" title="2.使用 mysqli_fetch_assoc"></a>2.使用 mysqli_fetch_assoc</h6><p>没行返回null，但是也可以结束while</p>
+<p><code>mysqli_fetch_assoc($result)</code>,返回的直接是关联数组</p>
+<p>相当于</p>
+<p><code>mysqli_fetch_array($result,MYSQLI_ASSOC) </code></p>
+<h6 id="3-内存释放"><a href="#3-内存释放" class="headerlink" title="3.内存释放"></a>3.内存释放</h6><figure class="highlight php"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="variable">$retval</span> = <span class="title function_ invoke__">mysqli_query</span>( <span class="variable">$conn</span>, <span class="variable">$sql</span> );</span><br><span class="line">...</span><br><span class="line"><span class="title function_ invoke__">mysqli_free_result</span>(<span class="variable">$retval</span>);</span><br></pre></td></tr></table></figure>
+
+<h5 id="where子句"><a href="#where子句" class="headerlink" title="where子句"></a>where子句</h5><p>类似于if语句，判断真假，使用<code>AND</code>和<code>OR</code>组合，<code>LIKE</code>模糊匹配</p>
+<p>一般的：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">...WHERE username = &#x27;test&#x27;;</span><br><span class="line">...salary &gt;= 50000;</span><br></pre></td></tr></table></figure>
+
+<p>对于日期时间类型：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">...WHERE order_date BETWEEN &#x27;2023-01-01&#x27; AND &#x27;2023-12-31&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>对于可空的：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">...WHERE email IS [NOT] NULL;</span><br></pre></td></tr></table></figure>
+
+<p>默认的字符串比较不区分大小写（非like子句），如果要，写成：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">...WHERE BINARY...</span><br></pre></td></tr></table></figure>
+
+<h5 id="LIKE子句"><a href="#LIKE子句" class="headerlink" title="LIKE子句"></a>LIKE子句</h5><p>代替等号用于where子句（或者having子句）</p>
+<p>可使用的通配符包括：</p>
+<p><code>%</code>	表示没有或者有任意个任意字符</p>
+<p><code>_</code>	表示一个任意字符</p>
+<p>其他匹配方式：</p>
+<p><code>[]</code>&#x2F;<code>[^]</code>	类似正则表达式，查询内容包含通配符时，可以用这个括起</p>
+<p>可以组合使用，比如：a%o_</p>
+<p>like子句是否区分大小写取决于字符集</p>
+<p>不区分是：</p>
+<blockquote>
+<p>SELECT * FROM employees WHERE last_name LIKE ‘smi%’ <strong>COLLATE utf8mb4_general_ci</strong>;</p>
+</blockquote>
+<h4 id="合并查询数据（UNION）"><a href="#合并查询数据（UNION）" class="headerlink" title="合并查询数据（UNION）"></a>合并查询数据（UNION）</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT column1, column2, ... FROM table1 WHERE condition1</span><br><span class="line">UNION           //加中间就行，可以叠叠乐</span><br><span class="line">SELECT column1, column2, ... FROM table2 WHERE condition2</span><br><span class="line">[ORDER BY column1, column2, ...];  //可选，排序合并后的数据</span><br></pre></td></tr></table></figure>
+
+<p>注意：1.会自动去除重复行（使用<strong>UNION ALL</strong>则不会，性能还会更好）。</p>
+<p>​			2.每个 SELECT 语句的列数和对应位置的数据类型必须相同（即使来自不同表）。</p>
+<h4 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h4>
         </div>
         <!-- .entry-content -->
         <div class="single-reward">
