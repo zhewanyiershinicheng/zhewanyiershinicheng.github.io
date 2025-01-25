@@ -370,19 +370,170 @@
 <p>例如：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW TABLE STATUS FROM 数据库名;</span><br><span class="line">SHOW TABLE STATUS from RUNOOB LIKE &#x27;runoob%&#x27;; </span><br><span class="line">#显示以runoob%开头的表的信息</span><br><span class="line">SHOW TABLE STATUS from RUNOOB LIKE &#x27;runoob%&#x27;\G;</span><br><span class="line">#\G，查询结果按列打印</span><br></pre></td></tr></table></figure>
 
-<h2 id="PHP语法"><a href="#PHP语法" class="headerlink" title="PHP语法"></a>PHP语法</h2><h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$servername</span> = <span class="string">&quot;localhost&quot;</span>;</span><br><span class="line"><span class="variable">$username</span> = <span class="string">&quot;your_username&quot;</span>;</span><br><span class="line"><span class="variable">$password</span> = <span class="string">&quot;your_password&quot;</span>;</span><br><span class="line"><span class="variable">$database</span> = <span class="string">&quot;your_database&quot;</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 创建连接</span></span><br><span class="line"><span class="variable">$conn</span> = <span class="title function_ invoke__">mysqli_connect</span>(<span class="variable">$servername</span>, <span class="variable">$username</span>, <span class="variable">$password</span>, <span class="variable">$database</span>);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 检测连接</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="variable">$conn</span>) &#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;连接失败: &quot;</span> . <span class="title function_ invoke__">mysqli_connect_error</span>());</span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;连接成功&quot;</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="PHP语法"><a href="#PHP语法" class="headerlink" title="PHP语法"></a>PHP语法</h2><h3 id="1-连接"><a href="#1-连接" class="headerlink" title="1.连接"></a>1.连接</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$servername</span> = <span class="string">&quot;localhost&quot;</span>;</span><br><span class="line"><span class="variable">$username</span> = <span class="string">&quot;your_username&quot;</span>;</span><br><span class="line"><span class="variable">$password</span> = <span class="string">&quot;your_password&quot;</span>;</span><br><span class="line"><span class="variable">$database</span> = <span class="string">&quot;your_database&quot;</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 创建连接</span></span><br><span class="line"><span class="variable">$conn</span> = <span class="title function_ invoke__">mysqli_connect</span>(<span class="variable">$servername</span>, <span class="variable">$username</span>, <span class="variable">$password</span>, <span class="variable">$database</span>);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 检测连接，可见mysqli_connect是有返回值的</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="variable">$conn</span>) &#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;连接失败: &quot;</span> . <span class="title function_ invoke__">mysqli_connect_error</span>());</span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;连接成功&quot;</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>其中的函数格式和部分功能：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">mysqli_function</span>(value,value,...);</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">函数定义：<span class="title function_ invoke__">mysqli_function</span>(value,value,...);</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">mysqli_connect</span>(<span class="variable">$connect</span>);</span><br><span class="line"><span class="title function_ invoke__">mysqli_query</span>(<span class="variable">$connect</span>,<span class="string">&quot;SQL 语句&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">mysqli_fetch_array</span>()</span><br><span class="line"><span class="title function_ invoke__">mysqli_close</span>()</span><br><span class="line">    <span class="comment">//都是内置的函数</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">mysqli_connect</span>(<span class="variable">$connect</span>);</span><br><span class="line"><span class="title function_ invoke__">mysqli_query</span>(<span class="variable">$connect</span>,<span class="string">&quot;SQL 语句&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">mysqli_fetch_array</span>()</span><br><span class="line"><span class="title function_ invoke__">mysqli_close</span>()</span><br><span class="line"><span class="comment">//都是内置的函数</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="二进制连接"><a href="#二进制连接" class="headerlink" title="二进制连接"></a>二进制连接</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql -u your_username -p</span><br><span class="line">//-u 指定用户名，-p 要输入密码</span><br></pre></td></tr></table></figure>
 
 <h4 id="使用脚本连接"><a href="#使用脚本连接" class="headerlink" title="使用脚本连接"></a>使用脚本连接</h4><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">mysqli_connect</span>(host, username, password, dbname,port, socket);  </span><br><span class="line"><span class="comment">//都是可选参数，没有就不写。其中只有port是int，其他都是字符串</span></span><br><span class="line"><span class="comment">/*套接字（socket）是一种进程间通信机制。当脚本就在服务器上时，使用这个</span></span><br><span class="line"><span class="comment">不用经过网络套接字（通过 TCP/IP 协议），而是使用UNIX套接字（所以在windows系统上，这个参数会被忽略）。*/</span></span><br><span class="line">其实就是不用网络，在本机进程间通信连接</span><br><span class="line">注意：这是个指向.socket文件的路径</span><br><span class="line">所以，如果用这玩意儿，就不用指定port了，可以直接设置为<span class="literal">null</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="退出"><a href="#退出" class="headerlink" title="退出"></a>退出</h3><p><code>EXIT;</code>或者<code>QUIT;</code>或者快捷键<code>ctrl +D</code></p>
+<p>在PHP8.0以上，可以使用命名参数来保证正确传参，参数名就是上面那几个</p>
+<p>mysqli_close() 函数来断开与 MySQL 数据库的链接。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">函数定义：<span class="keyword">bool</span> <span class="title function_ invoke__">mysqli_close</span> ( mysqli <span class="variable">$link</span> )</span><br></pre></td></tr></table></figure>
 
+<p>该函数只有一个参数为 mysqli_connect() 函数创建连接成功后返回的 <strong>MySQL 连接标识符</strong>（mysqli_connect的返回值）。</p>
+<p>例如：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$link</span> = <span class="title function_ invoke__">mysqli_connect</span>(<span class="string">&quot;localhost&quot;</span>, <span class="string">&quot;username&quot;</span>, <span class="string">&quot;password&quot;</span>, <span class="string">&quot;database&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (!<span class="variable">$link</span>) &#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;连接失败: &quot;</span>. <span class="title function_ invoke__">mysqli_connect_error</span>());</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 执行一些数据库操作</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 显式关闭连接</span></span><br><span class="line"><span class="title function_ invoke__">mysqli_close</span>(<span class="variable">$link</span>);</span><br><span class="line"><span class="comment">//不给参数，就关闭最近打开的一个</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-退出"><a href="#2-退出" class="headerlink" title="2.退出"></a>2.退出</h3><p><code>EXIT;</code>或者<code>QUIT;</code>或者快捷键<code>ctrl +D</code></p>
+<h2 id="操作数据库"><a href="#操作数据库" class="headerlink" title="操作数据库"></a>操作数据库</h2><h3 id="1-创建"><a href="#1-创建" class="headerlink" title="1.创建"></a>1.创建</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE DATABASE [IF NOT EXISTS] 数据库名;</span><br><span class="line">如果要指定选项，可以加上其他参数：</span><br><span class="line">CREATE DATABASE mydatabase</span><br><span class="line">  CHARACTER SET utf8mb4</span><br><span class="line">  COLLATE utf8mb4_general_ci;</span><br><span class="line">指定字符集和排列顺序。</span><br><span class="line">如果不加IF NOT EXISTS并且存在该数据库，会报错</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用-mysqladmin"><a href="#使用-mysqladmin" class="headerlink" title="使用 mysqladmin"></a>使用 mysqladmin</h4><p>注：mysqladmin是个命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysqladmin -u your_username -p create your_database</span><br><span class="line">如果要指定选项，可以加上特定参数：</span><br><span class="line">mysqladmin -u your_username -p create your_database \</span><br><span class="line">  --default-character-set=utf8mb4 \</span><br><span class="line">  --default-collation=utf8mb4_general_ci</span><br><span class="line">作用同上</span><br></pre></td></tr></table></figure>
+
+<p>如果是普通用户，可能要特定权限</p>
+<p>这个命令行可以使用SQL的命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysqladmin -u your_username -p your_command</span><br><span class="line">例如：</span><br><span class="line">mysqladmin -u your_username -p status</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用PHP脚本"><a href="#使用PHP脚本" class="headerlink" title="使用PHP脚本"></a>使用PHP脚本</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysqli_query(connection,query,resultmode);</span><br><span class="line">也有返回值,也是用于判断是否成功</span><br></pre></td></tr></table></figure>
+
+<p>除了最后一个，都是必须项。</p>
+<p>connection：就是$connt，也就是mysqli_connet(…)</p>
+<p>query：查询字符串，也就是SQL语句。</p>
+<p>resultmode：这是常量，只能填以下两个之一：</p>
+<p>​						 MYSQLI_USE_RESULT （检索大量数据时用）</p>
+<p>​						 MYSQLI_STORE_RESULT （默认）</p>
+<h3 id="2-删除"><a href="#2-删除" class="headerlink" title="2.删除"></a>2.删除</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DROP DATABASE [IF EXISTS] &lt;database_name&gt;;</span><br><span class="line">同样，如果不加IF EXISTS，删除不存在的，会报错</span><br></pre></td></tr></table></figure>
+
+<p>&#x2F;&#x2F;这是不可逆的</p>
+<h4 id="使用-mysqladmin-1"><a href="#使用-mysqladmin-1" class="headerlink" title="使用 mysqladmin"></a>使用 mysqladmin</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysqladmin -u your_username -p drop your_database</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用PHP脚本-1"><a href="#使用PHP脚本-1" class="headerlink" title="使用PHP脚本"></a>使用PHP脚本</h4><p>还是用：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">mysqli_query</span>(connection,query,resultmode);</span><br></pre></td></tr></table></figure>
+
+<p>显而易见：</p>
+<p>此时的$query就是DROP DATABASE [IF EXISTS] <database_name>;</p>
+<h3 id="3-选择"><a href="#3-选择" class="headerlink" title="3.选择"></a>3.选择</h3><h4 id="使用命令行"><a href="#使用命令行" class="headerlink" title="使用命令行"></a>使用命令行</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql -u root -p; //执行完这个，就会进入mysql提示符</span><br><span class="line">use &lt;database name&gt;;</span><br><span class="line">....;                   //其他操作命令</span><br></pre></td></tr></table></figure>
+
+<p>use语句可以换成命令中的-D参数，变成：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql -u your_username -p -D your_database</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用php脚本"><a href="#使用php脚本" class="headerlink" title="使用php脚本"></a>使用php脚本</h4><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">mysqli_select_db</span>(connection,dbname);</span><br><span class="line"><span class="comment">//都是必填项</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="一个实例"><a href="#一个实例" class="headerlink" title="一个实例"></a>一个实例</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$dbhost = &#x27;localhost&#x27;;  // mysql服务器主机地址</span><br><span class="line">$dbuser = &#x27;root&#x27;;            // mysql用户名</span><br><span class="line">$dbpass = &#x27;123456&#x27;;          // mysql用户名密码</span><br><span class="line">$conn = mysqli_connect($dbhost, $dbuser, $dbpass);</span><br><span class="line">if(! $conn )</span><br><span class="line">&#123;</span><br><span class="line">    die(&#x27;连接失败: &#x27; . mysqli_error($conn));</span><br><span class="line">&#125;</span><br><span class="line">echo &#x27;连接成功&#x27;;</span><br><span class="line">mysqli_select_db($conn, &#x27;RUNOOB&#x27; );</span><br><span class="line">mysqli_close($conn);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="数值类型"><a href="#数值类型" class="headerlink" title="数值类型"></a>数值类型</h3><p>几个不太一样的地方：</p>
+<p>int分为：tinyint（1Bytes）,smallint（2）,mediumint（3）,int（4）,bigint（8）</p>
+<p>多了一个</p>
+<p><code>DECIMAL</code>类型，用于表示小数：</p>
+<p>对于DECIMAL(M,D) ，如果M&gt;D，为M+2否则为D+2 </p>
+<h3 id="日期和时间类型"><a href="#日期和时间类型" class="headerlink" title="日期和时间类型"></a>日期和时间类型</h3><p> DATE （3）：YYYY-MM-DD</p>
+<p>TIME（3）：HH:MM:SS</p>
+<p>YEAR（1）：YYYY</p>
+<p>DATATIME（8）：YYYY-MM-DD hh:mm:ss</p>
+<p>TIMESTAMP（4）：同上   &#x2F;&#x2F;这就是时间戳</p>
+<h3 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h3><table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">大小</th>
+<th align="left">用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">CHAR</td>
+<td align="left">0-255 bytes</td>
+<td align="left">定长字符串</td>
+</tr>
+<tr>
+<td align="left">VARCHAR</td>
+<td align="left">0-65535 bytes</td>
+<td align="left">变长字符串</td>
+</tr>
+<tr>
+<td align="left">TINYBLOB</td>
+<td align="left">0-255 bytes</td>
+<td align="left">不超过 255 个字符的二进制字符串</td>
+</tr>
+<tr>
+<td align="left">TINYTEXT</td>
+<td align="left">0-255 bytes</td>
+<td align="left">短文本字符串</td>
+</tr>
+<tr>
+<td align="left">BLOB</td>
+<td align="left">0-65 535 bytes</td>
+<td align="left">二进制形式的长文本数据</td>
+</tr>
+<tr>
+<td align="left">TEXT</td>
+<td align="left">0-65 535 bytes</td>
+<td align="left">长文本数据</td>
+</tr>
+<tr>
+<td align="left">MEDIUMBLOB</td>
+<td align="left">0-16 777 215 bytes</td>
+<td align="left">二进制形式的中等长度文本数据</td>
+</tr>
+<tr>
+<td align="left">MEDIUMTEXT</td>
+<td align="left">0-16 777 215 bytes</td>
+<td align="left">中等长度文本数据</td>
+</tr>
+<tr>
+<td align="left">LONGBLOB</td>
+<td align="left">0-4 294 967 295 bytes</td>
+<td align="left">二进制形式的极大文本数据</td>
+</tr>
+<tr>
+<td align="left">LONGTEXT</td>
+<td align="left">0-4 294 967 295 bytes</td>
+<td align="left">极大文本数据</td>
+</tr>
+</tbody></table>
+<h3 id="others"><a href="#others" class="headerlink" title="others"></a>others</h3><h4 id="枚举与集合类型"><a href="#枚举与集合类型" class="headerlink" title="枚举与集合类型"></a>枚举与集合类型</h4><ul>
+<li><strong>ENUM</strong>: 枚举类型，用于存储单一值，可以选择一个预定义的集合。</li>
+<li><strong>SET</strong>: 集合类型，用于存储多个值，可以选择多个预定义的集合。</li>
+</ul>
+<h4 id="空间数据类型"><a href="#空间数据类型" class="headerlink" title="空间数据类型"></a>空间数据类型</h4><p>GEOMETRY, POINT, LINESTRING, POLYGON, MULTIPOINT, MULTILINESTRING, MULTIPOLYGON, GEOMETRYCOLLECTION: 用于存储空间数据（地理信息、几何图形等）。 </p>
+<h2 id="使用数据库"><a href="#使用数据库" class="headerlink" title="使用数据库"></a>使用数据库</h2><h3 id="1-创建数据表"><a href="#1-创建数据表" class="headerlink" title="1.创建数据表"></a>1.创建数据表</h3><p>必须提供：</p>
+<ul>
+<li>表名</li>
+<li>表字段名</li>
+<li>定义每个表字段的数据类型</li>
+</ul>
+<p>SQL语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE TABLE table_name (</span><br><span class="line">    column1 datatype,</span><br><span class="line">    column2 datatype,</span><br><span class="line">    ...</span><br><span class="line">);</span><br><span class="line">//column是列名</span><br></pre></td></tr></table></figure>
+
+<p>可以加子句：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE TABLE mytable (</span><br><span class="line">    id INT PRIMARY KEY,</span><br><span class="line">    name VARCHAR(50)</span><br><span class="line">) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;</span><br></pre></td></tr></table></figure>
+
+<h4 id="SQL实例"><a href="#SQL实例" class="headerlink" title="SQL实例"></a>SQL实例</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE TABLE users (</span><br><span class="line">    id INT AUTO_INCREMENT PRIMARY KEY,</span><br><span class="line">    username VARCHAR(50) NOT NULL,</span><br><span class="line">    email VARCHAR(100) NOT NULL,</span><br><span class="line">    birthdate DATE,</span><br><span class="line">    is_active BOOLEAN DEFAULT TRUE</span><br><span class="line">);</span><br><span class="line">//AUTO_INCREMENT PRIMARY KEY,设定该列自增长(1,2,3...)，且是主键</span><br><span class="line">（这两者一般同时出现）</span><br><span class="line">//NOT NULL</span><br><span class="line">//DEFAULT TRUE，设定默认值为TRUE</span><br><span class="line">以上三行都是附加的属性</span><br></pre></td></tr></table></figure>
+
+<h4 id="通过命令行"><a href="#通过命令行" class="headerlink" title="通过命令行"></a>通过命令行</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql -u root -p -D &lt;database name&gt;</span><br><span class="line">//接下来进了SQL命令行，当然就是写SQL语句。</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：mySQL命令行中，回车不是结束，<code>;</code>才是。</p>
+<p>因此，写不下时可以随意换行</p>
+</blockquote>
+<h4 id="通过PHP脚本"><a href="#通过PHP脚本" class="headerlink" title="通过PHP脚本"></a>通过PHP脚本</h4><p>还是 <code>mysqli_query(connection,query,resultmode);</code></p>
+<h3 id="2-删除数据表-数据"><a href="#2-删除数据表-数据" class="headerlink" title="2.删除数据表[数据]"></a>2.删除数据表[数据]</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DROP TABLE [IF EXISTS] table_name; //这是直接删表</span><br><span class="line">TRUNCATE TABLE table_name;         //这是删表数据（保留结构）</span><br></pre></td></tr></table></figure>
+
+<p>使用命令行和PHP脚本，同上</p>
+<h3 id="3-插入表数据"><a href="#3-插入表数据" class="headerlink" title="3.插入表数据"></a>3.插入表数据</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">INSERT INTO table_name (column1, column2, column3, ...)</span><br><span class="line">VALUES (value1, value2, value3, ...);</span><br></pre></td></tr></table></figure>
+
+<p>&#x2F;&#x2F;value若是字符型，要写成<code>&#39;value&#39;</code></p>
+<p>&#x2F;&#x2F;如果插入所有列，可以省略列名。此时第一个要写NULL,因为它是那个自增长列的占位符。当然也可以第一行写0（接下来同理），要不然会变来变去。</p>
+<p>如果插入多行：</p>
+<p>实例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">INSERT INTO users (username, email, birthdate, is_active)</span><br><span class="line">VALUES</span><br><span class="line">    (&#x27;test1&#x27;, &#x27;test1@runoob.com&#x27;, &#x27;1985-07-10&#x27;, true),</span><br><span class="line">    (&#x27;test2&#x27;, &#x27;test2@runoob.com&#x27;, &#x27;1988-11-25&#x27;, false),</span><br><span class="line">    (&#x27;test3&#x27;, &#x27;test3@runoob.com&#x27;, &#x27;1993-05-03&#x27;, true);</span><br></pre></td></tr></table></figure>
+
+<p>使用命令行和PHP脚本，同上</p>
+<h3 id="4-读取表数据"><a href="#4-读取表数据" class="headerlink" title="4.读取表数据"></a>4.读取表数据</h3>
         </div>
         <!-- .entry-content -->
         <div class="single-reward">
