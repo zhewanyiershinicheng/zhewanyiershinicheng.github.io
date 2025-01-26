@@ -274,6 +274,30 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
 <div class="pattern-center-blank"></div>
 
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(MySQL);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="MySQL">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      MySQL</h1>
+      <p class="entry-census">
+        <span>
+          <a href="">
+            <img src="">
+          </a>
+        </span>
+        <span>
+          <a href=""></a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2024-10-11<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
 <div id="content" class="site-content">
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
@@ -281,24 +305,18 @@
         <div class="toc"></div>
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
-          <header class="entry-header">
-            <h1 class="entry-title">MySQL</h1>
-            <p class="entry-census">&nbsp;·&nbsp;2024-10-11&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
-
-            <hr>
-          </header>
-        
         <div class="entry-content">
           <h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h2 id="基本术语"><a href="#基本术语" class="headerlink" title="基本术语"></a>基本术语</h2><p>列：具有相同数据类型的数据的集合</p>
 <p>行：每一行用来描述某条记录的具体信息</p>
 <p>冗余：存储两倍数据。冗余降低了性能，但提高了数据的安全性</p>
 <p>主键：主键是唯一的，一个数据表只能由一个主键。可以用主键查询信息</p>
+<p>外键： 一个表中的一列或多列，这些列的值必须与另一个表（通常称为主表）中的主键或唯一键的值相匹配，或者为空值。包含外键的表称为从表（或子表），被引用的表称为主表（或父表）。 </p>
 <p>复合键：复合键（组合键）将多个列组成一个索引键，一般用于复合索引</p>
 <p>索引：使用索引可快速访问数据表中的特定信息，索引是数据库中由一列或多列的值进行排序的结构。相当于书籍的目录。</p>
 <p>参照完整性：参照的完整性要求关系中不允许引入不存在的实体。</p>
 <p>值：行的具体信息，每个值必须与该列的数据类型相同</p>
 <p>键：键的值在当前列中具有唯一性</p>
-<p><img src="/MySQL/1737622524881.png" alt="1737622524881"></p>
+<p><img src="/2024/10/11/MySQL/1737622524881.png" alt="1737622524881"></p>
 <h2 id="管理"><a href="#管理" class="headerlink" title="管理"></a>管理</h2><p>Windows:</p>
 <p>启动&#x2F;关闭</p>
 <p>去找 <strong>services.msc</strong> </p>
@@ -502,8 +520,9 @@
 <li><strong>SET</strong>: 集合类型，用于存储多个值，可以选择多个预定义的集合。</li>
 </ul>
 <h4 id="空间数据类型"><a href="#空间数据类型" class="headerlink" title="空间数据类型"></a>空间数据类型</h4><p>GEOMETRY, POINT, LINESTRING, POLYGON, MULTIPOINT, MULTILINESTRING, MULTIPOLYGON, GEOMETRYCOLLECTION: 用于存储空间数据（地理信息、几何图形等）。 </p>
-<h2 id="使用数据库"><a href="#使用数据库" class="headerlink" title="使用数据库"></a>使用数据库</h2><h3 id="0-查看已有数据表"><a href="#0-查看已有数据表" class="headerlink" title="0.查看已有数据表"></a>0.查看已有数据表</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW TABLES;</span><br></pre></td></tr></table></figure>
+<h2 id="使用数据库"><a href="#使用数据库" class="headerlink" title="使用数据库"></a>使用数据库</h2><h3 id="0-查看已有数据表-列"><a href="#0-查看已有数据表-列" class="headerlink" title="0.查看已有数据表&#x2F;列"></a>0.查看已有数据表&#x2F;列</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHOW TABLES; </span><br><span class="line">SHOW TABLE STATUS;  //这是看表类型（ENGING等）</span><br><span class="line">SHOW COLUMNS FROM table_name;  //这是看表结构，不是数据</span><br></pre></td></tr></table></figure>
 
+<p>不加S的话，要写具体名称或者模糊匹配。<code>\G</code>以竖排显示</p>
 <h3 id="1-创建数据表"><a href="#1-创建数据表" class="headerlink" title="1.创建数据表"></a>1.创建数据表</h3><p>必须提供：</p>
 <ul>
 <li>表名</li>
@@ -541,7 +560,8 @@
 
 <h4 id="获取自增的值"><a href="#获取自增的值" class="headerlink" title="获取自增的值"></a>获取自增的值</h4><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$last_id</span>=<span class="title function_ invoke__">mysqli_insert_id</span>(<span class="variable">$conn</span>)</span><br></pre></td></tr></table></figure>
 
-<h3 id="4-修改表数据"><a href="#4-修改表数据" class="headerlink" title="4.修改表数据"></a>4.修改表数据</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">UPDATE table_name</span><br><span class="line">SET column1 = value1, column2 = value2, ...</span><br><span class="line">WHERE condition;   //where子句可选，没有就会更新所有行</span><br></pre></td></tr></table></figure>
+<h3 id="4-修改表数据"><a href="#4-修改表数据" class="headerlink" title="4.修改表数据"></a>4.修改表数据</h3><p> <em>进行重要的结构修改时，建议先备份数据</em> </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">UPDATE table_name</span><br><span class="line">SET column1 = value1, column2 = value2, ...</span><br><span class="line">WHERE condition;   //where子句可选，没有就会更新所有行</span><br></pre></td></tr></table></figure>
 
 <h4 id="替换某个字段中的某个字符"><a href="#替换某个字段中的某个字符" class="headerlink" title="替换某个字段中的某个字符"></a>替换某个字段中的某个字符</h4><blockquote>
 <p>当我们需要将字段中的特定字符串批量修改为其他字符串时，可使用以下操作：</p>
@@ -549,7 +569,27 @@
 <blockquote>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">UPDATE table_name SET field=REPLACE(field, &#x27;old-string&#x27;, &#x27;new-string&#x27;) </span><br><span class="line">[WHERE Clause];</span><br></pre></td></tr></table></figure>
 </blockquote>
-<h3 id="5-读取"><a href="#5-读取" class="headerlink" title="5.读取"></a>5.读取</h3><h3 id="查询表数据"><a href="#查询表数据" class="headerlink" title="&#x2F;查询表数据"></a>&#x2F;查询表数据</h3><h4 id="读取"><a href="#读取" class="headerlink" title="读取"></a>读取</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select * from 数据表名;   //可以多表`,`分开</span><br></pre></td></tr></table></figure>
+<h3 id="5-修改表名-结构-类型"><a href="#5-修改表名-结构-类型" class="headerlink" title="5.修改表名&#x2F;结构&#x2F;类型"></a>5.修改表名&#x2F;结构&#x2F;类型</h3><h4 id="添加列-主键"><a href="#添加列-主键" class="headerlink" title="添加列&#x2F;主键"></a>添加列&#x2F;主键</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALTER TABLE table_name</span><br><span class="line">ADD COLUMN new_column_name datatype;</span><br><span class="line">以及</span><br><span class="line">ALTER TABLE table_name</span><br><span class="line">ADD PRIMARY KEY (column_name);</span><br><span class="line">以及</span><br><span class="line">ALTER TABLE testalter_tbl ENGINE = MYISAM;</span><br></pre></td></tr></table></figure>
+
+<h4 id="添加外键"><a href="#添加外键" class="headerlink" title="添加外键"></a>添加外键</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALTER TABLE child_table</span><br><span class="line">ADD CONSTRAINT fk_name</span><br><span class="line">FOREIGN KEY (column_name)           </span><br><span class="line">REFERENCES parent_table (column_name);</span><br></pre></td></tr></table></figure>
+
+<h4 id="修改数据类型"><a href="#修改数据类型" class="headerlink" title="修改数据类型"></a>修改数据类型</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALTER TABLE TABLE_NAME</span><br><span class="line">MODIFY COLUMN column_name new_datatype;</span><br></pre></td></tr></table></figure>
+
+<h4 id="修改列-表名"><a href="#修改列-表名" class="headerlink" title="修改列&#x2F;表名"></a>修改列&#x2F;表名</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALTER TABLE table_name</span><br><span class="line">CHANGE COLUMN old_column_name new_column_name datatype;</span><br><span class="line">-- 可以顺手改数据类型</span><br><span class="line">以及</span><br><span class="line">ALTER TABLE old_table_name</span><br><span class="line">RENAME TO new_table_name;</span><br></pre></td></tr></table></figure>
+
+<h4 id="删除列"><a href="#删除列" class="headerlink" title="删除列"></a>删除列</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALTER TABLE table_name</span><br><span class="line">DROP COLUMN column_name;</span><br></pre></td></tr></table></figure>
+
+<h4 id="修改字段类型及名称"><a href="#修改字段类型及名称" class="headerlink" title="修改字段类型及名称"></a>修改字段类型及名称</h4><p>可以使用上面的CHANGE子句</p>
+<p>也可以用MODIFY子句</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALTER TABLE testalter_tbl MODIFY c CHAR(10);</span><br><span class="line">等同于</span><br><span class="line">ALTER TABLE testalter_tbl CHANGE c c CHAR(10);</span><br><span class="line">只不过MODIFY子句不能顺便改名</span><br></pre></td></tr></table></figure>
+
+<p>这两者修改时都可以附带上NOT NULL，DEFAULT等</p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALTER TABLE testalter_tbl MODIFY j BIGINT NOT NULL DEFAULT 100;</span><br></pre></td></tr></table></figure>
+
+<h4 id="修改-删除默认值等"><a href="#修改-删除默认值等" class="headerlink" title="修改&#x2F;删除默认值等"></a>修改&#x2F;删除默认值等</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALTER TABLE testalter_tbl ALTER i SET DEFAULT 1000;</span><br><span class="line">以及</span><br><span class="line">ALTER TABLE testalter_tbl ALTER i DROP DEFAULT/PRIMARY KEY;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-读取-查询表数据"><a href="#6-读取-查询表数据" class="headerlink" title="6.读取&#x2F;查询表数据"></a>6.读取&#x2F;查询表数据</h3><h4 id="读取"><a href="#读取" class="headerlink" title="读取"></a>读取</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select * from 数据表名;   //可以多表`,`分开</span><br></pre></td></tr></table></figure>
 
 <h4 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT column1, column2, ...</span><br><span class="line">FROM table_name                   //可以多表`,`分开</span><br><span class="line">[WHERE condition]</span><br><span class="line">[ORDER BY column_name [ASC | DESC]]</span><br><span class="line">[LIMIT N][offset M];</span><br></pre></td></tr></table></figure>
 
@@ -605,7 +645,195 @@
 
 <p>注意：1.会自动去除重复行（使用<strong>UNION ALL</strong>则不会，性能还会更好）。</p>
 <p>​			2.每个 SELECT 语句的列数和对应位置的数据类型必须相同（即使来自不同表）。</p>
-<h4 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h4>
+<h4 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h4><p>ORDER BY子句，排序查询后的数据</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT column1, column2, ...</span><br><span class="line">FROM table_name</span><br><span class="line">ORDER BY column1 [ASC | DESC], column2 [ASC | DESC], ...;</span><br></pre></td></tr></table></figure>
+
+<p>默认ASC（升序）。DESC是降序</p>
+<p>像上面那个多列排序，就是先按column1,再按column2</p>
+<p>可以不用列名而用数字表示列的位置，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ORDER BY 3 DESC, 1 ASC;</span><br></pre></td></tr></table></figure>
+
+<p>8.0以上的版本，末尾有可选参数：</p>
+<p> <code>NULLS FIRST</code>或<code>NULLS LAST</code>  ，表示排序时NULL的位置</p>
+<blockquote>
+<p>注意：</p>
+<p>如果字符集是utf-8，而不是GBK，排序时要先转码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT * </span><br><span class="line">FROM runoob_tbl</span><br><span class="line">ORDER BY CONVERT(runoob_title using gbk);</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h4><p> GROUP BY 语句根据一个或多个列对结果集进行分组。</p>
+<p> 在分组的列上我们可以使用 COUNT, SUM, AVG,等函数。 </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT column1, column2, aggregate_function(column3)</span><br><span class="line">FROM TABLE_NAME</span><br><span class="line">WHERE condition</span><br><span class="line">GROUP BY column1, column2;</span><br></pre></td></tr></table></figure>
+
+<h5 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT customer_id, SUM(order_amount) AS total_amount</span><br><span class="line">FROM orders</span><br><span class="line">GROUP BY customer_id;</span><br><span class="line">//计算每个客户的订单总金额</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>GROUP BY</code> 子句通常与聚合函数一起使用，因为分组后需要对每个组进行聚合操作。</li>
+<li><code>SELECT</code> 子句中的列通常<strong>要么是分组列</strong>（<code>GROUP BY</code>使用的列），<strong>要么是聚合函数的参数</strong>。</li>
+<li>可以使用多个列进行分组，只需在 <code>GROUP BY</code> 子句中用逗号分隔列名即可。</li>
+</ul>
+<p>聚合函数：</p>
+<p>如 <code>SUM</code>、<code>AVG</code>、<code>COUNT</code>、<code>MIN</code>、<code>MAX</code> 等，用于对每个分组的数据进行汇总计算。 </p>
+<h5 id="使用WITH-ROLLUP"><a href="#使用WITH-ROLLUP" class="headerlink" title="使用WITH ROLLUP"></a>使用WITH ROLLUP</h5><p>可选子句，实现在分组统计数据基础上再进行相同的统计 </p>
+<p>对比一下：</p>
+<blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; SELECT name,SUM(signin) as signin_count FROM employee_tbl GROUP BY name WITH ROLLUP;</span><br><span class="line">+--------+--------------+</span><br><span class="line">| name   | signin_count |</span><br><span class="line">+--------+--------------+</span><br><span class="line">| 小丽 |            2 |</span><br><span class="line">| 小明 |            7 |</span><br><span class="line">| 小王 |            7 |</span><br><span class="line">| NULL   |           16 |      //NULL表示所有人的登录次数，因为这列相加没有意义</span><br><span class="line">+--------+--------------+</span><br><span class="line">4 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>以及</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; SELECT name, COUNT(*) FROM employee_tbl GROUP BY name;</span><br><span class="line">+--------+----------+</span><br><span class="line">| name   | COUNT(*) |</span><br><span class="line">+--------+----------+</span><br><span class="line">| 小丽 |        1 |</span><br><span class="line">| 小明 |        3 |</span><br><span class="line">| 小王 |        2 |</span><br><span class="line">+--------+----------+</span><br><span class="line">3 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.01 sec)</span><br></pre></td></tr></table></figure>
+
+<p>为了避免NULL,可以使用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select coalesce(a,b,c);</span><br><span class="line">//按顺序判断是否为NULL,返回遇到的第一个非NULL值。（全NULL就返回NULL）</span><br></pre></td></tr></table></figure>
+
+<p>于是可改成：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT coalesce(name, &#x27;总数&#x27;), SUM(signin) as signin_count FROM  employee_tbl GROUP BY name WITH ROLLUP;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="多表查询（JOIN）"><a href="#多表查询（JOIN）" class="headerlink" title="多表查询（JOIN）"></a>多表查询（JOIN）</h3><ul>
+<li><strong>INNER JOIN（内连接,或等值连接）</strong>：获取两个表中字段匹配关系的记录，可以简写为JOIN。</li>
+<li><strong>LEFT JOIN（左连接）：</strong>获取左表所有记录，即使右表没有对应匹配的记录。</li>
+<li><strong>RIGHT JOIN（右连接）：</strong> 与 LEFT JOIN 相反，用于获取右表所有记录，即使左表没有对应匹配的记录。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT column1, column2, ...</span><br><span class="line">FROM table1</span><br><span class="line">INNER JOIN table2 </span><br><span class="line">ON table1.column_name = table2.column_name;</span><br><span class="line">//只返回两表中column_name内容相同的行</span><br><span class="line">//SELECT中的列也要写成类似于table.column的形式，不必包含ON使用的那列</span><br></pre></td></tr></table></figure>
+
+<p>可以叠叠乐：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT orders.order_id, customers.customer_name, products.product_name</span><br><span class="line">FROM orders</span><br><span class="line">INNER JOIN customers ON orders.customer_id = customers.customer_id</span><br><span class="line">INNER JOIN order_items ON orders.order_id = order_items.order_id</span><br><span class="line">INNER JOIN products ON order_items.product_id = products.product_id;</span><br><span class="line">//此时只有在四个表的所选列中都存在的才会返回对应的SELECT</span><br></pre></td></tr></table></figure>
+
+<p>LEFT&#x2F;RIGHT JOIN</p>
+<p>以LEFT JOIN为例，RIGHT JOIN反之</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT column1, column2, ...</span><br><span class="line">FROM table1</span><br><span class="line">LEFT JOIN table2 </span><br><span class="line">ON table1.column_name = table2.column_name;</span><br><span class="line">[WHERE 条件]</span><br><span class="line">//返回左表中所有行的情况下。当右表中没有匹配的行时，相关列将显示为 NULL。</span><br></pre></td></tr></table></figure>
+
+<h3 id="NULL值处理"><a href="#NULL值处理" class="headerlink" title="NULL值处理"></a>NULL值处理</h3><p>WHERE子句</p>
+<p><code>is (not) null</code></p>
+<p>ORDER BY子句:</p>
+<p><code>NULLS FIRST/LAST</code></p>
+<h4 id="用于比较"><a href="#用于比较" class="headerlink" title="用于比较"></a>用于比较</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT * FROM employees WHERE commission &lt;=&gt; NULL;</span><br><span class="line">`&lt;=&gt;`是比较表达式是否相等的特殊操作符，可以直接替换`=`</span><br><span class="line">都是NULL就返回TRUE</span><br><span class="line">注意：回值始终是NULL</span><br></pre></td></tr></table></figure>
+
+<h4 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h4><p>会被忽略</p>
+<p>如果想指定为特定值，可以套个COALESCE或者它的下位IFNULL（只接受俩参数）</p>
+<p>例如：<code>AVG(COALESCE(salary, 0))</code>或者<code>AVG(IFNULL(salary, 0))</code></p>
+<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">模式</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">^</td>
+<td align="left">匹配输入字符串的开始位置。如果设置了 RegExp 对象的 Multiline 属性，^ 也匹配 ‘\n’ 或 ‘\r’ 之后的位置。</td>
+</tr>
+<tr>
+<td align="left">$</td>
+<td align="left">匹配输入字符串的结束位置。如果设置了RegExp 对象的 Multiline 属性，$ 也匹配 ‘\n’ 或 ‘\r’ 之前的位置。</td>
+</tr>
+<tr>
+<td align="left">.</td>
+<td align="left">匹配除 “\n” 之外的任何单个字符。要匹配包括 ‘\n’ 在内的任何字符，请使用像 ‘[.\n]’ 的模式。</td>
+</tr>
+<tr>
+<td align="left">[…]</td>
+<td align="left">字符集合。匹配所包含的任意一个字符。例如， ‘[abc]’ 可以匹配 “plain” 中的 ‘a’。</td>
+</tr>
+<tr>
+<td align="left">[^…]</td>
+<td align="left">负值字符集合。匹配未包含的任意字符。例如， ‘[^abc]’ 可以匹配 “plain” 中的’p’。</td>
+</tr>
+<tr>
+<td align="left">p1|p2|p3</td>
+<td align="left">匹配 p1 或 p2 或 p3。例如，’z|food’ 能匹配 “z” 或 “food”。’(z|f)ood’ 则匹配 “zood” 或 “food”。</td>
+</tr>
+<tr>
+<td align="left">*</td>
+<td align="left">匹配前面的子表达式零次或多次。例如，zo* 能匹配 “z” 以及 “zoo”。* 等价于{0,}。</td>
+</tr>
+<tr>
+<td align="left">+</td>
+<td align="left">匹配前面的子表达式一次或多次。例如，’zo+’ 能匹配 “zo” 以及 “zoo”，但不能匹配 “z”。+ 等价于 {1,}。</td>
+</tr>
+<tr>
+<td align="left">{n}</td>
+<td align="left">n 是一个非负整数。匹配确定的 n 次。例如，’o{2}’ 不能匹配 “Bob” 中的 ‘o’，但是能匹配 “food” 中的两个 o。</td>
+</tr>
+<tr>
+<td align="left">{n,m}</td>
+<td align="left">m 和 n 均为非负整数，其中n &lt;&#x3D; m。最少匹配 n 次且最多匹配 m 次。</td>
+</tr>
+</tbody></table>
+<h3 id="正则表达式匹配的字符类"><a href="#正则表达式匹配的字符类" class="headerlink" title="正则表达式匹配的字符类"></a>正则表达式匹配的字符类</h3><ul>
+<li><code>.</code>：匹配任意单个字符。</li>
+<li><code>^</code>：匹配字符串的开始。</li>
+<li><code>$</code>：匹配字符串的结束。</li>
+<li><code>*</code>：匹配零个或多个前面的元素。</li>
+<li><code>+</code>：匹配一个或多个前面的元素。</li>
+<li><code>?</code>：匹配零个或一个前面的元素。</li>
+<li><code>[abc]</code>：匹配字符集中的任意一个字符。</li>
+<li><code>[^abc]</code>：匹配除了字符集中的任意一个字符以外的字符。</li>
+<li><code>[a-z]</code>：匹配范围内的任意一个小写字母。</li>
+<li><code>[0-9]</code>：匹配一个数字字符。</li>
+<li><code>\w</code>：匹配一个字母数字字符（包括下划线）。</li>
+<li><code>\s</code>：匹配一个空白字符。</li>
+</ul>
+</blockquote>
+<h3 id="REGEXP-RLIKE"><a href="#REGEXP-RLIKE" class="headerlink" title="REGEXP&#x2F;RLIKE"></a>REGEXP&#x2F;RLIKE</h3><p>这两者等同</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT column1, column2, ...</span><br><span class="line">FROM table_name</span><br><span class="line">WHERE column_name REGEXP [BINARY] &#x27;pattern&#x27;;</span><br><span class="line">//&#x27;pattern&#x27;是一个正则表达式模式,例如：&#x27;^[aeiou]|ok$&#x27;，&#x27;item[0-9]+&#x27;等</span><br><span class="line">//使用BINARY关键字，匹配区分大小写</span><br></pre></td></tr></table></figure>
+
+<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p>要么全部执行，要么都不执行</p>
+<p>用来管理 <strong>insert、update、delete</strong> 语句 </p>
+<h3 id="控制语句"><a href="#控制语句" class="headerlink" title="控制语句"></a>控制语句</h3><blockquote>
+<ul>
+<li>BEGIN 或 START TRANSACTION 显式地开启一个事务；</li>
+<li>COMMIT&#x2F;COMMIT WORK，二者等价。提交事务，此时才真正修改，不可逆；</li>
+<li>ROLLBACK&#x2F;ROLLBACK WORK，二者等价。结束用户的事务，并撤销正在进行的所有未提交的修改；</li>
+<li>SAVEPOINT identifier，在事务中创建保存点，可以有多个；</li>
+<li>RELEASE SAVEPOINT identifier 删除保存点，不存在时抛出异常；</li>
+<li>ROLLBACK TO identifier 把事务回滚到保存点；</li>
+<li><strong>SET TRANSACTION</strong> 用来设置事务的隔离级别。</li>
+<li><strong>SET AUTOCOMMIT&#x3D;0</strong> 禁止自动提交</li>
+<li><strong>SET AUTOCOMMIT&#x3D;1</strong> 开启自动提交</li>
+</ul>
+</blockquote>
+<p>实例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">START TRANSACTION;</span><br><span class="line">UPDATE accounts SET balance = balance - 100 WHERE user_id = 1;</span><br><span class="line">UPDATE accounts SET balance = balance + 100 WHERE user_id = 2;</span><br><span class="line">-- 判断是否要提交还是回滚</span><br><span class="line">IF (条件) THEN</span><br><span class="line">    COMMIT; -- 提交事务</span><br><span class="line">ELSE</span><br><span class="line">    ROLLBACK; -- 回滚事务</span><br><span class="line">END IF;</span><br></pre></td></tr></table></figure>
+
+<h3 id="隔离级别"><a href="#隔离级别" class="headerlink" title="隔离级别"></a>隔离级别</h3><p>InnoDB 存储引擎提供事务的隔离级别有READ UNCOMMITTED、READ COMMITTED、REPEATABLE READ 和 SERIALIZABLE。 </p>
+<h4 id="读未提交"><a href="#读未提交" class="headerlink" title="读未提交"></a>读未提交</h4><p><code>READ UNCOMMITTED</code></p>
+<p>可以读取到其他事务尚未提交的数据，最低级别</p>
+<p>可能<strong>脏读（被读取的事务最终回滚导致所读的数据无效）</strong></p>
+<h4 id="读已提交"><a href="#读已提交" class="headerlink" title="读已提交"></a>读已提交</h4><p><code>READ COMMITTED</code></p>
+<p>只能读取到其他事务已经提交的数据 </p>
+<p>不会脏读</p>
+<p>但由于不可重复读，可能导致多次读取同一数据的值不一样</p>
+<h4 id="可重复读"><a href="#可重复读" class="headerlink" title="可重复读"></a>可重复读</h4><p><code>REPEATABLE READ</code></p>
+<p>多次读取同一数据始终保持一致 ，被读事务进行的修改和提交不会改变读取结果</p>
+<p>不会脏读</p>
+<p>可能幻读</p>
+<blockquote>
+<p>原理：</p>
+<p>可重复读默认对读取行加一个快照，此后该事务读取该行都是用快照（可以改为加共享锁）</p>
+<p>所以不脏读。</p>
+<p>但是如果其他事务增加满足查询条件的行，查询会多出一条</p>
+<p>导致幻读。</p>
+</blockquote>
+<p>&#x2F;&#x2F;非串行化都可能幻读</p>
+<p>&#x2F;&#x2F;行级锁分两种：共享锁（S锁），其他事务可读不写；排他锁（X锁），其他事务不</p>
+<p>读不写。一行同时只能一个锁。带有锁的行被其他事务读取时，必须等待其释放（上锁</p>
+<p>的事务提交或回滚）</p>
+<p>可以自行加锁：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT price FROM products WHERE id = 1 LOCK IN SHARE MODE;   -- 加共享锁</span><br><span class="line">SELECT price FROM products WHERE id = 1 FOR UPDATE; -- 加排他锁</span><br></pre></td></tr></table></figure>
+
+<p>如果太久不释放行级锁，等待释放的事务会收到超时报错</p>
+<p>例如：</p>
+<p>在可重复读下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-- 事务 A 开始</span><br><span class="line">START TRANSACTION;</span><br><span class="line">-- 事务 A 读取数据</span><br><span class="line">SELECT price FROM products WHERE id = 1; -- 假设读取到价格为 100</span><br><span class="line">-- 如果改用共享锁，事务B会等待事务A释放锁</span><br><span class="line"></span><br><span class="line">-- 事务 B 开始</span><br><span class="line">START TRANSACTION;</span><br><span class="line">-- 事务 B 修改数据</span><br><span class="line">UPDATE products SET price = 200 WHERE id = 1;</span><br><span class="line">-- 事务 B 提交</span><br><span class="line">COMMIT;</span><br><span class="line"></span><br><span class="line">-- 事务 A 再次读取数据</span><br><span class="line">SELECT price FROM products WHERE id = 1; </span><br><span class="line">-- 仍然会读取到价格为 100，因为事务 A 读取的是快照中的数据</span><br><span class="line">-- 事务 A 提交</span><br><span class="line">COMMIT;</span><br></pre></td></tr></table></figure>
+
+<p>容易死锁（互相等释放）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-- 事务 A</span><br><span class="line">START TRANSACTION;</span><br><span class="line">SELECT price FROM products WHERE id = 1 LOCK IN SHARE MODE;</span><br><span class="line">SELECT price FROM products WHERE id = 2 FOR UPDATE; -- 尝试获取 id = 2 的排他锁</span><br><span class="line"></span><br><span class="line">-- 事务 B</span><br><span class="line">START TRANSACTION;</span><br><span class="line">SELECT price FROM products WHERE id = 2 LOCK IN SHARE MODE;</span><br><span class="line">SELECT price FROM products WHERE id = 1 FOR UPDATE; -- 尝试获取 id = 1 的排他锁</span><br></pre></td></tr></table></figure>
+
+<h4 id="串行化"><a href="#串行化" class="headerlink" title="串行化"></a>串行化</h4><p>串行执行，最高级别</p>
+<p>不是并发，所以不会幻读，但导致事务之间会相互阻塞，会极大地降低系统的吞吐量。 </p>
+<h3 id="事务实例"><a href="#事务实例" class="headerlink" title="事务实例"></a>事务实例</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$dbhost = &#x27;localhost&#x27;;  // mysql服务器主机地址</span><br><span class="line">$dbuser = &#x27;root&#x27;;            // mysql用户名</span><br><span class="line">$dbpass = &#x27;123456&#x27;;          // mysql用户名密码</span><br><span class="line">$conn = mysqli_connect($dbhost, $dbuser, $dbpass);</span><br><span class="line">if(! $conn )</span><br><span class="line">&#123;</span><br><span class="line">    die(&#x27;连接失败: &#x27; . mysqli_error($conn));</span><br><span class="line">&#125;</span><br><span class="line">// 设置编码，防止中文乱码</span><br><span class="line">mysqli_query($conn, &quot;set names utf8&quot;);</span><br><span class="line">mysqli_select_db( $conn, &#x27;RUNOOB&#x27; );</span><br><span class="line">mysqli_query($conn, &quot;SET AUTOCOMMIT=0&quot;); // 设置为不自动提交，因为MYSQL默认立即执行</span><br><span class="line">mysqli_begin_transaction($conn);            // 开始事务定义</span><br><span class="line"> </span><br><span class="line">if(!mysqli_query($conn, &quot;insert into runoob_transaction_test (id) values(8)&quot;))</span><br><span class="line">&#123;</span><br><span class="line">    mysqli_query($conn, &quot;ROLLBACK&quot;);     // 判断当执行失败时回滚</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">if(!mysqli_query($conn, &quot;insert into runoob_transaction_test (id) values(9)&quot;))</span><br><span class="line">&#123;</span><br><span class="line">    mysqli_query($conn, &quot;ROLLBACK&quot;);      // 判断执行失败时回滚</span><br><span class="line">&#125;</span><br><span class="line">mysqli_commit($conn);            //执行事务</span><br><span class="line">mysqli_close($conn);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+
         </div>
         <!-- .entry-content -->
         <div class="single-reward">
