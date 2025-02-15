@@ -6,7 +6,7 @@
   <link href="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/atom.xml" rel="self"/>
   
   <link href="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/"/>
-  <updated>2025-02-05T09:50:23.461Z</updated>
+  <updated>2025-02-15T11:45:46.525Z</updated>
   <id>https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SQL注入</title>
+    <link href="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2025/02/15/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"/>
+    <id>https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2025/02/15/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</id>
+    <published>2025-02-15T14:21:23.000Z</published>
+    <updated>2025-02-15T11:45:46.525Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;文件&quot;&gt;&lt;a href=&quot;#文件&quot; class=&quot;headerlink&quot; title=&quot;文件&quot;&gt;&lt;/a&gt;文件&lt;/h1&gt;&lt;h2 id=&quot;奇怪的要求&quot;&gt;&lt;a href=&quot;#奇怪的要求&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="技术" scheme="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>XSS</title>
@@ -419,32 +442,6 @@
       
     
     
-    
-    
-    <category term="技术" scheme="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>汇编</title>
-    <link href="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/11/%E6%B1%87%E7%BC%96/"/>
-    <id>https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/2024/10/11/%E6%B1%87%E7%BC%96/</id>
-    <published>2024-10-11T09:48:50.000Z</published>
-    <updated>2025-01-21T13:57:08.849Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;汇编语言的组成：&lt;/p&gt;
-&lt;p&gt;1.&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="技术" scheme="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
     <category term="技术" scheme="https://github.com/zhewanyiershinicheng/zhewanyiershinicheng.github.io/tags/%E6%8A%80%E6%9C%AF/"/>
