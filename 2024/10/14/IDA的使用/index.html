@@ -1,0 +1,126 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"/><meta name="theme-color" content="#222"/><meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/><meta name="renderer" content="webkit"/><link rel="icon" type="image/ico" sizes="32x32" href="/assets/favicon.ico"/><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"/><link rel="alternate" href="/rss.xml" title="这就是--Potato" type="application/rss+xml"><link rel="alternate" href="/atom.xml" title="这就是--Potato" type="application/atom+xml"><link rel="alternate" type="application/json" title="这就是--Potato" href="https://zhewanyiershinicheng.github.io/feed.json"/><link rel="preconnect" href="https://s4.zstatic.net"/><link rel="preconnect" href="https://at.alicdn.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CFredericka%20the%20Great:400,400italic,700,700italic%7CNoto%20Serif%20JP:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic%7CInconsolata:400,400italic,700,700italic&display=swap&subset=latin,latin-ext" media="none" onload="this.media&#x3D;&#39;all&#39;"><link rel="stylesheet" href="/css/app.css?v=0.4.17"><link rel="modulepreload" href="/js/chunk-4WOL5AEA.js"></link><link rel="modulepreload" href="/js/chunk-M2OVB55D.js"></link><link rel="modulepreload" href="/js/chunk-OEHKNEWL.js"></link><link rel="modulepreload" href="/js/copy-tex-JCSSB3EK.js"></link><link rel="modulepreload" href="/js/index.esm-H3NZFZ46.js"></link><link rel="modulepreload" href="/js/post-RFOLAXHH.js"></link><link rel="modulepreload" href="/js/quicklink-LPV2RIEA.js"></link><link rel="modulepreload" href="/js/siteInit.js"></link><link rel="preload" href="https://tva1.sinaimg.cn/large/6833939bly1gicitcxhpij20zk0m8hdt.jpg" as="image" fetchpriority="high"><link rel="preload" href="https://tva1.sinaimg.cn/large/6833939bly1gicis081o9j20zk0m8dmr.jpg" as="image" fetchpriority="high"><link rel="preload" href="https://tva1.sinaimg.cn/large/6833939bly1giciszlczyj20zk0m816d.jpg" as="image" fetchpriority="high"><link rel="preload" href="https://tva1.sinaimg.cn/large/6833939bly1giciryrr3rj20zk0m8nhk.jpg" as="image" fetchpriority="high"><link rel="preload" href="https://tva1.sinaimg.cn/large/6833939bly1gicit4jrvuj20zk0m8785.jpg" as="image" fetchpriority="high"><link rel="preload" href="https://tva1.sinaimg.cn/large/6833939bly1gicis3attqj20zk0m8k7l.jpg" as="image" fetchpriority="high"><meta name="keywords" content="《舰舰的奇妙冒险》"/><meta name="description" content="bug依旧很多，反正我忍不了"/><link rel="canonical" href="https://zhewanyiershinicheng.github.io/2024/10/14/IDA%E7%9A%84%E4%BD%BF%E7%94%A8/"><title>IDA</title><meta name="generator" content="Hexo 7.3.0"></head><body itemscope itemtype="http://schema.org/WebPage"><div id="loading"><div class="cat"><div class="body"></div><div class="head"><div class="face"></div></div><div class="foot"><div class="tummy-end"></div><div class="bottom"></div><div class="legs left"></div><div class="legs right"></div></div><div class="paw"><div class="hands left"></div><div class="hands right"></div></div></div></div><div id="container"><header id="header" itemscope itemtype="http://schema.org/WPHeader"><div class="inner"><div id="brand"><div class="pjax"><h1 itemprop="name headline">IDA</h1><div class="meta"><span class="item" title="创建时间：2024-10-14 13:21:05"><span class="icon"><i class="ic i-calendar"></i></span><span class="text">发表于</span><time itemprop="dateCreated datePublished" datetime="2024-10-14T13:21:05+08:00">2024-10-14</time></span><span class="item" title="本文字数"><span class="icon"><i class="ic i-pen"></i></span><span class="text">本文字数</span><span>1.9k</span><span class="text">字</span></span><span class="item" title="阅读时长"><span class="icon"><i class="ic i-clock"></i></span><span class="text">阅读时长</span><span>2 分钟</span></span></div></div></div><nav id="nav"><div class="inner"><div class="toggle"><div class="lines" aria-label="切换导航栏"><span class="line"></span><span class="line"></span><span class="line"></span></div></div><ul class="menu"><li class="item title"><a href="/" rel="start">tamato</a></li></ul><ul class="right" id="rightNav"><li class="item theme"><i class="ic i-sun"></i></li><li class="item search"><i class="ic i-search"></i></li></ul></div></nav></div><div class="pjax" id="imgs"><ul><li class="item" style="background-image: url(&quot;https://tva1.sinaimg.cn/large/6833939bly1gicitcxhpij20zk0m8hdt.jpg&quot;);"></li><li class="item" style="background-image: url(&quot;https://tva1.sinaimg.cn/large/6833939bly1gicis081o9j20zk0m8dmr.jpg&quot;);"></li><li class="item" style="background-image: url(&quot;https://tva1.sinaimg.cn/large/6833939bly1giciszlczyj20zk0m816d.jpg&quot;);"></li><li class="item" style="background-image: url(&quot;https://tva1.sinaimg.cn/large/6833939bly1giciryrr3rj20zk0m8nhk.jpg&quot;);"></li><li class="item" style="background-image: url(&quot;https://tva1.sinaimg.cn/large/6833939bly1gicit4jrvuj20zk0m8785.jpg&quot;);"></li><li class="item" style="background-image: url(&quot;https://tva1.sinaimg.cn/large/6833939bly1gicis3attqj20zk0m8k7l.jpg&quot;);"></li></ul></div></header><div id="waves"><svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path></defs><g class="parallax"><use xlink:href="#gentle-wave" x="48" y="0"></use><use xlink:href="#gentle-wave" x="48" y="3"></use><use xlink:href="#gentle-wave" x="48" y="5"></use><use xlink:href="#gentle-wave" x="48" y="7"></use></g></svg></div><main><div class="inner"><div class="pjax" id="main"><div class="article wrap"><div class="breadcrumb" itemListElement itemscope itemtype="https://schema.org/BreadcrumbList"><i class="ic i-home"></i><span><a href="/">首页</a></span><i class="ic i-angle-right"></i><span class="current" itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem"><a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="item" rel="index" title="分类于技术"><span itemprop="name">技术<meta itemprop="position" content="0"/></span></a></span></div><article class="post block" itemscope="itemscope" itemtype="http://schema.org/Article" lang="zh-cn"><link itemprop="mainEntityOfPage" href="https://zhewanyiershinicheng.github.io/2024/10/14/IDA%E7%9A%84%E4%BD%BF%E7%94%A8/"/><span hidden="hidden" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person"><meta itemprop="image" content="/assets/avatar.jpg"/><meta itemprop="name" content="开船的"/><meta itemprop="description" content="真的假的？, bug依旧很多，反正我忍不了"/></span><span hidden="hidden" itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organization"><meta itemprop="name" content="这就是--Potato"/></span><div class="body md" itemprop="articleBody"><h1 id="ida"><a class="anchor" href="#ida">#</a> IDA</h1>
+<p>ida 插件环境：</p>
+<p>1. 至少 Python3.8</p>
+<p>2. 多个使用 IDA 目录下的 idaplyswitch.exe</p>
+<p>插件：</p>
+<p>直接把 xxx.py 放到目录的 plugins 目录</p>
+<p>KeyPatch (修改汇编)</p>
+<blockquote>
+<p>依赖安装：pip install keystone-engine</p>
+</blockquote>
+<p>LazyIDA (提取，批量修改)</p>
+<p><em>至于用 64 还是 32，可以用查壳软件直接看</em></p>
+<p><em>在 linux 下也可以使用 file 命令</em></p>
+<p><em>但是实际上可以试错，不是直接打不开然后提醒，就是反汇编时会提醒</em></p>
+<h2 id="function-窗口"><a class="anchor" href="#function-窗口">#</a> function 窗口</h2>
+<p><strong>按 G 可以地址导航，按 TAB 显示伪代码</strong></p>
+<p><strong>在该窗口中使用 Ctrl+F 就可以用关键字查找</strong></p>
+<p>这里包含了分析出的所有函数</p>
+<p>IDAview</p>
+<p>图形窗口</p>
+<p>会显示控制流，按空格切换为文本模式，这是按照线性地址</p>
+<p>分析一般从 main 开始，但是万一 main 函数名字没有识别到</p>
+<p>可以根据输出的内容来定位地址（去字符串窗口找），然后定位函数</p>
+<h2 id="字符串窗口"><a class="anchor" href="#字符串窗口">#</a> 字符串窗口</h2>
+<p><strong>shift+12</strong></p>
+<p><strong>在该窗口中使用 Ctrl+F 也可以用关键字查找（其实所有表格窗口都可以）</strong></p>
+<p>它包括了所有已识别的字符串</p>
+<p><strong>选中按 U 取消已定义的标识符，按 A 重建，按 X 显示所有引用选中的字符串的地方</strong></p>
+<h2 id="hex-view"><a class="anchor" href="#hex-view">#</a> hex view</h2>
+<p>动态调试时显示内存数据，正常是显示静态数据</p>
+<h2 id="importsexports"><a class="anchor" href="#importsexports">#</a> imports/exports</h2>
+<p>导入导出表</p>
+<p>显示引用的 api，使用里面的函数</p>
+<p>分析动态链接库时，同时要看导出的函数</p>
+<p>程序入口会被 ida 当成一个叫做 start 的导出函数</p>
+<p>在运行时 start 先被初始化，然后调用 main 函数</p>
+<h2 id="其他玩意儿"><a class="anchor" href="#其他玩意儿">#</a> 其他玩意儿</h2>
+<h4 id="重命名函数"><a class="anchor" href="#重命名函数">#</a> 重命名函数：</h4>
+<p>ida 反编译的有时名字不太对，为了方便看，所以建议重命名<br />
+（自己要猜一猜可能是什么库函数）</p>
+<p>选中，然后按 N</p>
+<h1 id="ida动态调试"><a class="anchor" href="#ida动态调试">#</a> IDA 动态调试</h1>
+<p>作用：</p>
+<p>验证静态分析结果</p>
+<p>观察程序运行时数据</p>
+<h2 id="支持的特性"><a class="anchor" href="#支持的特性">#</a> 支持的特性：</h2>
+<h3 id="1软件硬件条件脚本断点"><a class="anchor" href="#1软件硬件条件脚本断点">#</a> 1. 软件 / 硬件 / 条件 / 脚本断点</h3>
+<p>设置断点，点前面，或者选中按 F2</p>
+<p>在伪代码设断点，可能会导致有些没执行（断点会在函数传参时）</p>
+<p>软件：IDA 在地址上设置断点（0xCC）, 到达后在恢复</p>
+<p>硬件断点：通过 CPU 抛出错误来断点</p>
+<p>条件断点：到达后执行特定脚本，并返回真表示被命中</p>
+<p>脚本断点：基本和上面一样，但是返回值永远是假</p>
+<h3 id="2步入步过步出执行到光标位置"><a class="anchor" href="#2步入步过步出执行到光标位置">#</a> 2. 步入 / 步过 / 步出 / 执行到光标位置 /</h3>
+<p>步入：进入 call 函数（F7）</p>
+<p>步过：直接到 call 函数的返回地址（F8）</p>
+<p>步出：中断函数回到其调用者（执行到返回）（Ctrl+F7）</p>
+<p>执行到光标位置：直接执行到选中位值（实际上是设置临时断点）(F4)</p>
+<p>设置代码执行位置：用于跳过不想执行的代码（Ctrl+N）</p>
+<p>注意 scanf 会强行暂停等待输入</p>
+<h3 id="3汇编级伪代码源码调试代码级支持"><a class="anchor" href="#3汇编级伪代码源码调试代码级支持">#</a> 3. 汇编级 / 伪代码 / 源码 / 调试代码级支持</h3>
+<p>IDA 会在存在源代码时自动导入，但是不如直接用 VS 之类的集成开发软件</p>
+<h3 id="4寄存器内存读写"><a class="anchor" href="#4寄存器内存读写">#</a> 4. 寄存器 / 内存读写</h3>
+<p>不是很方便，建议装上面插件</p>
+<h3 id="5启动进程附加调试"><a class="anchor" href="#5启动进程附加调试">#</a> 5. 启动进程 / 附加调试</h3>
+<p>启动调试可以每一步调试，也可以调试初始化代码（如果没有反调试）</p>
+<p>附加调试不能调试初始化代码，但是有些程序是子程序，不附加环境不一样</p>
+<p>也用来调试动态库以及绕过一些反调试</p>
+<p>注：附加可以用 Ctrl+F 快速查找要附加到的程序</p>
+<h3 id="6内存窗口"><a class="anchor" href="#6内存窗口">#</a> 6. 内存窗口</h3>
+<p>在窗口中按 G 跳转到特定地址（自己提前复制）</p>
+<p>按 F2 修改内存（无插件时），可以输入十六进制数字，再按 F2 保存修改</p>
+<p>用 LazyIDA 时，进入编辑模式时右键可以选 pastedata，这样可以用 ascll 模式</p>
+<p>但是这玩意儿不会自己不 00，所以还要自己加</p>
+<h3 id="7模块窗口"><a class="anchor" href="#7模块窗口">#</a> 7. 模块窗口</h3>
+<p>显示模块列表</p>
+<p>Debuger--&gt;Debuger Windows--&gt;Modules</p>
+<p>在 Windows 上是 dll,Linux 上是 so</p>
+<h2 id="远程调试"><a class="anchor" href="#远程调试">#</a> 远程调试</h2>
+<p>安装环境：</p>
+<p>在安装目录下的 debugsrv 目录，选择对应系统的 sever，复制到目标环境运行（子系统必须是 wsl2）</p>
+<p>为了方便可以加到 path 里</p>
+<pre><code>echo $PATH
+//调试目录就是执行目录
+</code></pre>
+<p>配置：</p>
+<p>Debuger--&gt;process options</p>
+<p>Host 填 Linux 地址（wsl 会自动填回环地址）</p>
+<p>Port 就填 Linux 上显示的监听端口</p>
+<p>其他不要填</p>
+<p>如果修改的代码，记得删掉重新上传</p>
+</div><footer><div class="meta"><span class="item"><span class="icon"><i class="ic i-calendar-check"></i></span><span class="text">更新于</span><time title="修改时间：2024-10-28 22:05:54" itemprop="dateModified" datetime="2024-10-28T22:05:54+08:00">2024-10-28</time></span></div><div class="reward"><button><i class="ic i-heartbeat"></i>赞赏</button><p>请我喝[茶]~(￣▽￣)~*</p><div id="qr"><div><img loading="lazy" data-src="/assets/wechatpay.png" alt="开船的 微信支付"/><p>微信支付</p></div><div><img loading="lazy" data-src="/assets/alipay.png" alt="开船的 支付宝"/><p>支付宝</p></div></div></div><div id="copyright"><ul><li class="author"><strong>本文作者：</strong>这玩意儿是昵称<i class="ic i-at"><em>@</em></i>这就是--Potato</li><li class="link"><strong>本文链接：</strong><a href="https://zhewanyiershinicheng.github.io/2024/10/14/IDA%E7%9A%84%E4%BD%BF%E7%94%A8/" title="IDA">https://zhewanyiershinicheng.github.io/2024/10/14/IDA的使用/</a></li><li class="license"><strong>版权声明：</strong>本站所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li></ul></div></footer></article></div><div class="post-nav"><div class="item left"><a href="/2024/10/14/C%E7%AC%94%E8%AE%B02SE/" rel="prev" itemprop="url" data-background-image="&#x2F;C%E7%AC%94%E8%AE%B02SE" title="C笔记2SE"><span class="type">上一篇</span><span class="category"><i class="ic i-flag"></i>技术</span><h3>C笔记2SE</h3></a></div><div class="item right"><a href="/2024/10/15/%E4%B8%8D%E6%98%AF%EF%BC%8C%E5%BE%AE%E8%BD%AF%EF%BC%8C%E4%BD%A0%E6%9D%A5%E7%9C%9F%E7%9A%84%EF%BC%9F/" rel="next" itemprop="url" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicis081o9j20zk0m8dmr.jpg" title="不是，微软，你来真的？"><span class="type">下一篇</span><span class="category"><i class="ic i-flag"></i>离谱</span><h3>不是，微软，你来真的？</h3></a></div></div><div class="wrap" id="comments"></div></div><div id="sidebar"><div class="inner"><div class="panels"><div class="inner"><div class="contents panel pjax" data-title="文章目录"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ida"><span class="toc-number">1.</span> <span class="toc-text"> IDA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#function-%E7%AA%97%E5%8F%A3"><span class="toc-number">1.1.</span> <span class="toc-text"> function 窗口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AA%97%E5%8F%A3"><span class="toc-number">1.2.</span> <span class="toc-text"> 字符串窗口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hex-view"><span class="toc-number">1.3.</span> <span class="toc-text"> hex view</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#importsexports"><span class="toc-number">1.4.</span> <span class="toc-text"> imports&#x2F;exports</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E7%8E%A9%E6%84%8F%E5%84%BF"><span class="toc-number">1.5.</span> <span class="toc-text"> 其他玩意儿</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E5%91%BD%E5%90%8D%E5%87%BD%E6%95%B0"><span class="toc-number">1.5.0.1.</span> <span class="toc-text"> 重命名函数：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ida%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95"><span class="toc-number">2.</span> <span class="toc-text"> IDA 动态调试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%AF%E6%8C%81%E7%9A%84%E7%89%B9%E6%80%A7"><span class="toc-number">2.1.</span> <span class="toc-text"> 支持的特性：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E8%BD%AF%E4%BB%B6%E7%A1%AC%E4%BB%B6%E6%9D%A1%E4%BB%B6%E8%84%9A%E6%9C%AC%E6%96%AD%E7%82%B9"><span class="toc-number">2.1.1.</span> <span class="toc-text"> 1. 软件 &#x2F; 硬件 &#x2F; 条件 &#x2F; 脚本断点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E6%AD%A5%E5%85%A5%E6%AD%A5%E8%BF%87%E6%AD%A5%E5%87%BA%E6%89%A7%E8%A1%8C%E5%88%B0%E5%85%89%E6%A0%87%E4%BD%8D%E7%BD%AE"><span class="toc-number">2.1.2.</span> <span class="toc-text"> 2. 步入 &#x2F; 步过 &#x2F; 步出 &#x2F; 执行到光标位置 &#x2F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E6%B1%87%E7%BC%96%E7%BA%A7%E4%BC%AA%E4%BB%A3%E7%A0%81%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95%E4%BB%A3%E7%A0%81%E7%BA%A7%E6%94%AF%E6%8C%81"><span class="toc-number">2.1.3.</span> <span class="toc-text"> 3. 汇编级 &#x2F; 伪代码 &#x2F; 源码 &#x2F; 调试代码级支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E5%AF%84%E5%AD%98%E5%99%A8%E5%86%85%E5%AD%98%E8%AF%BB%E5%86%99"><span class="toc-number">2.1.4.</span> <span class="toc-text"> 4. 寄存器 &#x2F; 内存读写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E5%90%AF%E5%8A%A8%E8%BF%9B%E7%A8%8B%E9%99%84%E5%8A%A0%E8%B0%83%E8%AF%95"><span class="toc-number">2.1.5.</span> <span class="toc-text"> 5. 启动进程 &#x2F; 附加调试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E5%86%85%E5%AD%98%E7%AA%97%E5%8F%A3"><span class="toc-number">2.1.6.</span> <span class="toc-text"> 6. 内存窗口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E6%A8%A1%E5%9D%97%E7%AA%97%E5%8F%A3"><span class="toc-number">2.1.7.</span> <span class="toc-text"> 7. 模块窗口</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95"><span class="toc-number">2.2.</span> <span class="toc-text"> 远程调试</span></a></li></ol></li></ol></div><div class="related panel pjax" data-title="系列文章"><ul><li ><a href="/2024/10/11/MySQL/" rel="bookmark" title="MySQL">MySQL</a></li><li ><a href="/2024/10/11/%E6%B1%87%E7%BC%96/" rel="bookmark" title="汇编">汇编</a></li><li ><a href="/2024/10/12/%E6%8A%80%E6%9C%AF/" rel="bookmark" title="技术">技术</a></li><li  class="active"><a href="/2024/10/14/IDA%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="bookmark" title="IDA">IDA</a></li><li ><a href="/2024/10/14/C%E7%AC%94%E8%AE%B02SE/" rel="bookmark" title="C笔记2SE">C笔记2SE</a></li><li ><a href="/2024/10/14/JavaScript/" rel="bookmark" title="JavaScript">JavaScript</a></li><li ><a href="/2024/10/14/C%E7%AC%94%E8%AE%B01ultrasuper/" rel="bookmark" title="C笔记ultra">C笔记ultra</a></li><li ><a href="/2024/10/14/HTML/" rel="bookmark" title="HTML">HTML</a></li><li ><a href="/2025/01/22/Linux/" rel="bookmark" title="Linux">Linux</a></li><li ><a href="/2025/02/04/SQL%E6%B3%A8%E5%85%A5/" rel="bookmark" title="SQL注入">SQL注入</a></li><li ><a href="/2025/02/05/XSS/" rel="bookmark" title="XSS">XSS</a></li><li ><a href="/2025/02/15/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" rel="bookmark" title="文件上传漏洞">文件上传漏洞</a></li></ul></div><div class="overview panel" data-title="站点概览"><div class="author" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person"><img class="image" loading="lazy" decoding="async" itemprop="image" alt="开船的" src="/assets/avatar.jpg"/><p class="name" itemprop="name">开船的</p><div class="description" itemprop="description">bug依旧很多，反正我忍不了</div></div><nav class="state"><div class="item posts"><a href="/archives/"><span class="count">19</span><span class="name">文章</span></a></div><div class="item categories"><a href="/categories/"><span class="count">4</span><span class="name">分类</span></a></div><div class="item tags"><a href="/tags/"><span class="count">4</span><span class="name">标签</span></a></div></nav><div class="social"><a target="_blank" rel="noopener" href="https://github.com/zhewanyiershinicheng" class="item github" title="https:&#x2F;&#x2F;github.com&#x2F;zhewanyiershinicheng"><i class="ic i-github"></i></a></div><div class="menu"><li class="item"><a href="/" rel="section"><i class="ic i-home"></i>首页</a></li></div></div></div></div><ul id="quick"><li class="prev pjax"><a href="/2024/10/15/%E4%B8%8D%E6%98%AF%EF%BC%8C%E5%BE%AE%E8%BD%AF%EF%BC%8C%E4%BD%A0%E6%9D%A5%E7%9C%9F%E7%9A%84%EF%BC%9F/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a></li><li class="up"><i class="ic i-arrow-up"></i></li><li class="down"><i class="ic i-arrow-down"></i></li><li class="next pjax"><a href="/2024/10/14/C%E7%AC%94%E8%AE%B02SE/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a></li><li class="percent"></li></ul></div></div><div class="dimmer"></div></div></main><footer id="footer"><div class="inner"><div class="widgets"><div class="rpost pjax"><h2>随机文章</h2><ul><li class="item"><div class="breadcrumb"><a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于技术">技术</a></div><span><a href="/2024/10/11/%E6%B1%87%E7%BC%96/">汇编</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于技术">技术</a></div><span><a href="/2024/10/11/MySQL/">MySQL</a></span></li><li class="item"><div class="breadcrumb"></div><span><a href="/2025/03/06/hello-world/">Hello World</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于技术">技术</a></div><span><a href="/2024/10/14/C%E7%AC%94%E8%AE%B01ultrasuper/">C笔记ultra</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E7%A6%BB%E8%B0%B1/" title="分类于离谱">离谱</a></div><span><a href="/2024/10/15/%E4%B8%8D%E6%98%AF%EF%BC%8C%E5%BE%AE%E8%BD%AF%EF%BC%8C%E4%BD%A0%E6%9D%A5%E7%9C%9F%E7%9A%84%EF%BC%9F/">不是，微软，你来真的？</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于技术">技术</a></div><span><a href="/2025/02/04/SQL%E6%B3%A8%E5%85%A5/">SQL注入</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于技术">技术</a></div><span><a href="/2025/02/05/XSS/">XSS</a></span></li><li class="item"><div class="breadcrumb"></div><span><a href="/2024/10/11/%E5%9C%9F%E8%B1%86%E7%9B%B4%E6%92%AD%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81/">土豆直播</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于技术">技术</a></div><span><a href="/2025/02/15/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">文件上传漏洞</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于技术">技术</a></div><span><a href="/2024/10/14/HTML/">HTML</a></span></li></ul></div><div class="rpost pjax"><h2>最新评论</h2></div></div><div class="status"><div class="copyright">&copy; 2022 -<span itemprop="copyrightYear">2025</span><span class="with-love"><i class="ic i-sakura rotate"></i></span><span class="author" itemprop="copyrightHolder">开船的 @ tamato</span></div><div class="count"><span class="post-meta-item-icon"><i class="ic i-chart-area"></i></span><span title="站点总字数">121k 字</span><span class="post-meta-divider"> | </span><span class="post-meta-item-icon"><i class="ic i-coffee"></i></span><span title="站点阅读时长">1:50</span></div><div class="powered-by">基于 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & Theme.<a target="_blank" rel="noopener" href="https://github.com/theme-shoka-x/hexo-theme-shokaX/">ShokaX</a></div></div></div></footer></div><script data-config type="text/javascript">var LOCAL = {
+    ispost: true,
+        path: `2024/10/14/IDA的使用/`,
+        favicon: {
+        show: `（●´3｀●）やれやれだぜ`,
+        hide: `(´Д｀)大変だ！`
+    },
+    search: {
+        placeholder: "文章搜索",
+        empty: "关于 「 ${query} 」，什么也没搜到",
+        stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    copy_tex: false,
+    katex: false,
+    mermaid: false,
+    audio: undefined,
+    fancybox: true,
+    nocopy: false,
+    outime: true,
+    template: `<div class="note warning"><p><span class="label warning">文章时效性提示</span><br>这是一篇发布于 {{publish}} 天前，最后一次更新在 {{updated}} 天前的文章，部分信息可能已经发生改变，请注意甄别。</p></div>`,
+    quiz: {
+        choice: `单选题`,
+        multiple: `多选题`,
+        true_false: `判断题`,
+        essay: `问答题`,
+        gap_fill: `填空题`,
+        mistake: `错题备注`
+    },
+    ignores: [
+        (uri) => uri.includes('#'),
+        (uri) => new RegExp(LOCAL.path + '$').test(uri),
+            []
+    ]
+};
+</script><script src="https://s4.zstatic.net/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous" fetchpriority="high"></script><script src="https://s4.zstatic.net/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha384-ZvpUoO&#x2F;+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn&#x2F;6Z&#x2F;hRTt8+pR6L4N2" crossorigin="anonymous" fetchpriority="high"></script><script src="/js/siteInit.js?v=0.4.17" type="module" fetchpriority="high" defer></script></body></html>

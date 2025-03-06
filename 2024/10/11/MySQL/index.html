@@ -1,0 +1,810 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"/><meta name="theme-color" content="#222"/><meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/><meta name="renderer" content="webkit"/><link rel="icon" type="image/ico" sizes="32x32" href="/assets/favicon.ico"/><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"/><link rel="alternate" href="/rss.xml" title="这就是--Potato" type="application/rss+xml"><link rel="alternate" href="/atom.xml" title="这就是--Potato" type="application/atom+xml"><link rel="alternate" type="application/json" title="这就是--Potato" href="https://zhewanyiershinicheng.github.io/feed.json"/><link rel="preconnect" href="https://s4.zstatic.net"/><link rel="preconnect" href="https://at.alicdn.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CFredericka%20the%20Great:400,400italic,700,700italic%7CNoto%20Serif%20JP:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic%7CInconsolata:400,400italic,700,700italic&display=swap&subset=latin,latin-ext" media="none" onload="this.media&#x3D;&#39;all&#39;"><link rel="stylesheet" href="/css/app.css?v=0.4.17"><link rel="modulepreload" href="/js/chunk-4WOL5AEA.js"></link><link rel="modulepreload" href="/js/chunk-M2OVB55D.js"></link><link rel="modulepreload" href="/js/chunk-OEHKNEWL.js"></link><link rel="modulepreload" href="/js/copy-tex-JCSSB3EK.js"></link><link rel="modulepreload" href="/js/index.esm-H3NZFZ46.js"></link><link rel="modulepreload" href="/js/post-RFOLAXHH.js"></link><link rel="modulepreload" href="/js/quicklink-LPV2RIEA.js"></link><link rel="modulepreload" href="/js/siteInit.js"></link><link rel="preload" href="/" as="image" fetchpriority="high"><link rel="preload" href="M" as="image" fetchpriority="high"><link rel="preload" href="y" as="image" fetchpriority="high"><link rel="preload" href="S" as="image" fetchpriority="high"><link rel="preload" href="Q" as="image" fetchpriority="high"><link rel="preload" href="L" as="image" fetchpriority="high"><meta name="keywords" content="SQL"/><meta name="description" content="bug依旧很多，反正我忍不了"/><link rel="canonical" href="https://zhewanyiershinicheng.github.io/2024/10/11/MySQL/"><title>MySQL</title><meta name="generator" content="Hexo 7.3.0"></head><body itemscope itemtype="http://schema.org/WebPage"><div id="loading"><div class="cat"><div class="body"></div><div class="head"><div class="face"></div></div><div class="foot"><div class="tummy-end"></div><div class="bottom"></div><div class="legs left"></div><div class="legs right"></div></div><div class="paw"><div class="hands left"></div><div class="hands right"></div></div></div></div><div id="container"><header id="header" itemscope itemtype="http://schema.org/WPHeader"><div class="inner"><div id="brand"><div class="pjax"><h1 itemprop="name headline">MySQL</h1><div class="meta"><span class="item" title="创建时间：2024-10-11 17:48:50"><span class="icon"><i class="ic i-calendar"></i></span><span class="text">发表于</span><time itemprop="dateCreated datePublished" datetime="2024-10-11T17:48:50+08:00">2024-10-11</time></span><span class="item" title="本文字数"><span class="icon"><i class="ic i-pen"></i></span><span class="text">本文字数</span><span>21k</span><span class="text">字</span></span><span class="item" title="阅读时长"><span class="icon"><i class="ic i-clock"></i></span><span class="text">阅读时长</span><span>19 分钟</span></span></div></div></div><nav id="nav"><div class="inner"><div class="toggle"><div class="lines" aria-label="切换导航栏"><span class="line"></span><span class="line"></span><span class="line"></span></div></div><ul class="menu"><li class="item title"><a href="/" rel="start">tamato</a></li></ul><ul class="right" id="rightNav"><li class="item theme"><i class="ic i-sun"></i></li><li class="item search"><i class="ic i-search"></i></li></ul></div></nav></div><div class="pjax" id="imgs"><ul><li class="item" style="background-image: url(&quot;/&quot;);"></li><li class="item" style="background-image: url(&quot;M&quot;);"></li><li class="item" style="background-image: url(&quot;y&quot;);"></li><li class="item" style="background-image: url(&quot;S&quot;);"></li><li class="item" style="background-image: url(&quot;Q&quot;);"></li><li class="item" style="background-image: url(&quot;L&quot;);"></li></ul></div></header><div id="waves"><svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path></defs><g class="parallax"><use xlink:href="#gentle-wave" x="48" y="0"></use><use xlink:href="#gentle-wave" x="48" y="3"></use><use xlink:href="#gentle-wave" x="48" y="5"></use><use xlink:href="#gentle-wave" x="48" y="7"></use></g></svg></div><main><div class="inner"><div class="pjax" id="main"><div class="article wrap"><div class="breadcrumb" itemListElement itemscope itemtype="https://schema.org/BreadcrumbList"><i class="ic i-home"></i><span><a href="/">首页</a></span><i class="ic i-angle-right"></i><span class="current" itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem"><a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="item" rel="index" title="分类于技术"><span itemprop="name">技术<meta itemprop="position" content="0"/></span></a></span></div><article class="post block" itemscope="itemscope" itemtype="http://schema.org/Article" lang="zh-cn"><link itemprop="mainEntityOfPage" href="https://zhewanyiershinicheng.github.io/2024/10/11/MySQL/"/><span hidden="hidden" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person"><meta itemprop="image" content="/assets/avatar.jpg"/><meta itemprop="name" content="开船的"/><meta itemprop="description" content="真的假的？, bug依旧很多，反正我忍不了"/></span><span hidden="hidden" itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organization"><meta itemprop="name" content="这就是--Potato"/></span><div class="body md" itemprop="articleBody"><div class="gallery" itemscope="itemscope" itemtype="http://schema.org/ImageGallery"><img loading="lazy" decoding="async" data-src="/MySQL" itemprop="contentUrl"/></div><h1 id="mysql"><a class="anchor" href="#mysql">#</a> MySQL</h1>
+<h2 id="基本术语"><a class="anchor" href="#基本术语">#</a> 基本术语</h2>
+<p>列：具有相同数据类型的数据的集合</p>
+<p>行：每一行用来描述某条记录的具体信息</p>
+<p>冗余：存储两倍数据。冗余降低了性能，但提高了数据的安全性</p>
+<p>主键：主键是唯一的，一个数据表只能由一个主键。可以用主键查询信息</p>
+<p>外键： 一个表中的一列或多列，这些列的值必须与另一个表（通常称为主表）中的主键或唯一键的值相匹配，或者为空值。包含外键的表称为从表（或子表），被引用的表称为主表（或父表）。</p>
+<p>复合键：复合键（组合键）将多个列组成一个索引键，一般用于复合索引</p>
+<p>索引：使用索引可快速访问数据表中的特定信息，索引是数据库中由一列或多列的值进行排序的结构。相当于书籍的目录。</p>
+<p>参照完整性：参照的完整性要求关系中不允许引入不存在的实体。</p>
+<p>值：行的具体信息，每个值必须与该列的数据类型相同</p>
+<p>键：键的值在当前列中具有唯一性</p>
+<p><img loading="lazy" data-src="1737622524881.png" alt="1737622524881" /></p>
+<h2 id="管理"><a class="anchor" href="#管理">#</a> 管理</h2>
+<p>Windows:</p>
+<p>启动 / 关闭</p>
+<p>去找 <strong>services.msc</strong></p>
+<p>或者使用命令 net start/stop mysql</p>
+<p>Linux:</p>
+<h3 id="启动关闭"><a class="anchor" href="#启动关闭">#</a> 启动 / 关闭</h3>
+<pre><code>sudo systemctl start/stop mysql
+</code></pre>
+<p>在一些老旧的版本：</p>
+<pre><code>sudo service mysql start/stop
+</code></pre>
+<h3 id="重启"><a class="anchor" href="#重启">#</a> 重启</h3>
+<pre><code>sudo systemctl restart mysql
+</code></pre>
+<p>或者</p>
+<pre><code>sudo service mysql restart
+</code></pre>
+<h3 id="检查状态"><a class="anchor" href="#检查状态">#</a> 检查状态</h3>
+<pre><code>sudo systemctl status mysql
+</code></pre>
+<p>或者</p>
+<pre><code>sudo service mysql status
+</code></pre>
+<h3 id="用户设置"><a class="anchor" href="#用户设置">#</a> 用户设置</h3>
+<h4 id="创建"><a class="anchor" href="#创建">#</a> 创建</h4>
+<pre><code class="language-mysql">CREATE USER 'username'@'host' IDENTIFIED BY 'password';
+</code></pre>
+<ul>
+<li><code>username</code> ：用户名。</li>
+<li><code>host</code> ：指定用户可以从哪些主机连接。例如， <code>localhost</code>  仅允许本地连接， <code>%</code>  允许从任何主机连接。</li>
+<li><code>password</code> ：用户的密码。</li>
+</ul>
+<p>例如：</p>
+<pre><code class="language-mysql">CREATE USER 'john'@'localhost' IDENTIFIED BY 'password123';
+</code></pre>
+<h4 id="删除"><a class="anchor" href="#删除">#</a> 删除</h4>
+<pre><code class="language-mysql">DROP USER 'username'@'host';
+</code></pre>
+<h4 id="修改密码"><a class="anchor" href="#修改密码">#</a> 修改密码</h4>
+<pre><code>ALTER USER 'username'@'host' IDENTIFIED BY 'new_password';
+</code></pre>
+<h4 id="修改用户主机"><a class="anchor" href="#修改用户主机">#</a> 修改用户主机</h4>
+<pre><code class="language-mysql">-- 删除旧用户
+DROP USER 'john'@'localhost';
+
+-- 重新创建用户并指定新的主机
+CREATE USER 'john'@'%' IDENTIFIED BY 'password123';
+</code></pre>
+<h4 id="授权"><a class="anchor" href="#授权">#</a> 授权</h4>
+<pre><code class="language-mysql">GRANT privileges ON database_name.* TO 'username'@'host';
+</code></pre>
+<ul>
+<li><code>privileges</code> ：所需的权限，如  <code>ALL PRIVILEGES</code> 、 <code>SELECT</code> 、 <code>INSERT</code> 、 <code>UPDATE</code> 、 <code>DELETE</code>  等。</li>
+<li><code>database_name.*：</code> 表示对某个数据库或表授予权限。 <code>database_name.*</code>  表示对整个数据库的所有表授予权限， <code>database_name.table_name</code>  表示对指定的表授予权限。</li>
+<li><code>TO 'username'@'host'</code> ：指定授予权限的用户和主机。</li>
+</ul>
+<p>例如：</p>
+<pre><code class="language-mysql">GRANT ALL PRIVILEGES ON test_db.* TO 'john'@'localhost';
+</code></pre>
+<h4 id="授权或者撤权都要刷新才能生效"><a class="anchor" href="#授权或者撤权都要刷新才能生效">#</a> 授权或者撤权都要刷新才能生效：</h4>
+<pre><code class="language-mysql">FLUSH PRIVILEGES;
+</code></pre>
+<h4 id="查权"><a class="anchor" href="#查权">#</a> 查权</h4>
+<pre><code class="language-mysql">SHOW GRANTS FOR 'username'@'host';
+</code></pre>
+<h4 id="撤权"><a class="anchor" href="#撤权">#</a> 撤权</h4>
+<pre><code class="language-mysql">REVOKE ALL PRIVILEGES ON test_db.* FROM 'john'@'localhost';
+</code></pre>
+<h4 id="创建并指定权限"><a class="anchor" href="#创建并指定权限">#</a> 创建并指定权限</h4>
+<pre><code class="language-mysql">CREATE USER 'john'@'localhost' IDENTIFIED BY 'password123' WITH GRANT OPTION;  //加上这句
+GRANT ALL PRIVILEGES ON test_db.* TO 'john'@'localhost';
+</code></pre>
+<h4 id="etcmycnf-文件配置"><a class="anchor" href="#etcmycnf-文件配置">#</a> /etc/my.cnf 文件配置</h4>
+<p><img loading="lazy" data-src="1737720361989.png" alt="1737720361989" /></p>
+<p><img loading="lazy" data-src="1737720387003.png" alt="1737720387003" /></p>
+<h3 id="管理命令"><a class="anchor" href="#管理命令">#</a> 管理命令</h3>
+<p>1.use 数据库名</p>
+<p>​		使用该命令后所有 Mysql 命令都只针对该数据库</p>
+<p>2.SHOW DATABASES</p>
+<p>​		显示所有数据库列表</p>
+<p>3.SHOW TABLES</p>
+<p>​		显示某数据库的所有表（所以要先 use）</p>
+<p>4.SHOW COLUMNS FROM 数据表</p>
+<p>​		 显示数据表的属性，属性类型，主键信息 ，是否为 NULL，默认值等其		他信息</p>
+<p>5.SHOW INDEX FROM 数据表</p>
+<p>​		显示索引，包括主键</p>
+<p>6.SHOW TABLE STATUS [FROM db_name] [LIKE 'pattern'] \G</p>
+<p>​		该命令将输出 Mysql 数据库管理系统的性能及统计信息。</p>
+<p>例如：</p>
+<pre><code class="language-mysql">SHOW TABLE STATUS FROM 数据库名;
+SHOW TABLE STATUS from RUNOOB LIKE 'runoob%'; 
+#显示以runoob%开头的表的信息
+SHOW TABLE STATUS from RUNOOB LIKE 'runoob%'\G;
+#\G，查询结果按列打印
+</code></pre>
+<h2 id="php语法"><a class="anchor" href="#php语法">#</a> PHP 语法</h2>
+<h3 id="1连接"><a class="anchor" href="#1连接">#</a> 1. 连接</h3>
+<figure class="highlight php"><figcaption data-lang="PHP"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token php language-php"><span class="token delimiter important">&lt;?php</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token variable">$servername</span> <span class="token operator">=</span> <span class="token string double-quoted-string">"localhost"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token variable">$username</span> <span class="token operator">=</span> <span class="token string double-quoted-string">"your_username"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token variable">$password</span> <span class="token operator">=</span> <span class="token string double-quoted-string">"your_password"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token variable">$database</span> <span class="token operator">=</span> <span class="token string double-quoted-string">"your_database"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre> </pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token comment">// 创建连接</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token variable">$conn</span> <span class="token operator">=</span> <span class="token function">mysqli_connect</span><span class="token punctuation">(</span><span class="token variable">$servername</span><span class="token punctuation">,</span> <span class="token variable">$username</span><span class="token punctuation">,</span> <span class="token variable">$password</span><span class="token punctuation">,</span> <span class="token variable">$database</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre> </pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token comment">// 检测连接，可见 mysqli_connect 是有返回值的</span></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token variable">$conn</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"连接失败: "</span> <span class="token operator">.</span> <span class="token function">mysqli_connect_error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre><span class="token punctuation">&#125;</span> </pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token keyword">echo</span> <span class="token string double-quoted-string">"连接成功"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre><span class="token delimiter important">?></span></span></pre></td></tr></table></figure><p>其中的函数格式和部分功能：</p>
+<figure class="highlight php"><figcaption data-lang="PHP"></figcaption><table><tr><td data-num="1"></td><td><pre>函数定义：<span class="token function">mysqli_function</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span>value<span class="token punctuation">,</span><span class="token operator">...</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><figure class="highlight php"><figcaption data-lang="PHP"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">mysqli_connect</span><span class="token punctuation">(</span><span class="token variable">$connect</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token function">mysqli_query</span><span class="token punctuation">(</span><span class="token variable">$connect</span><span class="token punctuation">,</span><span class="token string double-quoted-string">"SQL 语句"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token function">mysqli_fetch_array</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token function">mysqli_close</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token comment">// 都是内置的函数</span></pre></td></tr></table></figure><h4 id="二进制连接"><a class="anchor" href="#二进制连接">#</a> 二进制连接</h4>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>mysql <span class="token parameter variable">-u</span> your_username <span class="token parameter variable">-p</span></pre></td></tr><tr><td data-num="2"></td><td><pre>//-u 指定用户名，-p 要输入密码</pre></td></tr></table></figure><h4 id="使用脚本连接"><a class="anchor" href="#使用脚本连接">#</a> 使用脚本连接</h4>
+<figure class="highlight php"><figcaption data-lang="PHP"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">mysqli_connect</span><span class="token punctuation">(</span>host<span class="token punctuation">,</span> username<span class="token punctuation">,</span> password<span class="token punctuation">,</span> dbname<span class="token punctuation">,</span>port<span class="token punctuation">,</span> socket<span class="token punctuation">)</span><span class="token punctuation">;</span>  </pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token comment">// 都是可选参数，没有就不写。其中只有 port 是 int，其他都是字符串</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment">/* 套接字（socket）是一种进程间通信机制。当脚本就在服务器上时，使用这个</pre></td></tr><tr><td data-num="4"></td><td><pre>不用经过网络套接字（通过 TCP/IP 协议），而是使用 UNIX 套接字（所以在 windows 系统上，这个参数会被忽略）。*/</span></pre></td></tr><tr><td data-num="5"></td><td><pre>其实就是不用网络，在本机进程间通信连接</pre></td></tr><tr><td data-num="6"></td><td><pre>注意：这是个指向<span class="token operator">.</span>socket文件的路径</pre></td></tr><tr><td data-num="7"></td><td><pre>所以，如果用这玩意儿，就不用指定port了，可以直接设置为<span class="token constant">null</span></pre></td></tr></table></figure><p>在 PHP8.0 以上，可以使用命名参数来保证正确传参，参数名就是上面那几个</p>
+<p>mysqli_close () 函数来断开与 MySQL 数据库的链接。</p>
+<figure class="highlight php"><figcaption data-lang="PHP"></figcaption><table><tr><td data-num="1"></td><td><pre>函数定义：<span class="token keyword type-declaration">bool</span> <span class="token function">mysqli_close</span> <span class="token punctuation">(</span> <span class="token class-name type-declaration">mysqli</span> <span class="token variable">$link</span> <span class="token punctuation">)</span></pre></td></tr></table></figure><p>该函数只有一个参数为 mysqli_connect () 函数创建连接成功后返回的 <strong>MySQL 连接标识符</strong>（mysqli_connect 的返回值）。</p>
+<p>例如：</p>
+<figure class="highlight php"><figcaption data-lang="PHP"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token variable">$link</span> <span class="token operator">=</span> <span class="token function">mysqli_connect</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"localhost"</span><span class="token punctuation">,</span> <span class="token string double-quoted-string">"username"</span><span class="token punctuation">,</span> <span class="token string double-quoted-string">"password"</span><span class="token punctuation">,</span> <span class="token string double-quoted-string">"database"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token variable">$link</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"连接失败: "</span><span class="token operator">.</span> <span class="token function">mysqli_connect_error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token comment">// 执行一些数据库操作</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token comment">// 显式关闭连接</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token function">mysqli_close</span><span class="token punctuation">(</span><span class="token variable">$link</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token comment">// 不给参数，就关闭最近打开的一个</span></pre></td></tr></table></figure><h3 id="2退出"><a class="anchor" href="#2退出">#</a> 2. 退出</h3>
+<p><code>EXIT;</code>  或者 <code>QUIT;</code>  或者快捷键 <code>ctrl +D</code></p>
+<h2 id="操作数据库"><a class="anchor" href="#操作数据库">#</a> 操作数据库</h2>
+<h3 id="0查看已有数据库"><a class="anchor" href="#0查看已有数据库">#</a> 0. 查看已有数据库</h3>
+<pre><code class="language-mysql">SHOW DATABASES;
+</code></pre>
+<h3 id="1创建"><a class="anchor" href="#1创建">#</a> 1. 创建</h3>
+<pre><code class="language-mysql">CREATE DATABASE [IF NOT EXISTS] 数据库名;
+如果要指定选项，可以加上其他参数：
+CREATE DATABASE mydatabase
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_general_ci;
+指定字符集和排列顺序。
+如果不加IF NOT EXISTS并且存在该数据库，会报错
+</code></pre>
+<h4 id="使用-mysqladmin"><a class="anchor" href="#使用-mysqladmin">#</a> 使用 mysqladmin</h4>
+<p>注：mysqladmin 是个命令</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>mysqladmin <span class="token parameter variable">-u</span> your_username <span class="token parameter variable">-p</span> create your_database</pre></td></tr><tr><td data-num="2"></td><td><pre>如果要指定选项，可以加上特定参数：</pre></td></tr><tr><td data-num="3"></td><td><pre>mysqladmin <span class="token parameter variable">-u</span> your_username <span class="token parameter variable">-p</span> create your_database <span class="token punctuation">\</span></pre></td></tr><tr><td data-num="4"></td><td><pre>  --default-character-set<span class="token operator">=</span>utf8mb4 <span class="token punctuation">\</span></pre></td></tr><tr><td data-num="5"></td><td><pre>  --default-collation<span class="token operator">=</span>utf8mb4_general_ci</pre></td></tr><tr><td data-num="6"></td><td><pre>作用同上</pre></td></tr></table></figure><p>如果是普通用户，可能要特定权限</p>
+<p>这个命令行可以使用 SQL 的命令：</p>
+<pre><code class="language-mysql">mysqladmin -u your_username -p your_command
+例如：
+mysqladmin -u your_username -p status
+</code></pre>
+<h4 id="使用php脚本"><a class="anchor" href="#使用php脚本">#</a> 使用 PHP 脚本</h4>
+<pre><code class="language-mysql">mysqli_query(connection,query,resultmode);
+也有返回值,也是用于判断是否成功
+</code></pre>
+<p>除了最后一个，都是必须项。</p>
+<p><strong>connection：就是 $connt，也就是 mysqli_connet (...)</strong></p>
+<p>query：查询字符串，也就是 SQL 语句。</p>
+<p>resultmode：这是常量，只能填以下两个之一：</p>
+<p>​						 MYSQLI_USE_RESULT （检索大量数据时用）</p>
+<p>​						 MYSQLI_STORE_RESULT （默认）</p>
+<h3 id="2删除"><a class="anchor" href="#2删除">#</a> 2. 删除</h3>
+<pre><code class="language-mysql">DROP DATABASE [IF EXISTS] &lt;database_name&gt;;
+同样，如果不加IF EXISTS，删除不存在的，会报错
+</code></pre>
+<p>// 这是不可逆的</p>
+<h4 id="使用-mysqladmin-2"><a class="anchor" href="#使用-mysqladmin-2">#</a> 使用 mysqladmin</h4>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>mysqladmin <span class="token parameter variable">-u</span> your_username <span class="token parameter variable">-p</span> drop your_database</pre></td></tr></table></figure><h4 id="使用php脚本-2"><a class="anchor" href="#使用php脚本-2">#</a> 使用 PHP 脚本</h4>
+<p>还是用：</p>
+<figure class="highlight php"><figcaption data-lang="PHP"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">mysqli_query</span><span class="token punctuation">(</span>connection<span class="token punctuation">,</span>query<span class="token punctuation">,</span>resultmode<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><p>显而易见：</p>
+<p>此时的 $query 就是 DROP DATABASE [IF EXISTS] &lt;database_name&gt;;</p>
+<h3 id="3选择"><a class="anchor" href="#3选择">#</a> 3. 选择</h3>
+<h4 id="使用命令行"><a class="anchor" href="#使用命令行">#</a> 使用命令行</h4>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>mysql <span class="token parameter variable">-u</span> root -p<span class="token punctuation">;</span> //执行完这个，就会进入mysql提示符</pre></td></tr><tr><td data-num="2"></td><td><pre>use <span class="token operator">&lt;</span>database name<span class="token operator">></span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">;</span>                   //其他操作命令</pre></td></tr></table></figure><p>use 语句可以换成命令中的 - D 参数，变成：</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>mysql <span class="token parameter variable">-u</span> your_username <span class="token parameter variable">-p</span> <span class="token parameter variable">-D</span> your_database</pre></td></tr></table></figure><h4 id="使用php脚本-3"><a class="anchor" href="#使用php脚本-3">#</a> 使用 php 脚本</h4>
+<figure class="highlight php"><figcaption data-lang="PHP"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">mysqli_select_db</span><span class="token punctuation">(</span>connection<span class="token punctuation">,</span>dbname<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token comment">// 都是必填项</span></pre></td></tr></table></figure><h5 id="一个实例"><a class="anchor" href="#一个实例">#</a> 一个实例</h5>
+<pre><code class="language-php+HTML">&lt;?php
+$dbhost = 'localhost';  // mysql服务器主机地址
+$dbuser = 'root';            // mysql用户名
+$dbpass = '123456';          // mysql用户名密码
+$conn = mysqli_connect($dbhost, $dbuser, $dbpass);
+if(! $conn )
+&#123;
+    die('连接失败: ' . mysqli_error($conn));
+&#125;
+echo '连接成功';
+mysqli_select_db($conn, 'RUNOOB' );
+mysqli_close($conn);
+?&gt;
+</code></pre>
+<h2 id="数据类型"><a class="anchor" href="#数据类型">#</a> 数据类型</h2>
+<h3 id="数值类型"><a class="anchor" href="#数值类型">#</a> 数值类型</h3>
+<p>几个不太一样的地方：</p>
+<p>int 分为：tinyint（1Bytes）,smallint（2）,mediumint（3）,int（4）,bigint（8）</p>
+<p>多了一个</p>
+<p><code>DECIMAL</code>  类型，用于表示小数：</p>
+<p>对于 DECIMAL (M,D) ，如果 M&gt;D，为 M+2 否则为 D+2</p>
+<h3 id="日期和时间类型"><a class="anchor" href="#日期和时间类型">#</a> 日期和时间类型</h3>
+<p>DATE （3）：YYYY-MM-DD</p>
+<p>TIME（3）：HH:MM:SS</p>
+<p>YEAR（1）：YYYY</p>
+<p>DATATIME（8）：YYYY-MM-DD hh:mm:ss</p>
+<p>TIMESTAMP（4）：同上   // 这就是时间戳</p>
+<h3 id="字符串类型"><a class="anchor" href="#字符串类型">#</a> 字符串类型</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">大小</th>
+<th style="text-align:left">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">CHAR</td>
+<td style="text-align:left">0-255 bytes</td>
+<td style="text-align:left">定长字符串</td>
+</tr>
+<tr>
+<td style="text-align:left">VARCHAR</td>
+<td style="text-align:left">0-65535 bytes</td>
+<td style="text-align:left">变长字符串</td>
+</tr>
+<tr>
+<td style="text-align:left">TINYBLOB</td>
+<td style="text-align:left">0-255 bytes</td>
+<td style="text-align:left">不超过 255 个字符的二进制字符串</td>
+</tr>
+<tr>
+<td style="text-align:left">TINYTEXT</td>
+<td style="text-align:left">0-255 bytes</td>
+<td style="text-align:left">短文本字符串</td>
+</tr>
+<tr>
+<td style="text-align:left">BLOB</td>
+<td style="text-align:left">0-65 535 bytes</td>
+<td style="text-align:left">二进制形式的长文本数据</td>
+</tr>
+<tr>
+<td style="text-align:left">TEXT</td>
+<td style="text-align:left">0-65 535 bytes</td>
+<td style="text-align:left">长文本数据</td>
+</tr>
+<tr>
+<td style="text-align:left">MEDIUMBLOB</td>
+<td style="text-align:left">0-16 777 215 bytes</td>
+<td style="text-align:left">二进制形式的中等长度文本数据</td>
+</tr>
+<tr>
+<td style="text-align:left">MEDIUMTEXT</td>
+<td style="text-align:left">0-16 777 215 bytes</td>
+<td style="text-align:left">中等长度文本数据</td>
+</tr>
+<tr>
+<td style="text-align:left">LONGBLOB</td>
+<td style="text-align:left">0-4 294 967 295 bytes</td>
+<td style="text-align:left">二进制形式的极大文本数据</td>
+</tr>
+<tr>
+<td style="text-align:left">LONGTEXT</td>
+<td style="text-align:left">0-4 294 967 295 bytes</td>
+<td style="text-align:left">极大文本数据</td>
+</tr>
+</tbody>
+</table>
+<h3 id="others"><a class="anchor" href="#others">#</a> others</h3>
+<h4 id="枚举与集合类型"><a class="anchor" href="#枚举与集合类型">#</a> 枚举与集合类型</h4>
+<ul>
+<li><strong>ENUM</strong>: 枚举类型，用于存储单一值，可以选择一个预定义的集合。</li>
+<li><strong>SET</strong>: 集合类型，用于存储多个值，可以选择多个预定义的集合。</li>
+</ul>
+<h4 id="空间数据类型"><a class="anchor" href="#空间数据类型">#</a> 空间数据类型</h4>
+<p>GEOMETRY, POINT, LINESTRING, POLYGON, MULTIPOINT, MULTILINESTRING, MULTIPOLYGON, GEOMETRYCOLLECTION: 用于存储空间数据（地理信息、几何图形等）。</p>
+<h2 id="使用数据库"><a class="anchor" href="#使用数据库">#</a> 使用数据库</h2>
+<h3 id="0查看已有数据表列"><a class="anchor" href="#0查看已有数据表列">#</a> 0. 查看已有数据表 / 列</h3>
+<pre><code class="language-mysql">SHOW TABLES; 
+SHOW TABLE STATUS;  //这是看表类型（ENGING等）
+SHOW COLUMNS FROM table_name;  //这是看表结构，不是数据
+</code></pre>
+<p>不加 S 的话，要写具体名称或者模糊匹配。 <code>\G</code>  以竖排显示</p>
+<h3 id="1创建数据表"><a class="anchor" href="#1创建数据表">#</a> 1. 创建数据表</h3>
+<p>必须提供：</p>
+<ul>
+<li>表名</li>
+<li>表字段名</li>
+<li>定义每个表字段的数据类型</li>
+</ul>
+<p>SQL 语法：</p>
+<pre><code class="language-mysql">CREATE TABLE table_name (
+    column1 datatype,
+    column2 datatype,
+    ...
+);
+//column是列名
+</code></pre>
+<p>可以加子句：</p>
+<pre><code class="language-mysql">CREATE TABLE mytable (
+    id INT PRIMARY KEY,
+    name VARCHAR(50)
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+</code></pre>
+<h4 id="sql实例"><a class="anchor" href="#sql实例">#</a> SQL 实例</h4>
+<pre><code class="language-mysql">CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    birthdate DATE,
+    is_active BOOLEAN DEFAULT TRUE
+);
+//AUTO_INCREMENT PRIMARY KEY,设定该列自增长(1,2,3...)，且是主键
+（这两者一般同时出现）
+注意：每个表只能有一个 AUTO_INCREMENT 列，必须为整数类型
+	即使删除了表中最大自增值的记录，下一次插入新记录时，自增值仍然会继续
+	递增，不会复用已删除的自增值。
+	起始值默认为1，但可以用`ALTER TABLE users AUTO_INCREMENT = 100;`改
+//NOT NULL，这项必填
+//DEFAULT TRUE，设定默认值为TRUE
+以上三行都是附加的属性
+</code></pre>
+<h4 id="通过命令行"><a class="anchor" href="#通过命令行">#</a> 通过命令行</h4>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>mysql <span class="token parameter variable">-u</span> root <span class="token parameter variable">-p</span> <span class="token parameter variable">-D</span> <span class="token operator">&lt;</span>database name<span class="token operator">></span></pre></td></tr><tr><td data-num="2"></td><td><pre>//接下来进了SQL命令行，当然就是写SQL语句。</pre></td></tr></table></figure><blockquote>
+<p>注意：mySQL 命令行中，回车不是结束， <code>;</code>  才是。</p>
+<p>因此，写不下时可以随意换行</p>
+</blockquote>
+<h4 id="通过php脚本"><a class="anchor" href="#通过php脚本">#</a> 通过 PHP 脚本</h4>
+<p>还是  <code>mysqli_query(connection,query,resultmode);</code></p>
+<h3 id="2删除数据表数据"><a class="anchor" href="#2删除数据表数据">#</a> 2. 删除数据表 [数据]</h3>
+<pre><code class="language-mysql">DROP TABLE [IF EXISTS] table_name; //这是直接删表
+TRUNCATE TABLE table_name;         //这是删表数据（保留结构，数据全删）
+DELETE FROM table_name WHERE condition; //这也是删表数据（保留结构，加条件可不全删）
+注意：TURUNCATE是直接释放数据页的空间，没有详细的删除的日志，因此不能触发任何触发器，也不能事务回滚
+但是更加高效，delete是逐行删除，会触发，能回滚，但更低效
+</code></pre>
+<p>使用命令行和 PHP 脚本，同上</p>
+<h3 id="3插入表数据"><a class="anchor" href="#3插入表数据">#</a> 3. 插入表数据</h3>
+<pre><code class="language-mysql">INSERT INTO table_name (column1, column2, column3, ...)
+VALUES (value1, value2, value3, ...);
+</code></pre>
+<p>//value 若是字符型，要写成 <code>'value'</code></p>
+<p>// 如果插入所有列，可以省略列名。此时第一个要写 NULL, 因为它是那个自增长列的占位符。当然也可以第一行写 0（接下来同理），要不然会变来变去。</p>
+<h4 id="插入多行"><a class="anchor" href="#插入多行">#</a> 插入多行</h4>
+<p>实例：</p>
+<pre><code class="language-mysql">INSERT INTO users (username, email, birthdate, is_active)
+VALUES
+    ('test1', 'test1@runoob.com', '1985-07-10', true),
+    ('test2', 'test2@runoob.com', '1988-11-25', false),
+    ('test3', 'test3@runoob.com', '1993-05-03', true);
+</code></pre>
+<p>使用命令行和 PHP 脚本，同上，这之后的也都是同上</p>
+<p>但是，如果插入的数据中有中文，必须先执行</p>
+<figure class="highlight php"><figcaption data-lang="PHP"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">mysqli_query</span><span class="token punctuation">(</span><span class="token variable">$conn</span> <span class="token punctuation">,</span> <span class="token string double-quoted-string">"set names utf8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>或者使用<span class="token constant">PHP</span>函数</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token function">mysqli_set_charset</span><span class="token punctuation">(</span><span class="token variable">$conn</span><span class="token punctuation">,</span> <span class="token string double-quoted-string">"utf8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> </pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment">// 它会同时设置：</span></pre></td></tr><tr><td data-num="5"></td><td><pre>character_set_client：客户端发送数据时使用的字符编码。</pre></td></tr><tr><td data-num="6"></td><td><pre>character_set_results：服务器返回结果集时使用的字符编码。</pre></td></tr><tr><td data-num="7"></td><td><pre>character_set_connection：连接层使用的字符编码。</pre></td></tr></table></figure><h4 id="获取自增的值"><a class="anchor" href="#获取自增的值">#</a> 获取自增的值</h4>
+<figure class="highlight php"><figcaption data-lang="PHP"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token variable">$last_id</span><span class="token operator">=</span><span class="token function">mysqli_insert_id</span><span class="token punctuation">(</span><span class="token variable">$conn</span><span class="token punctuation">)</span></pre></td></tr></table></figure><h3 id="4修改表数据"><a class="anchor" href="#4修改表数据">#</a> 4. 修改表数据</h3>
+<p><em>进行重要的结构修改时，建议先备份数据</em></p>
+<pre><code class="language-mysql">UPDATE table_name
+SET column1 = value1, column2 = value2, ...
+WHERE condition;   //where子句可选，没有就会更新所有行
+</code></pre>
+<h4 id="替换某个字段中的某个字符"><a class="anchor" href="#替换某个字段中的某个字符">#</a> 替换某个字段中的某个字符</h4>
+<blockquote>
+<p>当我们需要将字段中的特定字符串批量修改为其他字符串时，可使用以下操作：</p>
+</blockquote>
+<blockquote>
+<pre><code class="language-mysql">UPDATE table_name SET field=REPLACE(field, 'old-string', 'new-string') 
+[WHERE Clause];
+</code></pre>
+</blockquote>
+<h3 id="5修改表名结构类型"><a class="anchor" href="#5修改表名结构类型">#</a> 5. 修改表名 / 结构 / 类型</h3>
+<h4 id="添加列主键"><a class="anchor" href="#添加列主键">#</a> 添加列 / 主键</h4>
+<pre><code class="language-mysql">ALTER TABLE table_name
+ADD COLUMN new_column_name datatype;
+以及
+ALTER TABLE table_name
+ADD PRIMARY KEY (column_name);
+以及
+ALTER TABLE testalter_tbl ENGINE = MYISAM;
+</code></pre>
+<h4 id="添加外键"><a class="anchor" href="#添加外键">#</a> 添加外键</h4>
+<pre><code class="language-mysql">ALTER TABLE child_table
+ADD CONSTRAINT fk_name
+FOREIGN KEY (column_name)           
+REFERENCES parent_table (column_name);
+</code></pre>
+<h4 id="修改数据类型"><a class="anchor" href="#修改数据类型">#</a> 修改数据类型</h4>
+<pre><code class="language-mysql">ALTER TABLE TABLE_NAME
+MODIFY COLUMN column_name new_datatype;
+</code></pre>
+<h4 id="修改列表名"><a class="anchor" href="#修改列表名">#</a> 修改列 / 表名</h4>
+<pre><code class="language-mysql">ALTER TABLE table_name
+CHANGE COLUMN old_column_name new_column_name datatype;
+-- 可以顺手改数据类型
+以及
+ALTER TABLE old_table_name
+RENAME TO new_table_name;
+</code></pre>
+<h4 id="删除列"><a class="anchor" href="#删除列">#</a> 删除列</h4>
+<pre><code class="language-mysql">ALTER TABLE table_name
+DROP COLUMN column_name;
+</code></pre>
+<h4 id="修改字段类型及名称"><a class="anchor" href="#修改字段类型及名称">#</a> 修改字段类型及名称</h4>
+<p>可以使用上面的 CHANGE 子句</p>
+<p>也可以用 MODIFY 子句</p>
+<pre><code>ALTER TABLE testalter_tbl MODIFY c CHAR(10);
+等同于
+ALTER TABLE testalter_tbl CHANGE c c CHAR(10);
+只不过MODIFY子句不能顺便改名
+</code></pre>
+<p>这两者修改时都可以附带上 NOT NULL，DEFAULT 等</p>
+<p>例如：</p>
+<pre><code class="language-mysql">ALTER TABLE testalter_tbl MODIFY j BIGINT NOT NULL DEFAULT 100;
+</code></pre>
+<h4 id="修改删除默认值等"><a class="anchor" href="#修改删除默认值等">#</a> 修改 / 删除默认值等</h4>
+<pre><code class="language-mysql">ALTER TABLE testalter_tbl ALTER i SET DEFAULT 1000;
+以及
+ALTER TABLE testalter_tbl ALTER i DROP DEFAULT/PRIMARY KEY;
+</code></pre>
+<h3 id="6读取查询表数据"><a class="anchor" href="#6读取查询表数据">#</a> 6. 读取 / 查询表数据</h3>
+<h4 id="读取"><a class="anchor" href="#读取">#</a> 读取</h4>
+<pre><code class="language-mysql">select * from 数据表名;   //可以多表`,`分开
+</code></pre>
+<h4 id="查询"><a class="anchor" href="#查询">#</a> 查询</h4>
+<pre><code class="language-mysql">SELECT column1, column2, ...
+FROM table_name                   //可以多表`,`分开
+[WHERE condition]
+[ORDER BY column_name [ASC | DESC]]
+[LIMIT N][offset M];
+</code></pre>
+<ul>
+<li>使用  <code>*</code>  表示选择所有列。</li>
+<li><code>WHERE condition</code>  是一个可选的子句，用于指定过滤条件，只返回符合条件的行。</li>
+<li><code>ORDER BY column_name [ASC | DESC]</code>  可选子句，指定结果集的排序顺序，默认升序（ASC）。</li>
+<li><code>LIMIT N</code>  可选子句，返回 N 条记录</li>
+<li><code>offset N </code> 可选子句，跳过 M 条记录</li>
+</ul>
+<blockquote>
+<p>limit M offset N;</p>
+<p>相当于</p>
+<p>limit N,M;</p>
+</blockquote>
+<h5 id="获取数据"><a class="anchor" href="#获取数据">#</a> 获取数据</h5>
+<h6 id="1使用-mysqli_fetch_array-mysqli_assoc"><a class="anchor" href="#1使用-mysqli_fetch_array-mysqli_assoc">#</a> 1. 使用 mysqli_fetch_array MYSQLI_ASSOC</h6>
+<p><strong>按行获取</strong>，一次只从返回的数据中获取一行</p>
+<p>MYSQLI_ASSOC 是返回<strong>关联数组</strong></p>
+<p>也可以用 MYSQLI_NUM ，返回<strong>数字数组</strong>。区别不大，只不过是把下面的<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mi>o</mi><mi>w</mi><msup><mo stretchy="false">[</mo><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mi>i</mi><msup><mi>d</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">]</mo><mtext>改成</mtext></mrow><annotation encoding="application/x-tex">row[&#x27;id&#x27;]改成</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0019em;vertical-align:-0.25em;"></span><span class="mord mathnormal">ro</span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mopen"><span class="mopen">[</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord mathnormal">i</span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mclose">]</span><span class="mord cjk_fallback">改成</span></span></span></span> row [0]</p>
+<figure class="highlight php"><figcaption data-lang="PHP"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token operator">...</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token variable">$sql</span> <span class="token operator">=</span> <span class="token string double-quoted-string">"SELECT id, name, age FROM users"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token variable">$result</span> <span class="token operator">=</span> <span class="token function">mysqli_query</span><span class="token punctuation">(</span><span class="token variable">$conn</span><span class="token punctuation">,</span> <span class="token variable">$sql</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">mysqli_num_rows</span><span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token comment">// 使用 mysqli_fetch_array 结合 MYSQLI_ASSOC 获取数据</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token variable">$row</span> <span class="token operator">=</span> <span class="token function">mysqli_fetch_array</span><span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">,</span> <span class="token constant">MYSQLI_ASSOC</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token keyword">echo</span> <span class="token string double-quoted-string">"ID: "</span><span class="token operator">.</span> <span class="token variable">$row</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'id'</span><span class="token punctuation">]</span><span class="token operator">.</span> <span class="token string double-quoted-string">", 姓名: "</span><span class="token operator">.</span> <span class="token variable">$row</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'name'</span><span class="token punctuation">]</span><span class="token operator">.</span> <span class="token string double-quoted-string">", 年龄: "</span><span class="token operator">.</span> <span class="token variable">$row</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'age'</span><span class="token punctuation">]</span><span class="token operator">.</span> <span class="token string double-quoted-string">"&lt;br>"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token punctuation">&#125;</span><span class="token comment">// 没行了会返回 false</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    <span class="token keyword">echo</span> <span class="token string double-quoted-string">"没有找到记录"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token operator">...</span></pre></td></tr></table></figure><h6 id="2使用-mysqli_fetch_assoc"><a class="anchor" href="#2使用-mysqli_fetch_assoc">#</a> 2. 使用 mysqli_fetch_assoc</h6>
+<p>没行返回 null，但是也可以结束 while</p>
+<p><code>mysqli_fetch_assoc($result)</code> , 返回的直接是关联数组</p>
+<p>相当于</p>
+<p><code>mysqli_fetch_array($result,MYSQLI_ASSOC) </code></p>
+<h6 id="3内存释放"><a class="anchor" href="#3内存释放">#</a> 3. 内存释放</h6>
+<figure class="highlight php"><figcaption data-lang="PHP"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token operator">...</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token variable">$retval</span> <span class="token operator">=</span> <span class="token function">mysqli_query</span><span class="token punctuation">(</span> <span class="token variable">$conn</span><span class="token punctuation">,</span> <span class="token variable">$sql</span> <span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token operator">...</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token function">mysqli_free_result</span><span class="token punctuation">(</span><span class="token variable">$retval</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><h5 id="where子句"><a class="anchor" href="#where子句">#</a> where 子句</h5>
+<p>类似于 if 语句，判断真假，使用 <code>AND</code>  和 <code>OR</code>  组合， <code>LIKE</code>  模糊匹配</p>
+<p>一般的：</p>
+<pre><code class="language-mysql">...WHERE username = 'test';
+...salary &gt;= 50000;
+</code></pre>
+<p>对于日期时间类型：</p>
+<pre><code class="language-mysql">...WHERE order_date BETWEEN '2023-01-01' AND '2023-12-31';
+</code></pre>
+<p>对于可空的：</p>
+<pre><code class="language-mysql">...WHERE email IS [NOT] NULL;
+</code></pre>
+<p>默认的字符串比较不区分大小写（非 like 子句），如果要，写成：</p>
+<pre><code class="language-mysql">...WHERE BINARY...
+</code></pre>
+<h5 id="like子句"><a class="anchor" href="#like子句">#</a> LIKE 子句</h5>
+<p>代替等号用于 where 子句（或者 having 子句）</p>
+<p>可使用的通配符包括：</p>
+<p><code>%</code> 	表示没有或者有任意个任意字符</p>
+<p><code>_</code> 	表示一个任意字符</p>
+<p>其他匹配方式：</p>
+<p><code>[]</code> / <code>[^]</code> 	类似正则表达式，查询内容包含通配符时，可以用这个括起</p>
+<p>可以组合使用，比如：a% o_</p>
+<p>like 子句是否区分大小写取决于字符集</p>
+<p>不区分是：</p>
+<blockquote>
+<p>SELECT * FROM employees WHERE last_name LIKE 'smi%' <strong>COLLATE utf8mb4_general_ci</strong>;</p>
+</blockquote>
+<h4 id="合并查询数据union"><a class="anchor" href="#合并查询数据union">#</a> 合并查询数据（UNION）</h4>
+<pre><code class="language-mysql">SELECT column1, column2, ... FROM table1 WHERE condition1
+UNION           //加中间就行，可以叠叠乐
+SELECT column1, column2, ... FROM table2 WHERE condition2
+[ORDER BY column1, column2, ...];  //可选，排序合并后的数据
+</code></pre>
+<p>注意：1. 会自动去除重复行（使用<strong> UNION ALL</strong> 则不会，性能还会更好）。</p>
+<p>​			2. 每个 SELECT 语句的列数和对应位置的数据类型必须相同（即使来自不同表）。</p>
+<h4 id="排序"><a class="anchor" href="#排序">#</a> 排序</h4>
+<p>ORDER BY 子句，排序查询后的数据</p>
+<pre><code class="language-mysql">SELECT column1, column2, ...
+FROM table_name
+ORDER BY column1 [ASC | DESC], column2 [ASC | DESC], ...;
+</code></pre>
+<p>默认 ASC（升序）。DESC 是降序</p>
+<p>像上面那个多列排序，就是先按 column1, 再按 column2</p>
+<p>可以不用列名而用数字表示列的位置，例如：</p>
+<pre><code class="language-mysql">ORDER BY 3 DESC, 1 ASC;
+</code></pre>
+<p>8.0 以上的版本，末尾有可选参数：</p>
+<p><code>NULLS FIRST</code>  或 <code>NULLS LAST</code>   ，表示排序时 NULL 的位置</p>
+<blockquote>
+<p>注意：</p>
+<p>如果字符集是 utf-8，而不是 GBK，排序时要先转码：</p>
+<pre><code class="language-mysql">SELECT * 
+FROM runoob_tbl
+ORDER BY CONVERT(runoob_title using gbk);
+</code></pre>
+</blockquote>
+<h4 id="分组"><a class="anchor" href="#分组">#</a> 分组</h4>
+<p>GROUP BY 语句根据一个或多个列对结果集进行分组。</p>
+<p>在分组的列上我们可以使用 COUNT, SUM, AVG, 等函数。</p>
+<pre><code class="language-mysql">SELECT column1, column2, aggregate_function(column3)
+FROM TABLE_NAME
+WHERE condition
+GROUP BY column1, column2;
+</code></pre>
+<h5 id="实例"><a class="anchor" href="#实例">#</a> 实例</h5>
+<pre><code class="language-mysql">SELECT customer_id, SUM(order_amount) AS total_amount
+FROM orders
+GROUP BY customer_id;
+//计算每个客户的订单总金额
+</code></pre>
+<ul>
+<li><code>GROUP BY</code>  子句通常与聚合函数一起使用，因为分组后需要对每个组进行聚合操作。</li>
+<li><code>SELECT</code>  子句中的列通常<strong>要么是分组列</strong>（ <code>GROUP BY</code>  使用的列），<strong>要么是聚合函数的参数</strong>。</li>
+<li>可以使用多个列进行分组，只需在  <code>GROUP BY</code>  子句中用逗号分隔列名即可。</li>
+</ul>
+<p>聚合函数：</p>
+<p>如  <code>SUM</code> 、 <code>AVG</code> 、 <code>COUNT</code> 、 <code>MIN</code> 、 <code>MAX</code>  等，用于对每个分组的数据进行汇总计算。</p>
+<h5 id="使用with-rollup"><a class="anchor" href="#使用with-rollup">#</a> 使用 WITH ROLLUP</h5>
+<p>可选子句，实现在分组统计数据基础上再进行相同的统计</p>
+<p>对比一下：</p>
+<blockquote>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>mysql<span class="token operator">></span> SELECT name,SUM<span class="token punctuation">(</span>signin<span class="token punctuation">)</span> as signin_count FROM employee_tbl GROUP BY name WITH ROLLUP<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>+--------+--------------+</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token operator">|</span> name   <span class="token operator">|</span> signin_count <span class="token operator">|</span></pre></td></tr><tr><td data-num="4"></td><td><pre>+--------+--------------+</pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token operator">|</span> 小丽 <span class="token operator">|</span>            <span class="token number">2</span> <span class="token operator">|</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token operator">|</span> 小明 <span class="token operator">|</span>            <span class="token number">7</span> <span class="token operator">|</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token operator">|</span> 小王 <span class="token operator">|</span>            <span class="token number">7</span> <span class="token operator">|</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token operator">|</span> NULL   <span class="token operator">|</span>           <span class="token number">16</span> <span class="token operator">|</span>      //NULL表示所有人的登录次数，因为这列相加没有意义</pre></td></tr><tr><td data-num="9"></td><td><pre>+--------+--------------+</pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token number">4</span> rows <span class="token keyword">in</span> <span class="token builtin class-name">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span></pre></td></tr></table></figure><p>以及</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>mysql<span class="token operator">></span> SELECT name, COUNT<span class="token punctuation">(</span>*<span class="token punctuation">)</span> FROM employee_tbl GROUP BY name<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>+--------+----------+</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token operator">|</span> name   <span class="token operator">|</span> COUNT<span class="token punctuation">(</span>*<span class="token punctuation">)</span> <span class="token operator">|</span></pre></td></tr><tr><td data-num="4"></td><td><pre>+--------+----------+</pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token operator">|</span> 小丽 <span class="token operator">|</span>        <span class="token number">1</span> <span class="token operator">|</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token operator">|</span> 小明 <span class="token operator">|</span>        <span class="token number">3</span> <span class="token operator">|</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token operator">|</span> 小王 <span class="token operator">|</span>        <span class="token number">2</span> <span class="token operator">|</span></pre></td></tr><tr><td data-num="8"></td><td><pre>+--------+----------+</pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token number">3</span> rows <span class="token keyword">in</span> <span class="token builtin class-name">set</span> <span class="token punctuation">(</span><span class="token number">0.01</span> sec<span class="token punctuation">)</span></pre></td></tr></table></figure><p>为了避免 NULL, 可以使用</p>
+<pre><code class="language-mysql">select coalesce(a,b,c);
+//按顺序判断是否为NULL,返回遇到的第一个非NULL值。（全NULL就返回NULL）
+</code></pre>
+<p>于是可改成：</p>
+<pre><code class="language-mysql">SELECT coalesce(name, '总数'), SUM(signin) as signin_count FROM  employee_tbl GROUP BY name WITH ROLLUP;
+</code></pre>
+</blockquote>
+<h3 id="多表查询join"><a class="anchor" href="#多表查询join">#</a> 多表查询（JOIN）</h3>
+<ul>
+<li><strong>INNER JOIN（内连接，或等值连接）</strong>：获取两个表中字段匹配关系的记录，可以简写为 JOIN。</li>
+<li>**LEFT JOIN（左连接）：** 获取左表所有记录，即使右表没有对应匹配的记录。</li>
+<li><strong>RIGHT JOIN（右连接）：</strong> 与 LEFT JOIN 相反，用于获取右表所有记录，即使左表没有对应匹配的记录。</li>
+</ul>
+<pre><code class="language-mysql">SELECT column1, column2, ...
+FROM table1
+INNER JOIN table2 
+ON table1.column_name = table2.column_name;
+//只返回两表中column_name内容相同的行
+//SELECT中的列也要写成类似于table.column的形式，不必包含ON使用的那列
+</code></pre>
+<p>可以叠叠乐：</p>
+<pre><code class="language-mysql">SELECT orders.order_id, customers.customer_name, products.product_name
+FROM orders
+INNER JOIN customers ON orders.customer_id = customers.customer_id
+INNER JOIN order_items ON orders.order_id = order_items.order_id
+INNER JOIN products ON order_items.product_id = products.product_id;
+//此时只有在四个表的所选列中都存在的才会返回对应的SELECT
+</code></pre>
+<p>LEFT/RIGHT JOIN</p>
+<p>以 LEFT JOIN 为例，RIGHT JOIN 反之</p>
+<pre><code class="language-mysql">SELECT column1, column2, ...
+FROM table1
+LEFT JOIN table2 
+ON table1.column_name = table2.column_name;
+[WHERE 条件]
+//返回左表中所有行的情况下。当右表中没有匹配的行时，相关列将显示为 NULL。
+</code></pre>
+<h3 id="null值处理"><a class="anchor" href="#null值处理">#</a> NULL 值处理</h3>
+<p>WHERE 子句</p>
+<p><code>is (not) null</code></p>
+<p>ORDER BY 子句:</p>
+<p><code>NULLS FIRST/LAST</code></p>
+<h4 id="用于比较"><a class="anchor" href="#用于比较">#</a> 用于比较</h4>
+<pre><code class="language-mysql">SELECT * FROM employees WHERE commission &lt;=&gt; NULL;
+`&lt;=&gt;`是比较表达式是否相等的特殊操作符，可以直接替换`=`
+都是NULL就返回TRUE
+注意：回值始终是NULL
+</code></pre>
+<h4 id="聚合函数"><a class="anchor" href="#聚合函数">#</a> 聚合函数</h4>
+<p>会被忽略</p>
+<p>如果想指定为特定值，可以套个 COALESCE 或者它的下位 IFNULL（只接受俩参数）</p>
+<p>例如： <code>AVG(COALESCE(salary, 0))</code>  或者 <code>AVG(IFNULL(salary, 0))</code></p>
+<h2 id="正则表达式"><a class="anchor" href="#正则表达式">#</a> 正则表达式</h2>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">模式</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">^</td>
+<td style="text-align:left">匹配输入字符串的开始位置。如果设置了 RegExp 对象的 Multiline 属性，^ 也匹配 '\n' 或 '\r' 之后的位置。</td>
+</tr>
+<tr>
+<td style="text-align:left">$</td>
+<td style="text-align:left">匹配输入字符串的结束位置。如果设置了 RegExp 对象的 Multiline 属性，$ 也匹配 '\n' 或 '\r' 之前的位置。</td>
+</tr>
+<tr>
+<td style="text-align:left">.</td>
+<td style="text-align:left">匹配除 &quot;\n&quot; 之外的任何单个字符。要匹配包括 '\n' 在内的任何字符，请使用像 '[.\n]' 的模式。</td>
+</tr>
+<tr>
+<td style="text-align:left">[...]</td>
+<td style="text-align:left">字符集合。匹配所包含的任意一个字符。例如， '[abc]' 可以匹配 &quot;plain&quot; 中的 'a'。</td>
+</tr>
+<tr>
+<td style="text-align:left">[^...]</td>
+<td style="text-align:left">负值字符集合。匹配未包含的任意字符。例如， '[^abc]' 可以匹配 &quot;plain&quot; 中的 'p'。</td>
+</tr>
+<tr>
+<td style="text-align:left">p1|p2|p3</td>
+<td style="text-align:left">匹配 p1 或 p2 或 p3。例如，'z|food' 能匹配 &quot;z&quot; 或 &quot;food&quot;。'(z|f) ood' 则匹配 &quot;zood&quot; 或 &quot;food&quot;。</td>
+</tr>
+<tr>
+<td style="text-align:left">*</td>
+<td style="text-align:left">匹配前面的子表达式零次或多次。例如，zo* 能匹配 &quot;z&quot; 以及 &quot;zoo&quot;。* 等价于 {0,}。</td>
+</tr>
+<tr>
+<td style="text-align:left">+</td>
+<td style="text-align:left">匹配前面的子表达式一次或多次。例如，'zo+' 能匹配 &quot;zo&quot; 以及 &quot;zoo&quot;，但不能匹配 &quot;z&quot;。+ 等价于 {1,}。</td>
+</tr>
+<tr>
+<td style="text-align:left" n=""></td>
+<td style="text-align:left">n 是一个非负整数。匹配确定的 n 次。例如，'o {2}' 不能匹配 &quot;Bob&quot; 中的 'o'，但是能匹配 &quot;food&quot; 中的两个 o。</td>
+</tr>
+<tr>
+<td style="text-align:left" n,m=""></td>
+<td style="text-align:left">m 和 n 均为非负整数，其中 n &lt;= m。最少匹配 n 次且最多匹配 m 次。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="正则表达式匹配的字符类"><a class="anchor" href="#正则表达式匹配的字符类">#</a> 正则表达式匹配的字符类</h3>
+<ul>
+<li><code>.</code> ：匹配任意单个字符。</li>
+<li><code>^</code> ：匹配字符串的开始。</li>
+<li><code>$</code> ：匹配字符串的结束。</li>
+<li><code>*</code> ：匹配零个或多个前面的元素。</li>
+<li><code>+</code> ：匹配一个或多个前面的元素。</li>
+<li><code>?</code> ：匹配零个或一个前面的元素。</li>
+<li><code>[abc]</code> ：匹配字符集中的任意一个字符。</li>
+<li><code>[^abc]</code> ：匹配除了字符集中的任意一个字符以外的字符。</li>
+<li><code>[a-z]</code> ：匹配范围内的任意一个小写字母。</li>
+<li><code>[0-9]</code> ：匹配一个数字字符。</li>
+<li><code>\w</code> ：匹配一个字母数字字符（包括下划线）。</li>
+<li><code>\s</code> ：匹配一个空白字符。</li>
+</ul>
+</blockquote>
+<h3 id="regexprlike"><a class="anchor" href="#regexprlike">#</a> REGEXP/RLIKE</h3>
+<p>这两者等同</p>
+<pre><code class="language-mysql">SELECT column1, column2, ...
+FROM table_name
+WHERE column_name REGEXP [BINARY] 'pattern';
+//'pattern'是一个正则表达式模式,例如：'^[aeiou]|ok$'，'item[0-9]+'等
+//使用BINARY关键字，匹配区分大小写
+</code></pre>
+<h2 id="事务"><a class="anchor" href="#事务">#</a> 事务</h2>
+<p>要么全部执行，要么都不执行</p>
+<p>用来管理 <strong>insert、update、delete</strong> 语句</p>
+<h3 id="控制语句"><a class="anchor" href="#控制语句">#</a> 控制语句</h3>
+<blockquote>
+<ul>
+<li>BEGIN 或 START TRANSACTION 显式地开启一个事务；</li>
+<li>COMMIT/COMMIT WORK，二者等价。提交事务，此时才真正修改，不可逆；</li>
+<li>ROLLBACK/ROLLBACK WORK，二者等价。结束用户的事务，并撤销正在进行的所有未提交的修改；</li>
+<li>SAVEPOINT identifier，在事务中创建保存点，可以有多个；</li>
+<li>RELEASE SAVEPOINT identifier 删除保存点，不存在时抛出异常；</li>
+<li>ROLLBACK TO identifier 把事务回滚到保存点；</li>
+<li><strong>SET TRANSACTION</strong> 用来设置事务的隔离级别。</li>
+<li><strong>SET AUTOCOMMIT=0</strong> 禁止自动提交</li>
+<li><strong>SET AUTOCOMMIT=1</strong> 开启自动提交</li>
+</ul>
+</blockquote>
+<p>实例：</p>
+<pre><code class="language-mysql">START TRANSACTION;
+UPDATE accounts SET balance = balance - 100 WHERE user_id = 1;
+UPDATE accounts SET balance = balance + 100 WHERE user_id = 2;
+-- 判断是否要提交还是回滚
+IF (条件) THEN
+    COMMIT; -- 提交事务
+ELSE
+    ROLLBACK; -- 回滚事务
+END IF;
+</code></pre>
+<h3 id="隔离级别"><a class="anchor" href="#隔离级别">#</a> 隔离级别</h3>
+<p>InnoDB 存储引擎提供事务的隔离级别有 READ UNCOMMITTED、READ COMMITTED、REPEATABLE READ 和 SERIALIZABLE。</p>
+<h4 id="读未提交"><a class="anchor" href="#读未提交">#</a> 读未提交</h4>
+<p><code>READ UNCOMMITTED</code></p>
+<p>可以读取到其他事务尚未提交的数据，最低级别</p>
+<p>可能<strong>脏读（被读取的事务最终回滚导致所读的数据无效）</strong></p>
+<h4 id="读已提交"><a class="anchor" href="#读已提交">#</a> 读已提交</h4>
+<p><code>READ COMMITTED</code></p>
+<p>只能读取到其他事务已经提交的数据</p>
+<p>不会脏读</p>
+<p>但由于不可重复读，可能导致多次读取同一数据的值不一样</p>
+<h4 id="可重复读"><a class="anchor" href="#可重复读">#</a> 可重复读</h4>
+<p><code>REPEATABLE READ</code></p>
+<p>多次读取同一数据始终保持一致 ，被读事务进行的修改和提交不会改变读取结果</p>
+<p>不会脏读</p>
+<p>可能幻读</p>
+<blockquote>
+<p>原理：</p>
+<p>可重复读默认对读取行加一个快照，此后该事务读取该行都是用快照（可以改为加共享锁）</p>
+<p>所以不脏读。</p>
+<p>但是如果其他事务增加满足查询条件的行，查询会多出一条</p>
+<p>导致幻读。</p>
+</blockquote>
+<p>// 非串行化都可能幻读</p>
+<p>// 行级锁分两种：共享锁（S 锁），其他事务可读不写；排他锁（X 锁），其他事务不</p>
+<p>读不写。一行同时只能一个锁。带有锁的行被其他事务读取时，必须等待其释放（上锁</p>
+<p>的事务提交或回滚）</p>
+<p>可以自行加锁：</p>
+<pre><code class="language-mysql">SELECT price FROM products WHERE id = 1 LOCK IN SHARE MODE;   -- 加共享锁
+SELECT price FROM products WHERE id = 1 FOR UPDATE; -- 加排他锁
+</code></pre>
+<p>如果太久不释放行级锁，等待释放的事务会收到超时报错</p>
+<p>例如：</p>
+<p>在可重复读下</p>
+<pre><code class="language-mysql">-- 事务 A 开始
+START TRANSACTION;
+-- 事务 A 读取数据
+SELECT price FROM products WHERE id = 1; -- 假设读取到价格为 100
+-- 如果改用共享锁，事务B会等待事务A释放锁
+
+-- 事务 B 开始
+START TRANSACTION;
+-- 事务 B 修改数据
+UPDATE products SET price = 200 WHERE id = 1;
+-- 事务 B 提交
+COMMIT;
+
+-- 事务 A 再次读取数据
+SELECT price FROM products WHERE id = 1; 
+-- 仍然会读取到价格为 100，因为事务 A 读取的是快照中的数据
+-- 事务 A 提交
+COMMIT;
+</code></pre>
+<p>容易死锁（互相等释放）</p>
+<pre><code class="language-mysql">-- 事务 A
+START TRANSACTION;
+SELECT price FROM products WHERE id = 1 LOCK IN SHARE MODE;
+SELECT price FROM products WHERE id = 2 FOR UPDATE; -- 尝试获取 id = 2 的排他锁
+
+-- 事务 B
+START TRANSACTION;
+SELECT price FROM products WHERE id = 2 LOCK IN SHARE MODE;
+SELECT price FROM products WHERE id = 1 FOR UPDATE; -- 尝试获取 id = 1 的排他锁
+</code></pre>
+<h4 id="串行化"><a class="anchor" href="#串行化">#</a> 串行化</h4>
+<p>串行执行，最高级别</p>
+<p>不是并发，所以不会幻读，但导致事务之间会相互阻塞，会极大地降低系统的吞吐量。</p>
+<h3 id="事务实例"><a class="anchor" href="#事务实例">#</a> 事务实例</h3>
+<pre><code class="language-php+HTML">&lt;?php
+$dbhost = 'localhost';  // mysql服务器主机地址
+$dbuser = 'root';            // mysql用户名
+$dbpass = '123456';          // mysql用户名密码
+$conn = mysqli_connect($dbhost, $dbuser, $dbpass);
+if(! $conn )
+&#123;
+    die('连接失败: ' . mysqli_error($conn));
+&#125;
+// 设置编码，防止中文乱码
+mysqli_query($conn, &quot;set names utf8&quot;);
+mysqli_select_db( $conn, 'RUNOOB' );
+mysqli_query($conn, &quot;SET AUTOCOMMIT=0&quot;); // 设置为不自动提交，因为MYSQL默认立即执行
+mysqli_begin_transaction($conn);            // 开始事务定义
+ 
+if(!mysqli_query($conn, &quot;insert into runoob_transaction_test (id) values(8)&quot;))
+&#123;
+    mysqli_query($conn, &quot;ROLLBACK&quot;);     // 判断当执行失败时回滚
+&#125;
+ 
+if(!mysqli_query($conn, &quot;insert into runoob_transaction_test (id) values(9)&quot;))
+&#123;
+    mysqli_query($conn, &quot;ROLLBACK&quot;);      // 判断执行失败时回滚
+&#125;
+mysqli_commit($conn);            //执行事务
+mysqli_close($conn);
+?&gt;
+</code></pre>
+<div class="tags"><a href="/tags/SQL/" rel="tag"><i class="ic i-tag"></i>SQL</a></div></div><footer><div class="meta"><span class="item"><span class="icon"><i class="ic i-calendar-check"></i></span><span class="text">更新于</span><time title="修改时间：2025-01-26 23:47:12" itemprop="dateModified" datetime="2025-01-26T23:47:12+08:00">2025-01-26</time></span></div><div class="reward"><button><i class="ic i-heartbeat"></i>赞赏</button><p>请我喝[茶]~(￣▽￣)~*</p><div id="qr"><div><img loading="lazy" data-src="/assets/wechatpay.png" alt="开船的 微信支付"/><p>微信支付</p></div><div><img loading="lazy" data-src="/assets/alipay.png" alt="开船的 支付宝"/><p>支付宝</p></div></div></div><div id="copyright"><ul><li class="author"><strong>本文作者：</strong>开船的<i class="ic i-at"><em>@</em></i>这就是--Potato</li><li class="link"><strong>本文链接：</strong><a href="https://zhewanyiershinicheng.github.io/2024/10/11/MySQL/" title="MySQL">https://zhewanyiershinicheng.github.io/2024/10/11/MySQL/</a></li><li class="license"><strong>版权声明：</strong>本站所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li></ul></div></footer></article></div><div class="post-nav"><div class="item left"><a href="/2024/10/11/Web%E6%96%B9%E5%90%91/" rel="prev" itemprop="url" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicitcxhpij20zk0m8hdt.jpg" title="web"><span class="type">上一篇</span><span class="category"><i class="ic i-flag"></i>发电</span><h3>web</h3></a></div><div class="item right"><a href="/2024/10/12/%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E8%AF%95%E9%AA%8C%E6%80%A7%E7%9A%84%E6%96%87%E7%AB%A0/" rel="next" itemprop="url" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicis3attqj20zk0m8k7l.jpg" title="啊啊啊啊，为什么还是不行"><span class="type">下一篇</span><span class="category"><i class="ic i-flag"></i>随想</span><h3>啊啊啊啊，为什么还是不行</h3></a></div></div><div class="wrap" id="comments"></div></div><div id="sidebar"><div class="inner"><div class="panels"><div class="inner"><div class="contents panel pjax" data-title="文章目录"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#mysql"><span class="toc-number">1.</span> <span class="toc-text"> MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%9C%AF%E8%AF%AD"><span class="toc-number">1.1.</span> <span class="toc-text"> 基本术语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%A1%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text"> 管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E5%85%B3%E9%97%AD"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 启动 &#x2F; 关闭</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E5%90%AF"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 重启</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E7%8A%B6%E6%80%81"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 检查状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.2.4.</span> <span class="toc-text"> 用户设置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA"><span class="toc-number">1.2.4.1.</span> <span class="toc-text"> 创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4"><span class="toc-number">1.2.4.2.</span> <span class="toc-text"> 删除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81"><span class="toc-number">1.2.4.3.</span> <span class="toc-text"> 修改密码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E7%94%A8%E6%88%B7%E4%B8%BB%E6%9C%BA"><span class="toc-number">1.2.4.4.</span> <span class="toc-text"> 修改用户主机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%88%E6%9D%83"><span class="toc-number">1.2.4.5.</span> <span class="toc-text"> 授权</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%88%E6%9D%83%E6%88%96%E8%80%85%E6%92%A4%E6%9D%83%E9%83%BD%E8%A6%81%E5%88%B7%E6%96%B0%E6%89%8D%E8%83%BD%E7%94%9F%E6%95%88"><span class="toc-number">1.2.4.6.</span> <span class="toc-text"> 授权或者撤权都要刷新才能生效：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E6%9D%83"><span class="toc-number">1.2.4.7.</span> <span class="toc-text"> 查权</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%92%A4%E6%9D%83"><span class="toc-number">1.2.4.8.</span> <span class="toc-text"> 撤权</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%B9%B6%E6%8C%87%E5%AE%9A%E6%9D%83%E9%99%90"><span class="toc-number">1.2.4.9.</span> <span class="toc-text"> 创建并指定权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#etcmycnf-%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE"><span class="toc-number">1.2.4.10.</span> <span class="toc-text"> &#x2F;etc&#x2F;my.cnf 文件配置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.5.</span> <span class="toc-text"> 管理命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#php%E8%AF%AD%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text"> PHP 语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 1. 连接</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.3.1.1.</span> <span class="toc-text"> 二进制连接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%84%9A%E6%9C%AC%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.3.1.2.</span> <span class="toc-text"> 使用脚本连接</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E9%80%80%E5%87%BA"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 2. 退出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.4.</span> <span class="toc-text"> 操作数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0%E6%9F%A5%E7%9C%8B%E5%B7%B2%E6%9C%89%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 0. 查看已有数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E5%88%9B%E5%BB%BA"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 1. 创建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-mysqladmin"><span class="toc-number">1.4.2.1.</span> <span class="toc-text"> 使用 mysqladmin</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8php%E8%84%9A%E6%9C%AC"><span class="toc-number">1.4.2.2.</span> <span class="toc-text"> 使用 PHP 脚本</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E5%88%A0%E9%99%A4"><span class="toc-number">1.4.3.</span> <span class="toc-text"> 2. 删除</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-mysqladmin-2"><span class="toc-number">1.4.3.1.</span> <span class="toc-text"> 使用 mysqladmin</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8php%E8%84%9A%E6%9C%AC-2"><span class="toc-number">1.4.3.2.</span> <span class="toc-text"> 使用 PHP 脚本</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E9%80%89%E6%8B%A9"><span class="toc-number">1.4.4.</span> <span class="toc-text"> 3. 选择</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="toc-number">1.4.4.1.</span> <span class="toc-text"> 使用命令行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8php%E8%84%9A%E6%9C%AC-3"><span class="toc-number">1.4.4.2.</span> <span class="toc-text"> 使用 php 脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E5%AE%9E%E4%BE%8B"><span class="toc-number">1.4.4.2.1.</span> <span class="toc-text"> 一个实例</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.5.</span> <span class="toc-text"> 数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.5.1.</span> <span class="toc-text"> 数值类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.5.2.</span> <span class="toc-text"> 日期和时间类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.5.3.</span> <span class="toc-text"> 字符串类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#others"><span class="toc-number">1.5.4.</span> <span class="toc-text"> others</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE%E4%B8%8E%E9%9B%86%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.5.4.1.</span> <span class="toc-text"> 枚举与集合类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.5.4.2.</span> <span class="toc-text"> 空间数据类型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.6.</span> <span class="toc-text"> 使用数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0%E6%9F%A5%E7%9C%8B%E5%B7%B2%E6%9C%89%E6%95%B0%E6%8D%AE%E8%A1%A8%E5%88%97"><span class="toc-number">1.6.1.</span> <span class="toc-text"> 0. 查看已有数据表 &#x2F; 列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="toc-number">1.6.2.</span> <span class="toc-text"> 1. 创建数据表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sql%E5%AE%9E%E4%BE%8B"><span class="toc-number">1.6.2.1.</span> <span class="toc-text"> SQL 实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="toc-number">1.6.2.2.</span> <span class="toc-text"> 通过命令行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E8%BF%87php%E8%84%9A%E6%9C%AC"><span class="toc-number">1.6.2.3.</span> <span class="toc-text"> 通过 PHP 脚本</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E8%A1%A8%E6%95%B0%E6%8D%AE"><span class="toc-number">1.6.3.</span> <span class="toc-text"> 2. 删除数据表 [数据]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E6%8F%92%E5%85%A5%E8%A1%A8%E6%95%B0%E6%8D%AE"><span class="toc-number">1.6.4.</span> <span class="toc-text"> 3. 插入表数据</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E5%A4%9A%E8%A1%8C"><span class="toc-number">1.6.4.1.</span> <span class="toc-text"> 插入多行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E8%87%AA%E5%A2%9E%E7%9A%84%E5%80%BC"><span class="toc-number">1.6.4.2.</span> <span class="toc-text"> 获取自增的值</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E4%BF%AE%E6%94%B9%E8%A1%A8%E6%95%B0%E6%8D%AE"><span class="toc-number">1.6.5.</span> <span class="toc-text"> 4. 修改表数据</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2%E6%9F%90%E4%B8%AA%E5%AD%97%E6%AE%B5%E4%B8%AD%E7%9A%84%E6%9F%90%E4%B8%AA%E5%AD%97%E7%AC%A6"><span class="toc-number">1.6.5.1.</span> <span class="toc-text"> 替换某个字段中的某个字符</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E4%BF%AE%E6%94%B9%E8%A1%A8%E5%90%8D%E7%BB%93%E6%9E%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.6.6.</span> <span class="toc-text"> 5. 修改表名 &#x2F; 结构 &#x2F; 类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%88%97%E4%B8%BB%E9%94%AE"><span class="toc-number">1.6.6.1.</span> <span class="toc-text"> 添加列 &#x2F; 主键</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%A4%96%E9%94%AE"><span class="toc-number">1.6.6.2.</span> <span class="toc-text"> 添加外键</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.6.6.3.</span> <span class="toc-text"> 修改数据类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%88%97%E8%A1%A8%E5%90%8D"><span class="toc-number">1.6.6.4.</span> <span class="toc-text"> 修改列 &#x2F; 表名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%88%97"><span class="toc-number">1.6.6.5.</span> <span class="toc-text"> 删除列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%AD%97%E6%AE%B5%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%90%8D%E7%A7%B0"><span class="toc-number">1.6.6.6.</span> <span class="toc-text"> 修改字段类型及名称</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%88%A0%E9%99%A4%E9%BB%98%E8%AE%A4%E5%80%BC%E7%AD%89"><span class="toc-number">1.6.6.7.</span> <span class="toc-text"> 修改 &#x2F; 删除默认值等</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E8%AF%BB%E5%8F%96%E6%9F%A5%E8%AF%A2%E8%A1%A8%E6%95%B0%E6%8D%AE"><span class="toc-number">1.6.7.</span> <span class="toc-text"> 6. 读取 &#x2F; 查询表数据</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96"><span class="toc-number">1.6.7.1.</span> <span class="toc-text"> 读取</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.6.7.2.</span> <span class="toc-text"> 查询</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="toc-number">1.6.7.2.1.</span> <span class="toc-text"> 获取数据</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1%E4%BD%BF%E7%94%A8-mysqli_fetch_array-mysqli_assoc"><span class="toc-number">1.6.7.2.1.1.</span> <span class="toc-text"> 1. 使用 mysqli_fetch_array MYSQLI_ASSOC</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2%E4%BD%BF%E7%94%A8-mysqli_fetch_assoc"><span class="toc-number">1.6.7.2.1.2.</span> <span class="toc-text"> 2. 使用 mysqli_fetch_assoc</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3%E5%86%85%E5%AD%98%E9%87%8A%E6%94%BE"><span class="toc-number">1.6.7.2.1.3.</span> <span class="toc-text"> 3. 内存释放</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#where%E5%AD%90%E5%8F%A5"><span class="toc-number">1.6.7.2.2.</span> <span class="toc-text"> where 子句</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#like%E5%AD%90%E5%8F%A5"><span class="toc-number">1.6.7.2.3.</span> <span class="toc-text"> LIKE 子句</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AEunion"><span class="toc-number">1.6.7.3.</span> <span class="toc-text"> 合并查询数据（UNION）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F"><span class="toc-number">1.6.7.4.</span> <span class="toc-text"> 排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E7%BB%84"><span class="toc-number">1.6.7.5.</span> <span class="toc-text"> 分组</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B"><span class="toc-number">1.6.7.5.1.</span> <span class="toc-text"> 实例</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8with-rollup"><span class="toc-number">1.6.7.5.2.</span> <span class="toc-text"> 使用 WITH ROLLUP</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2join"><span class="toc-number">1.6.8.</span> <span class="toc-text"> 多表查询（JOIN）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null%E5%80%BC%E5%A4%84%E7%90%86"><span class="toc-number">1.6.9.</span> <span class="toc-text"> NULL 值处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E4%BA%8E%E6%AF%94%E8%BE%83"><span class="toc-number">1.6.9.1.</span> <span class="toc-text"> 用于比较</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0"><span class="toc-number">1.6.9.2.</span> <span class="toc-text"> 聚合函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.7.</span> <span class="toc-text"> 正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%9A%84%E5%AD%97%E7%AC%A6%E7%B1%BB"><span class="toc-number">1.7.1.</span> <span class="toc-text"> 正则表达式匹配的字符类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#regexprlike"><span class="toc-number">1.7.2.</span> <span class="toc-text"> REGEXP&#x2F;RLIKE</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1"><span class="toc-number">1.8.</span> <span class="toc-text"> 事务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.8.1.</span> <span class="toc-text"> 控制语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB"><span class="toc-number">1.8.2.</span> <span class="toc-text"> 隔离级别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%BB%E6%9C%AA%E6%8F%90%E4%BA%A4"><span class="toc-number">1.8.2.1.</span> <span class="toc-text"> 读未提交</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%BB%E5%B7%B2%E6%8F%90%E4%BA%A4"><span class="toc-number">1.8.2.2.</span> <span class="toc-text"> 读已提交</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%AF%BB"><span class="toc-number">1.8.2.3.</span> <span class="toc-text"> 可重复读</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%B2%E8%A1%8C%E5%8C%96"><span class="toc-number">1.8.2.4.</span> <span class="toc-text"> 串行化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E5%AE%9E%E4%BE%8B"><span class="toc-number">1.8.3.</span> <span class="toc-text"> 事务实例</span></a></li></ol></li></ol></li></ol></div><div class="related panel pjax" data-title="系列文章"><ul><li  class="active"><a href="/2024/10/11/MySQL/" rel="bookmark" title="MySQL">MySQL</a></li><li ><a href="/2024/10/11/%E6%B1%87%E7%BC%96/" rel="bookmark" title="汇编">汇编</a></li><li ><a href="/2024/10/12/%E6%8A%80%E6%9C%AF/" rel="bookmark" title="技术">技术</a></li><li ><a href="/2024/10/14/IDA%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="bookmark" title="IDA">IDA</a></li><li ><a href="/2024/10/14/C%E7%AC%94%E8%AE%B02SE/" rel="bookmark" title="C笔记2SE">C笔记2SE</a></li><li ><a href="/2024/10/14/JavaScript/" rel="bookmark" title="JavaScript">JavaScript</a></li><li ><a href="/2024/10/14/C%E7%AC%94%E8%AE%B01ultrasuper/" rel="bookmark" title="C笔记ultra">C笔记ultra</a></li><li ><a href="/2024/10/14/HTML/" rel="bookmark" title="HTML">HTML</a></li><li ><a href="/2025/01/22/Linux/" rel="bookmark" title="Linux">Linux</a></li><li ><a href="/2025/02/04/SQL%E6%B3%A8%E5%85%A5/" rel="bookmark" title="SQL注入">SQL注入</a></li><li ><a href="/2025/02/05/XSS/" rel="bookmark" title="XSS">XSS</a></li><li ><a href="/2025/02/15/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" rel="bookmark" title="文件上传漏洞">文件上传漏洞</a></li></ul></div><div class="overview panel" data-title="站点概览"><div class="author" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person"><img class="image" loading="lazy" decoding="async" itemprop="image" alt="开船的" src="/assets/avatar.jpg"/><p class="name" itemprop="name">开船的</p><div class="description" itemprop="description">bug依旧很多，反正我忍不了</div></div><nav class="state"><div class="item posts"><a href="/archives/"><span class="count">19</span><span class="name">文章</span></a></div><div class="item categories"><a href="/categories/"><span class="count">4</span><span class="name">分类</span></a></div><div class="item tags"><a href="/tags/"><span class="count">4</span><span class="name">标签</span></a></div></nav><div class="social"><a target="_blank" rel="noopener" href="https://github.com/zhewanyiershinicheng" class="item github" title="https:&#x2F;&#x2F;github.com&#x2F;zhewanyiershinicheng"><i class="ic i-github"></i></a></div><div class="menu"><li class="item"><a href="/" rel="section"><i class="ic i-home"></i>首页</a></li></div></div></div></div><ul id="quick"><li class="prev pjax"><a href="/2024/10/12/%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E8%AF%95%E9%AA%8C%E6%80%A7%E7%9A%84%E6%96%87%E7%AB%A0/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a></li><li class="up"><i class="ic i-arrow-up"></i></li><li class="down"><i class="ic i-arrow-down"></i></li><li class="next pjax"><a href="/2024/10/11/Web%E6%96%B9%E5%90%91/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a></li><li class="percent"></li></ul></div></div><div class="dimmer"></div></div></main><footer id="footer"><div class="inner"><div class="widgets"><div class="rpost pjax"><h2>随机文章</h2><ul><li class="item"><div class="breadcrumb"><a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于技术">技术</a></div><span><a href="/2024/10/14/C%E7%AC%94%E8%AE%B02SE/">C笔记2SE</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E7%A6%BB%E8%B0%B1/" title="分类于离谱">离谱</a></div><span><a href="/2024/10/15/%E4%B8%8D%E6%98%AF%EF%BC%8C%E5%BE%AE%E8%BD%AF%EF%BC%8C%E4%BD%A0%E6%9D%A5%E7%9C%9F%E7%9A%84%EF%BC%9F/">不是，微软，你来真的？</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%8F%91%E7%94%B5/" title="分类于发电">发电</a></div><span><a href="/2024/10/11/Web%E6%96%B9%E5%90%91/">web</a></span></li><li class="item"><div class="breadcrumb"></div><span><a href="/2025/03/06/hello-world/">Hello World</a></span></li><li class="item"><div class="breadcrumb"></div><span><a href="/2024/10/11/%E5%9C%9F%E8%B1%86%E7%9B%B4%E6%92%AD%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81/">土豆直播</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于技术">技术</a></div><span><a href="/2024/10/11/MySQL/">MySQL</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于技术">技术</a></div><span><a href="/2024/10/14/IDA%E7%9A%84%E4%BD%BF%E7%94%A8/">IDA</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于技术">技术</a></div><span><a href="/2025/01/22/Linux/">Linux</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于技术">技术</a></div><span><a href="/2024/10/14/JavaScript/">JavaScript</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E7%A6%BB%E8%B0%B1/" title="分类于离谱">离谱</a></div><span><a href="/2024/10/11/%E5%9C%9F%E8%B1%86%E8%B1%86%E8%B1%86%E8%B1%86%E8%B1%86/">土豆豆豆豆豆</a></span></li></ul></div><div class="rpost pjax"><h2>最新评论</h2></div></div><div class="status"><div class="copyright">&copy; 2022 -<span itemprop="copyrightYear">2025</span><span class="with-love"><i class="ic i-sakura rotate"></i></span><span class="author" itemprop="copyrightHolder">开船的 @ tamato</span></div><div class="count"><span class="post-meta-item-icon"><i class="ic i-chart-area"></i></span><span title="站点总字数">121k 字</span><span class="post-meta-divider"> | </span><span class="post-meta-item-icon"><i class="ic i-coffee"></i></span><span title="站点阅读时长">1:50</span></div><div class="powered-by">基于 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & Theme.<a target="_blank" rel="noopener" href="https://github.com/theme-shoka-x/hexo-theme-shokaX/">ShokaX</a></div></div></div></footer></div><script data-config type="text/javascript">var LOCAL = {
+    ispost: true,
+        path: `2024/10/11/MySQL/`,
+        favicon: {
+        show: `（●´3｀●）やれやれだぜ`,
+        hide: `(´Д｀)大変だ！`
+    },
+    search: {
+        placeholder: "文章搜索",
+        empty: "关于 「 ${query} 」，什么也没搜到",
+        stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    copy_tex: false,
+    katex: false,
+    mermaid: false,
+    audio: undefined,
+    fancybox: true,
+    nocopy: false,
+    outime: true,
+    template: `<div class="note warning"><p><span class="label warning">文章时效性提示</span><br>这是一篇发布于 {{publish}} 天前，最后一次更新在 {{updated}} 天前的文章，部分信息可能已经发生改变，请注意甄别。</p></div>`,
+    quiz: {
+        choice: `单选题`,
+        multiple: `多选题`,
+        true_false: `判断题`,
+        essay: `问答题`,
+        gap_fill: `填空题`,
+        mistake: `错题备注`
+    },
+    ignores: [
+        (uri) => uri.includes('#'),
+        (uri) => new RegExp(LOCAL.path + '$').test(uri),
+            []
+    ]
+};
+</script><script src="https://s4.zstatic.net/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous" fetchpriority="high"></script><script src="https://s4.zstatic.net/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha384-ZvpUoO&#x2F;+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn&#x2F;6Z&#x2F;hRTt8+pR6L4N2" crossorigin="anonymous" fetchpriority="high"></script><script src="/js/siteInit.js?v=0.4.17" type="module" fetchpriority="high" defer></script></body></html>

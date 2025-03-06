@@ -1,0 +1,230 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"/><meta name="theme-color" content="#222"/><meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/><meta name="renderer" content="webkit"/><link rel="icon" type="image/ico" sizes="32x32" href="/assets/favicon.ico"/><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"/><link rel="alternate" href="/rss.xml" title="这就是--Potato" type="application/rss+xml"><link rel="alternate" href="/atom.xml" title="这就是--Potato" type="application/atom+xml"><link rel="alternate" type="application/json" title="这就是--Potato" href="https://zhewanyiershinicheng.github.io/feed.json"/><link rel="preconnect" href="https://s4.zstatic.net"/><link rel="preconnect" href="https://at.alicdn.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CFredericka%20the%20Great:400,400italic,700,700italic%7CNoto%20Serif%20JP:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic%7CInconsolata:400,400italic,700,700italic&display=swap&subset=latin,latin-ext" media="none" onload="this.media&#x3D;&#39;all&#39;"><link rel="stylesheet" href="/css/app.css?v=0.4.17"><link rel="modulepreload" href="/js/chunk-4WOL5AEA.js"></link><link rel="modulepreload" href="/js/chunk-M2OVB55D.js"></link><link rel="modulepreload" href="/js/chunk-OEHKNEWL.js"></link><link rel="modulepreload" href="/js/copy-tex-JCSSB3EK.js"></link><link rel="modulepreload" href="/js/index.esm-H3NZFZ46.js"></link><link rel="modulepreload" href="/js/post-RFOLAXHH.js"></link><link rel="modulepreload" href="/js/quicklink-LPV2RIEA.js"></link><link rel="modulepreload" href="/js/siteInit.js"></link><link rel="preload" href="https://tva1.sinaimg.cn/large/6833939bly1giciszlczyj20zk0m816d.jpg" as="image" fetchpriority="high"><link rel="preload" href="https://tva1.sinaimg.cn/large/6833939bly1gicis081o9j20zk0m8dmr.jpg" as="image" fetchpriority="high"><link rel="preload" href="https://tva1.sinaimg.cn/large/6833939bly1gicitcxhpij20zk0m8hdt.jpg" as="image" fetchpriority="high"><link rel="preload" href="https://tva1.sinaimg.cn/large/6833939bly1gicit31ffoj20zk0m8naf.jpg" as="image" fetchpriority="high"><link rel="preload" href="https://tva1.sinaimg.cn/large/6833939bly1gicit4jrvuj20zk0m8785.jpg" as="image" fetchpriority="high"><link rel="preload" href="https://tva1.sinaimg.cn/large/6833939bly1gicis3attqj20zk0m8k7l.jpg" as="image" fetchpriority="high"><meta name="keywords" content="技术"/><meta name="description" content="bug依旧很多，反正我忍不了"/><link rel="canonical" href="https://zhewanyiershinicheng.github.io/2024/10/11/%E6%B1%87%E7%BC%96/"><title>汇编</title><meta name="generator" content="Hexo 7.3.0"></head><body itemscope itemtype="http://schema.org/WebPage"><div id="loading"><div class="cat"><div class="body"></div><div class="head"><div class="face"></div></div><div class="foot"><div class="tummy-end"></div><div class="bottom"></div><div class="legs left"></div><div class="legs right"></div></div><div class="paw"><div class="hands left"></div><div class="hands right"></div></div></div></div><div id="container"><header id="header" itemscope itemtype="http://schema.org/WPHeader"><div class="inner"><div id="brand"><div class="pjax"><h1 itemprop="name headline">汇编</h1><div class="meta"><span class="item" title="创建时间：2024-10-11 17:48:50"><span class="icon"><i class="ic i-calendar"></i></span><span class="text">发表于</span><time itemprop="dateCreated datePublished" datetime="2024-10-11T17:48:50+08:00">2024-10-11</time></span><span class="item" title="本文字数"><span class="icon"><i class="ic i-pen"></i></span><span class="text">本文字数</span><span>5.4k</span><span class="text">字</span></span><span class="item" title="阅读时长"><span class="icon"><i class="ic i-clock"></i></span><span class="text">阅读时长</span><span>5 分钟</span></span></div></div></div><nav id="nav"><div class="inner"><div class="toggle"><div class="lines" aria-label="切换导航栏"><span class="line"></span><span class="line"></span><span class="line"></span></div></div><ul class="menu"><li class="item title"><a href="/" rel="start">tamato</a></li></ul><ul class="right" id="rightNav"><li class="item theme"><i class="ic i-sun"></i></li><li class="item search"><i class="ic i-search"></i></li></ul></div></nav></div><div class="pjax" id="imgs"><ul><li class="item" style="background-image: url(&quot;https://tva1.sinaimg.cn/large/6833939bly1giciszlczyj20zk0m816d.jpg&quot;);"></li><li class="item" style="background-image: url(&quot;https://tva1.sinaimg.cn/large/6833939bly1gicis081o9j20zk0m8dmr.jpg&quot;);"></li><li class="item" style="background-image: url(&quot;https://tva1.sinaimg.cn/large/6833939bly1gicitcxhpij20zk0m8hdt.jpg&quot;);"></li><li class="item" style="background-image: url(&quot;https://tva1.sinaimg.cn/large/6833939bly1gicit31ffoj20zk0m8naf.jpg&quot;);"></li><li class="item" style="background-image: url(&quot;https://tva1.sinaimg.cn/large/6833939bly1gicit4jrvuj20zk0m8785.jpg&quot;);"></li><li class="item" style="background-image: url(&quot;https://tva1.sinaimg.cn/large/6833939bly1gicis3attqj20zk0m8k7l.jpg&quot;);"></li></ul></div></header><div id="waves"><svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path></defs><g class="parallax"><use xlink:href="#gentle-wave" x="48" y="0"></use><use xlink:href="#gentle-wave" x="48" y="3"></use><use xlink:href="#gentle-wave" x="48" y="5"></use><use xlink:href="#gentle-wave" x="48" y="7"></use></g></svg></div><main><div class="inner"><div class="pjax" id="main"><div class="article wrap"><div class="breadcrumb" itemListElement itemscope itemtype="https://schema.org/BreadcrumbList"><i class="ic i-home"></i><span><a href="/">首页</a></span><i class="ic i-angle-right"></i><span class="current" itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem"><a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="item" rel="index" title="分类于技术"><span itemprop="name">技术<meta itemprop="position" content="0"/></span></a></span></div><article class="post block" itemscope="itemscope" itemtype="http://schema.org/Article" lang="zh-cn"><link itemprop="mainEntityOfPage" href="https://zhewanyiershinicheng.github.io/2024/10/11/%E6%B1%87%E7%BC%96/"/><span hidden="hidden" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person"><meta itemprop="image" content="/assets/avatar.jpg"/><meta itemprop="name" content="开船的"/><meta itemprop="description" content="真的假的？, bug依旧很多，反正我忍不了"/></span><span hidden="hidden" itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organization"><meta itemprop="name" content="这就是--Potato"/></span><div class="body md" itemprop="articleBody"><p>汇编语言的组成：</p>
+<p>1.<a href="%E6%AF%8F%E7%A7%8DCPU%E9%83%BD%E6%9C%89%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4%E9%9B%86%EF%BC%8C%E6%88%91%E4%BB%AC%E7%9C%8B%E5%88%B0%E7%9A%84SSE%E7%AD%89%E5%B0%B1%E6%98%AF%EF%BC%8C%E5%85%B6%E5%AE%9E%E5%B0%B1%E6%98%AF%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4%E7%9A%84%E9%9B%86%E5%90%88%EF%BC%8C%E7%94%A8%E4%BA%8E%E8%BE%83%E4%B8%BA%E5%BF%AB%E9%80%9F%E7%9A%84%E5%AE%8C%E6%88%90%E7%89%B9%E5%AE%9A%E4%BB%BB%E5%8A%A1"> 汇编指令</a>（机器码的助记符）// 直接等价于特定的<a href="%E5%B0%B1%E6%98%AF%E4%B8%80%E6%AE%B5%E6%9C%89%E7%89%B9%E5%AE%9A%E5%8A%9F%E8%83%BD%E7%9A%84%E6%9C%BA%E5%99%A8%E7%A0%81">机器指令</a>，所以<a href="%E5%9B%A0%E4%B8%BA%E7%89%B9%E5%AE%9A%E7%9A%84%E6%9C%BA%E5%99%A8%E7%A0%81%E5%B0%B1%E7%9B%B4%E6%8E%A5%E6%98%AF%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4">反编译一般是汇编</a></p>
+<p>2. 伪指令（编译器执行）// 没有对应的机器码，和其他符号一样，都是编译器实现的</p>
+<p>3. 其他符号（编译器识别）// 转化成逻辑运算</p>
+<p>存储器：</p>
+<p>指令和数据都是在存储器中存放，也就是内存（磁盘内的数据得先到内存中才能被使用）</p>
+<p>虚拟内存，就是用部分硬盘当作内存用（18 年也不至于是 sata2 吧）</p>
+<p>存储单元：</p>
+<p>// 包括缓存</p>
+<p>被划分为若干个存储单元，每个单元<strong>从 0 开始编号</strong></p>
+<p><strong>制图时从上到下，由低地址到高地址，但是读起来还是从高开始（忽略第一个 1 之前的 0）</strong></p>
+<p>单位就不必说了，最后那个 B 代表 Byte</p>
+<p>CPU 对存储器的读写：</p>
+<p>三类信息交互</p>
+<p>1.<a href="%E5%AD%98%E5%82%A8%E5%8D%95%E5%85%83%E7%9A%84%E5%9C%B0%E5%9D%80"> 地址信息</a></p>
+<p>2.<a href="%E5%99%A8%E4%BB%B6%E9%80%89%E6%8B%A9%EF%BC%8C%E8%AF%BB%E5%86%99%E5%91%BD%E4%BB%A4"> 控制信息</a></p>
+<p>3.<a href="%E8%AF%BB%E6%88%96%E5%86%99"> 数据信息</a></p>
+<p>CPU 与内存之间的<a href="%E5%85%B6%E5%AE%9E%E6%89%80%E6%9C%89%E6%80%BB%E7%BA%BF%E9%83%BD%E6%98%AF">总线</a>，实际上就是包含了这三者，即地址总线，数据总线，控制总线（逻辑划分）。</p>
+<p>它们都是线性排列的</p>
+<p>指令与数据：</p>
+<p><a href="%E5%9C%A8%E5%AD%98%E5%82%A8%E5%99%A8%E4%B8%AD%E6%B2%A1%E6%9C%89%E4%BB%BB%E4%BD%95%E5%8C%BA%E5%88%AB">同样的二进制信息，可以是数据，也可以是信息</a>。具体当作什么，取决于它是在哪种总线上</p>
+<p>1. 地址总线</p>
+<p>指定存储单元，总线能传输多少，就能对多少个存储单元进行寻址。</p>
+<p>（64 位，32 位说的就是地址总线的宽度）//64bit，即 8byte</p>
+<p>要实现 64 位，CPU，OS，软件都必需是 64 位的，这是因为向下继承</p>
+<p>内存会自动定位从地址总线来的地址</p>
+<p>有 N 根地址总线位宽就是 N（其实就是 Nbit），一位最多可以指定 2^n 个内存单元</p>
+<p>2. 数据总线</p>
+<p>宽度越大，传输速度越快</p>
+<p>注意，索引从低到高，传输数据是从低位开始，也就是数据的后面一段（多次传输时）</p>
+<p>3. 控制总线</p>
+<p>操作只有读和写（1/0），控制总线是个总称，数量越多，意味着 CPU 可以控制的外部元器件的种类越多，有多少根，就有多少种</p>
+<p>内存读写是几根控制线综合发出的（有俩，读 / 写信号输出控制线）</p>
+<p>内存地址空间：</p>
+<p>大小就是 CPU 的地址线宽度可寻得的内存单元个数</p>
+<p>主板，接口卡，声卡（其实不是没了），RAM，ROM (就是 BIOS 的那个，<a href="%E4%B8%8D%E5%8F%AA%E4%B8%BB%E6%9D%BF%E6%9C%89%EF%BC%8C%E6%98%BE%E5%8D%A1%EF%BC%8C%E5%A3%B0%E5%8D%A1">可以刷</a>)</p>
+<p>CPU 看到的其他元器件：</p>
+<p><img loading="lazy" data-src="../AppData/Roaming/Typora/typora-user-images/1728139697850.png" alt="1728139697850" /></p>
+<p>其实就是看成<a href="%E5%85%B6%E5%AE%9E%E5%B0%B1%E6%98%AF%E8%AF%B4%E5%AE%9E%E9%99%85%E4%B8%8A%E4%B8%8D%E6%98%AF%E8%BF%99%E6%A0%B7%E7%9A%84%EF%BC%8C%E5%8F%AA%E6%98%AF%E5%9C%A8cpu%E5%AE%9E%E9%99%85%E8%BF%90%E8%A1%8C%E4%B8%AD%E5%8F%AF%E4%BB%A5%E7%AD%89%E4%BB%B7%E4%BA%8E%E4%B8%80%E4%B8%AA%E5%AD%98%E5%82%A8%E5%99%A8">逻辑存储器</a>，所有内存单元构成的存储空间是一维线性空间，每个内存单元都有唯一的地址，即<strong>物理地址</strong></p>
+<p>内存空间地址段分配：</p>
+<p>// 实际上是在分配 CPU 的总线 //</p>
+<p>不同设备有自己分配到的地址段，各部分具体大小看 CPU。其实就是将所有的存储器统一起来。</p>
+<p>寄存器（CPU 工作原理）</p>
+<p><strong>CPU 概述</strong></p>
+<p>由运算器，控制器，寄存器组成，也是要以总线相连</p>
+<p><strong>通用寄存器</strong></p>
+<p>一共有 14 个：（16 位）</p>
+<p>AX,BX,CX,DX,SI,DI,SP,BP,IP,CS,SS,DS,ES,PSW</p>
+<p>它们甚至在缓存之前。<a href="%E4%BD%86%E6%98%AF%E9%80%9A%E7%94%A8%E7%9A%84%E5%8F%AA%E6%9C%89%E8%BF%9914%E4%B8%AA">寄存器实际上不只 14 个</a>，指令集也会有自己的寄存器。</p>
+<p>寄存器都是 16 位的 2 字节，也就是<strong> 1 字</strong></p>
+<p>更古早的 U 寄存器只有 8 位，为了兼容，现在的寄存器可以分成俩八位来用</p>
+<p>比如 AX 可以分为<a href="%E8%BF%99%E9%87%8C%E9%AB%98%E4%BD%8D%E5%85%B6%E5%AE%9E%E9%83%BD%E6%98%AF%E5%A1%AB0%EF%BC%8C%E8%BF%99%E6%98%AF%E4%B8%BA%E4%BA%86%E9%98%B2%E6%AD%A2%E5%9C%A864%E4%BD%8D%E4%B8%8B%E5%AE%9E%E9%99%85%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%95%B0%E4%B8%8E%E6%9C%AC%E6%9D%A5%E7%9A%84%E4%B8%8D%E4%B8%80%E6%A0%B7%EF%BC%88%E5%9B%A0%E4%B8%BA%E4%BC%9A%E8%A2%AB%E5%90%88%E8%B5%B7%E6%9D%A5%E7%9C%8B%EF%BC%89"> AH</a> 和<a href="%E5%AE%9E%E9%99%85%E4%B8%8A%E4%BD%BF%E7%94%A8%E7%9A%84%E9%83%A8%E5%88%86"> AL</a>。BH,CH,DH 同理</p>
+<p><strong>字在寄存器中的存储</strong></p>
+<pre><code>数据：18
+二进制表示：10010
+在AX中：0（高位）000000000010010（低位）//可见，寄存器最大只能存储2^16-1
+写成16进制表示：0012H
+//H代表是十六进制，只有4个十六进制数（因为1个十六进制数对4个二进制数，即2^4=16）,也有0x0012的表示法
+</code></pre>
+<p>1 字就是 16bit,2byte（再次重申），现在 CPU 就是一次一字</p>
+<p>汇编指令：</p>
+<p>// 不区分大小写</p>
+<pre><code>mov ax,18   //把18送入ax寄存器中   即ax=18      mov:传送指令
+add ax,8    /将ax中的值加上8       即ax=ax+8
+mov ax,bx   //将bx中的数据送入a下   即ax=bx,注意是后面赋到前面
+add ax,bx   //将ax与bx中的相加，并存在ax中    即ax=ax+bx
+add ax,4E20H //什么进制都行，八进制前面加0，二进制最后加B，十进制都不加
+</code></pre>
+<p>add 可能导致上溢</p>
+<pre><code>add al,85H    //只加在了低8位，即后面的那俩，这时如果发生上溢，也是直接舍弃
+</code></pre>
+<p>CPU 给出物理地址的方法：</p>
+<p>以 8086 为例:</p>
+<p><img loading="lazy" data-src="1728214666879.png" alt="1728214666879" /></p>
+<p>8086 的地址总线是 20 位的，寻址能力 1M，但是寄存器是 16 位，寻址能力 64K，所以这里采用了将两个 16 位地址合成一个 20 位的物理地址的方法</p>
+<p>地址加法器的原理：<br />
+物理地址 = 段地址<em> 16（对于 16 进制就是左移 1 位，<a href="%E8%BF%99%E6%97%B6%E5%B0%B1%E6%88%90%E4%BA%8620%E4%BD%8D">二进制 4 位</a>）+ 偏移地址</em></p>
+<blockquote>
+<p>物理地址 = CS*16+IP</p>
+</blockquote>
+<p><img loading="lazy" data-src="1728214968000.png" alt="1728214968000" /></p>
+<p>注：上图都是 16 进制</p>
+<p>// 二进制每左移一位，这个数据（的十进制表示）*2。n 位就是 2^n。<a href="x%E8%BF%9B%E5%88%B6%E5%B7%A6%E7%A7%BB%E4%B8%80%E4%BD%8D%EF%BC%8C%E5%B0%B1%E6%98%AF*x">其他进制同理</a></p>
+<p>段的概念</p>
+<p>内存本身没有分段，分段实际上是 CPU 干的事，<a href="%E5%9B%A0%E4%B8%BA8086%E7%9A%84%E5%AF%84%E5%AD%98%E5%99%A8%E5%92%8C%E5%9C%B0%E5%9D%80%E6%80%BB%E7%BA%BF%E4%B8%8D%E4%B8%80%E6%A0%B7">用于给出物理地址</a>，这使得我们可以<a href="%E5%B0%B1%E6%98%AFCPU%E5%B0%86%E5%86%85%E5%AD%98%E5%88%92%E5%88%86%E4%B8%BA%E5%87%A0%E4%B8%AA%E6%AE%B5%EF%BC%8C%E5%90%8C%E4%B8%80%E4%B8%AA%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E5%8F%AF%E4%BB%A5%E5%88%86%E4%B8%BA%E4%BB%BB%E6%84%8F%E6%95%B0%E9%87%8F%E7%9A%84%E6%AE%B5">分段管理内存</a>，偏移地址是 16 位，所以寻址能力为 64K，所以一个<a href="%E4%B8%80%E4%B8%AA%E6%AE%B5%E7%9A%84%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E5%B0%B1%E6%98%AF%E4%BB%8E%E8%BF%99%E4%B8%AA%E6%AE%B5%E7%9A%84%E6%AE%B5%E5%9C%B0%E5%9D%80%E5%BC%80%E5%A7%8B%E7%9A%84%E5%81%8F%E7%A7%BB%E5%9C%B0%E5%9D%80%E7%9A%84%E8%8C%83%E5%9B%B4">段最大也就 64K</a></p>
+<p>// 输出同一个物理地址，可以有许多组段地址和偏移地址</p>
+<p>描述方法：数据在 21F6H 内存单元中 = 2000:1F60 单元中 = 在 2000 段的 1F60H 单元中</p>
+<p>段寄存器</p>
+<p>8086（x86）有 4 个段寄存器</p>
+<p>[CS](code segment，就是用来存储段地址的),[DS](data segment),[SS](stack segment),[ES](extra segment),x64 会多 4 个，都是类似于 ES 的，不是专用</p>
+<p>CS 和<a href="%E6%8C%87%E4%BB%A4%E6%8C%87%E9%92%88%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%8C%E5%AE%9E%E9%99%85%E4%B8%8A%E5%B0%B1%E6%98%AF%E5%AD%98%E7%9A%84%E5%81%8F%E7%A7%BB%E5%9C%B0%E5%9D%80"> IP</a> 是最常用的</p>
+<p>整个过程：</p>
+<p><img loading="lazy" data-src="1728218715382.png" alt="1728218715382" /></p>
+<p>注：IP 有个指令自加器，会自动加上指令长度</p>
+<p>CS 与 IP 不能使用 mov 指令，要用 jmp (转移地址)</p>
+<pre><code>jmp 2AE3:3   //也就是2AE30+00003=2AE33
+JMP 3:0B16   //也就是00030+00B16=00B46,汇编指令不区分大小写
+</code></pre>
+<p>代码段</p>
+<p>将长度为 N (N&lt;=64KB) 的一组大麦，存在一组地址连续，<a href="%E5%9B%A0%E4%B8%BA%E6%AE%B5%E5%9C%B0%E5%9D%80%E8%A6%81%E4%B9%9816%EF%BC%8C%E4%B8%BA%E4%BA%86%E8%83%BD%E5%A4%9F%E8%A2%AB%E5%AE%9A%E4%BD%8D%E5%88%B0%EF%BC%8C%E8%B5%B7%E5%A7%8B%E5%BF%85%E9%A1%BB%E6%98%AF16%E7%9A%84%E5%80%8D%E6%95%B0">起始地址为 16 的倍数</a>的内存单元中，这就定义了一个代码段</p>
+<p><strong>只有 CS:IP 指定的代码段<a href="%E5%85%B6%E5%AE%9E%E6%98%AF%E8%AF%BB%E5%8F%96%E6%8C%87%E4%BB%A4%E5%B9%B6%E5%B0%86%E5%AE%83%E6%94%BE%E5%85%A5%E6%8C%87%E4%BB%A4%E7%BC%93%E5%86%B2%E5%99%A8">才会执行</a></strong></p>
+<p>Debug 程序</p>
+<p><img loading="lazy" data-src="1728220891479.png" alt="1728220891479" /></p>
+<p>R 命令：这里实现了修改，这个可以修改 CS 和 IP</p>
+<p><img loading="lazy" data-src="1728220973614.png" alt="1728220973614" /></p>
+<p>T 指令：会返回一个和 R 命令一样的查看（运行之后的）</p>
+<p>D 指令：返回的是十六进制</p>
+<p>E 命令：要使用机器指令的格式写操作</p>
+<p>A 命令：-a 回车，接下来一条指令一执行</p>
+<p>U 命令：</p>
+<p><img loading="lazy" data-src="1728221377761.png" alt="1728221377761" /></p>
+<p>退出输入 quit（事实上 q 开头就行）</p>
+<p>内存访问</p>
+<p>内存中<a href="%E5%88%9A%E5%A5%BD%E4%BF%A9%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E6%95%B0%EF%BC%8C%E4%B8%80%E4%B8%AA%E5%AF%84%E5%AD%98%E5%99%A8%E5%AE%BD%E5%BA%A6%EF%BC%8C%E5%86%85%E5%AD%98%E4%B8%80%E4%B8%AA%E5%8D%95%E5%85%83%E5%B0%B1%E6%98%AF1%E5%AD%97%E8%8A%82">字</a>的存储</p>
+<p><img loading="lazy" data-src="1728304242345.png" alt="1728304242345" /></p>
+<p>比如，上图中 1 地址单元存放的字型数据是 124EH</p>
+<blockquote>
+<p>俩个连续的内存单元，n 和 n+1，可以看成两个单元，也可以看成 n 字单元（不是 n+1）的搞字节单元和低字节单元</p>
+</blockquote>
+<p>DS (数据段寄存器)[address]  // 这是偏移地址</p>
+<p>mov 指令有两种转送功能：<br />
+1. 将数据直接送入寄存器</p>
+<p>2. 将一个寄存器中的内容送入另一个寄存器</p>
+<p>3.<strong> 将一个内存单元中的内容送入一个寄存器</strong></p>
+<blockquote>
+<p>格式 ：mov al,[0]    // 寄存器名，[内存单元地址（偏移地址）]</p>
+<p>一个单元 1 字节，所以用 al 而不是 ax, 如果用 ax，它会拉上它的高位组成一个字</p>
+<p>此时的段地址就是 DS 里的地址，DS 寄存器不能直接送数据，必须经过通用寄存器（这是硬件设计的缘故）</p>
+</blockquote>
+<p>写入内存前先要确定好段地址：</p>
+<p><img loading="lazy" data-src="1728305194634.png" alt="1728305194634" /></p>
+<p>mov,add,<a href="%E5%87%8F">sub</a></p>
+<p>MOV 的所有格式：</p>
+<p><img loading="lazy" data-src="%E6%B1%87%E7%BC%96.assets/1728305663779.png" alt="1728305663779" /></p>
+<p>现在，mov 寄存器，段寄存器</p>
+<p>也是可以的</p>
+<p>add/sub 的所有格式：</p>
+<p><img loading="lazy" data-src="1728305871479.png" alt="1728305871479" /></p>
+<p>数据段</p>
+<p>用 CS 指向的是代码段，其他寄存器指向的都是数据段，定义同代码段</p>
+<p>栈</p>
+<p>后进先出</p>
+<p>CPU 提供的栈机制</p>
+<p>向下增长说的是从<strong>高地址（栈底）</strong>，向 ** 低地址（栈顶）** 增长，此时制图是上低下高</p>
+<p>为了更形象表示后进先出的特性，会倒着画，此时栈底是真的在地下，高地址</p>
+<blockquote>
+<p>但是数据还是高地址读到低地址</p>
+</blockquote>
+<p>CPU 会提供相关指令来以栈的方式访问<strong>内存空间</strong>，将一段<strong>内存</strong>当作栈使用</p>
+<p>push (入栈)，pop (出栈)</p>
+<pre><code>push ax //将ax中的数据送入栈中（一字，对于8086）
+pop ax //从栈顶取出数据放入ax（一字，对于8086）
+高地址高位，低地址低位，在栈上就是高地址在下面
+</code></pre>
+<p>SS：存放<strong>栈顶</strong>的段寄存器      所有的段地址都不能直接写</p>
+<p>SP：存放<strong>栈顶</strong>的偏移地址</p>
+<blockquote>
+<p>任何时候：SS:SP 指向栈顶</p>
+<p>push 操作会<strong>先</strong>使 SP=SP-2 这样又指向栈顶 (pop 同理，但是是<strong>后</strong> +)</p>
+</blockquote>
+<p>push 会先 - 2，靠近栈顶低地址，然后写入。</p>
+<p>pop 会先读出数据，然后 + 2，靠近栈底高地址。</p>
+<blockquote>
+<p>空栈时 SP 指向最高地址单元的<strong>下一个</strong>单元（这个不在栈空间里）此时没有栈顶元素</p>
+<p>（但是 SS 始终在栈的最高地址）</p>
+<p>比如栈空间是 10000H~10000FH</p>
+<p>那么对应的 SS 是 1000H，SP 是 0010H 而不是 000FH</p>
+</blockquote>
+<p>栈顶超界问题</p>
+<p>当满栈时继续 push，或者空栈时继续 pop，都会栈顶超界，<a href="CPU%E5%8F%AA%E8%AE%B0%E5%BD%95%E6%A0%88%E9%A1%B6%EF%BC%8C%E6%A0%88%E7%A9%BA%E9%97%B4%E7%9A%84%E5%A4%A7%E5%B0%8F%E8%A6%81%E8%87%AA%E8%A1%8C%E7%AE%A1%E7%90%86%EF%BC%8Ccpu%E5%8F%AA%E4%BC%9A%E8%AE%A4%E5%BE%97SS:SP,%E4%B8%8D%E7%9F%A5%E9%81%93%E6%A0%88%E7%A9%BA%E9%97%B4">写程序时不要超界</a></p>
+<p><a href="%E5%86%85%E5%AD%98%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4">push，pop 指令</a></p>
+<p>在寄存器和<a href="%E6%A0%88%E7%A9%BA%E9%97%B4%E4%B9%9F%E6%98%AF%E5%86%85%E5%AD%98%E7%A9%BA%E9%97%B4%E7%9A%84%E4%B8%80%E9%83%A8%E5%88%86">内存</a>之间传送数据，可以直接操作 DS</p>
+<pre><code>push/pop [0] //可以用偏移地址，此时段地址是DS，不是SS，更不是CS
+</code></pre>
+<p>注意：</p>
+<p>push/pop 修改的只是 SP, 不会修改 SS，所以栈顶只能是 0~FFFFH，最大 64K</p>
+<p>用栈来暂存数据，<strong>出入栈顺序相反</strong></p>
+<p>比如：</p>
+<pre><code>...
+mov ax,001AH
+mov bx,001BH
+push ax
+push bx    //bx先进
+xor ax,ax
+//这是最简便的清零方法，也可以用sub ax,ax或mov ax,0。区别是mov整个句字占3个字节，但是sub只要2个字节
+xor bx,bx
+pop bx     //bx先出
+pop ax
+...
+</code></pre>
+<p>栈段</p>
+<p>定义同数据段和代码段，&lt;64K 的连续内存空间</p>
+<p><img loading="lazy" data-src="1728996769095.png" alt="1728996769095" /></p>
+<p>栈实际上是人为定义的内存空间，CPU 不会认为 pop,push 的部分是栈（没有这个概念），也不知道空间是多大，你写到不是栈的地方也是可以的。（当然不能这么做，写的时候就要自己决定好大小不要写出去）</p>
+<p>但是栈底要是再 pop，会回到最低单元（栈顶，实际上严格来讲不能这么说）也就是说，SS 不变，也就是只能在那 64K 的空间里环绕<strong>覆盖</strong></p>
+<div class="tags"><a href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag"><i class="ic i-tag"></i>技术</a></div></div><footer><div class="meta"><span class="item"><span class="icon"><i class="ic i-calendar-check"></i></span><span class="text">更新于</span><time title="修改时间：2025-01-21 21:57:08" itemprop="dateModified" datetime="2025-01-21T21:57:08+08:00">2025-01-21</time></span></div><div class="reward"><button><i class="ic i-heartbeat"></i>赞赏</button><p>请我喝[茶]~(￣▽￣)~*</p><div id="qr"><div><img loading="lazy" data-src="/assets/wechatpay.png" alt="开船的 微信支付"/><p>微信支付</p></div><div><img loading="lazy" data-src="/assets/alipay.png" alt="开船的 支付宝"/><p>支付宝</p></div></div></div><div id="copyright"><ul><li class="author"><strong>本文作者：</strong>开船的<i class="ic i-at"><em>@</em></i>这就是--Potato</li><li class="link"><strong>本文链接：</strong><a href="https://zhewanyiershinicheng.github.io/2024/10/11/%E6%B1%87%E7%BC%96/" title="汇编">https://zhewanyiershinicheng.github.io/2024/10/11/汇编/</a></li><li class="license"><strong>版权声明：</strong>本站所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li></ul></div></footer></article></div><div class="post-nav"><div class="item left"><a href="/2024/10/11/%E5%9C%9F%E8%B1%86%E8%B1%86%E8%B1%86%E8%B1%86%E8%B1%86/" rel="prev" itemprop="url" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicit31ffoj20zk0m8naf.jpg" title="土豆豆豆豆豆"><span class="type">上一篇</span><span class="category"><i class="ic i-flag"></i>离谱</span><h3>土豆豆豆豆豆</h3></a></div><div class="item right"><a href="/2024/10/11/%E5%9C%9F%E8%B1%86%E7%9B%B4%E6%92%AD%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81/" rel="next" itemprop="url" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicis081o9j20zk0m8dmr.jpg" title="土豆直播"><span class="type">下一篇</span><h3>土豆直播</h3></a></div></div><div class="wrap" id="comments"></div></div><div id="sidebar"><div class="inner"><div class="panels"><div class="inner"><div class="contents panel pjax" data-title="文章目录"></div><div class="related panel pjax" data-title="系列文章"><ul><li ><a href="/2024/10/11/MySQL/" rel="bookmark" title="MySQL">MySQL</a></li><li  class="active"><a href="/2024/10/11/%E6%B1%87%E7%BC%96/" rel="bookmark" title="汇编">汇编</a></li><li ><a href="/2024/10/12/%E6%8A%80%E6%9C%AF/" rel="bookmark" title="技术">技术</a></li><li ><a href="/2024/10/14/IDA%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="bookmark" title="IDA">IDA</a></li><li ><a href="/2024/10/14/C%E7%AC%94%E8%AE%B02SE/" rel="bookmark" title="C笔记2SE">C笔记2SE</a></li><li ><a href="/2024/10/14/JavaScript/" rel="bookmark" title="JavaScript">JavaScript</a></li><li ><a href="/2024/10/14/C%E7%AC%94%E8%AE%B01ultrasuper/" rel="bookmark" title="C笔记ultra">C笔记ultra</a></li><li ><a href="/2024/10/14/HTML/" rel="bookmark" title="HTML">HTML</a></li><li ><a href="/2025/01/22/Linux/" rel="bookmark" title="Linux">Linux</a></li><li ><a href="/2025/02/04/SQL%E6%B3%A8%E5%85%A5/" rel="bookmark" title="SQL注入">SQL注入</a></li><li ><a href="/2025/02/05/XSS/" rel="bookmark" title="XSS">XSS</a></li><li ><a href="/2025/02/15/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" rel="bookmark" title="文件上传漏洞">文件上传漏洞</a></li></ul></div><div class="overview panel" data-title="站点概览"><div class="author" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person"><img class="image" loading="lazy" decoding="async" itemprop="image" alt="开船的" src="/assets/avatar.jpg"/><p class="name" itemprop="name">开船的</p><div class="description" itemprop="description">bug依旧很多，反正我忍不了</div></div><nav class="state"><div class="item posts"><a href="/archives/"><span class="count">19</span><span class="name">文章</span></a></div><div class="item categories"><a href="/categories/"><span class="count">4</span><span class="name">分类</span></a></div><div class="item tags"><a href="/tags/"><span class="count">4</span><span class="name">标签</span></a></div></nav><div class="social"><a target="_blank" rel="noopener" href="https://github.com/zhewanyiershinicheng" class="item github" title="https:&#x2F;&#x2F;github.com&#x2F;zhewanyiershinicheng"><i class="ic i-github"></i></a></div><div class="menu"><li class="item"><a href="/" rel="section"><i class="ic i-home"></i>首页</a></li></div></div></div></div><ul id="quick"><li class="prev pjax"><a href="/2024/10/11/%E5%9C%9F%E8%B1%86%E7%9B%B4%E6%92%AD%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a></li><li class="up"><i class="ic i-arrow-up"></i></li><li class="down"><i class="ic i-arrow-down"></i></li><li class="next pjax"><a href="/2024/10/11/%E5%9C%9F%E8%B1%86%E8%B1%86%E8%B1%86%E8%B1%86%E8%B1%86/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a></li><li class="percent"></li></ul></div></div><div class="dimmer"></div></div></main><footer id="footer"><div class="inner"><div class="widgets"><div class="rpost pjax"><h2>随机文章</h2><ul><li class="item"><div class="breadcrumb"><a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于技术">技术</a></div><span><a href="/2024/10/14/IDA%E7%9A%84%E4%BD%BF%E7%94%A8/">IDA</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于技术">技术</a></div><span><a href="/2024/10/11/%E6%B1%87%E7%BC%96/">汇编</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于技术">技术</a></div><span><a href="/2024/10/14/HTML/">HTML</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于技术">技术</a></div><span><a href="/2024/10/14/JavaScript/">JavaScript</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于技术">技术</a></div><span><a href="/2025/02/04/SQL%E6%B3%A8%E5%85%A5/">SQL注入</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%8F%91%E7%94%B5/" title="分类于发电">发电</a></div><span><a href="/2024/10/11/python%E7%AC%94%E8%AE%B01/">python，然而完全没有关系</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E7%A6%BB%E8%B0%B1/" title="分类于离谱">离谱</a></div><span><a href="/2024/10/11/%E5%9C%9F%E8%B1%86%E8%B1%86%E8%B1%86%E8%B1%86%E8%B1%86/">土豆豆豆豆豆</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于技术">技术</a></div><span><a href="/2024/10/14/C%E7%AC%94%E8%AE%B02SE/">C笔记2SE</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于技术">技术</a></div><span><a href="/2025/02/05/XSS/">XSS</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于技术">技术</a></div><span><a href="/2024/10/12/%E6%8A%80%E6%9C%AF/">技术</a></span></li></ul></div><div class="rpost pjax"><h2>最新评论</h2></div></div><div class="status"><div class="copyright">&copy; 2022 -<span itemprop="copyrightYear">2025</span><span class="with-love"><i class="ic i-sakura rotate"></i></span><span class="author" itemprop="copyrightHolder">开船的 @ tamato</span></div><div class="count"><span class="post-meta-item-icon"><i class="ic i-chart-area"></i></span><span title="站点总字数">121k 字</span><span class="post-meta-divider"> | </span><span class="post-meta-item-icon"><i class="ic i-coffee"></i></span><span title="站点阅读时长">1:50</span></div><div class="powered-by">基于 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & Theme.<a target="_blank" rel="noopener" href="https://github.com/theme-shoka-x/hexo-theme-shokaX/">ShokaX</a></div></div></div></footer></div><script data-config type="text/javascript">var LOCAL = {
+    ispost: true,
+        path: `2024/10/11/汇编/`,
+        favicon: {
+        show: `（●´3｀●）やれやれだぜ`,
+        hide: `(´Д｀)大変だ！`
+    },
+    search: {
+        placeholder: "文章搜索",
+        empty: "关于 「 ${query} 」，什么也没搜到",
+        stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    copy_tex: false,
+    katex: false,
+    mermaid: false,
+    audio: undefined,
+    fancybox: true,
+    nocopy: false,
+    outime: true,
+    template: `<div class="note warning"><p><span class="label warning">文章时效性提示</span><br>这是一篇发布于 {{publish}} 天前，最后一次更新在 {{updated}} 天前的文章，部分信息可能已经发生改变，请注意甄别。</p></div>`,
+    quiz: {
+        choice: `单选题`,
+        multiple: `多选题`,
+        true_false: `判断题`,
+        essay: `问答题`,
+        gap_fill: `填空题`,
+        mistake: `错题备注`
+    },
+    ignores: [
+        (uri) => uri.includes('#'),
+        (uri) => new RegExp(LOCAL.path + '$').test(uri),
+            []
+    ]
+};
+</script><script src="https://s4.zstatic.net/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous" fetchpriority="high"></script><script src="https://s4.zstatic.net/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha384-ZvpUoO&#x2F;+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn&#x2F;6Z&#x2F;hRTt8+pR6L4N2" crossorigin="anonymous" fetchpriority="high"></script><script src="/js/siteInit.js?v=0.4.17" type="module" fetchpriority="high" defer></script></body></html>
