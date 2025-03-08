@@ -145,10 +145,10 @@ move_uploaded_file($_FILES[&#39;myfile&#39;][&#39;tmp_name&#39;], &#39;uploads/&
 &lt;p&gt;11、为后续做个铺垫，请你想办法捕捉到文件上传瞬间临时目录（Linux 下是 /tmp）下的文件变化（动作要快，姿势要帅，临时文件消失快）&lt;/p&gt;
 &lt;p&gt;使用 inotify 监控 /tmp 目录&lt;/p&gt;
 &lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;apt&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; inotify-too &lt;span class=&#34;token comment&#34;&gt;#安装&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;inotifywait &lt;span class=&#34;token parameter variable&#34;&gt;-m&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-e&lt;/span&gt; create /tmp   &lt;span class=&#34;token comment&#34;&gt;#监控目录文件创建事件&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#-m 持续监控，而不是一个就退出&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#-e create 指定监控的事件为创建&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&#34;文件上传&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#文件上传&#34;&gt;#&lt;/a&gt; 文件上传&lt;/h2&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/1739202184876.png&#34; alt=&#34;1739202184876&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/1739202230914.png&#34; alt=&#34;1739202230914&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/1739202984987.png&#34; alt=&#34;1739202984987&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/1739203097971.png&#34; alt=&#34;1739203097971&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1739202184876.png&#34; alt=&#34;1739202184876&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1739202230914.png&#34; alt=&#34;1739202230914&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1739202984987.png&#34; alt=&#34;1739202984987&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1739203097971.png&#34; alt=&#34;1739203097971&#34; /&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;临时的副本文件会在脚本结束时消失。&lt;/p&gt;
 &lt;p&gt;要保存被上传的文件，需要用 PHP 的 copy () 函数将它复制到其它位置&lt;/p&gt;
@@ -166,12 +166,12 @@ move_uploaded_file($_FILES[&#39;myfile&#39;][&#39;tmp_name&#39;], &#39;uploads/&
 &lt;h3 id=&#34;扩展名&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#扩展名&#34;&gt;#&lt;/a&gt; 扩展名&lt;/h3&gt;
 &lt;p&gt;一个前端的限制：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/1739263171554.png&#34; alt=&#34;1739263171554&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1739263171554.png&#34; alt=&#34;1739263171554&#34; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;可以抓包改后缀 / 禁用 JS 来绕过～&lt;/p&gt;
 &lt;p&gt;后端的限制，可以黑 / 白名单：&lt;/p&gt;
 &lt;figure class=&#34;highlight php&#34;&gt;&lt;figcaption data-lang=&#34;PHP&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$temp&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;explode&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string double-quoted-string&#34;&gt;&#34;.&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$_FILE&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;file&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;name&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$file_ext&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;end&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;temp&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$allow_ext&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;array&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;php&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;asp&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;aspx&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;in_array&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;strtolower&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$file_ext&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$allow_ext&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;POTATOWO&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token function&#34;&gt;move_uploaded_file&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;uploads/&#39;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$_FILES&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;file&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;name&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$_FILES&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;file&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;temp_name&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;还是太善良了&#39;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;然后是 CSDN 上的：&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/1739264583886.png&#34; alt=&#34;1739264583886&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1739264583886.png&#34; alt=&#34;1739264583886&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;trim (): 用于去除字符串首尾的字符，默认是去空格，它在 JS 中是一个方法&lt;/p&gt;
 &lt;p&gt;欸？为什么不用 pathinfo 呢？我也不清楚&lt;/p&gt;
 &lt;h3 id=&#34;mime&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#mime&#34;&gt;#&lt;/a&gt; MIME&lt;/h3&gt;
@@ -180,7 +180,7 @@ move_uploaded_file($_FILES[&#39;myfile&#39;][&#39;tmp_name&#39;], &#39;uploads/&
 &lt;p&gt;幻术头字节是文件头的一部分，用于表示文件类型，文件头本身可能包含其他信息，比如图片的位深等&lt;/p&gt;
 &lt;h4 id=&#34;常见的&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#常见的&#34;&gt;#&lt;/a&gt; 常见的&lt;/h4&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/1739265242140.png&#34; alt=&#34;1739265242140&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1739265242140.png&#34; alt=&#34;1739265242140&#34; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;绕过&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;对于 PHP 的文件由于 &amp;lt;?php ...php&amp;gt; 之前的都会被当成 html，所以写 php 文件前先乱写点什么&lt;/p&gt;
@@ -201,7 +201,7 @@ move_uploaded_file($_FILES[&#39;myfile&#39;][&#39;tmp_name&#39;], &#39;uploads/&
 &lt;h3 id=&#34;本地文件包含lfi&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#本地文件包含lfi&#34;&gt;#&lt;/a&gt; 本地文件包含（LFI）&lt;/h3&gt;
 &lt;p&gt;就是打开本地的文件，可以用于获取敏感信息&lt;/p&gt;
 &lt;p&gt;例如：&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/1739611330897.png&#34; alt=&#34;1739611330897&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1739611330897.png&#34; alt=&#34;1739611330897&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;显而易见，你可以用来执行文件上传漏洞的 webshell&lt;/p&gt;
 &lt;p&gt;你可以它放在被包含的路径上&lt;/p&gt;
 &lt;h3 id=&#34;包含apache日志文件&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#包含apache日志文件&#34;&gt;#&lt;/a&gt; 包含 Apache 日志文件&lt;/h3&gt;
@@ -218,7 +218,7 @@ move_uploaded_file($_FILES[&#39;myfile&#39;][&#39;tmp_name&#39;], &#39;uploads/&
 &lt;blockquote&gt;
 &lt;p&gt;SESSION 中有可控变量，并且可以读写，知道路径&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/1739612579792.png&#34; alt=&#34;1739612579792&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1739612579792.png&#34; alt=&#34;1739612579792&#34; /&gt;&lt;/p&gt;
 &lt;h3 id=&#34;包含临时文件&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#包含临时文件&#34;&gt;#&lt;/a&gt; 包含临时文件&lt;/h3&gt;
 &lt;p&gt;就是传说中的上传后的临时文件&lt;/p&gt;
 &lt;p&gt;Linux 是 /tmp&lt;/p&gt;
@@ -251,7 +251,7 @@ move_uploaded_file($_FILES[&#39;myfile&#39;][&#39;tmp_name&#39;], &#39;uploads/&
 &lt;h4 id=&#34;data&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#data&#34;&gt;#&lt;/a&gt; data://&lt;/h4&gt;
 &lt;p&gt;类似于 php://input，但是&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;allow_url_fopen/include 必须都是 on&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/1739619725310.png&#34; alt=&#34;1739619725310&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1739619725310.png&#34; alt=&#34;1739619725310&#34; /&gt;&lt;/p&gt;
 </content>
         <category term="技术" scheme="https://zhewanyiershinicheng.github.io/categories/%E6%8A%80%E6%9C%AF/" />
         <updated>2025-02-15T14:21:23.000Z</updated>
