@@ -2229,18 +2229,6 @@ int *const p3 = &amp;amp;i;    //p（地址）不能改，但是*p/i可以
         <updated>2024-10-14T05:21:05.000Z</updated>
     </entry>
     <entry>
-        <id>https://zhewanyiershinicheng.github.io/2024/10/12/%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E8%AF%95%E9%AA%8C%E6%80%A7%E7%9A%84%E6%96%87%E7%AB%A0/</id>
-        <title>啊啊啊啊，为什么还是不行</title>
-        <link rel="alternate" href="https://zhewanyiershinicheng.github.io/2024/10/12/%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E8%AF%95%E9%AA%8C%E6%80%A7%E7%9A%84%E6%96%87%E7%AB%A0/"/>
-        <content type="html">&lt;p&gt;是这样的啊啊啊啊啊啊，怎么还是不行？？？&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1728713145444.png&#34; alt=&#34;1728713145444.png&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1728740487440.png&#34; alt=&#34;1728740487440&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1728740502158.png&#34; alt=&#34;1728740502158&#34; /&gt;&lt;/p&gt;
-</content>
-        <category term="随想" scheme="https://zhewanyiershinicheng.github.io/categories/%E9%9A%8F%E6%83%B3/" />
-        <updated>2024-10-12T05:23:38.000Z</updated>
-    </entry>
-    <entry>
         <id>https://zhewanyiershinicheng.github.io/2024/10/11/MySQL/</id>
         <title>MySQL</title>
         <link rel="alternate" href="https://zhewanyiershinicheng.github.io/2024/10/11/MySQL/"/>
