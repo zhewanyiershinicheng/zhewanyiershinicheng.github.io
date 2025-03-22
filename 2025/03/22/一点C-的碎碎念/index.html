@@ -1,0 +1,109 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"/><meta name="theme-color" content="#222"/><meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/><meta name="renderer" content="webkit"/><link rel="icon" type="image/ico" sizes="32x32" href="/assets/favicon.ico"/><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"/><link rel="alternate" href="/rss.xml" title="这就是--Potato" type="application/rss+xml"><link rel="alternate" href="/atom.xml" title="这就是--Potato" type="application/atom+xml"><link rel="alternate" type="application/json" title="这就是--Potato" href="https://zhewanyiershinicheng.github.io/feed.json"/><link rel="preconnect" href="https://s4.zstatic.net"/><link rel="preconnect" href="https://at.alicdn.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CFredericka%20the%20Great:400,400italic,700,700italic%7CNoto%20Serif%20JP:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic%7CInconsolata:400,400italic,700,700italic&display=swap&subset=latin,latin-ext" media="none" onload="this.media&#x3D;&#39;all&#39;"><link rel="stylesheet" href="/css/app.css?v=0.4.17"><link rel="modulepreload" href="/js/chunk-4WOL5AEA.js"></link><link rel="modulepreload" href="/js/chunk-M2OVB55D.js"></link><link rel="modulepreload" href="/js/chunk-OEHKNEWL.js"></link><link rel="modulepreload" href="/js/copy-tex-JCSSB3EK.js"></link><link rel="modulepreload" href="/js/index.esm-H3NZFZ46.js"></link><link rel="modulepreload" href="/js/post-RFOLAXHH.js"></link><link rel="modulepreload" href="/js/quicklink-LPV2RIEA.js"></link><link rel="modulepreload" href="/js/siteInit.js"></link><link rel="preload" href="6833939bly1gicit4jrvuj20zk0m8785.jpg" as="image" fetchpriority="high"><link rel="preload" href="6833939bly1gicitcxhpij20zk0m8hdt.jpg" as="image" fetchpriority="high"><link rel="preload" href="6833939bly1giciryrr3rj20zk0m8nhk.jpg" as="image" fetchpriority="high"><link rel="preload" href="6833939bly1gicis3attqj20zk0m8k7l.jpg" as="image" fetchpriority="high"><link rel="preload" href="6833939bly1gicit31ffoj20zk0m8naf.jpg" as="image" fetchpriority="high"><link rel="preload" href="6833939bly1giciszlczyj20zk0m816d.jpg" as="image" fetchpriority="high"><meta name="keywords" content="技术"/><meta name="description" content="bug依旧很多，反正我忍不了"/><link rel="canonical" href="https://zhewanyiershinicheng.github.io/2025/03/22/%E4%B8%80%E7%82%B9C-%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5/"><title>一点C++的碎碎念~</title><meta name="generator" content="Hexo 7.3.0"></head><body itemscope itemtype="http://schema.org/WebPage"><div id="loading"><div class="cat"><div class="body"></div><div class="head"><div class="face"></div></div><div class="foot"><div class="tummy-end"></div><div class="bottom"></div><div class="legs left"></div><div class="legs right"></div></div><div class="paw"><div class="hands left"></div><div class="hands right"></div></div></div></div><div id="container"><header id="header" itemscope itemtype="http://schema.org/WPHeader"><div class="inner"><div id="brand"><div class="pjax"><h1 itemprop="name headline">一点C++的碎碎念~</h1><div class="meta"><span class="item" title="作成日：2025-03-22 18:36:29"><span class="icon"><i class="ic i-calendar"></i></span><span class="text">投稿日</span><time itemprop="dateCreated datePublished" datetime="2025-03-22T18:36:29+08:00">2025-03-22</time></span><span class="item" title="単語数"><span class="icon"><i class="ic i-pen"></i></span><span class="text">単語数</span><span>2.3k</span><span class="text">単語</span></span><span class="item" title="読書の時間"><span class="icon"><i class="ic i-clock"></i></span><span class="text">読書の時間</span><span>2 分</span></span></div></div></div><nav id="nav"><div class="inner"><div class="toggle"><div class="lines" aria-label="ナビゲーションバーの切り替え"><span class="line"></span><span class="line"></span><span class="line"></span></div></div><ul class="menu"><li class="item title"><a href="/" rel="start">chongkai</a></li></ul><ul class="right" id="rightNav"><li class="item theme"><i class="ic i-sun"></i></li><li class="item search"><i class="ic i-search"></i></li></ul></div></nav></div><div class="pjax" id="imgs"><img src="https://7ed.net/bing/api" loading="eager" decoding="async" fetchpriority="high" alt="这就是--Potato"></div></header><div id="waves"><svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path></defs><g class="parallax"><use xlink:href="#gentle-wave" x="48" y="0"></use><use xlink:href="#gentle-wave" x="48" y="3"></use><use xlink:href="#gentle-wave" x="48" y="5"></use><use xlink:href="#gentle-wave" x="48" y="7"></use></g></svg></div><main><div class="inner"><div class="pjax" id="main"><div class="article wrap"><div class="breadcrumb" itemListElement itemscope itemtype="https://schema.org/BreadcrumbList"><i class="ic i-home"></i><span><a href="/">ホーム</a></span></div><article class="post block" itemscope="itemscope" itemtype="http://schema.org/Article" lang="zh-cn"><link itemprop="mainEntityOfPage" href="https://zhewanyiershinicheng.github.io/2025/03/22/%E4%B8%80%E7%82%B9C-%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/><span hidden="hidden" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person"><meta itemprop="image" content="/assets/avatar.jpg"/><meta itemprop="name" content="开船的"/><meta itemprop="description" content="真的假的？, bug依旧很多，反正我忍不了"/></span><span hidden="hidden" itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organization"><meta itemprop="name" content="这就是--Potato"/></span><div class="body md" itemprop="articleBody"><p>实际上是做题时遇到的一点疑惑</p>
+<p>1. 关于 this 指针：(选 B)</p>
+<p><img loading="lazy" data-src="/1742639945490.png" alt="1742639945490" /></p>
+<p>A. 构造函数用于初始化对象，在构造函数中可以使用 <code>this</code>  指针来区分成员变量和局部变量，或者通过 <code>this</code>  指针调用其他成员函数等。例如：</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">MyClass</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">int</span> num<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token function">MyClass</span><span class="token punctuation">(</span><span class="token keyword">int</span> num<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token keyword">this</span><span class="token operator">-></span>num <span class="token operator">=</span> num<span class="token punctuation">;</span>  <span class="token comment">// 用于区分时必须明写 this</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr></table></figure><p>B. 此时 <code>this</code>  指针是一个指向常量对象的指针，即 <code>const</code>  类型的指针，不能指向可以被修改的对象</p>
+<pre><code class="language-c++">class MyClass &#123;
+public:
+    int num;
+    void printNum() const &#123;
+        // this 指针指向常量对象
+        const MyClass* constThis = this;
+        // 可以使用 this 指针访问成员变量，但不能修改
+        std::cout &lt;&lt; this-&gt;num &lt;&lt; std::endl;
+    &#125;
+&#125;;
+/*在实际使用中，const类型的成员函数依然可以使用this来指向调用它的对象，也可以访问其内容*/
+</code></pre>
+<p>C，D 都是正确的</p>
+<p>2. 关于构造 / 析构函数的执行</p>
+<p>不放题目就说一下：</p>
+<p>构造函数</p>
+<p>默认就有普通构造函数和复制构造函数（是浅拷贝，仅仅赋值），它们是重载的</p>
+<p>但是，如果自己写了任意一种的构造函数，就不会在默认生成</p>
+<p>可以使用</p>
+<pre><code class="language-c++">MyClass() = default
+</code></pre>
+<p>来显式指定生成默认的构造函数</p>
+<p>另外，const 可以作为构造函数的重载区分，当定义的对象是 const 类型，它才会被自动调用。</p>
+<p>析构函数</p>
+<p>没有参数，不可重载，都是先入后出（同生存期时，包括对象数组），这是因为后面定义的对象析构时可能访问已销毁的前面的对象，所以这是 C++ 的标准要求的，跟怎么存储没有关系。</p>
+<p>3. 关于成员函数 &amp; const&amp;static</p>
+<p>常成员函数：</p>
+<p>属于对象，不能通过  <code>this</code>  指针修改调用对象的非常数据成员 ，但是可以使用外部的数据 / 函数</p>
+<p><strong>并且可以修改外部数据（除 const 的数据），被调用外部函数也可以修改对象的非常数据成员</strong></p>
+<p>稍微复杂一点：</p>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+class AnotherClass &#123;
+public:
+    void nonConstFunction() &#123;
+        std::cout &lt;&lt; &quot;Non-const function of AnotherClass.&quot; &lt;&lt; std::endl;
+    &#125;
+    void constFunction() const &#123;
+        std::cout &lt;&lt; &quot;Const function of AnotherClass.&quot; &lt;&lt; std::endl;
+    &#125;
+&#125;;
+class MyClass &#123;
+public:
+    void constFunction(const AnotherClass&amp; anotherObj, AnotherClass&amp; nonConstAnotherObj) const &#123;
+        // 可以调用 const 对象的 const 成员函数
+        anotherObj.constFunction();
+        // 以下代码会报错，不能调用 const 对象的非 const 成员函数
+        // anotherObj.nonConstFunction(); 
+        // 可以调用非 const 对象的非 const 成员函数
+        nonConstAnotherObj.nonConstFunction();
+    &#125;
+&#125;;
+int main() &#123;
+    AnotherClass obj1;
+    const AnotherClass obj2;
+    MyClass myObj;
+    myObj.constFunction(obj2, obj1);
+    return 0;
+&#125;
+//其实也不复杂，就是说如果用了其他对象，那么能否调用其中的函数，看那个对象本身是否可以调用
+//但是话又说回来，如果那个对象的方法改变了本来这个对象的非const成员函数，依然是会报错的
+//同理，被调用的对象不能调用调用对象的非const成员函数
+总之就是：不能改变/使用本身对象里的非const成员（除被声明为mutable的成员数据），其他随意。
+</code></pre>
+<p>静态成员函数：</p>
+<p>属于类，也可以通过对象调用，但是没有区别，只能使用静态成员数据 / 函数和外部数据 / 函数</p>
+<p>提一下：</p>
+<p>1. 静态成员数据不是在构造函数中初始化的（但是构造函数可以使用它），必须在类外以 <code>类名::变量名=xxx</code>  的形式初始化，不过，如果它同时是 const 的话，<strong>甚至可以直接在类内就定义</strong>（也可以不）</p>
+<p>2. 常数据成员只能在构造函数的初始化列表中定义（除了上面那个情况），不能在函数本身或者外部</p>
+<p>总之就是：static 类型的属于类本身，但是 const 属于对象，只有同时是 static 和 const 才能类内定义</p>
+<div class="tags"><a href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag"><i class="ic i-tag"></i>技术</a></div></div><footer><div class="meta"><span class="item"><span class="icon"><i class="ic i-calendar-check"></i></span><span class="text">編集日</span><time title="修正日：2025-03-22 23:10:05" itemprop="dateModified" datetime="2025-03-22T23:10:05+08:00">2025-03-22</time></span></div><div id="copyright"><ul><li class="author"><strong>著者：</strong>开船的<i class="ic i-at"><em>@</em></i>这就是--Potato</li><li class="link"><strong>記事へのリンク：</strong><a href="https://zhewanyiershinicheng.github.io/2025/03/22/%E4%B8%80%E7%82%B9C-%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5/" title="一点C++的碎碎念~">https://zhewanyiershinicheng.github.io/2025/03/22/一点C-的碎碎念/</a></li><li class="license"><strong>著作権表示：</strong>このブログ内のすべての記事は、特別な記載がない限り <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</a> の下のライセンスで保護されています。</li></ul></div></footer></article></div><div class="post-nav"><div class="item left"><a href="/2025/03/20/flask/" rel="prev" itemprop="url" title="flask" style="background-image: linear-gradient(to bottom right, #e3f4ca, #e7eda6);"><span class="type">前の記事</span><h3>flask</h3></a></div><div class="item right"></div></div><div class="wrap" id="comments"></div></div><div id="sidebar"><div class="inner"><div class="panels"><div class="inner"><div class="contents panel pjax" data-title="見出し"></div><div class="related panel pjax" data-title="関連記事"></div><div class="overview panel" data-title="概要"><div class="author" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person"><img class="image" loading="lazy" decoding="async" itemprop="image" alt="开船的" src="/assets/avatar.jpg"/><p class="name" itemprop="name">开船的</p><div class="description" itemprop="description">bug依旧很多，反正我忍不了</div></div><nav class="state"><div class="item posts"><a href="/archives/"><span class="count">18</span><span class="name">ポスト</span></a></div><div class="item categories"><a href="/categories/"><span class="count">3</span><span class="name">カテゴリ</span></a></div><div class="item tags"><a href="/tags/"><span class="count">4</span><span class="name">タグ</span></a></div></nav><div class="social"><a target="_blank" rel="noopener" href="https://github.com/zhewanyiershinicheng" class="item github" title="https:&#x2F;&#x2F;github.com&#x2F;zhewanyiershinicheng"><i class="ic i-github"></i></a></div><div class="menu"><li class="item"><a href="/" rel="section"><i class="ic i-home"></i>ホーム</a></li><li class="item dropdown"><a href="#" onclick="return false;"><i class="ic i-feather"></i>投稿</a><ul class="submenu"><li class="item"><a href="/archives/" rel="section"><i class="ic i-list-alt"></i>アーカイブ</a></li><li class="item"><a href="/categories/" rel="section"><i class="ic i-th"></i>カテゴリ</a></li><li class="item"><a href="/tags/" rel="section"><i class="ic i-tags"></i>タグ</a></li></ul></li><li class="item"><a href="/friends/" rel="section"><i class="ic i-heart"></i>フレンド</a></li></div></div></div></div><ul id="quick"><li class="prev pjax"></li><li class="up"><i class="ic i-arrow-up"></i></li><li class="down"><i class="ic i-arrow-down"></i></li><li class="next pjax"><a href="/2025/03/20/flask/" rel="next" title="次の記事"><i class="ic i-chevron-right"></i></a></li><li class="percent"></li></ul></div></div><div class="dimmer"></div></div></main><footer id="footer"><div class="inner"><div class="widgets"><div class="rpost pjax"><h2>ランダムな記事</h2><ul><li class="item"><div class="breadcrumb"><a href="/categories/%E6%8A%80%E6%9C%AF/" title="カテゴリ技术">技术</a></div><span><a href="/2025/01/22/Linux/">Linux</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E6%8A%80%E6%9C%AF/" title="カテゴリ技术">技术</a></div><span><a href="/2024/10/11/MySQL/">MySQL</a></span></li><li class="item"><div class="breadcrumb"></div><span><a href="/2025/03/20/flask/">flask</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E6%8A%80%E6%9C%AF/" title="カテゴリ技术">技术</a></div><span><a href="/2025/02/05/XSS/">XSS</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%8F%91%E7%94%B5/" title="カテゴリ发电">发电</a></div><span><a href="/2024/10/11/Web%E6%96%B9%E5%90%91/">web</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E6%8A%80%E6%9C%AF/" title="カテゴリ技术">技术</a></div><span><a href="/2024/10/14/IDA%E7%9A%84%E4%BD%BF%E7%94%A8/">IDA</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E6%8A%80%E6%9C%AF/" title="カテゴリ技术">技术</a></div><span><a href="/2025/02/15/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">文件上传漏洞</a></span></li><li class="item"><div class="breadcrumb"></div><span><a href="/2024/10/11/%E5%9C%9F%E8%B1%86%E7%9B%B4%E6%92%AD%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81/">土豆直播</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E6%8A%80%E6%9C%AF/" title="カテゴリ技术">技术</a></div><span><a href="/2024/10/14/C%E7%AC%94%E8%AE%B01ultrasuper/">C笔记ultra</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E6%8A%80%E6%9C%AF/" title="カテゴリ技术">技术</a></div><span><a href="/2025/02/04/SQL%E6%B3%A8%E5%85%A5/">SQL注入</a></span></li></ul></div><div class="rpost pjax"><h2>最近のコメント</h2></div></div><div class="status"><div class="copyright">&copy; 2022 -<span itemprop="copyrightYear">2025</span><span class="with-love"><i class="ic i-sakura rotate"></i></span><span class="author" itemprop="copyrightHolder">开船的 @ chongkai</span></div><div class="count"><span class="post-meta-item-icon"><i class="ic i-chart-area"></i></span><span title="単語の総数">137k 単語</span><span class="post-meta-divider"> | </span><span class="post-meta-item-icon"><i class="ic i-coffee"></i></span><span title="読書の合計時間">2:05</span></div><div class="powered-by">Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & Theme.<a target="_blank" rel="noopener" href="https://github.com/theme-shoka-x/hexo-theme-shokaX/">ShokaX</a></div></div></div></footer></div><script data-config type="text/javascript">var LOCAL = {
+    ispost: true,
+        path: `2025/03/22/一点C-的碎碎念/`,
+        favicon: {
+        show: `（●´3｀●）やれやれだぜ`,
+        hide: `(´Д｀)大変だ！`
+    },
+    search: {
+        placeholder: "検索…",
+        empty: "「 ${query} 」については何も見つかりませんでした",
+        stats: "${time} ms以内に ${hits} 件の結果が見つかりました"
+    },
+    copy_tex: false,
+    katex: false,
+    mermaid: false,
+    audio: undefined,
+    fancybox: true,
+    nocopy: false,
+    outime: true,
+    template: `<div class="note warning"><p><span class="label warning">記事の適時性の警告</span><br> {{publish}} 日前に公開され、 {{updated}} 日前に最終更新された記事です。 一部情報が変更されている可能性がありますので、ご了承ください。</p></div>`,
+    quiz: {
+        choice: `選択`,
+        multiple: `複数選択`,
+        true_false: `正誤`,
+        essay: `問答`,
+        gap_fill: `空欄`,
+        mistake: `間違った答え`
+    },
+    ignores: [
+        (uri) => uri.includes('#'),
+        (uri) => new RegExp(LOCAL.path + '$').test(uri),
+            []
+    ]
+};
+</script><script src="https://s4.zstatic.net/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous" fetchpriority="high"></script><script src="https://s4.zstatic.net/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha384-ZvpUoO&#x2F;+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn&#x2F;6Z&#x2F;hRTt8+pR6L4N2" crossorigin="anonymous" fetchpriority="high"></script><script src="/js/siteInit.js?v=0.4.17" type="module" fetchpriority="high" defer></script></body></html>
