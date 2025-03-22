@@ -12,11 +12,11 @@
     <category term="《舰舰的奇妙冒险》" />
     <entry>
         <id>https://zhewanyiershinicheng.github.io/2025/03/22/%E4%B8%80%E7%82%B9C-%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5/</id>
-        <title>一点C++的碎碎念~</title>
+        <title>一点C-的碎碎念</title>
         <link rel="alternate" href="https://zhewanyiershinicheng.github.io/2025/03/22/%E4%B8%80%E7%82%B9C-%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
         <content type="html">&lt;p&gt;实际上是做题时遇到的一点疑惑&lt;/p&gt;
 &lt;p&gt;1. 关于 this 指针：(选 B)&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;/1742639945490.png&#34; alt=&#34;1742639945490&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1742639945490.png&#34; alt=&#34;1742639945490&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;A. 构造函数用于初始化对象，在构造函数中可以使用 &lt;code&gt;this&lt;/code&gt;  指针来区分成员变量和局部变量，或者通过 &lt;code&gt;this&lt;/code&gt;  指针调用其他成员函数等。例如：&lt;/p&gt;
 &lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;MyClass&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; num&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token function&#34;&gt;MyClass&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; num&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;num &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; num&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;// 用于区分时必须明写 this&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;B. 此时 &lt;code&gt;this&lt;/code&gt;  指针是一个指向常量对象的指针，即 &lt;code&gt;const&lt;/code&gt;  类型的指针，不能指向可以被修改的对象&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-c++&#34;&gt;class MyClass &amp;#123;
@@ -3558,45 +3558,6 @@ mysqli_close($conn);
         <updated>2024-10-11T09:48:50.000Z</updated>
     </entry>
     <entry>
-        <id>https://zhewanyiershinicheng.github.io/2024/10/11/%E5%9C%9F%E8%B1%86%E7%9B%B4%E6%92%AD%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81/</id>
-        <title>土豆直播</title>
-        <link rel="alternate" href="https://zhewanyiershinicheng.github.io/2024/10/11/%E5%9C%9F%E8%B1%86%E7%9B%B4%E6%92%AD%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81/"/>
-        <content type="html">&lt;p&gt;土豆直播！！！！！！&lt;/p&gt;
-&lt;p&gt;http 请求分为：&lt;/p&gt;
-&lt;p&gt;请求头：包括请求方法，版本等&lt;/p&gt;
-&lt;p&gt;请求体：&lt;/p&gt;
-&lt;p&gt;发给 repeater（重发器）后可以右键改变请求方式，发送请求包。&lt;/p&gt;
-&lt;p&gt;User-agent: 检测使用设备类型，windows,android 等。&lt;/p&gt;
-&lt;p&gt;post 方法需要加 content-type（在 hacker-bar 中可选）&lt;/p&gt;
-&lt;p&gt;​    application/xfu: 是发送 a=2 之类的表单&lt;/p&gt;
-&lt;p&gt;​    application/xfu (raw): 可以传图片，文件头（十六进制数）&lt;/p&gt;
-&lt;p&gt;​    application/json&lt;/p&gt;
-&lt;p&gt;​&lt;/p&gt;
-&lt;p&gt;Cookie: 一般是象征身份的随机字符&lt;/p&gt;
-&lt;p&gt;xff: 127.0.0.1（ 主机环回地址，可以自己发给自己 ）&lt;/p&gt;
-&lt;p&gt;控制台按 F2 可以看到二维数组&lt;/p&gt;
-&lt;p&gt;302 是重定向，可以在 repeater 中 follow&lt;/p&gt;
-&lt;p&gt;方法：&lt;/p&gt;
-&lt;p&gt;get post put delete head (与 GET 相比，没有响应体，只有存活判断)&lt;/p&gt;
-&lt;p&gt;可以自定义&lt;/p&gt;
-&lt;p&gt;hackerbar 可以发 post 的 json（可选）, 但是方法可以被 bp 再修改&lt;/p&gt;
-&lt;p&gt;然后看看 repeater&lt;/p&gt;
-&lt;p&gt;能看到的都是前端&lt;/p&gt;
-&lt;p&gt;服务器是后端&lt;/p&gt;
-&lt;p&gt;F12 可以看源代码（前端）&lt;/p&gt;
-&lt;p&gt;ctrl+u 可以看 html&lt;/p&gt;
-&lt;p&gt;俩 &amp;lt;scrip&amp;gt; 之间的才是 js，其他都是 html&lt;/p&gt;
-&lt;p&gt;html 是大的框架（提供元素），jss 是干正式的 (?)，css 用于美化网页&lt;/p&gt;
-&lt;p&gt;js 会看就行（bushi）&lt;/p&gt;
-&lt;p&gt;js 重点：&lt;/p&gt;
-&lt;p&gt;1. 事件监听（一定要会）&lt;/p&gt;
-&lt;p&gt;2. 选取 html 的元素，添加或修改属性值&lt;/p&gt;
-&lt;p&gt;3. 创建 html 标签，增加属性，并追加 DOM&lt;/p&gt;
-</content>
-        <category term="技术" scheme="https://zhewanyiershinicheng.github.io/tags/%E6%8A%80%E6%9C%AF/" />
-        <updated>2024-10-11T09:48:50.000Z</updated>
-    </entry>
-    <entry>
         <id>https://zhewanyiershinicheng.github.io/2024/10/11/python%E7%AC%94%E8%AE%B01/</id>
         <title>python，然而完全没有关系</title>
         <link rel="alternate" href="https://zhewanyiershinicheng.github.io/2024/10/11/python%E7%AC%94%E8%AE%B01/"/>
@@ -3673,6 +3634,45 @@ mysqli_close($conn);
 &lt;p&gt;这是一个关于在 xxxxx 中逐步发现关于土豆真相的故事。&lt;/p&gt;
 </content>
         <category term="离谱" scheme="https://zhewanyiershinicheng.github.io/categories/%E7%A6%BB%E8%B0%B1/" />
+        <updated>2024-10-11T09:48:50.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://zhewanyiershinicheng.github.io/2024/10/11/%E5%9C%9F%E8%B1%86%E7%9B%B4%E6%92%AD%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81/</id>
+        <title>土豆直播</title>
+        <link rel="alternate" href="https://zhewanyiershinicheng.github.io/2024/10/11/%E5%9C%9F%E8%B1%86%E7%9B%B4%E6%92%AD%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81/"/>
+        <content type="html">&lt;p&gt;土豆直播！！！！！！&lt;/p&gt;
+&lt;p&gt;http 请求分为：&lt;/p&gt;
+&lt;p&gt;请求头：包括请求方法，版本等&lt;/p&gt;
+&lt;p&gt;请求体：&lt;/p&gt;
+&lt;p&gt;发给 repeater（重发器）后可以右键改变请求方式，发送请求包。&lt;/p&gt;
+&lt;p&gt;User-agent: 检测使用设备类型，windows,android 等。&lt;/p&gt;
+&lt;p&gt;post 方法需要加 content-type（在 hacker-bar 中可选）&lt;/p&gt;
+&lt;p&gt;​    application/xfu: 是发送 a=2 之类的表单&lt;/p&gt;
+&lt;p&gt;​    application/xfu (raw): 可以传图片，文件头（十六进制数）&lt;/p&gt;
+&lt;p&gt;​    application/json&lt;/p&gt;
+&lt;p&gt;​&lt;/p&gt;
+&lt;p&gt;Cookie: 一般是象征身份的随机字符&lt;/p&gt;
+&lt;p&gt;xff: 127.0.0.1（ 主机环回地址，可以自己发给自己 ）&lt;/p&gt;
+&lt;p&gt;控制台按 F2 可以看到二维数组&lt;/p&gt;
+&lt;p&gt;302 是重定向，可以在 repeater 中 follow&lt;/p&gt;
+&lt;p&gt;方法：&lt;/p&gt;
+&lt;p&gt;get post put delete head (与 GET 相比，没有响应体，只有存活判断)&lt;/p&gt;
+&lt;p&gt;可以自定义&lt;/p&gt;
+&lt;p&gt;hackerbar 可以发 post 的 json（可选）, 但是方法可以被 bp 再修改&lt;/p&gt;
+&lt;p&gt;然后看看 repeater&lt;/p&gt;
+&lt;p&gt;能看到的都是前端&lt;/p&gt;
+&lt;p&gt;服务器是后端&lt;/p&gt;
+&lt;p&gt;F12 可以看源代码（前端）&lt;/p&gt;
+&lt;p&gt;ctrl+u 可以看 html&lt;/p&gt;
+&lt;p&gt;俩 &amp;lt;scrip&amp;gt; 之间的才是 js，其他都是 html&lt;/p&gt;
+&lt;p&gt;html 是大的框架（提供元素），jss 是干正式的 (?)，css 用于美化网页&lt;/p&gt;
+&lt;p&gt;js 会看就行（bushi）&lt;/p&gt;
+&lt;p&gt;js 重点：&lt;/p&gt;
+&lt;p&gt;1. 事件监听（一定要会）&lt;/p&gt;
+&lt;p&gt;2. 选取 html 的元素，添加或修改属性值&lt;/p&gt;
+&lt;p&gt;3. 创建 html 标签，增加属性，并追加 DOM&lt;/p&gt;
+</content>
+        <category term="技术" scheme="https://zhewanyiershinicheng.github.io/tags/%E6%8A%80%E6%9C%AF/" />
         <updated>2024-10-11T09:48:50.000Z</updated>
     </entry>
     <entry>
