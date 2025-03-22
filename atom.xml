@@ -1540,105 +1540,6 @@ sudo sh -c &amp;quot;echo 3 &amp;gt; brightness&amp;quot;
         <updated>2024-10-15T15:44:01.000Z</updated>
     </entry>
     <entry>
-        <id>https://zhewanyiershinicheng.github.io/2024/10/14/IDA%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
-        <title>IDA</title>
-        <link rel="alternate" href="https://zhewanyiershinicheng.github.io/2024/10/14/IDA%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-        <content type="html">&lt;h1 id=&#34;ida&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#ida&#34;&gt;#&lt;/a&gt; IDA&lt;/h1&gt;
-&lt;p&gt;ida 插件环境：&lt;/p&gt;
-&lt;p&gt;1. 至少 Python3.8&lt;/p&gt;
-&lt;p&gt;2. 多个使用 IDA 目录下的 idaplyswitch.exe&lt;/p&gt;
-&lt;p&gt;插件：&lt;/p&gt;
-&lt;p&gt;直接把 xxx.py 放到目录的 plugins 目录&lt;/p&gt;
-&lt;p&gt;KeyPatch (修改汇编)&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;依赖安装：pip install keystone-engine&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;LazyIDA (提取，批量修改)&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;至于用 64 还是 32，可以用查壳软件直接看&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;在 linux 下也可以使用 file 命令&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;但是实际上可以试错，不是直接打不开然后提醒，就是反汇编时会提醒&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;function-窗口&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#function-窗口&#34;&gt;#&lt;/a&gt; function 窗口&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;按 G 可以地址导航，按 TAB 显示伪代码&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;在该窗口中使用 Ctrl+F 就可以用关键字查找&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;这里包含了分析出的所有函数&lt;/p&gt;
-&lt;p&gt;IDAview&lt;/p&gt;
-&lt;p&gt;图形窗口&lt;/p&gt;
-&lt;p&gt;会显示控制流，按空格切换为文本模式，这是按照线性地址&lt;/p&gt;
-&lt;p&gt;分析一般从 main 开始，但是万一 main 函数名字没有识别到&lt;/p&gt;
-&lt;p&gt;可以根据输出的内容来定位地址（去字符串窗口找），然后定位函数&lt;/p&gt;
-&lt;h2 id=&#34;字符串窗口&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#字符串窗口&#34;&gt;#&lt;/a&gt; 字符串窗口&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;shift+12&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;在该窗口中使用 Ctrl+F 也可以用关键字查找（其实所有表格窗口都可以）&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;它包括了所有已识别的字符串&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;选中按 U 取消已定义的标识符，按 A 重建，按 X 显示所有引用选中的字符串的地方&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&#34;hex-view&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#hex-view&#34;&gt;#&lt;/a&gt; hex view&lt;/h2&gt;
-&lt;p&gt;动态调试时显示内存数据，正常是显示静态数据&lt;/p&gt;
-&lt;h2 id=&#34;importsexports&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#importsexports&#34;&gt;#&lt;/a&gt; imports/exports&lt;/h2&gt;
-&lt;p&gt;导入导出表&lt;/p&gt;
-&lt;p&gt;显示引用的 api，使用里面的函数&lt;/p&gt;
-&lt;p&gt;分析动态链接库时，同时要看导出的函数&lt;/p&gt;
-&lt;p&gt;程序入口会被 ida 当成一个叫做 start 的导出函数&lt;/p&gt;
-&lt;p&gt;在运行时 start 先被初始化，然后调用 main 函数&lt;/p&gt;
-&lt;h2 id=&#34;其他玩意儿&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#其他玩意儿&#34;&gt;#&lt;/a&gt; 其他玩意儿&lt;/h2&gt;
-&lt;h4 id=&#34;重命名函数&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#重命名函数&#34;&gt;#&lt;/a&gt; 重命名函数：&lt;/h4&gt;
-&lt;p&gt;ida 反编译的有时名字不太对，为了方便看，所以建议重命名&lt;br /&gt;
-（自己要猜一猜可能是什么库函数）&lt;/p&gt;
-&lt;p&gt;选中，然后按 N&lt;/p&gt;
-&lt;h1 id=&#34;ida动态调试&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#ida动态调试&#34;&gt;#&lt;/a&gt; IDA 动态调试&lt;/h1&gt;
-&lt;p&gt;作用：&lt;/p&gt;
-&lt;p&gt;验证静态分析结果&lt;/p&gt;
-&lt;p&gt;观察程序运行时数据&lt;/p&gt;
-&lt;h2 id=&#34;支持的特性&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#支持的特性&#34;&gt;#&lt;/a&gt; 支持的特性：&lt;/h2&gt;
-&lt;h3 id=&#34;1软件硬件条件脚本断点&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1软件硬件条件脚本断点&#34;&gt;#&lt;/a&gt; 1. 软件 / 硬件 / 条件 / 脚本断点&lt;/h3&gt;
-&lt;p&gt;设置断点，点前面，或者选中按 F2&lt;/p&gt;
-&lt;p&gt;在伪代码设断点，可能会导致有些没执行（断点会在函数传参时）&lt;/p&gt;
-&lt;p&gt;软件：IDA 在地址上设置断点（0xCC）, 到达后在恢复&lt;/p&gt;
-&lt;p&gt;硬件断点：通过 CPU 抛出错误来断点&lt;/p&gt;
-&lt;p&gt;条件断点：到达后执行特定脚本，并返回真表示被命中&lt;/p&gt;
-&lt;p&gt;脚本断点：基本和上面一样，但是返回值永远是假&lt;/p&gt;
-&lt;h3 id=&#34;2步入步过步出执行到光标位置&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2步入步过步出执行到光标位置&#34;&gt;#&lt;/a&gt; 2. 步入 / 步过 / 步出 / 执行到光标位置 /&lt;/h3&gt;
-&lt;p&gt;步入：进入 call 函数（F7）&lt;/p&gt;
-&lt;p&gt;步过：直接到 call 函数的返回地址（F8）&lt;/p&gt;
-&lt;p&gt;步出：中断函数回到其调用者（执行到返回）（Ctrl+F7）&lt;/p&gt;
-&lt;p&gt;执行到光标位置：直接执行到选中位值（实际上是设置临时断点）(F4)&lt;/p&gt;
-&lt;p&gt;设置代码执行位置：用于跳过不想执行的代码（Ctrl+N）&lt;/p&gt;
-&lt;p&gt;注意 scanf 会强行暂停等待输入&lt;/p&gt;
-&lt;h3 id=&#34;3汇编级伪代码源码调试代码级支持&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3汇编级伪代码源码调试代码级支持&#34;&gt;#&lt;/a&gt; 3. 汇编级 / 伪代码 / 源码 / 调试代码级支持&lt;/h3&gt;
-&lt;p&gt;IDA 会在存在源代码时自动导入，但是不如直接用 VS 之类的集成开发软件&lt;/p&gt;
-&lt;h3 id=&#34;4寄存器内存读写&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#4寄存器内存读写&#34;&gt;#&lt;/a&gt; 4. 寄存器 / 内存读写&lt;/h3&gt;
-&lt;p&gt;不是很方便，建议装上面插件&lt;/p&gt;
-&lt;h3 id=&#34;5启动进程附加调试&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#5启动进程附加调试&#34;&gt;#&lt;/a&gt; 5. 启动进程 / 附加调试&lt;/h3&gt;
-&lt;p&gt;启动调试可以每一步调试，也可以调试初始化代码（如果没有反调试）&lt;/p&gt;
-&lt;p&gt;附加调试不能调试初始化代码，但是有些程序是子程序，不附加环境不一样&lt;/p&gt;
-&lt;p&gt;也用来调试动态库以及绕过一些反调试&lt;/p&gt;
-&lt;p&gt;注：附加可以用 Ctrl+F 快速查找要附加到的程序&lt;/p&gt;
-&lt;h3 id=&#34;6内存窗口&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#6内存窗口&#34;&gt;#&lt;/a&gt; 6. 内存窗口&lt;/h3&gt;
-&lt;p&gt;在窗口中按 G 跳转到特定地址（自己提前复制）&lt;/p&gt;
-&lt;p&gt;按 F2 修改内存（无插件时），可以输入十六进制数字，再按 F2 保存修改&lt;/p&gt;
-&lt;p&gt;用 LazyIDA 时，进入编辑模式时右键可以选 pastedata，这样可以用 ascll 模式&lt;/p&gt;
-&lt;p&gt;但是这玩意儿不会自己不 00，所以还要自己加&lt;/p&gt;
-&lt;h3 id=&#34;7模块窗口&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#7模块窗口&#34;&gt;#&lt;/a&gt; 7. 模块窗口&lt;/h3&gt;
-&lt;p&gt;显示模块列表&lt;/p&gt;
-&lt;p&gt;Debuger--&amp;gt;Debuger Windows--&amp;gt;Modules&lt;/p&gt;
-&lt;p&gt;在 Windows 上是 dll,Linux 上是 so&lt;/p&gt;
-&lt;h2 id=&#34;远程调试&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#远程调试&#34;&gt;#&lt;/a&gt; 远程调试&lt;/h2&gt;
-&lt;p&gt;安装环境：&lt;/p&gt;
-&lt;p&gt;在安装目录下的 debugsrv 目录，选择对应系统的 sever，复制到目标环境运行（子系统必须是 wsl2）&lt;/p&gt;
-&lt;p&gt;为了方便可以加到 path 里&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;echo $PATH
-//调试目录就是执行目录
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;配置：&lt;/p&gt;
-&lt;p&gt;Debuger--&amp;gt;process options&lt;/p&gt;
-&lt;p&gt;Host 填 Linux 地址（wsl 会自动填回环地址）&lt;/p&gt;
-&lt;p&gt;Port 就填 Linux 上显示的监听端口&lt;/p&gt;
-&lt;p&gt;其他不要填&lt;/p&gt;
-&lt;p&gt;如果修改的代码，记得删掉重新上传&lt;/p&gt;
-</content>
-        <category term="技术" scheme="https://zhewanyiershinicheng.github.io/categories/%E6%8A%80%E6%9C%AF/" />
-        <updated>2024-10-14T05:21:05.000Z</updated>
-    </entry>
-    <entry>
         <id>https://zhewanyiershinicheng.github.io/2024/10/14/C%E7%AC%94%E8%AE%B02SE/</id>
         <title>C笔记2SE</title>
         <link rel="alternate" href="https://zhewanyiershinicheng.github.io/2024/10/14/C%E7%AC%94%E8%AE%B02SE/"/>
@@ -2499,6 +2400,105 @@ name=person[&amp;quot;lastname&amp;quot;];
 &lt;figure class=&#34;highlight html&#34;&gt;&lt;figcaption data-lang=&#34;HTML&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;p&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;该实例使用 addEventListener() 方法在按钮中添加点击事件。 &lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;p&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;button&lt;/span&gt; &lt;span class=&#34;token attr-name&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;token attr-value&#34;&gt;&lt;span class=&#34;token punctuation attr-equals&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&#34;&lt;/span&gt;myBtn&lt;span class=&#34;token punctuation&#34;&gt;&#34;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;点我&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;button&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;p&lt;/span&gt; &lt;span class=&#34;token attr-name&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;token attr-value&#34;&gt;&lt;span class=&#34;token punctuation attr-equals&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&#34;&lt;/span&gt;demo&lt;span class=&#34;token punctuation&#34;&gt;&#34;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;p&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;script&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token script&#34;&gt;&lt;span class=&#34;token language-javascript&#34;&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;document&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getElementById&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;myBtn&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;addEventListener&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;click&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; displayDate&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;/*           存在 removeEventListener ()，移除事件监听，可以用 document.getElementById (&#34;myBtn&#34;).removeEventListener (&#34;click&#34;, displayDate) 来实现                                               */&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;displayDate&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    document&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getElementById&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;demo&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;innerHTML &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;Date&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;    &lt;span class=&#34;token comment&#34;&gt;// 要有条件才调用，不要像这里多此一举&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;script&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;IE8 以及之前的用的是 attachEvent () 和 detachEvent ()&lt;/p&gt;
 &lt;p&gt;解决办法：&lt;/p&gt;
 &lt;figure class=&#34;highlight javascript&#34;&gt;&lt;figcaption data-lang=&#34;javascript&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;var&lt;/span&gt; x &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; document&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getElementById&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;myBtn&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;x&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;addEventListener&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;                    &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token comment&#34;&gt;// 所有主流浏览器，除了 IE 8 及更早版本    &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	x&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;addEventListener&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;click&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; myFunction&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;x&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;attachEvent&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;                  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token comment&#34;&gt;// IE 8 及更早版本    &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	x&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;attachEvent&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;onclick&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; myFunction&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+        <category term="技术" scheme="https://zhewanyiershinicheng.github.io/categories/%E6%8A%80%E6%9C%AF/" />
+        <updated>2024-10-14T05:21:05.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://zhewanyiershinicheng.github.io/2024/10/14/IDA%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
+        <title>IDA</title>
+        <link rel="alternate" href="https://zhewanyiershinicheng.github.io/2024/10/14/IDA%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+        <content type="html">&lt;h1 id=&#34;ida&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#ida&#34;&gt;#&lt;/a&gt; IDA&lt;/h1&gt;
+&lt;p&gt;ida 插件环境：&lt;/p&gt;
+&lt;p&gt;1. 至少 Python3.8&lt;/p&gt;
+&lt;p&gt;2. 多个使用 IDA 目录下的 idaplyswitch.exe&lt;/p&gt;
+&lt;p&gt;插件：&lt;/p&gt;
+&lt;p&gt;直接把 xxx.py 放到目录的 plugins 目录&lt;/p&gt;
+&lt;p&gt;KeyPatch (修改汇编)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;依赖安装：pip install keystone-engine&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;LazyIDA (提取，批量修改)&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;至于用 64 还是 32，可以用查壳软件直接看&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;在 linux 下也可以使用 file 命令&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;但是实际上可以试错，不是直接打不开然后提醒，就是反汇编时会提醒&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;function-窗口&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#function-窗口&#34;&gt;#&lt;/a&gt; function 窗口&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;按 G 可以地址导航，按 TAB 显示伪代码&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;在该窗口中使用 Ctrl+F 就可以用关键字查找&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这里包含了分析出的所有函数&lt;/p&gt;
+&lt;p&gt;IDAview&lt;/p&gt;
+&lt;p&gt;图形窗口&lt;/p&gt;
+&lt;p&gt;会显示控制流，按空格切换为文本模式，这是按照线性地址&lt;/p&gt;
+&lt;p&gt;分析一般从 main 开始，但是万一 main 函数名字没有识别到&lt;/p&gt;
+&lt;p&gt;可以根据输出的内容来定位地址（去字符串窗口找），然后定位函数&lt;/p&gt;
+&lt;h2 id=&#34;字符串窗口&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#字符串窗口&#34;&gt;#&lt;/a&gt; 字符串窗口&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;shift+12&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;在该窗口中使用 Ctrl+F 也可以用关键字查找（其实所有表格窗口都可以）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;它包括了所有已识别的字符串&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;选中按 U 取消已定义的标识符，按 A 重建，按 X 显示所有引用选中的字符串的地方&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;hex-view&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#hex-view&#34;&gt;#&lt;/a&gt; hex view&lt;/h2&gt;
+&lt;p&gt;动态调试时显示内存数据，正常是显示静态数据&lt;/p&gt;
+&lt;h2 id=&#34;importsexports&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#importsexports&#34;&gt;#&lt;/a&gt; imports/exports&lt;/h2&gt;
+&lt;p&gt;导入导出表&lt;/p&gt;
+&lt;p&gt;显示引用的 api，使用里面的函数&lt;/p&gt;
+&lt;p&gt;分析动态链接库时，同时要看导出的函数&lt;/p&gt;
+&lt;p&gt;程序入口会被 ida 当成一个叫做 start 的导出函数&lt;/p&gt;
+&lt;p&gt;在运行时 start 先被初始化，然后调用 main 函数&lt;/p&gt;
+&lt;h2 id=&#34;其他玩意儿&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#其他玩意儿&#34;&gt;#&lt;/a&gt; 其他玩意儿&lt;/h2&gt;
+&lt;h4 id=&#34;重命名函数&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#重命名函数&#34;&gt;#&lt;/a&gt; 重命名函数：&lt;/h4&gt;
+&lt;p&gt;ida 反编译的有时名字不太对，为了方便看，所以建议重命名&lt;br /&gt;
+（自己要猜一猜可能是什么库函数）&lt;/p&gt;
+&lt;p&gt;选中，然后按 N&lt;/p&gt;
+&lt;h1 id=&#34;ida动态调试&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#ida动态调试&#34;&gt;#&lt;/a&gt; IDA 动态调试&lt;/h1&gt;
+&lt;p&gt;作用：&lt;/p&gt;
+&lt;p&gt;验证静态分析结果&lt;/p&gt;
+&lt;p&gt;观察程序运行时数据&lt;/p&gt;
+&lt;h2 id=&#34;支持的特性&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#支持的特性&#34;&gt;#&lt;/a&gt; 支持的特性：&lt;/h2&gt;
+&lt;h3 id=&#34;1软件硬件条件脚本断点&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1软件硬件条件脚本断点&#34;&gt;#&lt;/a&gt; 1. 软件 / 硬件 / 条件 / 脚本断点&lt;/h3&gt;
+&lt;p&gt;设置断点，点前面，或者选中按 F2&lt;/p&gt;
+&lt;p&gt;在伪代码设断点，可能会导致有些没执行（断点会在函数传参时）&lt;/p&gt;
+&lt;p&gt;软件：IDA 在地址上设置断点（0xCC）, 到达后在恢复&lt;/p&gt;
+&lt;p&gt;硬件断点：通过 CPU 抛出错误来断点&lt;/p&gt;
+&lt;p&gt;条件断点：到达后执行特定脚本，并返回真表示被命中&lt;/p&gt;
+&lt;p&gt;脚本断点：基本和上面一样，但是返回值永远是假&lt;/p&gt;
+&lt;h3 id=&#34;2步入步过步出执行到光标位置&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2步入步过步出执行到光标位置&#34;&gt;#&lt;/a&gt; 2. 步入 / 步过 / 步出 / 执行到光标位置 /&lt;/h3&gt;
+&lt;p&gt;步入：进入 call 函数（F7）&lt;/p&gt;
+&lt;p&gt;步过：直接到 call 函数的返回地址（F8）&lt;/p&gt;
+&lt;p&gt;步出：中断函数回到其调用者（执行到返回）（Ctrl+F7）&lt;/p&gt;
+&lt;p&gt;执行到光标位置：直接执行到选中位值（实际上是设置临时断点）(F4)&lt;/p&gt;
+&lt;p&gt;设置代码执行位置：用于跳过不想执行的代码（Ctrl+N）&lt;/p&gt;
+&lt;p&gt;注意 scanf 会强行暂停等待输入&lt;/p&gt;
+&lt;h3 id=&#34;3汇编级伪代码源码调试代码级支持&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3汇编级伪代码源码调试代码级支持&#34;&gt;#&lt;/a&gt; 3. 汇编级 / 伪代码 / 源码 / 调试代码级支持&lt;/h3&gt;
+&lt;p&gt;IDA 会在存在源代码时自动导入，但是不如直接用 VS 之类的集成开发软件&lt;/p&gt;
+&lt;h3 id=&#34;4寄存器内存读写&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#4寄存器内存读写&#34;&gt;#&lt;/a&gt; 4. 寄存器 / 内存读写&lt;/h3&gt;
+&lt;p&gt;不是很方便，建议装上面插件&lt;/p&gt;
+&lt;h3 id=&#34;5启动进程附加调试&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#5启动进程附加调试&#34;&gt;#&lt;/a&gt; 5. 启动进程 / 附加调试&lt;/h3&gt;
+&lt;p&gt;启动调试可以每一步调试，也可以调试初始化代码（如果没有反调试）&lt;/p&gt;
+&lt;p&gt;附加调试不能调试初始化代码，但是有些程序是子程序，不附加环境不一样&lt;/p&gt;
+&lt;p&gt;也用来调试动态库以及绕过一些反调试&lt;/p&gt;
+&lt;p&gt;注：附加可以用 Ctrl+F 快速查找要附加到的程序&lt;/p&gt;
+&lt;h3 id=&#34;6内存窗口&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#6内存窗口&#34;&gt;#&lt;/a&gt; 6. 内存窗口&lt;/h3&gt;
+&lt;p&gt;在窗口中按 G 跳转到特定地址（自己提前复制）&lt;/p&gt;
+&lt;p&gt;按 F2 修改内存（无插件时），可以输入十六进制数字，再按 F2 保存修改&lt;/p&gt;
+&lt;p&gt;用 LazyIDA 时，进入编辑模式时右键可以选 pastedata，这样可以用 ascll 模式&lt;/p&gt;
+&lt;p&gt;但是这玩意儿不会自己不 00，所以还要自己加&lt;/p&gt;
+&lt;h3 id=&#34;7模块窗口&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#7模块窗口&#34;&gt;#&lt;/a&gt; 7. 模块窗口&lt;/h3&gt;
+&lt;p&gt;显示模块列表&lt;/p&gt;
+&lt;p&gt;Debuger--&amp;gt;Debuger Windows--&amp;gt;Modules&lt;/p&gt;
+&lt;p&gt;在 Windows 上是 dll,Linux 上是 so&lt;/p&gt;
+&lt;h2 id=&#34;远程调试&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#远程调试&#34;&gt;#&lt;/a&gt; 远程调试&lt;/h2&gt;
+&lt;p&gt;安装环境：&lt;/p&gt;
+&lt;p&gt;在安装目录下的 debugsrv 目录，选择对应系统的 sever，复制到目标环境运行（子系统必须是 wsl2）&lt;/p&gt;
+&lt;p&gt;为了方便可以加到 path 里&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;echo $PATH
+//调试目录就是执行目录
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;配置：&lt;/p&gt;
+&lt;p&gt;Debuger--&amp;gt;process options&lt;/p&gt;
+&lt;p&gt;Host 填 Linux 地址（wsl 会自动填回环地址）&lt;/p&gt;
+&lt;p&gt;Port 就填 Linux 上显示的监听端口&lt;/p&gt;
+&lt;p&gt;其他不要填&lt;/p&gt;
+&lt;p&gt;如果修改的代码，记得删掉重新上传&lt;/p&gt;
+</content>
         <category term="技术" scheme="https://zhewanyiershinicheng.github.io/categories/%E6%8A%80%E6%9C%AF/" />
         <updated>2024-10-14T05:21:05.000Z</updated>
     </entry>
@@ -3558,6 +3558,45 @@ mysqli_close($conn);
         <updated>2024-10-11T09:48:50.000Z</updated>
     </entry>
     <entry>
+        <id>https://zhewanyiershinicheng.github.io/2024/10/11/%E5%9C%9F%E8%B1%86%E7%9B%B4%E6%92%AD%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81/</id>
+        <title>土豆直播</title>
+        <link rel="alternate" href="https://zhewanyiershinicheng.github.io/2024/10/11/%E5%9C%9F%E8%B1%86%E7%9B%B4%E6%92%AD%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81/"/>
+        <content type="html">&lt;p&gt;土豆直播！！！！！！&lt;/p&gt;
+&lt;p&gt;http 请求分为：&lt;/p&gt;
+&lt;p&gt;请求头：包括请求方法，版本等&lt;/p&gt;
+&lt;p&gt;请求体：&lt;/p&gt;
+&lt;p&gt;发给 repeater（重发器）后可以右键改变请求方式，发送请求包。&lt;/p&gt;
+&lt;p&gt;User-agent: 检测使用设备类型，windows,android 等。&lt;/p&gt;
+&lt;p&gt;post 方法需要加 content-type（在 hacker-bar 中可选）&lt;/p&gt;
+&lt;p&gt;​    application/xfu: 是发送 a=2 之类的表单&lt;/p&gt;
+&lt;p&gt;​    application/xfu (raw): 可以传图片，文件头（十六进制数）&lt;/p&gt;
+&lt;p&gt;​    application/json&lt;/p&gt;
+&lt;p&gt;​&lt;/p&gt;
+&lt;p&gt;Cookie: 一般是象征身份的随机字符&lt;/p&gt;
+&lt;p&gt;xff: 127.0.0.1（ 主机环回地址，可以自己发给自己 ）&lt;/p&gt;
+&lt;p&gt;控制台按 F2 可以看到二维数组&lt;/p&gt;
+&lt;p&gt;302 是重定向，可以在 repeater 中 follow&lt;/p&gt;
+&lt;p&gt;方法：&lt;/p&gt;
+&lt;p&gt;get post put delete head (与 GET 相比，没有响应体，只有存活判断)&lt;/p&gt;
+&lt;p&gt;可以自定义&lt;/p&gt;
+&lt;p&gt;hackerbar 可以发 post 的 json（可选）, 但是方法可以被 bp 再修改&lt;/p&gt;
+&lt;p&gt;然后看看 repeater&lt;/p&gt;
+&lt;p&gt;能看到的都是前端&lt;/p&gt;
+&lt;p&gt;服务器是后端&lt;/p&gt;
+&lt;p&gt;F12 可以看源代码（前端）&lt;/p&gt;
+&lt;p&gt;ctrl+u 可以看 html&lt;/p&gt;
+&lt;p&gt;俩 &amp;lt;scrip&amp;gt; 之间的才是 js，其他都是 html&lt;/p&gt;
+&lt;p&gt;html 是大的框架（提供元素），jss 是干正式的 (?)，css 用于美化网页&lt;/p&gt;
+&lt;p&gt;js 会看就行（bushi）&lt;/p&gt;
+&lt;p&gt;js 重点：&lt;/p&gt;
+&lt;p&gt;1. 事件监听（一定要会）&lt;/p&gt;
+&lt;p&gt;2. 选取 html 的元素，添加或修改属性值&lt;/p&gt;
+&lt;p&gt;3. 创建 html 标签，增加属性，并追加 DOM&lt;/p&gt;
+</content>
+        <category term="技术" scheme="https://zhewanyiershinicheng.github.io/tags/%E6%8A%80%E6%9C%AF/" />
+        <updated>2024-10-11T09:48:50.000Z</updated>
+    </entry>
+    <entry>
         <id>https://zhewanyiershinicheng.github.io/2024/10/11/python%E7%AC%94%E8%AE%B01/</id>
         <title>python，然而完全没有关系</title>
         <link rel="alternate" href="https://zhewanyiershinicheng.github.io/2024/10/11/python%E7%AC%94%E8%AE%B01/"/>
@@ -3634,45 +3673,6 @@ mysqli_close($conn);
 &lt;p&gt;这是一个关于在 xxxxx 中逐步发现关于土豆真相的故事。&lt;/p&gt;
 </content>
         <category term="离谱" scheme="https://zhewanyiershinicheng.github.io/categories/%E7%A6%BB%E8%B0%B1/" />
-        <updated>2024-10-11T09:48:50.000Z</updated>
-    </entry>
-    <entry>
-        <id>https://zhewanyiershinicheng.github.io/2024/10/11/%E5%9C%9F%E8%B1%86%E7%9B%B4%E6%92%AD%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81/</id>
-        <title>土豆直播</title>
-        <link rel="alternate" href="https://zhewanyiershinicheng.github.io/2024/10/11/%E5%9C%9F%E8%B1%86%E7%9B%B4%E6%92%AD%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81/"/>
-        <content type="html">&lt;p&gt;土豆直播！！！！！！&lt;/p&gt;
-&lt;p&gt;http 请求分为：&lt;/p&gt;
-&lt;p&gt;请求头：包括请求方法，版本等&lt;/p&gt;
-&lt;p&gt;请求体：&lt;/p&gt;
-&lt;p&gt;发给 repeater（重发器）后可以右键改变请求方式，发送请求包。&lt;/p&gt;
-&lt;p&gt;User-agent: 检测使用设备类型，windows,android 等。&lt;/p&gt;
-&lt;p&gt;post 方法需要加 content-type（在 hacker-bar 中可选）&lt;/p&gt;
-&lt;p&gt;​    application/xfu: 是发送 a=2 之类的表单&lt;/p&gt;
-&lt;p&gt;​    application/xfu (raw): 可以传图片，文件头（十六进制数）&lt;/p&gt;
-&lt;p&gt;​    application/json&lt;/p&gt;
-&lt;p&gt;​&lt;/p&gt;
-&lt;p&gt;Cookie: 一般是象征身份的随机字符&lt;/p&gt;
-&lt;p&gt;xff: 127.0.0.1（ 主机环回地址，可以自己发给自己 ）&lt;/p&gt;
-&lt;p&gt;控制台按 F2 可以看到二维数组&lt;/p&gt;
-&lt;p&gt;302 是重定向，可以在 repeater 中 follow&lt;/p&gt;
-&lt;p&gt;方法：&lt;/p&gt;
-&lt;p&gt;get post put delete head (与 GET 相比，没有响应体，只有存活判断)&lt;/p&gt;
-&lt;p&gt;可以自定义&lt;/p&gt;
-&lt;p&gt;hackerbar 可以发 post 的 json（可选）, 但是方法可以被 bp 再修改&lt;/p&gt;
-&lt;p&gt;然后看看 repeater&lt;/p&gt;
-&lt;p&gt;能看到的都是前端&lt;/p&gt;
-&lt;p&gt;服务器是后端&lt;/p&gt;
-&lt;p&gt;F12 可以看源代码（前端）&lt;/p&gt;
-&lt;p&gt;ctrl+u 可以看 html&lt;/p&gt;
-&lt;p&gt;俩 &amp;lt;scrip&amp;gt; 之间的才是 js，其他都是 html&lt;/p&gt;
-&lt;p&gt;html 是大的框架（提供元素），jss 是干正式的 (?)，css 用于美化网页&lt;/p&gt;
-&lt;p&gt;js 会看就行（bushi）&lt;/p&gt;
-&lt;p&gt;js 重点：&lt;/p&gt;
-&lt;p&gt;1. 事件监听（一定要会）&lt;/p&gt;
-&lt;p&gt;2. 选取 html 的元素，添加或修改属性值&lt;/p&gt;
-&lt;p&gt;3. 创建 html 标签，增加属性，并追加 DOM&lt;/p&gt;
-</content>
-        <category term="技术" scheme="https://zhewanyiershinicheng.github.io/tags/%E6%8A%80%E6%9C%AF/" />
         <updated>2024-10-11T09:48:50.000Z</updated>
     </entry>
     <entry>
