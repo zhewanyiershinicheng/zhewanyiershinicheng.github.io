@@ -8,8 +8,73 @@
     <author>
       <name>开船的</name>
     </author>
-    <updated>2025-03-22T10:36:29.000Z</updated>
+    <updated>2025-03-28T12:39:27.000Z</updated>
     <category term="《舰舰的奇妙冒险》" />
+    <entry>
+        <id>https://zhewanyiershinicheng.github.io/2025/03/28/docker/</id>
+        <title>docker</title>
+        <link rel="alternate" href="https://zhewanyiershinicheng.github.io/2025/03/28/docker/"/>
+        <content type="html">&lt;h2 id=&#34;命令&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#命令&#34;&gt;#&lt;/a&gt; 命令&lt;/h2&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;/1743167361020.png&#34; alt=&#34;1743167361020&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;/1743167321438.png&#34; alt=&#34;1743167321438&#34; /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;-d&lt;/code&gt; &lt;/strong&gt;：后台运行容器，例如  &lt;code&gt;docker run -d ubuntu&lt;/code&gt; 。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;-it&lt;/code&gt; &lt;/strong&gt;：以交互式终端运行容器，例如  &lt;code&gt;docker exec -it container_name bash&lt;/code&gt; 。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;-t&lt;/code&gt; &lt;/strong&gt;：为镜像指定标签，例如  &lt;code&gt;docker build -t my-image .&lt;/code&gt; 。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;/1743165757475.png&#34; alt=&#34;1743165757475&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;架构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#架构&#34;&gt;#&lt;/a&gt; 架构&lt;/h2&gt;
+&lt;h3 id=&#34;client&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#client&#34;&gt;#&lt;/a&gt; Client&lt;/h3&gt;
+&lt;p&gt;常用命令：&lt;br /&gt;
+ &lt;code&gt;run&lt;/code&gt;  (运行容器), &lt;code&gt;ps&lt;/code&gt;  (正在运行的容器), &lt;code&gt;bulid&lt;/code&gt;  (构建镜像)&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;exec&lt;/code&gt;  (在容器中执行命令)&lt;/p&gt;
+&lt;h3 id=&#34;daemon&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#daemon&#34;&gt;#&lt;/a&gt; &lt;strong&gt;Daemon&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Docker 守护进程（通常是  &lt;code&gt;dockerd&lt;/code&gt; ） 监听来自 Docker 客户端的请求，并且通过 Docker API 执行这些请求。&lt;/p&gt;
+&lt;p&gt;负责容器、镜像等 Docker 对象的管理，并根据请求的参数启动容器、删除容器、修改容器配置等。&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; systemctl start &lt;span class=&#34;token function&#34;&gt;docker&lt;/span&gt; //启动，但是通常自启动&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;engine-api&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#engine-api&#34;&gt;#&lt;/a&gt; &lt;strong&gt;Engine API&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;RESTful 接口，允许外部客户端与 Docker 守护进程进行通信。通过这个 API，用户可以执行各种操作&lt;/p&gt;
+&lt;p&gt;可以通过  &lt;code&gt;curl&lt;/code&gt;  或其他 HTTP 客户端访问 Docker 引擎 API&lt;/p&gt;
+&lt;h3 id=&#34;containers&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#containers&#34;&gt;#&lt;/a&gt; &lt;strong&gt;Containers&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;执行环境 ，容器是从 Docker 镜像启动的，包含了运行某个应用程序所需的一切 —— 从操作系统库到应用程序代码。容器在运行时与其他容器和宿主机共享操作系统内核，但容器之间的文件系统和进程是隔离的 ，它是&lt;strong&gt;镜像运行的一个实例&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;images&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#images&#34;&gt;#&lt;/a&gt; &lt;strong&gt;Images&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;容器的静态只读模板&lt;/p&gt;
+&lt;h3 id=&#34;registries&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#registries&#34;&gt;#&lt;/a&gt; &lt;strong&gt;Registries&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;仓库用于存储镜像，最常用的公共仓库是 &lt;strong&gt;Docker Hub&lt;/strong&gt;。可以从 Docker Hub 下载镜像，也可以上传自己的镜像分享给其他人。可以部署自己的私有仓库 。&lt;/p&gt;
+&lt;h3 id=&#34;compose&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#compose&#34;&gt;#&lt;/a&gt; &lt;strong&gt;Compose&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;用于定义和运行多容器 Docker 应用的工具&lt;/p&gt;
+&lt;h3 id=&#34;swarm&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#swarm&#34;&gt;#&lt;/a&gt; &lt;strong&gt;Swarm&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;集群管理和调度工具 ，允许将多个 Docker 主机（节点）组织成一个集群&lt;/p&gt;
+&lt;h3 id=&#34;networks&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#networks&#34;&gt;#&lt;/a&gt; &lt;strong&gt;Networks&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;允许容器之间相互通信，并与外部世界进行连接&lt;/p&gt;
+&lt;h3 id=&#34;volumes&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#volumes&#34;&gt;#&lt;/a&gt; &lt;strong&gt;Volumes&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;一种数据持久化机制，允许数据在容器之间共享，并且独立于容器的生命周期&lt;/p&gt;
+&lt;h2 id=&#34;使用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#使用&#34;&gt;#&lt;/a&gt; 使用&lt;/h2&gt;
+&lt;p&gt;交互式启动&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;docker&lt;/span&gt; run &lt;span class=&#34;token parameter variable&#34;&gt;-i&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-t&lt;/span&gt; ubuntu:15.10 /bin/bash&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;-t: 在新容器内指定一个伪终端或终端。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;-i: 允许你对容器内的标准输入 &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;STDIN&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; 进行交互。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;会进入到容器的命令行中，退出命令行会回到当前主机&lt;/p&gt;
+&lt;p&gt;后台启动&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;runoob@runoob:~$ &lt;span class=&#34;token function&#34;&gt;docker&lt;/span&gt; run &lt;span class=&#34;token parameter variable&#34;&gt;-d&lt;/span&gt; ubuntu:15.10 /bin/sh &lt;span class=&#34;token parameter variable&#34;&gt;-c&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;while true; do echo hello world; sleep 1; done&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;//返回容器id，使用&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;ps&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;`&lt;/span&gt;&lt;/span&gt;来查看是否在运行&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;ps 返回的状态可能是：&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;/1743166915057.png&#34; alt=&#34;1743166915057&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;返回中的 PORTS 是端口信息和使用的连接类型（tcp\udp）&lt;/p&gt;
+&lt;p&gt;使用 &lt;strong&gt;docker logs&lt;/strong&gt; 命令，查看容器内的标准输出（ID 或名称都可以，以下都是这样）。&lt;/p&gt;
+&lt;p&gt;使用 &lt;strong&gt;docker stop&lt;/strong&gt; 命令来停止容器&lt;/p&gt;
+&lt;p&gt;使用 &lt;strong&gt;docker attach&lt;/strong&gt;  命令进入后台运行的容器，如果之后退出，会导致停止&lt;/p&gt;
+&lt;p&gt;使用 &lt;strong&gt;docker exec -it&lt;/strong&gt; 命令进入，则退出不会停止&lt;/p&gt;
+&lt;p&gt;导入 / 出容器&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;docker&lt;/span&gt; &lt;span class=&#34;token builtin class-name&#34;&gt;export&lt;/span&gt; 1e560fca3906 &lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; ubuntu.tar  //导出快照&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;cat&lt;/span&gt; docker/ubuntu.tar &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;docker&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;import&lt;/span&gt; - test/ubuntu:v1 //导入快照&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;docker&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;import&lt;/span&gt; http://example.com/exampleimage.tgz example/imagerepo&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;//从url中导入&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;删除容器&lt;/p&gt;
+&lt;p&gt;用   &lt;code&gt;rm -f&lt;/code&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;docker&lt;/span&gt; container prune  //删除所以终止状态的容器&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&#34;web&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#web&#34;&gt;#&lt;/a&gt; WEB&lt;/h2&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;docker&lt;/span&gt; pull training/webapp  &lt;span class=&#34;token comment&#34;&gt;# 从公共镜像载入&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#training/webapp：它代表了要拉取的镜像的名称。training 是镜像的命名空间或者组织名，webapp 则是镜像的具体名称&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#docker images 查看已有镜像&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;docker&lt;/span&gt; run &lt;span class=&#34;token parameter variable&#34;&gt;-d&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-P&lt;/span&gt; training/webapp python app.py&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#-P：将容器内部暴露的端口随机映射到宿主机的一个端口上，外部可以通过宿主机上映射的端口来访问容器内的应用（使用 `ps` 查看映射端口，也可以用 `port`)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;//固定端口使用-p xxxx:yyyy 从容器的yyyy映射到宿主机的xxxx&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;//python app.py：这是在容器内部要执行的命令，它会启动容器内的 Python 应用程序 app.py&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;使用&lt;strong&gt; docker top&lt;/strong&gt; 查看容器进程（类似于 tasklist）&lt;/p&gt;
+&lt;p&gt;使用 &lt;strong&gt;docker inspect&lt;/strong&gt; 来查看 Docker 的底层信息 （返回 json 文件）&lt;/p&gt;
+&lt;p&gt;使用&lt;strong&gt; docker start&lt;/strong&gt; 来启动已经停止的容器&lt;/p&gt;
+&lt;p&gt;使用 &lt;strong&gt;docker restart&lt;/strong&gt; 命令来重启正在运行的容器&lt;/p&gt;
+&lt;p&gt;使用 &lt;strong&gt;docker rm&lt;/strong&gt; 命令来删除不需要的容器（该容器必须先停止）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;docker ps -l&lt;/strong&gt; 查询最后一次创建的容器&lt;/p&gt;
+</content>
+        <category term="技术" scheme="https://zhewanyiershinicheng.github.io/tags/%E6%8A%80%E6%9C%AF/" />
+        <updated>2025-03-28T12:39:27.000Z</updated>
+    </entry>
     <entry>
         <id>https://zhewanyiershinicheng.github.io/2025/03/22/%E4%B8%80%E7%82%B9C-%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5/</id>
         <title>一点C-的碎碎念</title>
